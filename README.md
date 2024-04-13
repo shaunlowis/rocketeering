@@ -1,2 +1,2 @@
 # rocketeering
-Building a customised 1/4 scale patriot rocket 
+Documentation, progress and updates added [here](https://shaunlowis.github.io/rocketeering/)

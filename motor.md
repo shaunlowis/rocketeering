@@ -44,3 +44,6 @@ A typical nozzle design:
 #### References
 [Practical APCP motor design](https://www.tripolimn.org/wp-content/uploads/2016/12/Practical-APCP-motor-design.pdf)
 
+
+
+[Back to home site](https://shaunlowis.github.io/rocketeering/)

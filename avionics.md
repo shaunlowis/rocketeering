@@ -1,4 +1,6 @@
-layout: page
-title: "avionics"
-permalink: /https://shaunlowis.github.io/rocketeering/
-
+# Custom Avionics
+## Overview
+- Seperation charge
+- Altimeter
+- IMU
+- LoRa Radio link

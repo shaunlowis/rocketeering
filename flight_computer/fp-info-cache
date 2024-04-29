@@ -1,4 +1,4 @@
-21869207130475082
+21872635881230479
 Audio_Module
 Reverb_BTDR-1H
 Digital Reverberation Unit, http://www.belton.co.kr/inc/downfile.php?seq=17&file=pdf (footprint from http://www.uk-electronic.de/PDF/BTDR-1.pdf)
@@ -90636,6 +90636,13 @@ AS1E-2M-10-Z
 3
 3
 my_footprints
+KMR2_1
+KMR2_1
+Switch
+0
+4
+4
+my_footprints
 SW_GF-123-0054
 
 
@@ -90656,3 +90663,10 @@ QFN, VQFN, 2.5mm, 0.5mm
 0
 12
 12
+my_footprints
+buzzer_Dia9.2mm_P5mm
+
+
+0
+2
+2

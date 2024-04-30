@@ -334,6 +334,10 @@
     [
       "ebc948db-a9d3-410a-bdbf-1c31db890e56",
       "Power"
+    ],
+    [
+      "c81a97f0-01ba-4e2a-b4b2-3d08d9bf2671",
+      "Sensors"
     ]
   ],
   "text_variables": {}

@@ -337,7 +337,23 @@
     ],
     [
       "c81a97f0-01ba-4e2a-b4b2-3d08d9bf2671",
-      "Sensors"
+      "Pressure sensor"
+    ],
+    [
+      "8a1e6a35-f87c-4284-aec3-66a93071d289",
+      "GPS"
+    ],
+    [
+      "0b835f18-e97c-4530-9363-7eee1af6da75",
+      "Radio"
+    ],
+    [
+      "00230fc6-00d9-4789-9199-c0e29b2f6daa",
+      "IMU"
+    ],
+    [
+      "61115e18-7772-4524-8bbc-217f26a5a331",
+      "Temperature sensor"
     ]
   ],
   "text_variables": {}

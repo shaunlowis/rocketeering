@@ -1,4 +1,4 @@
-21874350260876950
+21877780234445461
 Audio_Module
 Reverb_BTDR-1H
 Digital Reverberation Unit, http://www.belton.co.kr/inc/downfile.php?seq=17&file=pdf (footprint from http://www.uk-electronic.de/PDF/BTDR-1.pdf)
@@ -90622,6 +90622,13 @@ varistor
 2
 2
 my_footprints
+24-SMD Module
+24-SMD Module, GPS
+24-SMD Module, GPS
+0
+24
+24
+my_footprints
 1825255-5 SWITCH SLIDE SPDT 300MA 125V
 
 
@@ -90656,6 +90663,13 @@ SW_GF-123-0054
 0
 2
 2
+my_footprints
+TDFN-4-1EP_1.2x1.6mm_P0.5mm
+TDFN package
+Integrated Circuit TDFN package
+0
+5
+5
 my_footprints
 TRIM_67YR100LF
 

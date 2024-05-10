@@ -519,7 +519,7 @@
   (symbol (lib_id "Device:C") (at 170.18 101.6 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no)
     (uuid 0985ac8a-3619-4491-8572-a87ac2a71e86)
-    (property "Reference" "C22" (at 173.99 100.33 0)
+    (property "Reference" "C20" (at 173.99 100.33 0)
       (effects (font (size 1.27 1.27)) (justify left))
     )
     (property "Value" "100pF" (at 173.99 102.87 0)
@@ -548,7 +548,7 @@
     (instances
       (project "flight_computer"
         (path "/89a81c02-14e9-456f-a334-ff69a24bd093/8a1e6a35-f87c-4284-aec3-66a93071d289"
-          (reference "C22") (unit 1)
+          (reference "C20") (unit 1)
         )
       )
     )
@@ -595,7 +595,7 @@
   (symbol (lib_id "my_library:YIC31612EBGG") (at 149.86 93.98 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no) (fields_autoplaced)
     (uuid 16c8811f-b8ec-4a81-be63-afabe38b689f)
-    (property "Reference" "U7" (at 149.225 80.01 0)
+    (property "Reference" "U6" (at 149.225 80.01 0)
       (effects (font (size 1.27 1.27)))
     )
     (property "Value" "YIC31612EBGG" (at 152.4 81.28 0)
@@ -607,13 +607,13 @@
     (property "Datasheet" "https://www.yic.com.tw/wp-content/uploads/2022/01/YIC31612EBGG.pdf" (at 152.4 81.28 0)
       (effects (font (size 1.27 1.27)) hide)
     )
-    (property "Manufacturer PN" "" (at 149.86 93.98 0)
+    (property "Manufacturer PN" "YIC31612EBGG" (at 149.86 93.98 0)
       (effects (font (size 1.27 1.27)) hide)
     )
-    (property "Supplier PN" "" (at 149.86 93.98 0)
+    (property "Supplier PN" "3155-YIC31612EBGGCT-ND" (at 149.86 93.98 0)
       (effects (font (size 1.27 1.27)) hide)
     )
-    (property "Supplier" "" (at 149.86 93.98 0)
+    (property "Supplier" "Digikey" (at 149.86 93.98 0)
       (effects (font (size 1.27 1.27)) hide)
     )
     (pin "1" (uuid 3448519a-319f-486d-ba51-1316406ca991))
@@ -643,7 +643,7 @@
     (instances
       (project "flight_computer"
         (path "/89a81c02-14e9-456f-a334-ff69a24bd093/8a1e6a35-f87c-4284-aec3-66a93071d289"
-          (reference "U7") (unit 1)
+          (reference "U6") (unit 1)
         )
       )
     )
@@ -719,7 +719,7 @@
           (reference "C19") (unit 1)
         )
         (path "/89a81c02-14e9-456f-a334-ff69a24bd093/8a1e6a35-f87c-4284-aec3-66a93071d289"
-          (reference "C21") (unit 1)
+          (reference "C18") (unit 1)
         )
       )
     )
@@ -760,7 +760,7 @@
           (reference "C18") (unit 1)
         )
         (path "/89a81c02-14e9-456f-a334-ff69a24bd093/8a1e6a35-f87c-4284-aec3-66a93071d289"
-          (reference "C20") (unit 1)
+          (reference "C19") (unit 1)
         )
       )
     )
@@ -807,7 +807,7 @@
   (symbol (lib_id "Device:C") (at 187.96 101.6 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no)
     (uuid d100aa95-6906-46d9-ae83-20409c9bc804)
-    (property "Reference" "C23" (at 191.77 100.33 0)
+    (property "Reference" "C21" (at 191.77 100.33 0)
       (effects (font (size 1.27 1.27)) (justify left))
     )
     (property "Value" "100pF" (at 191.77 102.87 0)
@@ -836,7 +836,7 @@
     (instances
       (project "flight_computer"
         (path "/89a81c02-14e9-456f-a334-ff69a24bd093/8a1e6a35-f87c-4284-aec3-66a93071d289"
-          (reference "C23") (unit 1)
+          (reference "C21") (unit 1)
         )
       )
     )
@@ -874,7 +874,7 @@
           (reference "R1") (unit 1)
         )
         (path "/89a81c02-14e9-456f-a334-ff69a24bd093/8a1e6a35-f87c-4284-aec3-66a93071d289"
-          (reference "R21") (unit 1)
+          (reference "R18") (unit 1)
         )
       )
     )

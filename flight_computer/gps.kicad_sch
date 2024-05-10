@@ -519,7 +519,7 @@
   (symbol (lib_id "Device:C") (at 170.18 101.6 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no)
     (uuid 0985ac8a-3619-4491-8572-a87ac2a71e86)
-    (property "Reference" "C20" (at 173.99 100.33 0)
+    (property "Reference" "C28" (at 173.99 100.33 0)
       (effects (font (size 1.27 1.27)) (justify left))
     )
     (property "Value" "100pF" (at 173.99 102.87 0)
@@ -548,7 +548,7 @@
     (instances
       (project "flight_computer"
         (path "/89a81c02-14e9-456f-a334-ff69a24bd093/8a1e6a35-f87c-4284-aec3-66a93071d289"
-          (reference "C20") (unit 1)
+          (reference "C28") (unit 1)
         )
       )
     )
@@ -719,7 +719,7 @@
           (reference "C19") (unit 1)
         )
         (path "/89a81c02-14e9-456f-a334-ff69a24bd093/8a1e6a35-f87c-4284-aec3-66a93071d289"
-          (reference "C18") (unit 1)
+          (reference "C26") (unit 1)
         )
       )
     )
@@ -760,7 +760,7 @@
           (reference "C18") (unit 1)
         )
         (path "/89a81c02-14e9-456f-a334-ff69a24bd093/8a1e6a35-f87c-4284-aec3-66a93071d289"
-          (reference "C19") (unit 1)
+          (reference "C27") (unit 1)
         )
       )
     )
@@ -807,7 +807,7 @@
   (symbol (lib_id "Device:C") (at 187.96 101.6 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no)
     (uuid d100aa95-6906-46d9-ae83-20409c9bc804)
-    (property "Reference" "C21" (at 191.77 100.33 0)
+    (property "Reference" "C29" (at 191.77 100.33 0)
       (effects (font (size 1.27 1.27)) (justify left))
     )
     (property "Value" "100pF" (at 191.77 102.87 0)
@@ -836,7 +836,7 @@
     (instances
       (project "flight_computer"
         (path "/89a81c02-14e9-456f-a334-ff69a24bd093/8a1e6a35-f87c-4284-aec3-66a93071d289"
-          (reference "C21") (unit 1)
+          (reference "C29") (unit 1)
         )
       )
     )

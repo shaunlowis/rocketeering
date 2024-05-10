@@ -1609,7 +1609,7 @@
   (symbol (lib_id "Device:C") (at 82.55 185.42 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no) (fields_autoplaced)
     (uuid 08a61a15-c4ae-4b78-abcd-59c36d81be47)
-    (property "Reference" "C6" (at 86.36 184.15 0)
+    (property "Reference" "C14" (at 86.36 184.15 0)
       (effects (font (size 1.27 1.27)) (justify left))
     )
     (property "Value" "1.8nF" (at 86.36 186.69 0)
@@ -1635,7 +1635,7 @@
     (instances
       (project "flight_computer"
         (path "/89a81c02-14e9-456f-a334-ff69a24bd093/ebc948db-a9d3-410a-bdbf-1c31db890e56"
-          (reference "C6") (unit 1)
+          (reference "C14") (unit 1)
         )
       )
     )
@@ -1764,7 +1764,7 @@
   (symbol (lib_id "Device:C") (at 100.33 190.5 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no)
     (uuid 2f1ccb53-ff66-48ea-87cb-44053b2dcc7e)
-    (property "Reference" "C8" (at 104.14 189.23 0)
+    (property "Reference" "C16" (at 104.14 189.23 0)
       (effects (font (size 1.27 1.27)) (justify left))
     )
     (property "Value" "100nF" (at 104.14 191.77 0)
@@ -1793,7 +1793,7 @@
     (instances
       (project "flight_computer"
         (path "/89a81c02-14e9-456f-a334-ff69a24bd093/ebc948db-a9d3-410a-bdbf-1c31db890e56"
-          (reference "C8") (unit 1)
+          (reference "C16") (unit 1)
         )
       )
     )
@@ -1946,7 +1946,7 @@
   (symbol (lib_id "Device:C") (at 96.52 151.13 270) (unit 1)
     (in_bom yes) (on_board yes) (dnp no)
     (uuid 5e9738ec-6da7-4728-8996-7a5b34fdb186)
-    (property "Reference" "C7" (at 96.52 143.51 90)
+    (property "Reference" "C15" (at 96.52 143.51 90)
       (effects (font (size 1.27 1.27)))
     )
     (property "Value" "22pF" (at 96.52 146.05 90)
@@ -1972,7 +1972,7 @@
     (instances
       (project "flight_computer"
         (path "/89a81c02-14e9-456f-a334-ff69a24bd093/ebc948db-a9d3-410a-bdbf-1c31db890e56"
-          (reference "C7") (unit 1)
+          (reference "C15") (unit 1)
         )
       )
     )
@@ -2101,7 +2101,7 @@
   (symbol (lib_id "Device:C") (at 67.31 179.07 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no) (fields_autoplaced)
     (uuid 78652b07-9d73-49c8-8544-ede0ca9a7c78)
-    (property "Reference" "C5" (at 71.12 177.8 0)
+    (property "Reference" "C13" (at 71.12 177.8 0)
       (effects (font (size 1.27 1.27)) (justify left))
     )
     (property "Value" "1.8nF" (at 71.12 180.34 0)
@@ -2127,7 +2127,7 @@
     (instances
       (project "flight_computer"
         (path "/89a81c02-14e9-456f-a334-ff69a24bd093/ebc948db-a9d3-410a-bdbf-1c31db890e56"
-          (reference "C5") (unit 1)
+          (reference "C13") (unit 1)
         )
       )
     )
@@ -2171,7 +2171,7 @@
   (symbol (lib_id "Device:C") (at 182.88 83.82 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no)
     (uuid 802ed03d-3d56-418b-af82-1414ed4eb4d3)
-    (property "Reference" "C10" (at 186.69 82.55 0)
+    (property "Reference" "C18" (at 186.69 82.55 0)
       (effects (font (size 1.27 1.27)) (justify left))
     )
     (property "Value" "100nF" (at 186.69 85.09 0)
@@ -2200,7 +2200,7 @@
     (instances
       (project "flight_computer"
         (path "/89a81c02-14e9-456f-a334-ff69a24bd093/ebc948db-a9d3-410a-bdbf-1c31db890e56"
-          (reference "C10") (unit 1)
+          (reference "C18") (unit 1)
         )
       )
     )
@@ -2304,7 +2304,7 @@
           (reference "C6") (unit 1)
         )
         (path "/89a81c02-14e9-456f-a334-ff69a24bd093/ebc948db-a9d3-410a-bdbf-1c31db890e56"
-          (reference "C13") (unit 1)
+          (reference "C21") (unit 1)
         )
       )
     )
@@ -2376,7 +2376,7 @@
   (symbol (lib_id "Device:C") (at 264.16 93.98 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no)
     (uuid b091df74-2c80-4780-ab65-bd5a714b28e3)
-    (property "Reference" "C11" (at 267.97 92.71 0)
+    (property "Reference" "C19" (at 267.97 92.71 0)
       (effects (font (size 1.27 1.27)) (justify left))
     )
     (property "Value" "10uF" (at 267.97 95.25 0)
@@ -2405,7 +2405,7 @@
     (instances
       (project "flight_computer"
         (path "/89a81c02-14e9-456f-a334-ff69a24bd093/ebc948db-a9d3-410a-bdbf-1c31db890e56"
-          (reference "C11") (unit 1)
+          (reference "C19") (unit 1)
         )
       )
     )
@@ -2414,7 +2414,7 @@
   (symbol (lib_id "Device:C") (at 280.67 93.98 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no)
     (uuid b1cd27dd-1e16-401e-87cc-bcdf83c47e6c)
-    (property "Reference" "C12" (at 284.48 92.71 0)
+    (property "Reference" "C20" (at 284.48 92.71 0)
       (effects (font (size 1.27 1.27)) (justify left))
     )
     (property "Value" "10uF" (at 284.48 95.25 0)
@@ -2443,7 +2443,7 @@
     (instances
       (project "flight_computer"
         (path "/89a81c02-14e9-456f-a334-ff69a24bd093/ebc948db-a9d3-410a-bdbf-1c31db890e56"
-          (reference "C12") (unit 1)
+          (reference "C20") (unit 1)
         )
       )
     )
@@ -2452,7 +2452,7 @@
   (symbol (lib_id "Device:C") (at 313.69 92.71 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no)
     (uuid b408eb16-4dc9-4964-bb7a-0d42587db44e)
-    (property "Reference" "C14" (at 317.5 91.44 0)
+    (property "Reference" "C22" (at 317.5 91.44 0)
       (effects (font (size 1.27 1.27)) (justify left))
     )
     (property "Value" "10uF" (at 317.5 93.98 0)
@@ -2481,7 +2481,7 @@
     (instances
       (project "flight_computer"
         (path "/89a81c02-14e9-456f-a334-ff69a24bd093/ebc948db-a9d3-410a-bdbf-1c31db890e56"
-          (reference "C14") (unit 1)
+          (reference "C22") (unit 1)
         )
       )
     )
@@ -2620,7 +2620,7 @@
   (symbol (lib_id "Device:C") (at 154.94 82.55 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no)
     (uuid d70799c1-4d17-465e-b862-42cc456acda8)
-    (property "Reference" "C9" (at 158.75 81.28 0)
+    (property "Reference" "C17" (at 158.75 81.28 0)
       (effects (font (size 1.27 1.27)) (justify left))
     )
     (property "Value" "10uF" (at 158.75 83.82 0)
@@ -2649,7 +2649,7 @@
     (instances
       (project "flight_computer"
         (path "/89a81c02-14e9-456f-a334-ff69a24bd093/ebc948db-a9d3-410a-bdbf-1c31db890e56"
-          (reference "C9") (unit 1)
+          (reference "C17") (unit 1)
         )
       )
     )
@@ -2725,7 +2725,7 @@
           (reference "C6") (unit 1)
         )
         (path "/89a81c02-14e9-456f-a334-ff69a24bd093/ebc948db-a9d3-410a-bdbf-1c31db890e56"
-          (reference "C15") (unit 1)
+          (reference "C23") (unit 1)
         )
       )
     )

@@ -228,7 +228,7 @@
           (stroke (width 0) (type default))
           (fill (type background))
         )
-        (pin no_connect line (at 12.7 -11.43 180) (length 2.54) hide
+        (pin no_connect line (at 0 -2.54 180) (length 2.54) hide
           (name "NC" (effects (font (size 1.27 1.27))))
           (number "1" (effects (font (size 1.27 1.27))))
         )
@@ -248,31 +248,31 @@
           (name "GND" (effects (font (size 1.27 1.27))))
           (number "13" (effects (font (size 1.27 1.27))))
         )
-        (pin no_connect line (at 12.7 -11.43 180) (length 2.54) hide
+        (pin no_connect line (at 0 -2.54 180) (length 2.54) hide
           (name "NC" (effects (font (size 1.27 1.27))))
           (number "14" (effects (font (size 1.27 1.27))))
         )
-        (pin no_connect line (at 12.7 -11.43 180) (length 2.54) hide
+        (pin no_connect line (at 0 -2.54 180) (length 2.54) hide
           (name "NC" (effects (font (size 1.27 1.27))))
           (number "15" (effects (font (size 1.27 1.27))))
         )
-        (pin no_connect line (at 12.7 -11.43 180) (length 2.54) hide
+        (pin no_connect line (at 0 -2.54 180) (length 2.54) hide
           (name "NC" (effects (font (size 1.27 1.27))))
           (number "16" (effects (font (size 1.27 1.27))))
         )
-        (pin no_connect line (at 12.7 -11.43 180) (length 2.54) hide
+        (pin no_connect line (at 0 -2.54 180) (length 2.54) hide
           (name "NC" (effects (font (size 1.27 1.27))))
           (number "17" (effects (font (size 1.27 1.27))))
         )
-        (pin no_connect line (at 12.7 -11.43 180) (length 2.54) hide
+        (pin no_connect line (at 0 -2.54 180) (length 2.54) hide
           (name "NC" (effects (font (size 1.27 1.27))))
           (number "18" (effects (font (size 1.27 1.27))))
         )
-        (pin no_connect line (at 12.7 -11.43 180) (length 2.54) hide
+        (pin no_connect line (at 0 -2.54 180) (length 2.54) hide
           (name "NC" (effects (font (size 1.27 1.27))))
           (number "19" (effects (font (size 1.27 1.27))))
         )
-        (pin no_connect line (at 12.7 -11.43 180) (length 2.54) hide
+        (pin no_connect line (at 0 -2.54 180) (length 2.54) hide
           (name "NC" (effects (font (size 1.27 1.27))))
           (number "2" (effects (font (size 1.27 1.27))))
         )
@@ -300,23 +300,23 @@
           (name "PPS" (effects (font (size 1.27 1.27))))
           (number "3" (effects (font (size 1.27 1.27))))
         )
-        (pin no_connect line (at 12.7 -11.43 180) (length 2.54) hide
+        (pin no_connect line (at 0 -2.54 180) (length 2.54) hide
           (name "NC" (effects (font (size 1.27 1.27))))
           (number "4" (effects (font (size 1.27 1.27))))
         )
-        (pin no_connect line (at 12.7 -11.43 180) (length 2.54) hide
+        (pin no_connect line (at 0 -2.54 180) (length 2.54) hide
           (name "NC" (effects (font (size 1.27 1.27))))
           (number "5" (effects (font (size 1.27 1.27))))
         )
-        (pin no_connect line (at 12.7 -11.43 180) (length 2.54) hide
+        (pin no_connect line (at 0 -2.54 180) (length 2.54) hide
           (name "NC" (effects (font (size 1.27 1.27))))
           (number "6" (effects (font (size 1.27 1.27))))
         )
-        (pin no_connect line (at 12.7 -11.43 180) (length 2.54) hide
+        (pin no_connect line (at 0 -2.54 180) (length 2.54) hide
           (name "NC" (effects (font (size 1.27 1.27))))
           (number "7" (effects (font (size 1.27 1.27))))
         )
-        (pin no_connect line (at 12.7 -11.43 180) (length 2.54) hide
+        (pin no_connect line (at 0 -2.54 180) (length 2.54) hide
           (name "NC" (effects (font (size 1.27 1.27))))
           (number "8" (effects (font (size 1.27 1.27))))
         )
@@ -605,6 +605,15 @@
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "Datasheet" "https://www.yic.com.tw/wp-content/uploads/2022/01/YIC31612EBGG.pdf" (at 152.4 81.28 0)
+      (effects (font (size 1.27 1.27)) hide)
+    )
+    (property "Manufacturer PN" "" (at 149.86 93.98 0)
+      (effects (font (size 1.27 1.27)) hide)
+    )
+    (property "Supplier PN" "" (at 149.86 93.98 0)
+      (effects (font (size 1.27 1.27)) hide)
+    )
+    (property "Supplier" "" (at 149.86 93.98 0)
       (effects (font (size 1.27 1.27)) hide)
     )
     (pin "1" (uuid 3448519a-319f-486d-ba51-1316406ca991))

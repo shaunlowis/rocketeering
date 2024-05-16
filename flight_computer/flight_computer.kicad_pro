@@ -41,7 +41,7 @@
         "silk_line_width": 0.15,
         "silk_text_italic": false,
         "silk_text_size_h": 0.6,
-        "silk_text_size_v": 0.0,
+        "silk_text_size_v": 0.7,
         "silk_text_thickness": 0.15,
         "silk_text_upright": true,
         "zones": {
@@ -122,7 +122,7 @@
         "min_silk_clearance": 0.0,
         "min_text_height": 0.7999999999999999,
         "min_text_thickness": 0.08,
-        "min_through_hole_diameter": 0.19999999999999998,
+        "min_through_hole_diameter": 0.3,
         "min_track_width": 0.15,
         "min_via_annular_width": 0.049999999999999996,
         "min_via_diameter": 0.19999999999999998,
@@ -172,12 +172,19 @@
         }
       ],
       "track_widths": [
-        0.0
+        0.0,
+        0.3,
+        0.5,
+        0.7
       ],
       "via_dimensions": [
         {
           "diameter": 0.0,
           "drill": 0.0
+        },
+        {
+          "diameter": 0.6,
+          "drill": 0.3
         }
       ],
       "zones_allow_external_fillets": false

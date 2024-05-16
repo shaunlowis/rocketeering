@@ -620,8 +620,8 @@
     (property "Voltage" "16V" (at 77.47 107.95 0)
       (effects (font (size 1.27 1.27)))
     )
-    (pin "1" (uuid bfaa81d4-0bc1-47e2-8688-efe49a5d5505))
-    (pin "2" (uuid 782eb76f-1848-462d-af71-7d24a9a64fba))
+    (pin "1" (uuid c885e438-b7df-4b7d-9ef7-b42bfc58c3c1))
+    (pin "2" (uuid 3b2732a8-452e-46f3-8d81-a493f127ed7e))
     (instances
       (project "flight_computer"
         (path "/89a81c02-14e9-456f-a334-ff69a24bd093/ebc948db-a9d3-410a-bdbf-1c31db890e56"

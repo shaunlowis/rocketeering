@@ -495,6 +495,12 @@
     (uuid f63c2585-e917-4353-a07e-547169c155d9)
   )
 
+  (text "Use JLC impedance calculator for antenna trace:\nhttps://jlcpcb.com/pcb-impedance-calculator"
+    (at 96.52 124.46 0)
+    (effects (font (size 1.27 1.27)) (justify left bottom))
+    (uuid 934a9c6b-5b7e-444f-920c-477b28fde8c5)
+  )
+
   (hierarchical_label "GND" (shape input) (at 62.23 119.38 180) (fields_autoplaced)
     (effects (font (size 1.27 1.27)) (justify right))
     (uuid 1908e048-4daa-47ec-b950-18a011986bec)

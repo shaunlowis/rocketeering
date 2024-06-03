@@ -1,7 +1,16 @@
 # Overview
 
-Build a custom 1/4 scale patriot missle. We are starting with an airframe that I assembled in 2019,
+Build a custom 1/4 scale patriot missile. We are starting with an airframe that I assembled in 2019,
 adding custom software and hardware to it.
+
+- Custom flight computer designed and being made.
+- Enclosure and mount being designed.
+- I-class motor will be used for the first launch.
+- Initial flight data recorded and analysed.
+
+For successive flights, we plan to use
+a custom sugar motor, with some changes
+to the airframe.
 
 Links:
 - [Airframe](https://shaunlowis.github.io/rocketeering/airframe)

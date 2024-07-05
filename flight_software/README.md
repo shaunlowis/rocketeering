@@ -73,7 +73,7 @@ For debugging, connect SWO to the SWIM breakout header on the schematic and NRST
 ## Building a new c file:
 
 ```
-sdcc -lstm8 -mstm8 --opt-code-size --std-sdcc99 --nogcse --all-callee-saves --debug --verbose --stack-auto --fverbose-asm --float-reent --no-peep -I./ -I./STM8S_StdPeriph_Driver/inc -D STM8S007 -D __CSMC__ ./stm8_blinky.c STM8S_StdPeriph_Driver/src/stm8s_gpio.c
+sdcc -lstm8 -mstm8 --opt-code-size --std-sdcc99 --nogcse --all-callee-saves --debug --verbose --stack-auto --fverbose-asm --float-reent --no-peep -I./ -I./STM8S_StdPeriph_Driver/inc -D STM8S007 -D __CSMC__ ./stm8_blinky.c
 ```
 
 Next up: make a makefile to first compile the stm8s_gpio.h and stm8s_gpio.c and 

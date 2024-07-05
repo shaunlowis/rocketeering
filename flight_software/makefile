@@ -37,15 +37,16 @@ def: compile flash
 all: clean compile_obj compile
 
 compile:
-	$(SDCC) $(CFLAGS) $(INCLUDEPATH) -D $(DEVICE) -o $(OUTPUT_DIR)/ $(SOURCE_DIR)/$(SOURCE).c \
-	$(OUTPUT_DIR)/stm8s_gpio.rel
+	$(SDCC) $(CFLAGS) $(INCLUDEPATH) -D $(DEVICE) -D __CSMC__ -o $(OUTPUT_DIR)/ $(SOURCE_DIR)/$(SOURCE).c \
+	$(OUTPUT_DIR)/main.rel
+#	$(OUTPUT_DIR)/stm8s_gpio.rel
 #	$(OUTPUT_DIR)/stm8s_clk.rel \
 #	$(OUTPUT_DIR)/stm8s_tim2.rel \
 #	--out-fmt-elf --all-callee-saves --debug --verbose --stack-auto --fverbose-asm  --float-reent --no-peep
 
 compile_obj:
 	mkdir -p $(OUTPUT_DIR)
-	$(SDCC) $(CFLAGS) $(INCLUDEPATH) -D $(DEVICE) -o $(OUTPUT_DIR)/ -c $(StdPeriph)/src/stm8s_gpio.c
+	$(SDCC) $(CFLAGS) $(INCLUDEPATH) -D $(DEVICE) -D __CSMC__ -o $(OUTPUT_DIR)/ -c $(StdPeriph)/src/stm8s_gpio.c
 #	$(SDCC) $(CFLAGS) $(INCLUDEPATH) -D $(DEVICE) -o $(OUTPUT_DIR)/ -c $(StdPeriph)/src/stm8s_clk.c
 #	$(SDCC) $(CFLAGS) $(INCLUDEPATH) -D $(DEVICE) -o $(OUTPUT_DIR)/ -c $(StdPeriph)/src/stm8s_tim2.c
 

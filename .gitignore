@@ -2,3 +2,6 @@
 **/flight_computer/flight_computer-backups/**
 
 *.kicad_sch.lck
+
+# everything in the build folder can be ignored.
+/flight_software/build/*

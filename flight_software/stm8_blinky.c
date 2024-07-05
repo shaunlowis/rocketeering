@@ -1,4 +1,4 @@
-#include "stm8l.h"
+#include "stm8s.h"
 
 #define Led_Init GPIO_Init(GPIOD, GPIO_PIN_1, GPIO_MODE_OUT_PP_LOW_FAST)
 #define Led_ON   GPIO_WriteHigh    (GPIOD,GPIO_PIN_1)
@@ -25,6 +25,3 @@ void main(void)
       }
    }
 }
-
-// build code should be something like this:
-// $ sdcc -lstm8 -mstm8 --opt-code-size --std-sdcc99 --nogcse --all-callee-saves --debug --verbose --stack-auto --fverbose-asm --float-reent --no-peep -I./ -I./STM8S_StdPeriph_Driver/inc -D STM8S003 ./stm8_blinky.c

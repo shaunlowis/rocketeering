@@ -18,5 +18,8 @@
         "titleBar.inactiveBackground": "#1862be99",
         "titleBar.inactiveForeground": "#e7e7e799"
     },
-    "peacock.color": "#1862be"
+    "peacock.color": "#1862be",
+    "files.associations": {
+        "stm8s.h": "c"
+    }
 }

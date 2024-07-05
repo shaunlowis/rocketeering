@@ -1,0 +1,166 @@
+ASxxxx Linker V03.00/V05.40 + sdld,  page 1.
+Hexadecimal  [32-Bits]
+
+Area                                    Addr        Size        Decimal Bytes (Attributes)
+--------------------------------        ----        ----        ------- ----- ------------
+.  .ABS.                            00000000    00000000 =           0. bytes (ABS,CON)
+
+      Value  Global                              Global Defined In Module
+      -----  --------------------------------   ------------------------
+     00000000  .__.ABS.                           _startup
+     00000000  _GPIO_Init                      
+     00000000  _GPIO_WriteHigh                 
+     00000000  _GPIO_WriteReverse              
+     00000000  l_CABS                          
+     00000000  l_CONST                         
+     00000000  l_DABS                          
+     00000000  l_DATA                          
+     00000000  l_INITIALIZED                   
+     00000000  l_INITIALIZER                   
+     00000000  l__CODE                         
+     00000000  s_CABS                          
+     00000000  s_DABS                          
+     00000000  s__CODE                         
+     00000001  l_SSEG                          
+     00000001  s_DATA                          
+     00000001  s_INITIALIZED                   
+     00000001  s_SSEG                          
+     00000003  l_GSFINAL                       
+     00000007  l_HOME                          
+     00000023  l_GSINIT                        
+     00000039  l_CODE                          
+     00008000  s_HOME                          
+     00008007  s_GSINIT                        
+     0000802A  s_GSFINAL                       
+     0000802D  s_CODE                          
+     0000802D  s_CONST                         
+     0000802D  s_INITIALIZER                   
+
+ASxxxx Linker V03.00/V05.40 + sdld,  page 2.
+Hexadecimal  [32-Bits]
+
+Area                                    Addr        Size        Decimal Bytes (Attributes)
+--------------------------------        ----        ----        ------- ----- ------------
+SSEG                                00000001    00000001 =           1. bytes (REL,CON)
+
+      Value  Global                              Global Defined In Module
+      -----  --------------------------------   ------------------------
+ASxxxx Linker V03.00/V05.40 + sdld,  page 3.
+Hexadecimal  [32-Bits]
+
+Area                                    Addr        Size        Decimal Bytes (Attributes)
+--------------------------------        ----        ----        ------- ----- ------------
+HOME                                00008000    00000007 =           7. bytes (REL,CON)
+
+      Value  Global                              Global Defined In Module
+      -----  --------------------------------   ------------------------
+     00008000  A$stm8_blinky$48                   stm8_blinky
+     00008004  A$stm8_blinky$86                   stm8_blinky
+
+ASxxxx Linker V03.00/V05.40 + sdld,  page 4.
+Hexadecimal  [32-Bits]
+
+Area                                    Addr        Size        Decimal Bytes (Attributes)
+--------------------------------        ----        ----        ------- ----- ------------
+GSINIT                              00008007    00000023 =          35. bytes (REL,CON)
+
+      Value  Global                              Global Defined In Module
+      -----  --------------------------------   ------------------------
+     00008007  A$stm8_blinky$56                   stm8_blinky
+     0000800A  A$stm8_blinky$57                   stm8_blinky
+     0000800B  A$stm8_blinky$58                   stm8_blinky
+     0000800D  A$stm8_blinky$59                   stm8_blinky
+     00008010  A$stm8_blinky$62                   stm8_blinky
+     00008013  A$stm8_blinky$63                   stm8_blinky
+     00008015  A$stm8_blinky$65                   stm8_blinky
+     00008019  A$stm8_blinky$66                   stm8_blinky
+     0000801A  A$stm8_blinky$67                   stm8_blinky
+     0000801C  A$stm8_blinky$69                   stm8_blinky
+     0000801F  A$stm8_blinky$70                   stm8_blinky
+     00008021  A$stm8_blinky$72                   stm8_blinky
+     00008024  A$stm8_blinky$73                   stm8_blinky
+     00008027  A$stm8_blinky$74                   stm8_blinky
+     00008028  A$stm8_blinky$75                   stm8_blinky
+ASxxxx Linker V03.00/V05.40 + sdld,  page 5.
+Hexadecimal  [32-Bits]
+
+Area                                    Addr        Size        Decimal Bytes (Attributes)
+--------------------------------        ----        ----        ------- ----- ------------
+GSFINAL                             0000802A    00000003 =           3. bytes (REL,CON)
+
+      Value  Global                              Global Defined In Module
+      -----  --------------------------------   ------------------------
+     0000802A  A$stm8_blinky$79                   stm8_blinky
+
+ASxxxx Linker V03.00/V05.40 + sdld,  page 6.
+Hexadecimal  [32-Bits]
+
+Area                                    Addr        Size        Decimal Bytes (Attributes)
+--------------------------------        ----        ----        ------- ----- ------------
+CODE                                0000802D    00000039 =          57. bytes (REL,CON)
+
+      Value  Global                              Global Defined In Module
+      -----  --------------------------------   ------------------------
+     0000802D  A$stm8_blinky$105                  stm8_blinky
+     0000802D  C$stm8_blinky.c$12$1_0$358         stm8_blinky
+     0000802D  C$stm8_blinky.c$8$0_0$358          stm8_blinky
+     0000802D  G$main$0$0                         stm8_blinky
+     0000802D  _main                              stm8_blinky
+     0000802F  A$stm8_blinky$107                  stm8_blinky
+     00008031  A$stm8_blinky$109                  stm8_blinky
+     00008034  A$stm8_blinky$111                  stm8_blinky
+     00008037  A$stm8_blinky$115                  stm8_blinky
+     00008037  C$stm8_blinky.c$15$1_0$358         stm8_blinky
+     00008039  A$stm8_blinky$117                  stm8_blinky
+     0000803C  A$stm8_blinky$119                  stm8_blinky
+     0000803F  A$stm8_blinky$127                  stm8_blinky
+     0000803F  C$stm8_blinky.c$18$1_0$358         stm8_blinky
+     0000803F  C$stm8_blinky.c$20$2_0$359         stm8_blinky
+     00008041  A$stm8_blinky$129                  stm8_blinky
+     00008044  A$stm8_blinky$131                  stm8_blinky
+     00008047  A$stm8_blinky$135                  stm8_blinky
+     00008047  C$stm8_blinky.c$23$1_0$358         stm8_blinky
+     00008048  A$stm8_blinky$140                  stm8_blinky
+     0000804A  A$stm8_blinky$143                  stm8_blinky
+     0000804E  A$stm8_blinky$144                  stm8_blinky
+     00008050  A$stm8_blinky$145                  stm8_blinky
+     00008053  A$stm8_blinky$151                  stm8_blinky
+     00008053  C$stm8_blinky.c$24$1_0$358         stm8_blinky
+     00008054  A$stm8_blinky$156                  stm8_blinky
+     00008056  A$stm8_blinky$157                  stm8_blinky
+     00008058  A$stm8_blinky$158                  stm8_blinky
+     0000805B  A$stm8_blinky$162                  stm8_blinky
+     0000805C  A$stm8_blinky$164                  stm8_blinky
+     0000805F  A$stm8_blinky$170                  stm8_blinky
+     0000805F  C$stm8_blinky.c$23$3_0$360         stm8_blinky
+     00008060  A$stm8_blinky$172                  stm8_blinky
+     00008063  A$stm8_blinky$180                  stm8_blinky
+     00008063  C$stm8_blinky.c$27$1_0$358         stm8_blinky
+     00008063  XG$main$0$0                        stm8_blinky
+     00008064  ___sdcc_external_startup           _startup
+
+ASxxxx Linker V03.00/V05.40 + sdld,  page 7.
+
+Files Linked                              [ module(s) ]
+
+stm8_blinky.rel                           [ stm8_blinky ]
+
+
+Libraries Linked                          [ object file ]
+
+/usr/local/bin/../share/sdcc/lib/stm8/stm8.lib
+                                          [ _startup.rel ]
+
+ASxxxx Linker V03.00/V05.40 + sdld,  page 8.
+
+User Base Address Definitions
+
+HOME = 0x8000
+DATA = 0x0001
+
+
+?ASlink-Warning-Undefined Global '_GPIO_Init' referenced by module 'stm8_blinky'
+
+?ASlink-Warning-Undefined Global '_GPIO_WriteReverse' referenced by module 'stm8_blinky'
+
+?ASlink-Warning-Undefined Global '_GPIO_WriteHigh' referenced by module 'stm8_blinky'

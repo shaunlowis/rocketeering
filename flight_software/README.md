@@ -58,8 +58,25 @@ make
 sudo make install
 ```
 
+### Download standard library
+Source files have been added to this repository as well.
+
 Continue from [here](https://github.com/hbend1li/stm8_started?tab=readme-ov-file#get-started)
 
+### Wiring the STLINK
+We are using the STLINK-V3SET. The STM8 micro has to be debugged over SWIM.
+
+Details for this are in section 7.3.3 [here](https://www.st.com/resource/en/user_manual/um2448-stlinkv3set-debuggerprogrammer-for-stm8-and-stm32-stmicroelectronics.pdf)
+
+For debugging, connect SWO to the SWIM breakout header on the schematic and NRST TO NRST.
+
+## Building a new c file:
+
+```
+sdcc -lstm8 -mstm8 --opt-code-size --std-sdcc99 --nogcse --all-callee-saves --debug --verbose --stack-auto --fverbose-asm --float-reent --no-peep -I./ -I./STM8S_StdPeriph_Driver/inc -D STM8S007 -D __CSMC__ ./stm8_blinky.c STM8S_StdPeriph_Driver/src/stm8s_gpio.c
+```
+
+Next up: make a makefile to first compile the stm8s_gpio.h and stm8s_gpio.c and 
 
 ## VS Code
 

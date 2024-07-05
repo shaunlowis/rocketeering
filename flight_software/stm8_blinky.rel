@@ -1,0 +1,150 @@
+;!FILE stm8_blinky.asm
+XH3
+H C areas 41 global symbols
+M stm8_blinky
+O -mstm8
+S _GPIO_Init Ref000000
+S s_INITIALIZED Ref000000
+S l_INITIALIZER Ref000000
+S _GPIO_WriteReverse Ref000000
+S s_INITIALIZER Ref000000
+S .__.ABS. Def000000
+S s_GSINIT Ref000000
+S l_DATA Ref000000
+S s_DATA Ref000000
+S ___sdcc_external_startup Ref000000
+S _GPIO_WriteHigh Ref000000
+A _CODE size 0 flags 0 addr 0
+A DATA size 0 flags 0 addr 0
+A INITIALIZED size 0 flags 0 addr 0
+A SSEG size 1 flags 0 addr 0
+A DABS size 0 flags 8 addr 0
+A HOME size 7 flags 0 addr 0
+S A$stm8_blinky$48 Def000000
+S A$stm8_blinky$86 Def000004
+A GSINIT size 23 flags 0 addr 0
+S A$stm8_blinky$70 Def000018
+S A$stm8_blinky$62 Def000009
+S A$stm8_blinky$72 Def00001A
+S A$stm8_blinky$63 Def00000C
+S A$stm8_blinky$73 Def00001D
+S A$stm8_blinky$74 Def000020
+S A$stm8_blinky$65 Def00000E
+S A$stm8_blinky$56 Def000000
+S A$stm8_blinky$75 Def000021
+S A$stm8_blinky$66 Def000012
+S A$stm8_blinky$57 Def000003
+S A$stm8_blinky$67 Def000013
+S A$stm8_blinky$58 Def000004
+S A$stm8_blinky$59 Def000006
+S A$stm8_blinky$69 Def000015
+A GSFINAL size 3 flags 0 addr 0
+S A$stm8_blinky$79 Def000000
+A CONST size 0 flags 0 addr 0
+A INITIALIZER size 0 flags 0 addr 0
+A CODE size 37 flags 0 addr 0
+S _main Def000000
+S A$stm8_blinky$111 Def000007
+S XG$main$0$0 Def000036
+S A$stm8_blinky$140 Def00001B
+S A$stm8_blinky$131 Def000017
+S A$stm8_blinky$105 Def000000
+S A$stm8_blinky$151 Def000026
+S A$stm8_blinky$115 Def00000A
+S A$stm8_blinky$170 Def000032
+S A$stm8_blinky$143 Def00001D
+S A$stm8_blinky$107 Def000002
+S A$stm8_blinky$180 Def000036
+S A$stm8_blinky$162 Def00002E
+S A$stm8_blinky$144 Def000021
+S A$stm8_blinky$135 Def00001A
+S A$stm8_blinky$117 Def00000C
+S A$stm8_blinky$172 Def000033
+S A$stm8_blinky$145 Def000023
+S A$stm8_blinky$127 Def000012
+S A$stm8_blinky$109 Def000004
+S A$stm8_blinky$164 Def00002F
+S A$stm8_blinky$119 Def00000F
+S C$stm8_blinky.c$23$3_0$360 Def000032
+S A$stm8_blinky$156 Def000027
+S A$stm8_blinky$129 Def000014
+S A$stm8_blinky$157 Def000029
+S A$stm8_blinky$158 Def00002B
+S C$stm8_blinky.c$12$1_0$358 Def000000
+S C$stm8_blinky.c$20$2_0$359 Def000012
+S C$stm8_blinky.c$23$1_0$358 Def00001A
+S C$stm8_blinky.c$24$1_0$358 Def000026
+S C$stm8_blinky.c$15$1_0$358 Def00000A
+S C$stm8_blinky.c$27$1_0$358 Def000036
+S C$stm8_blinky.c$18$1_0$358 Def000012
+S C$stm8_blinky.c$8$0_0$358 Def000000
+S G$main$0$0 Def000000
+A CABS size 0 flags 8 addr 0
+T 00 00 00
+R 00 00 00 03
+T 00 00 00
+R 00 00 00 03
+T 00 00 00
+R 00 00 00 05
+T 00 00 00 82 00 00 00
+R 00 00 00 05 92 04 00 06
+T 00 00 00 CD 00 00 4D 27 03 CC 00 04
+R 00 00 00 06 02 04 00 09 00 0A 00 05
+T 00 00 09
+R 00 00 00 06
+T 00 00 09 AE 00 00 27 07
+R 00 00 00 06 02 04 00 07
+T 00 00 0E
+R 00 00 00 06
+T 00 00 0E 72 4F FF FF 5A 26 F9
+R 00 00 00 06 12 05 00 08
+T 00 00 15
+R 00 00 00 06
+T 00 00 15 AE 00 00 27 09
+R 00 00 00 06 02 04 00 02
+T 00 00 1A
+R 00 00 00 06
+T 00 00 1A D6 FF FF D7 FF FF 5A 26 F7
+R 00 00 00 06 12 04 00 04 12 07 00 01
+T 00 00 23
+R 00 00 00 06
+T 00 00 00 CC 00 04
+R 00 00 00 07 00 04 00 05
+T 00 00 04
+R 00 00 00 05
+T 00 00 04 CC 00 00
+R 00 00 00 05 00 04 00 0A
+T 00 00 00
+R 00 00 00 0A
+T 00 00 00 4B E0 A6 02 AE 50 0F CD 00 00 A6 02 AE
+R 00 00 00 0A 02 0B 00 00
+T 00 00 0D 50 0F CD 00 00
+R 00 00 00 0A 02 06 00 0A
+T 00 00 12
+R 00 00 00 0A
+T 00 00 12 A6 02 AE 50 0F CD 00 00 5F
+R 00 00 00 0A 02 09 00 03
+T 00 00 1B
+R 00 00 00 0A
+T 00 00 1B 90 93 90 A3 4A 38 25 03 CC 00 12
+R 00 00 00 0A 00 0C 00 0A
+T 00 00 26
+R 00 00 00 0A
+T 00 00 26 4F
+R 00 00 00 0A
+T 00 00 27
+R 00 00 00 0A
+T 00 00 27 A1 05 25 03 CC 00 32
+R 00 00 00 0A 00 08 00 0A
+T 00 00 2E
+R 00 00 00 0A
+T 00 00 2E 4C CC 00 27
+R 00 00 00 0A 00 05 00 0A
+T 00 00 32
+R 00 00 00 0A
+T 00 00 32 5C CC 00 1B
+R 00 00 00 0A 00 05 00 0A
+T 00 00 36
+R 00 00 00 0A
+T 00 00 36 81
+R 00 00 00 0A

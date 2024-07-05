@@ -1,0 +1,184 @@
+                                      1 ;--------------------------------------------------------
+                                      2 ; File Created by SDCC : free open source ISO C Compiler 
+                                      3 ; Version 4.4.0 #14620 (Linux)
+                                      4 ;--------------------------------------------------------
+                                      5 	.module stm8_blinky
+                                      6 	.optsdcc -mstm8
+                                      7 	
+                                      8 ;--------------------------------------------------------
+                                      9 ; Public variables in this module
+                                     10 ;--------------------------------------------------------
+                                     11 	.globl _main
+                                     12 	.globl _GPIO_WriteReverse
+                                     13 	.globl _GPIO_WriteHigh
+                                     14 	.globl _GPIO_Init
+                                     15 ;--------------------------------------------------------
+                                     16 ; ram data
+                                     17 ;--------------------------------------------------------
+                                     18 	.area DATA
+                                     19 ;--------------------------------------------------------
+                                     20 ; ram data
+                                     21 ;--------------------------------------------------------
+                                     22 	.area INITIALIZED
+                                     23 ;--------------------------------------------------------
+                                     24 ; Stack segment in internal ram
+                                     25 ;--------------------------------------------------------
+                                     26 	.area SSEG
+      000001                         27 __start__stack:
+      000001                         28 	.ds	1
+                                     29 
+                                     30 ;--------------------------------------------------------
+                                     31 ; absolute external ram data
+                                     32 ;--------------------------------------------------------
+                                     33 	.area DABS (ABS)
+                                     34 
+                                     35 ; default segment ordering for linker
+                                     36 	.area HOME
+                                     37 	.area GSINIT
+                                     38 	.area GSFINAL
+                                     39 	.area CONST
+                                     40 	.area INITIALIZER
+                                     41 	.area CODE
+                                     42 
+                                     43 ;--------------------------------------------------------
+                                     44 ; interrupt vector
+                                     45 ;--------------------------------------------------------
+                                     46 	.area HOME
+      008000                         47 __interrupt_vect:
+      008000 82 00 80 07             48 	int s_GSINIT ; reset
+                                     49 ;--------------------------------------------------------
+                                     50 ; global & static initialisations
+                                     51 ;--------------------------------------------------------
+                                     52 	.area HOME
+                                     53 	.area GSINIT
+                                     54 	.area GSFINAL
+                                     55 	.area GSINIT
+      008007 CD 80 64         [ 4]   56 	call	___sdcc_external_startup
+      00800A 4D               [ 1]   57 	tnz	a
+      00800B 27 03            [ 1]   58 	jreq	__sdcc_init_data
+      00800D CC 80 04         [ 2]   59 	jp	__sdcc_program_startup
+      008010                         60 __sdcc_init_data:
+                                     61 ; stm8_genXINIT() start
+      008010 AE 00 00         [ 2]   62 	ldw x, #l_DATA
+      008013 27 07            [ 1]   63 	jreq	00002$
+      008015                         64 00001$:
+      008015 72 4F 00 00      [ 1]   65 	clr (s_DATA - 1, x)
+      008019 5A               [ 2]   66 	decw x
+      00801A 26 F9            [ 1]   67 	jrne	00001$
+      00801C                         68 00002$:
+      00801C AE 00 00         [ 2]   69 	ldw	x, #l_INITIALIZER
+      00801F 27 09            [ 1]   70 	jreq	00004$
+      008021                         71 00003$:
+      008021 D6 80 2C         [ 1]   72 	ld	a, (s_INITIALIZER - 1, x)
+      008024 D7 00 00         [ 1]   73 	ld	(s_INITIALIZED - 1, x), a
+      008027 5A               [ 2]   74 	decw	x
+      008028 26 F7            [ 1]   75 	jrne	00003$
+      00802A                         76 00004$:
+                                     77 ; stm8_genXINIT() end
+                                     78 	.area GSFINAL
+      00802A CC 80 04         [ 2]   79 	jp	__sdcc_program_startup
+                                     80 ;--------------------------------------------------------
+                                     81 ; Home
+                                     82 ;--------------------------------------------------------
+                                     83 	.area HOME
+                                     84 	.area HOME
+      008004                         85 __sdcc_program_startup:
+      008004 CC 80 2D         [ 2]   86 	jp	_main
+                                     87 ;	return from main will return to caller
+                                     88 ;--------------------------------------------------------
+                                     89 ; code
+                                     90 ;--------------------------------------------------------
+                                     91 	.area CODE
+                           000000    92 	G$main$0$0 ==.
+                           000000    93 	C$stm8_blinky.c$8$0_0$358 ==.
+                                     94 ;	./stm8_blinky.c: 8: void main(void) 
+                                     95 ; genLabel
+                                     96 ;	-----------------------------------------
+                                     97 ;	 function main
+                                     98 ;	-----------------------------------------
+                                     99 ;	Register assignment is optimal.
+                                    100 ;	Stack space usage: 0 bytes.
+      00802D                        101 _main:
+                           000000   102 	C$stm8_blinky.c$12$1_0$358 ==.
+                                    103 ;	./stm8_blinky.c: 12: Led_Init;
+                                    104 ; genIPush
+      00802D 4B E0            [ 1]  105 	push	#0xe0
+                                    106 ; genSend
+      00802F A6 02            [ 1]  107 	ld	a, #0x02
+                                    108 ; genSend
+      008031 AE 50 0F         [ 2]  109 	ldw	x, #0x500f
+                                    110 ; genCall
+      008034 CD 00 00         [ 4]  111 	call	_GPIO_Init
+                           00000A   112 	C$stm8_blinky.c$15$1_0$358 ==.
+                                    113 ;	./stm8_blinky.c: 15: Led_ON;
+                                    114 ; genSend
+      008037 A6 02            [ 1]  115 	ld	a, #0x02
+                                    116 ; genSend
+      008039 AE 50 0F         [ 2]  117 	ldw	x, #0x500f
+                                    118 ; genCall
+      00803C CD 00 00         [ 4]  119 	call	_GPIO_WriteHigh
+                           000012   120 	C$stm8_blinky.c$18$1_0$358 ==.
+                                    121 ;	./stm8_blinky.c: 18: while(1){
+                                    122 ; genLabel
+      00803F                        123 00104$:
+                           000012   124 	C$stm8_blinky.c$20$2_0$359 ==.
+                                    125 ;	./stm8_blinky.c: 20: Led_TOG;
+                                    126 ; genSend
+      00803F A6 02            [ 1]  127 	ld	a, #0x02
+                                    128 ; genSend
+      008041 AE 50 0F         [ 2]  129 	ldw	x, #0x500f
+                                    130 ; genCall
+      008044 CD 00 00         [ 4]  131 	call	_GPIO_WriteReverse
+                           00001A   132 	C$stm8_blinky.c$23$1_0$358 ==.
+                                    133 ;	./stm8_blinky.c: 23: for(uint16_t d = 0; d<19000; d++){
+                                    134 ; genAssign
+      008047 5F               [ 1]  135 	clrw	x
+                                    136 ; genLabel
+      008048                        137 00110$:
+                                    138 ; genCast
+                                    139 ; genAssign
+      008048 90 93            [ 1]  140 	ldw	y, x
+                                    141 ; genCmp
+                                    142 ; genCmpTnz
+      00804A 90 A3 4A 38      [ 2]  143 	cpw	y, #0x4a38
+      00804E 25 03            [ 1]  144 	jrc	00150$
+      008050 CC 80 3F         [ 2]  145 	jp	00104$
+      008053                        146 00150$:
+                                    147 ; skipping generated iCode
+                           000026   148 	C$stm8_blinky.c$24$1_0$358 ==.
+                                    149 ;	./stm8_blinky.c: 24: for(uint8_t c = 0; c<5; c++);
+                                    150 ; genAssign
+      008053 4F               [ 1]  151 	clr	a
+                                    152 ; genLabel
+      008054                        153 00107$:
+                                    154 ; genCmp
+                                    155 ; genCmpTnz
+      008054 A1 05            [ 1]  156 	cp	a, #0x05
+      008056 25 03            [ 1]  157 	jrc	00151$
+      008058 CC 80 5F         [ 2]  158 	jp	00111$
+      00805B                        159 00151$:
+                                    160 ; skipping generated iCode
+                                    161 ; genPlus
+      00805B 4C               [ 1]  162 	inc	a
+                                    163 ; genGoto
+      00805C CC 80 54         [ 2]  164 	jp	00107$
+                                    165 ; genLabel
+      00805F                        166 00111$:
+                           000032   167 	C$stm8_blinky.c$23$3_0$360 ==.
+                                    168 ;	./stm8_blinky.c: 23: for(uint16_t d = 0; d<19000; d++){
+                                    169 ; genPlus
+      00805F 5C               [ 1]  170 	incw	x
+                                    171 ; genGoto
+      008060 CC 80 48         [ 2]  172 	jp	00110$
+                                    173 ; genLabel
+      008063                        174 00112$:
+                           000036   175 	C$stm8_blinky.c$27$1_0$358 ==.
+                                    176 ;	./stm8_blinky.c: 27: }
+                                    177 ; genEndFunction
+                           000036   178 	C$stm8_blinky.c$27$1_0$358 ==.
+                           000036   179 	XG$main$0$0 ==.
+      008063 81               [ 4]  180 	ret
+                                    181 	.area CODE
+                                    182 	.area CONST
+                                    183 	.area INITIALIZER
+                                    184 	.area CABS (ABS)

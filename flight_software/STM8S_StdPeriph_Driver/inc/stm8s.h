@@ -2729,7 +2729,7 @@ CFG_TypeDef;
  #define nop()                 {_asm("nop\n");}  /* No Operation */
  #define trap()                {_asm("trap\n");} /* Trap (soft IT) */
  #define wfi()                 {_asm("wfi\n");}  /* Wait For Interrupt */
- #define halt()                {_asm("halt\n");} /* Halt */
+ #define halt()                __asm__("halt\n"); /* Halt */
 #else /*_IAR_*/
  #include <intrinsics.h>
  #define enableInterrupts()    __enable_interrupt()   /* enable interrupts */

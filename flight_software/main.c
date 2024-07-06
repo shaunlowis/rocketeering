@@ -1,54 +1,50 @@
+/********************************************************************
+ * Copyright 2017 Ahmet Onat
+ * This program is distributed under the terms of the 
+ * GNU General Public License
+ *
+ * This file is part of SDCC_StmPeriphLib
+ *
+ * SDCC_StmPeriphLib is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * SDCC_StmPeriphLib is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * You should have received a copy of the GNU General Public License
+ * along with SDCC_StmPeriphLib.  If not, see <http://www.gnu.org/licenses/>.
+ *
+ *********************************************************************/
+
+
 #include "stm8s.h"
+#include "stm8s_gpio.h"
 
-#define LED_GPIO_PORT  (GPIOA)
-#define LED_GPIO_PINS  (GPIO_PIN_3 | GPIO_PIN_2 | GPIO_PIN_1)
+#define LED_PORT  GPIOB
+#define LED_PIN   GPIO_PIN_5
 
-void Delay (uint16_t nCount);
+#define DELAYTIME 0xF000
+void delay (uint16_t count);
 
-int main(void)
+void assert_failed(uint8_t* file, uint32_t line);
+
+void main(void)
 {
-  uint8_t i_var =  1;
-  uint8_t io = 255;
-  io++;
-  /* Initialize I/Os in Output Mode */
-  GPIO_Init(LED_GPIO_PORT, (GPIO_Pin_TypeDef)LED_GPIO_PINS, GPIO_MODE_OUT_PP_LOW_FAST);
 
-  while (1)
-  {
-    /* Toggles LEDs */
-    i_var++;
-    GPIO_WriteReverse(LED_GPIO_PORT, (GPIO_Pin_TypeDef)LED_GPIO_PINS);
-    Delay(0xFFFF);
+  GPIO_Init(LED_PORT, LED_PIN, GPIO_MODE_OUT_PP_LOW_FAST);
+
+  while (1){
+    GPIO_WriteReverse(LED_PORT, LED_PIN);
+    delay(DELAYTIME);
   }
-
 }
 
-void Delay(uint16_t nCount)
+void delay(uint16_t count)
 {
-  /* Decrement nCount value */
-  while (nCount != 0)
-  {
-    nCount--;
+  while (count != 0){
+    count--;
   }
 }
-
-#ifdef USE_FULL_ASSERT
-
-/**
-  * @brief  Reports the name of the source file and the source line number
-  *   where the assert_param error has occurred.
-  * @param file: pointer to the source file name
-  * @param line: assert_param error line source number
-  * @retval None
-  */
-void assert_failed(uint8_t* file, uint32_t line)
-{ 
-  /* User can add his own implementation to report the file name and line number,
-     ex: printf("Wrong parameters value: file %s on line %d\r\n", file, line) */
-
-  /* Infinite loop */
-  while (1)
-  {
-  }
-}
-#endif

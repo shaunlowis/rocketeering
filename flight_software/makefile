@@ -1,60 +1,57 @@
-# STM8 device (for supported devices see stm8s.h)
-DEVICE       =STM8S007
-MCU          =stm8s007?7
 
-SDCC         =sdcc
+#include libs/Makefile
 
-# Add process specific arguments here
-CFLAGS       =-lstm8
-CFLAGS      +=-mstm8
-CFLAGS      +=--opt-code-size
-CFLAGS      +=--std-sdcc99
-CFLAGS      +=--nogcse
-#CFLAGS      +=--vc --debug
+OBJECT=main
+LIBFILE=projectlib.lib
+LIBFILEPATH= ./libs
 
-CFLAGS      +=--out-fmt-elf
+HEXFILE=$(OBJECT).ihx
+SRCFILE=$(OBJECT).c
 
-CFLAGS       = -mstm8 --out-fmt-elf --all-callee-saves --debug --verbose --stack-auto --fverbose-asm  --float-reent --no-peep
-#CFLAGS      +=--all-callee-saves
-#CFLAGS      +=--debug
-#CFLAGS      +=--verbose
-#CFLAGS      +=--stack-auto
-#CFLAGS      +=--fverbose-asm
-#CFLAGS      +=--float-reent
-#CFLAGS      +=--no-peep
+SDCC=sdcc
+SDLD=sdld
+PROCESSOR=STM8S007
+#PROCESSOR=stm8s003f3
+DEBUGPROBE=stlinkv3
 
-SOURCE       =main
-SOURCE_DIR   =.
-OUTPUT_DIR   =$(SOURCE_DIR)/build
-StdPeriph    =$(SOURCE_DIR)/STM8S_StdPeriph_Driver
+# Define paths:
+#Modify the following line to suit your installation:
+LIBROOT=/home/shaun/code/rocketeering/flight_software/STM8S_StdPeriph_Driver
+INCLUDES=$(LIBROOT)/inc/
+DRIVERS=$(LIBROOT)/src/
 
-# Add include paths here
-INCLUDEPATH  =-I$(SOURCE_DIR)/
-INCLUDEPATH +=-I$(StdPeriph)/inc
+vpath %.c
+vpath %.c $(DRIVERS)
 
-def: compile flash
+CFLAGS= -I$(INCLUDES)
+CFLAGS+= -I.
+CFLAGS+= -Ilibs
 
-all: clean compile_obj compile
+#The macros below are to keep the header files
+#(which want to see a specific compiler and processor) happy.
+MACROS= -D__CSMC__ -DSTM8S007
+PROCTYPE= -lstm8 -mstm8
+OUTPUTTYPE=--out-fmt-ihx
 
-compile:
-	$(SDCC) $(CFLAGS) $(INCLUDEPATH) -D $(DEVICE) -D __CSMC__ -o $(OUTPUT_DIR)/ $(SOURCE_DIR)/$(SOURCE).c \
-	$(OUTPUT_DIR)/main.rel
-#	$(OUTPUT_DIR)/stm8s_gpio.rel
-#	$(OUTPUT_DIR)/stm8s_clk.rel \
-#	$(OUTPUT_DIR)/stm8s_tim2.rel \
-#	--out-fmt-elf --all-callee-saves --debug --verbose --stack-auto --fverbose-asm  --float-reent --no-peep
+#.PHONY: all clean flash
 
-compile_obj:
-	mkdir -p $(OUTPUT_DIR)
-	$(SDCC) $(CFLAGS) $(INCLUDEPATH) -D $(DEVICE) -D __CSMC__ -o $(OUTPUT_DIR)/ -c $(StdPeriph)/src/stm8s_gpio.c
-#	$(SDCC) $(CFLAGS) $(INCLUDEPATH) -D $(DEVICE) -o $(OUTPUT_DIR)/ -c $(StdPeriph)/src/stm8s_clk.c
-#	$(SDCC) $(CFLAGS) $(INCLUDEPATH) -D $(DEVICE) -o $(OUTPUT_DIR)/ -c $(StdPeriph)/src/stm8s_tim2.c
+#all: $(HEXFILE)
+$(HEXFILE): $(LIBFILEPATH)/$(LIBFILE) $(SRCFILE)
 
 clean:
-	rm -Rrf $(OUTPUT_DIR)
+	rm -f $(OBJECT).cdb $(OBJECT).map $(OBJECT).lk $(OBJECT).rst $(OBJECT).rel $(OBJECT).sym $(OBJECT).lst $(OBJECT).asm
+	make clean -C $(LIBFILEPATH)
 
-flash:
-	stm8flash -c stlinkv2 -p $(MCU) -w $(OUTPUT_DIR)/$(SOURCE).elf
+flash: $(HEXFILE)
+	stm8flash -c$(DEBUGPROBE) -p$(PROCESSOR) -w $(HEXFILE)
 
-openocd:
-	openocd -f interface/stlink.cfg -f target/stm8s003.cfg -c "init" -c "reset halt"
+%.ihx: %.c
+	$(SDCC) $(MACROS) $(PROCTYPE) $(CFLAGS) $(LDFLAGS) $< $(LIBFILE) -L $(LIBFILEPATH)
+
+# SDCC allows compilation of only 1 source file at a time.
+# However, it allows linking in previously generated library files.
+# The required library for this project is prepared from the standard
+#  libraries by the Makefile in the $(LIBFILEPATH) directory.
+
+$(LIBFILEPATH)/$(LIBFILE):
+	make -C $(LIBFILEPATH)

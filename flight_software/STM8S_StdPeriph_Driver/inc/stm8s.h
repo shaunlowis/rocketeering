@@ -2636,6 +2636,8 @@ CFG_TypeDef;
 
 #define GPIOF ((GPIO_TypeDef *) GPIOF_BaseAddress)
 
+#define GPIOG ((GPIO_TypeDef *) GPIOG_BaseAddress)
+
 #if defined(STM8S207) || defined (STM8S007) || defined(STM8S208) || defined(STM8S105) || \
     defined(STM8S005) || defined (STM8AF52Ax) || defined (STM8AF62Ax) || defined (STM8AF626x)
  #define GPIOG ((GPIO_TypeDef *) GPIOG_BaseAddress)

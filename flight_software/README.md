@@ -70,7 +70,17 @@ Details for this are in section 7.3.3 [here](https://www.st.com/resource/en/user
 
 For debugging, connect SWO to the SWIM breakout header on the schematic and NRST TO NRST.
 
-## Building a new c file:
+You may need to remove writing protection:
+
+```
+echo "00 00 ff 00 ff 00 ff 00 ff 00 ff" | xxd -r -p > factory_defaults.bin
+stm8flash -c stlinkv3 -p stm8s007c8 -s opt -w factory_defaults.bin
+```
+
+## Flashing your first test program onto the STM8
+
+In the `/flight_software` directory, simply do a `make flash` and if all goes well,
+the compiled `main.c` file should be flashed onto your microcontroller.
 
 ```
 sdcc -lstm8 -mstm8 --opt-code-size --std-sdcc99 --nogcse --all-callee-saves --debug --verbose --stack-auto --fverbose-asm --float-reent --no-peep -I./ -I./STM8S_StdPeriph_Driver/inc -D STM8S007 -D __CSMC__ ./stm8_blinky.c
@@ -85,3 +95,6 @@ Extensions:
 - C/C++ for Visual Studio Code
 - Hex Editor
 - vscode-devdocs
+
+## Possibly a much better setup:
+https://github.com/bschwand/STM8-SPL-SDCC

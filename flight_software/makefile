@@ -12,7 +12,7 @@ SDCC=sdcc
 SDLD=sdld
 PROCESSOR=stm8s007c8
 #PROCESSOR=stm8s003f3
-DEBUGPROBE=stlinkv3
+DEBUGPROBE=stlinkv2
 
 # Define paths:
 #Modify the following line to suit your installation:

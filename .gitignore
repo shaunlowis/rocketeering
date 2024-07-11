@@ -5,3 +5,13 @@
 
 # everything in the build folder can be ignored.
 /flight_software/build/*
+
+# linking, building and other files
+*.asm
+*.ihx
+*.lk
+*.lst
+*.map
+*.rel
+*.rst
+*.sym

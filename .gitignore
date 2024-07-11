@@ -6,3 +6,5 @@ vendor
 
 # Ignore the folder from the flight computer KiCAD
 flight_computer
+
+flight_software

@@ -16,22 +16,35 @@ The project is freely accessible
 ## Flight computer
 
 ### Enclosure
-First an enclosure was designed,
+First an enclosure for the flight
+computer was designed. This mounts
+the flight computer to the airframe
 with some tolerance for the battery
 to allow for swelling and extra room
 for the antenna.
 
-Before continuing this design, we
-will first assemble the flight computer
-when the electronics and PCB arrive, 
-then use a 3D printer to iterate and 
-check the fit of the enclosure.
+This enclosure worked well, with no
+further design changes needed.
 
-### Mount
-We had the idea of using a coupler,
-with mounting points connecting to
-the enclosure, so the enclosure can
-be slid in and out of the coupler.
-Again, some iteration TBD.
+Some revision may be needed if shifts
+are noticed in the first flight.
+
+### Camera mount
+Additionally in the Onshape project,
+a mount was made for a camera. This 
+will need a cut-out in the airframe
+for a plastic cover, to prevent the
+camera being sucked out during flight
+due to a pressure difference.
+
+To avoid the mount being visible in
+the video, a reference grid was drawn
+with some photos taken of the camera's
+viewing angle. This informed the cut
+out angle of the camera's lens.
+
+This is shown below:
+
+![screenshot](/img/camera_pov.jpeg)
 
 [Back to home site](https://shaunlowis.github.io/rocketeering/)

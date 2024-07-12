@@ -45,7 +45,7 @@ SDCC : mcs51/z80/z180/r2k/r2ka/r3ka/sm83/tlcs90/ez80_z80/z80n/r800/ds390/pic16/p
 published under GNU General Public License (GPL)
 ```
 
-Note; semi-useful guide on SDCC, see [here](https://martyn.welchs.me.uk/posts/installing-and-using-sdcc-on-linux/).
+Note; semi-useful guide on SDCC, see [here](https://martyn.welchs.me.uk/posts/installing-and-using-sdcc-on-linux/). For a more comprehensive guide, see the [user manual](https://sdcc.sourceforge.net/doc/sdccman.pdf).
 
 Now we need to install the STM8 flash setup. I assume you have an ST-Link debugger, with a SWIM capable interface.
 ```

@@ -1,57 +1,63 @@
+# My attempt at writing a makefile fully from scratch. Works on windows
 
-#include libs/Makefile
+# Specifies the compiler I am using
+# The directory to put all output files in
+# The processor we use
+# The target filename of the exccecutable we are making
+CC := sdcc
+BUILD_DIR := build
+PROCESSOR := stm8s007c8
+TARGET := ./$(BUILD_DIR)/flight_software.ihx
 
-OBJECT=main
-LIBFILE=projectlib.lib
-LIBFILEPATH= ./libs
+# Flags for the sdcc compiler. -lstm8 and -mstm8 let it know its compiling for an stm8 target
+# The family of our microcontroller
+CFLAGS := -mstm8 -lstm8
+DEVICE := STM8S007
 
-HEXFILE=$(OBJECT).ihx
-SRCFILE=$(OBJECT).c
+# TODO: Uncomment the one you are using
+OS := windows
+#OS := linux
 
-SDCC=sdcc
-SDLD=sdld
-PROCESSOR=stm8s007c8
-#PROCESSOR=stm8s003f3
-DEBUGPROBE=stlinkv2
+# Sets the variable RM_CMD to the linux or windows command accordingly
+ifeq ($(OS), linux)
+	RM_CMD = rm -r
+else ifeq ($(OS), windows)
+	RM_CMD = rmdir
+endif
 
-# Define paths:
-#Modify the following line to suit your installation:
-LIBROOT=/home/shaun/code/rocketeering/flight_software/STM8S_StdPeriph_Driver
-INCLUDES=$(LIBROOT)/inc/
-DRIVERS=$(LIBROOT)/src/
+# Set project folder and files 
+PRJ_SRC_DIR := ./src
+PRJ_INC_DIR := ./inc
+PRJ_SOURCE := $(wildcard $(PRJ_SRC_DIR)/*.c)
+PRJ_OBJECTS := $(addprefix ./$(BUILD_DIR)/, $(PRJ_SOURCE:.c=.rel))
 
-vpath %.c
-vpath %.c $(DRIVERS)
+# Set SPL folder and files
+SPL_SRC_DIR := ./
 
-CFLAGS= -I$(INCLUDES)
-CFLAGS+= -I.
-CFLAGS+= -Ilibs
+INCLUDES := -I$(PRJ_INC_DIR) -I
 
-#The macros below are to keep the header files
-#(which want to see a specific compiler and processor) happy.
-MACROS= -D__CSMC__ -DSTM8S007
-PROCTYPE= -lstm8 -mstm8
-OUTPUTTYPE=--out-fmt-ihx
+VPATH=$(PRJ_SRC_DIR)
 
-#.PHONY: all clean flash
+# Below is a pattern rule to make all the required object files (.rel) from their .c files.
+# Any targets that match ./$(BUILD_DIR)/%.rel are built from their %.c match (where % is the stem match)
+# As the path for the .c files is not specified in the prereq, it needs to be on the VPATH
+# so that make can find them
+./$(BUILD_DIR)/%.rel : %.c
+	$(CC) $(CFLAGS) $(INCLUDES) -D$(DEVICE) $(INCLUDES) - $< -o $@
 
-#all: $(HEXFILE)
-$(HEXFILE): $(LIBFILEPATH)/$(LIBFILE) $(SRCFILE)
+# all: $(BUILD_DIR) $(TARGET)
 
-clean:
-	rm -f $(OBJECT).cdb $(OBJECT).map $(OBJECT).lk $(OBJECT).rst $(OBJECT).rel $(OBJECT).sym $(OBJECT).lst $(OBJECT).asm
-	make clean -C $(LIBFILEPATH)
+$(TARGET) : $(PRJ_OBJECTS)
 
-flash: $(HEXFILE)
-	stm8flash -c$(DEBUGPROBE) -p$(PROCESSOR) -w $(HEXFILE)
+# $(BUILD_DIR) :
+# 	mkdir $(BUILD_DIR)
 
-%.ihx: %.c
-	$(SDCC) $(MACROS) $(PROCTYPE) $(CFLAGS) $(LDFLAGS) $< $(LIBFILE) -L $(LIBFILEPATH)
+# clean:
+# 	$(RM_CMD) $(BUILD_DIR)
 
-# SDCC allows compilation of only 1 source file at a time.
-# However, it allows linking in previously generated library files.
-# The required library for this project is prepared from the standard
-#  libraries by the Makefile in the $(LIBFILEPATH) directory.
 
-$(LIBFILEPATH)/$(LIBFILE):
-	make -C $(LIBFILEPATH)
+
+
+
+
+

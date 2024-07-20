@@ -1,3 +1,5 @@
+some random examples https://github.com/bschwand/STM8-SPL-SDCC/blob/master/Project/STM8S_StdPeriph_Template/SDCC/Makefile 
+
 MUST compile only 1 file at a time.
 
 #The macros below are to keep the header files
@@ -10,4 +12,4 @@ MUST compile only 1 file at a time.
 
 -L gives the path to search for .lib files. MUST be absolute path
 
-sdcc main.c -D__CSMC__ -DSTM8S007 -I. -I./STM8S_StdPeriph_Driver/inc/ -mstm8 projectlib.lib -L ./libs/ -o output/main.ihx --out-fmt-ihx
+sdcc main.c -D__CSMC__ -DSTM8S007 -I./inc/ -I./STM8S_StdPeriph_Driver/inc/ -mstm8 projectlib.lib -L ./libs/ -o output/main.ihx --out-fmt-ihx

@@ -1,0 +1,3252 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<export version="E">
+  <design>
+    <source>C:\Users\angus\Documents\Electronics\Projects\rocketeering\flight_computer\flight_computer.kicad_sch</source>
+    <date>30/05/2024 8:59:11 PM</date>
+    <tool>Eeschema 7.0.6</tool>
+    <sheet number="1" name="/" tstamps="/">
+      <title_block>
+        <title/>
+        <company/>
+        <rev/>
+        <date/>
+        <source>flight_computer.kicad_sch</source>
+        <comment number="1" value=""/>
+        <comment number="2" value=""/>
+        <comment number="3" value=""/>
+        <comment number="4" value=""/>
+        <comment number="5" value=""/>
+        <comment number="6" value=""/>
+        <comment number="7" value=""/>
+        <comment number="8" value=""/>
+        <comment number="9" value=""/>
+      </title_block>
+    </sheet>
+    <sheet number="2" name="/Microcontroller/" tstamps="/60625ff5-21c7-44a3-8ce9-cc38254a738b/">
+      <title_block>
+        <title/>
+        <company/>
+        <rev/>
+        <date/>
+        <source>MCU.kicad_sch</source>
+        <comment number="1" value=""/>
+        <comment number="2" value=""/>
+        <comment number="3" value=""/>
+        <comment number="4" value=""/>
+        <comment number="5" value=""/>
+        <comment number="6" value=""/>
+        <comment number="7" value=""/>
+        <comment number="8" value=""/>
+        <comment number="9" value=""/>
+      </title_block>
+    </sheet>
+    <sheet number="3" name="/Power/" tstamps="/ebc948db-a9d3-410a-bdbf-1c31db890e56/">
+      <title_block>
+        <title/>
+        <company/>
+        <rev/>
+        <date/>
+        <source>power.kicad_sch</source>
+        <comment number="1" value=""/>
+        <comment number="2" value=""/>
+        <comment number="3" value=""/>
+        <comment number="4" value=""/>
+        <comment number="5" value=""/>
+        <comment number="6" value=""/>
+        <comment number="7" value=""/>
+        <comment number="8" value=""/>
+        <comment number="9" value=""/>
+      </title_block>
+    </sheet>
+    <sheet number="4" name="/Pressure sensor/" tstamps="/c81a97f0-01ba-4e2a-b4b2-3d08d9bf2671/">
+      <title_block>
+        <title/>
+        <company/>
+        <rev/>
+        <date/>
+        <source>pressure_sensor.kicad_sch</source>
+        <comment number="1" value=""/>
+        <comment number="2" value=""/>
+        <comment number="3" value=""/>
+        <comment number="4" value=""/>
+        <comment number="5" value=""/>
+        <comment number="6" value=""/>
+        <comment number="7" value=""/>
+        <comment number="8" value=""/>
+        <comment number="9" value=""/>
+      </title_block>
+    </sheet>
+    <sheet number="5" name="/GPS/" tstamps="/8a1e6a35-f87c-4284-aec3-66a93071d289/">
+      <title_block>
+        <title/>
+        <company/>
+        <rev/>
+        <date/>
+        <source>gps.kicad_sch</source>
+        <comment number="1" value=""/>
+        <comment number="2" value=""/>
+        <comment number="3" value=""/>
+        <comment number="4" value=""/>
+        <comment number="5" value=""/>
+        <comment number="6" value=""/>
+        <comment number="7" value=""/>
+        <comment number="8" value=""/>
+        <comment number="9" value=""/>
+      </title_block>
+    </sheet>
+    <sheet number="6" name="/Radio/" tstamps="/0b835f18-e97c-4530-9363-7eee1af6da75/">
+      <title_block>
+        <title/>
+        <company/>
+        <rev/>
+        <date/>
+        <source>radio.kicad_sch</source>
+        <comment number="1" value=""/>
+        <comment number="2" value=""/>
+        <comment number="3" value=""/>
+        <comment number="4" value=""/>
+        <comment number="5" value=""/>
+        <comment number="6" value=""/>
+        <comment number="7" value=""/>
+        <comment number="8" value=""/>
+        <comment number="9" value=""/>
+      </title_block>
+    </sheet>
+    <sheet number="7" name="/IMU/" tstamps="/00230fc6-00d9-4789-9199-c0e29b2f6daa/">
+      <title_block>
+        <title/>
+        <company/>
+        <rev/>
+        <date/>
+        <source>imu.kicad_sch</source>
+        <comment number="1" value=""/>
+        <comment number="2" value=""/>
+        <comment number="3" value=""/>
+        <comment number="4" value=""/>
+        <comment number="5" value=""/>
+        <comment number="6" value=""/>
+        <comment number="7" value=""/>
+        <comment number="8" value=""/>
+        <comment number="9" value=""/>
+      </title_block>
+    </sheet>
+    <sheet number="8" name="/Temperature sensor/" tstamps="/61115e18-7772-4524-8bbc-217f26a5a331/">
+      <title_block>
+        <title/>
+        <company/>
+        <rev/>
+        <date/>
+        <source>temp_sensor.kicad_sch</source>
+        <comment number="1" value=""/>
+        <comment number="2" value=""/>
+        <comment number="3" value=""/>
+        <comment number="4" value=""/>
+        <comment number="5" value=""/>
+        <comment number="6" value=""/>
+        <comment number="7" value=""/>
+        <comment number="8" value=""/>
+        <comment number="9" value=""/>
+      </title_block>
+    </sheet>
+  </design>
+  <components>
+    <comp ref="BZ1">
+      <value>Buzzer_indicator</value>
+      <footprint>my_footprints:buzzer_Dia9.2mm_P5mm</footprint>
+      <datasheet>https://www.digikey.co.nz/en/products/detail/soberton-inc/WST-0906T/16354832</datasheet>
+      <fields>
+        <field name="Manufacturer PN">WST-0906T</field>
+        <field name="Supplier">Digikey</field>
+        <field name="Supplier PN">433-WST-0906T-ND</field>
+      </fields>
+      <libsource lib="Device" part="Buzzer" description="Buzzer, polarized"/>
+      <property name="Manufacturer PN" value="WST-0906T"/>
+      <property name="Supplier PN" value="433-WST-0906T-ND"/>
+      <property name="Supplier" value="Digikey"/>
+      <property name="Sheetname" value="Microcontroller"/>
+      <property name="Sheetfile" value="MCU.kicad_sch"/>
+      <property name="ki_description" value="Buzzer, polarized"/>
+      <property name="ki_keywords" value="quartz resonator ceramic"/>
+      <sheetpath names="/Microcontroller/" tstamps="/60625ff5-21c7-44a3-8ce9-cc38254a738b/"/>
+      <tstamps>57fc61dc-0dff-4e23-b775-482180b672fe</tstamps>
+    </comp>
+    <comp ref="C1">
+      <value>10uF</value>
+      <footprint>Capacitor_SMD:C_0402_1005Metric</footprint>
+      <datasheet>https://wmsc.lcsc.com/wmsc/upload/file/pdf/v2/lcsc/2304140030_Samsung-Electro-Mechanics-CL10A106KP8NNNC_C19702.pdf</datasheet>
+      <fields>
+        <field name="Manufacturer PN">CL10A106KP8NNNC</field>
+        <field name="Supplier">JLC</field>
+        <field name="Supplier PN">C19702</field>
+        <field name="Voltage">10V</field>
+      </fields>
+      <libsource lib="Device" part="C" description="Unpolarized capacitor"/>
+      <property name="Manufacturer PN" value="CL10A106KP8NNNC"/>
+      <property name="Supplier PN" value="C19702"/>
+      <property name="Supplier" value="JLC"/>
+      <property name="Voltage" value="10V"/>
+      <property name="Sheetname" value="Microcontroller"/>
+      <property name="Sheetfile" value="MCU.kicad_sch"/>
+      <property name="ki_description" value="Unpolarized capacitor"/>
+      <property name="ki_keywords" value="cap capacitor"/>
+      <sheetpath names="/Microcontroller/" tstamps="/60625ff5-21c7-44a3-8ce9-cc38254a738b/"/>
+      <tstamps>e0879ab7-a025-4328-b800-fe1e924d5842</tstamps>
+    </comp>
+    <comp ref="C2">
+      <value>100nF</value>
+      <footprint>Capacitor_SMD:C_0402_1005Metric</footprint>
+      <datasheet>https://wmsc.lcsc.com/wmsc/upload/file/pdf/v2/lcsc/2304140030_Samsung-Electro-Mechanics-CL05B104KO5NNNC_C1525.pdf</datasheet>
+      <fields>
+        <field name="Manufacturer PN">CL05B104KO5NNNC</field>
+        <field name="Supplier">JLC</field>
+        <field name="Supplier PN">C1525</field>
+        <field name="Voltage">16V</field>
+      </fields>
+      <libsource lib="Device" part="C" description="Unpolarized capacitor"/>
+      <property name="Manufacturer PN" value="CL05B104KO5NNNC"/>
+      <property name="Supplier PN" value="C1525"/>
+      <property name="Supplier" value="JLC"/>
+      <property name="Voltage" value="16V"/>
+      <property name="Sheetname" value="Microcontroller"/>
+      <property name="Sheetfile" value="MCU.kicad_sch"/>
+      <property name="ki_description" value="Unpolarized capacitor"/>
+      <property name="ki_keywords" value="cap capacitor"/>
+      <sheetpath names="/Microcontroller/" tstamps="/60625ff5-21c7-44a3-8ce9-cc38254a738b/"/>
+      <tstamps>c97eeed2-5137-4869-8c8e-c929e3c822de</tstamps>
+    </comp>
+    <comp ref="C3">
+      <value>10uF</value>
+      <footprint>Capacitor_SMD:C_0402_1005Metric</footprint>
+      <datasheet>https://wmsc.lcsc.com/wmsc/upload/file/pdf/v2/lcsc/2304140030_Samsung-Electro-Mechanics-CL10A106KP8NNNC_C19702.pdf</datasheet>
+      <fields>
+        <field name="Manufacturer PN">CL10A106KP8NNNC</field>
+        <field name="Supplier">JLC</field>
+        <field name="Supplier PN">C19702</field>
+        <field name="Voltage">10V</field>
+      </fields>
+      <libsource lib="Device" part="C" description="Unpolarized capacitor"/>
+      <property name="Manufacturer PN" value="CL10A106KP8NNNC"/>
+      <property name="Supplier PN" value="C19702"/>
+      <property name="Supplier" value="JLC"/>
+      <property name="Voltage" value="10V"/>
+      <property name="Sheetname" value="Microcontroller"/>
+      <property name="Sheetfile" value="MCU.kicad_sch"/>
+      <property name="ki_description" value="Unpolarized capacitor"/>
+      <property name="ki_keywords" value="cap capacitor"/>
+      <sheetpath names="/Microcontroller/" tstamps="/60625ff5-21c7-44a3-8ce9-cc38254a738b/"/>
+      <tstamps>18544ec9-14c9-4b61-ba91-e9e76fd1e5c5</tstamps>
+    </comp>
+    <comp ref="C4">
+      <value>100nF</value>
+      <footprint>Capacitor_SMD:C_0402_1005Metric</footprint>
+      <datasheet>https://wmsc.lcsc.com/wmsc/upload/file/pdf/v2/lcsc/2304140030_Samsung-Electro-Mechanics-CL05B104KO5NNNC_C1525.pdf</datasheet>
+      <fields>
+        <field name="Manufacturer PN">CL05B104KO5NNNC</field>
+        <field name="Supplier">JLC</field>
+        <field name="Supplier PN">C1525</field>
+        <field name="Voltage">16V</field>
+      </fields>
+      <libsource lib="Device" part="C" description="Unpolarized capacitor"/>
+      <property name="Manufacturer PN" value="CL05B104KO5NNNC"/>
+      <property name="Supplier PN" value="C1525"/>
+      <property name="Supplier" value="JLC"/>
+      <property name="Voltage" value="16V"/>
+      <property name="Sheetname" value="Microcontroller"/>
+      <property name="Sheetfile" value="MCU.kicad_sch"/>
+      <property name="ki_description" value="Unpolarized capacitor"/>
+      <property name="ki_keywords" value="cap capacitor"/>
+      <sheetpath names="/Microcontroller/" tstamps="/60625ff5-21c7-44a3-8ce9-cc38254a738b/"/>
+      <tstamps>84ffd6a0-e3e9-4a74-a1d6-ccb5d51172a7</tstamps>
+    </comp>
+    <comp ref="C5">
+      <value>33pF</value>
+      <footprint>Capacitor_SMD:C_0402_1005Metric</footprint>
+      <datasheet>https://wmsc.lcsc.com/wmsc/upload/file/pdf/v2/lcsc/2304140030_FH--Guangdong-Fenghua-Advanced-Tech-0402CG330J500NT_C1562.pdf</datasheet>
+      <fields>
+        <field name="Manufacturer PN">0402CG330J500NT</field>
+        <field name="Supplier">C1562</field>
+        <field name="Supplier PN">JLC</field>
+        <field name="Voltage">50V</field>
+      </fields>
+      <libsource lib="Device" part="C" description="Unpolarized capacitor"/>
+      <property name="Manufacturer PN" value="0402CG330J500NT"/>
+      <property name="Supplier PN" value="JLC"/>
+      <property name="Supplier" value="C1562"/>
+      <property name="Voltage" value="50V"/>
+      <property name="Sheetname" value="Microcontroller"/>
+      <property name="Sheetfile" value="MCU.kicad_sch"/>
+      <property name="ki_description" value="Unpolarized capacitor"/>
+      <property name="ki_keywords" value="cap capacitor"/>
+      <sheetpath names="/Microcontroller/" tstamps="/60625ff5-21c7-44a3-8ce9-cc38254a738b/"/>
+      <tstamps>8b5e9637-cad5-4c73-a004-3944830248d6</tstamps>
+    </comp>
+    <comp ref="C6">
+      <value>33pF</value>
+      <footprint>Capacitor_SMD:C_0402_1005Metric</footprint>
+      <datasheet>https://wmsc.lcsc.com/wmsc/upload/file/pdf/v2/lcsc/2304140030_FH--Guangdong-Fenghua-Advanced-Tech-0402CG330J500NT_C1562.pdf</datasheet>
+      <fields>
+        <field name="Manufacturer PN">0402CG330J500NT</field>
+        <field name="Supplier">C1562</field>
+        <field name="Supplier PN">JLC</field>
+        <field name="Voltage">50V</field>
+      </fields>
+      <libsource lib="Device" part="C" description="Unpolarized capacitor"/>
+      <property name="Manufacturer PN" value="0402CG330J500NT"/>
+      <property name="Supplier PN" value="JLC"/>
+      <property name="Supplier" value="C1562"/>
+      <property name="Voltage" value="50V"/>
+      <property name="Sheetname" value="Microcontroller"/>
+      <property name="Sheetfile" value="MCU.kicad_sch"/>
+      <property name="ki_description" value="Unpolarized capacitor"/>
+      <property name="ki_keywords" value="cap capacitor"/>
+      <sheetpath names="/Microcontroller/" tstamps="/60625ff5-21c7-44a3-8ce9-cc38254a738b/"/>
+      <tstamps>43d532fa-7be4-4c31-a301-e727b11032f9</tstamps>
+    </comp>
+    <comp ref="C7">
+      <value>1uF</value>
+      <footprint>Capacitor_SMD:C_0402_1005Metric</footprint>
+      <datasheet>https://wmsc.lcsc.com/wmsc/upload/file/pdf/v2/lcsc/2304140030_Samsung-Electro-Mechanics-CL05A105KA5NQNC_C52923.pdf</datasheet>
+      <fields>
+        <field name="Manufacturer PN">CL05A105KA5NQNC</field>
+        <field name="Supplier">JLC</field>
+        <field name="Supplier PN">C52923</field>
+        <field name="Voltage">25V</field>
+      </fields>
+      <libsource lib="Device" part="C" description="Unpolarized capacitor"/>
+      <property name="Manufacturer PN" value="CL05A105KA5NQNC"/>
+      <property name="Supplier PN" value="C52923"/>
+      <property name="Supplier" value="JLC"/>
+      <property name="Voltage" value="25V"/>
+      <property name="Sheetname" value="Microcontroller"/>
+      <property name="Sheetfile" value="MCU.kicad_sch"/>
+      <property name="ki_description" value="Unpolarized capacitor"/>
+      <property name="ki_keywords" value="cap capacitor"/>
+      <sheetpath names="/Microcontroller/" tstamps="/60625ff5-21c7-44a3-8ce9-cc38254a738b/"/>
+      <tstamps>99129f6e-a95c-4a5d-9932-dd59e740b210</tstamps>
+    </comp>
+    <comp ref="C8">
+      <value>100nF</value>
+      <footprint>Capacitor_SMD:C_0402_1005Metric</footprint>
+      <datasheet>https://wmsc.lcsc.com/wmsc/upload/file/pdf/v2/lcsc/2304140030_Samsung-Electro-Mechanics-CL05B104KO5NNNC_C1525.pdf</datasheet>
+      <fields>
+        <field name="Manufacturer PN">CL05B104KO5NNNC</field>
+        <field name="Supplier">JLC</field>
+        <field name="Supplier PN">C1525</field>
+        <field name="Voltage">16V</field>
+      </fields>
+      <libsource lib="Device" part="C" description="Unpolarized capacitor"/>
+      <property name="Manufacturer PN" value="CL05B104KO5NNNC"/>
+      <property name="Supplier PN" value="C1525"/>
+      <property name="Supplier" value="JLC"/>
+      <property name="Voltage" value="16V"/>
+      <property name="Sheetname" value="Microcontroller"/>
+      <property name="Sheetfile" value="MCU.kicad_sch"/>
+      <property name="ki_description" value="Unpolarized capacitor"/>
+      <property name="ki_keywords" value="cap capacitor"/>
+      <sheetpath names="/Microcontroller/" tstamps="/60625ff5-21c7-44a3-8ce9-cc38254a738b/"/>
+      <tstamps>bbbed386-6eb7-4c56-9534-805321040fd0</tstamps>
+    </comp>
+    <comp ref="C9">
+      <value>100nF</value>
+      <footprint>Capacitor_SMD:C_0402_1005Metric</footprint>
+      <datasheet>https://wmsc.lcsc.com/wmsc/upload/file/pdf/v2/lcsc/2304140030_Samsung-Electro-Mechanics-CL05B104KO5NNNC_C1525.pdf</datasheet>
+      <fields>
+        <field name="Manufacturer PN">CL05B104KO5NNNC</field>
+        <field name="Supplier">JLC</field>
+        <field name="Supplier PN">C1525</field>
+        <field name="Voltage">16V</field>
+      </fields>
+      <libsource lib="Device" part="C" description="Unpolarized capacitor"/>
+      <property name="Manufacturer PN" value="CL05B104KO5NNNC"/>
+      <property name="Supplier PN" value="C1525"/>
+      <property name="Supplier" value="JLC"/>
+      <property name="Voltage" value="16V"/>
+      <property name="Sheetname" value="Microcontroller"/>
+      <property name="Sheetfile" value="MCU.kicad_sch"/>
+      <property name="ki_description" value="Unpolarized capacitor"/>
+      <property name="ki_keywords" value="cap capacitor"/>
+      <sheetpath names="/Microcontroller/" tstamps="/60625ff5-21c7-44a3-8ce9-cc38254a738b/"/>
+      <tstamps>a86c3bc7-18d5-460d-90bd-13fd16562418</tstamps>
+    </comp>
+    <comp ref="C10">
+      <value>10uF</value>
+      <footprint>Capacitor_SMD:C_0402_1005Metric</footprint>
+      <datasheet>https://wmsc.lcsc.com/wmsc/upload/file/pdf/v2/lcsc/2304140030_Samsung-Electro-Mechanics-CL10A106KP8NNNC_C19702.pdf</datasheet>
+      <fields>
+        <field name="Manufacturer PN">CL10A106KP8NNNC</field>
+        <field name="Supplier">JLC</field>
+        <field name="Supplier PN">C19702</field>
+        <field name="Voltage">10V</field>
+      </fields>
+      <libsource lib="Device" part="C" description="Unpolarized capacitor"/>
+      <property name="Manufacturer PN" value="CL10A106KP8NNNC"/>
+      <property name="Supplier PN" value="C19702"/>
+      <property name="Supplier" value="JLC"/>
+      <property name="Voltage" value="10V"/>
+      <property name="Sheetname" value="Microcontroller"/>
+      <property name="Sheetfile" value="MCU.kicad_sch"/>
+      <property name="ki_description" value="Unpolarized capacitor"/>
+      <property name="ki_keywords" value="cap capacitor"/>
+      <sheetpath names="/Microcontroller/" tstamps="/60625ff5-21c7-44a3-8ce9-cc38254a738b/"/>
+      <tstamps>8a9f8c47-c03c-4fe5-b83e-1d727842f777</tstamps>
+    </comp>
+    <comp ref="C11">
+      <value>10uF</value>
+      <footprint>Capacitor_SMD:C_0402_1005Metric</footprint>
+      <datasheet>https://wmsc.lcsc.com/wmsc/upload/file/pdf/v2/lcsc/2304140030_Samsung-Electro-Mechanics-CL10A106KP8NNNC_C19702.pdf</datasheet>
+      <fields>
+        <field name="Manufacturer PN">CL10A106KP8NNNC</field>
+        <field name="Supplier">JLC</field>
+        <field name="Supplier PN">C19702</field>
+        <field name="Voltage">10V</field>
+      </fields>
+      <libsource lib="Device" part="C" description="Unpolarized capacitor"/>
+      <property name="Manufacturer PN" value="CL10A106KP8NNNC"/>
+      <property name="Supplier PN" value="C19702"/>
+      <property name="Supplier" value="JLC"/>
+      <property name="Voltage" value="10V"/>
+      <property name="Sheetname" value="Microcontroller"/>
+      <property name="Sheetfile" value="MCU.kicad_sch"/>
+      <property name="ki_description" value="Unpolarized capacitor"/>
+      <property name="ki_keywords" value="cap capacitor"/>
+      <sheetpath names="/Microcontroller/" tstamps="/60625ff5-21c7-44a3-8ce9-cc38254a738b/"/>
+      <tstamps>f44e993a-9716-4917-8e74-8b40db875abd</tstamps>
+    </comp>
+    <comp ref="C12">
+      <value>100nF</value>
+      <footprint>Capacitor_SMD:C_0402_1005Metric</footprint>
+      <datasheet>https://wmsc.lcsc.com/wmsc/upload/file/pdf/v2/lcsc/2304140030_Samsung-Electro-Mechanics-CL05B104KO5NNNC_C1525.pdf</datasheet>
+      <fields>
+        <field name="Manufacturer PN">CL05B104KO5NNNC</field>
+        <field name="Supplier">JLC</field>
+        <field name="Supplier PN">C1525</field>
+        <field name="Voltage">16V</field>
+      </fields>
+      <libsource lib="Device" part="C" description="Unpolarized capacitor"/>
+      <property name="Manufacturer PN" value="CL05B104KO5NNNC"/>
+      <property name="Supplier PN" value="C1525"/>
+      <property name="Supplier" value="JLC"/>
+      <property name="Voltage" value="16V"/>
+      <property name="Sheetname" value="Microcontroller"/>
+      <property name="Sheetfile" value="MCU.kicad_sch"/>
+      <property name="ki_description" value="Unpolarized capacitor"/>
+      <property name="ki_keywords" value="cap capacitor"/>
+      <sheetpath names="/Microcontroller/" tstamps="/60625ff5-21c7-44a3-8ce9-cc38254a738b/"/>
+      <tstamps>f7ad9772-e0ae-4c15-9b3c-6067f29e6dcc</tstamps>
+    </comp>
+    <comp ref="C39">
+      <value>100nF</value>
+      <footprint>Capacitor_SMD:C_0402_1005Metric</footprint>
+      <datasheet>https://wmsc.lcsc.com/wmsc/upload/file/pdf/v2/lcsc/2304140030_Samsung-Electro-Mechanics-CL05B104KO5NNNC_C1525.pdf</datasheet>
+      <fields>
+        <field name="Manufacturer PN">CL05B104KO5NNNC</field>
+        <field name="Supplier">JLC</field>
+        <field name="Supplier PN">C1525</field>
+        <field name="Voltage">16V</field>
+      </fields>
+      <libsource lib="Device" part="C" description="Unpolarized capacitor"/>
+      <property name="Manufacturer PN" value="CL05B104KO5NNNC"/>
+      <property name="Supplier PN" value="C1525"/>
+      <property name="Supplier" value="JLC"/>
+      <property name="Voltage" value="16V"/>
+      <property name="Sheetname" value="Microcontroller"/>
+      <property name="Sheetfile" value="MCU.kicad_sch"/>
+      <property name="ki_description" value="Unpolarized capacitor"/>
+      <property name="ki_keywords" value="cap capacitor"/>
+      <sheetpath names="/Microcontroller/" tstamps="/60625ff5-21c7-44a3-8ce9-cc38254a738b/"/>
+      <tstamps>133e7b26-ce49-427d-92f9-3c8cf43454d5</tstamps>
+    </comp>
+    <comp ref="D1">
+      <value>Green</value>
+      <footprint>LED_SMD:LED_0805_2012Metric</footprint>
+      <datasheet>https://wmsc.lcsc.com/wmsc/upload/file/pdf/v2/lcsc/1806151820_Hubei-KENTO-Elec-KT-0805G_C2297.pdf</datasheet>
+      <fields>
+        <field name="Manufacturer PN">KT-0805G</field>
+        <field name="Supplier">JLC</field>
+        <field name="Supplier PN">C2297</field>
+      </fields>
+      <libsource lib="Device" part="LED" description="Light emitting diode"/>
+      <property name="Manufacturer PN" value="KT-0805G"/>
+      <property name="Supplier PN" value="C2297"/>
+      <property name="Supplier" value="JLC"/>
+      <property name="Sheetname" value="Microcontroller"/>
+      <property name="Sheetfile" value="MCU.kicad_sch"/>
+      <property name="ki_description" value="Light emitting diode"/>
+      <property name="ki_keywords" value="LED diode"/>
+      <sheetpath names="/Microcontroller/" tstamps="/60625ff5-21c7-44a3-8ce9-cc38254a738b/"/>
+      <tstamps>9ce5eab5-9083-4ffb-8d82-62e17596c555</tstamps>
+    </comp>
+    <comp ref="D2">
+      <value>Red</value>
+      <footprint>LED_SMD:LED_0805_2012Metric</footprint>
+      <datasheet>https://wmsc.lcsc.com/wmsc/upload/file/pdf/v2/lcsc/2304140030_Foshan-NationStar-Optoelectronics-NCD0805R1_C84256.pdf</datasheet>
+      <fields>
+        <field name="Manufacturer PN">NCD0805R1</field>
+        <field name="Supplier">JLC</field>
+        <field name="Supplier PN">C84256</field>
+      </fields>
+      <libsource lib="Device" part="LED" description="Light emitting diode"/>
+      <property name="Manufacturer PN" value="NCD0805R1"/>
+      <property name="Supplier PN" value="C84256"/>
+      <property name="Supplier" value="JLC"/>
+      <property name="Sheetname" value="Microcontroller"/>
+      <property name="Sheetfile" value="MCU.kicad_sch"/>
+      <property name="ki_description" value="Light emitting diode"/>
+      <property name="ki_keywords" value="LED diode"/>
+      <sheetpath names="/Microcontroller/" tstamps="/60625ff5-21c7-44a3-8ce9-cc38254a738b/"/>
+      <tstamps>80cce371-2963-4704-895f-ac7e42e21634</tstamps>
+    </comp>
+    <comp ref="J1">
+      <value>Conn_02x05_Odd_Even</value>
+      <footprint>Connector_PinHeader_2.54mm:PinHeader_2x05_P2.54mm_Vertical</footprint>
+      <fields>
+        <field name="Manufacturer PN">302-S101</field>
+        <field name="Supplier">Digikey</field>
+        <field name="Supplier PN">ED1543-ND</field>
+      </fields>
+      <libsource lib="Connector_Generic" part="Conn_02x05_Odd_Even" description="Generic connector, double row, 02x05, odd/even pin numbering scheme (row 1 odd numbers, row 2 even numbers), script generated (kicad-library-utils/schlib/autogen/connector/)"/>
+      <property name="Manufacturer PN" value="302-S101"/>
+      <property name="Supplier" value="Digikey"/>
+      <property name="Supplier PN" value="ED1543-ND"/>
+      <property name="Sheetname" value="Microcontroller"/>
+      <property name="Sheetfile" value="MCU.kicad_sch"/>
+      <property name="ki_description" value="Generic connector, double row, 02x05, odd/even pin numbering scheme (row 1 odd numbers, row 2 even numbers), script generated (kicad-library-utils/schlib/autogen/connector/)"/>
+      <property name="ki_keywords" value="connector"/>
+      <sheetpath names="/Microcontroller/" tstamps="/60625ff5-21c7-44a3-8ce9-cc38254a738b/"/>
+      <tstamps>e1b72d68-3cfc-4ebb-a8b4-d619887b0866</tstamps>
+    </comp>
+    <comp ref="J2">
+      <value>MEM2061-01-188-00-A_REVA</value>
+      <footprint>my_footprints:MEM2061-01-188-00-A</footprint>
+      <datasheet>https://gct.co/files/specs/mem2061-spec.pdf</datasheet>
+      <fields>
+        <field name="Manufacturer PN">MEM2061-01-188-00-A</field>
+        <field name="Supplier">Digikey</field>
+        <field name="Supplier PN">2073-MEM2061-01-188-00-ACT-ND</field>
+      </fields>
+      <libsource lib="my_library" part="MEM2061-01-188-00-A_REVA" description="MICRO SD PUSH PUSH, CLOSED, SMT,"/>
+      <property name="Manufacturer PN" value="MEM2061-01-188-00-A"/>
+      <property name="Supplier PN" value="2073-MEM2061-01-188-00-ACT-ND"/>
+      <property name="Supplier" value="Digikey"/>
+      <property name="Sheetname" value="Microcontroller"/>
+      <property name="Sheetfile" value="MCU.kicad_sch"/>
+      <property name="ki_description" value="MICRO SD PUSH PUSH, CLOSED, SMT,"/>
+      <property name="ki_keywords" value="MICRO SD PUSH PUSH, CLOSED, SMT,"/>
+      <sheetpath names="/Microcontroller/" tstamps="/60625ff5-21c7-44a3-8ce9-cc38254a738b/"/>
+      <tstamps>97223f69-42c3-4a74-b7a5-d2debd309c1e</tstamps>
+    </comp>
+    <comp ref="Q1">
+      <value>Q_NPN_BEC</value>
+      <footprint>Package_TO_SOT_SMD:SOT-23-3</footprint>
+      <datasheet>https://www.onsemi.com/download/data-sheet/pdf/bc846alt1-d.pdf</datasheet>
+      <fields>
+        <field name="Manufacturer PN">BC847CLT3G</field>
+        <field name="Supplier">Digikey</field>
+        <field name="Supplier PN">BC847CLT3GOSCT-ND</field>
+      </fields>
+      <libsource lib="Device" part="Q_NPN_BEC" description="NPN transistor, base/emitter/collector"/>
+      <property name="Manufacturer PN" value="BC847CLT3G"/>
+      <property name="Supplier PN" value="BC847CLT3GOSCT-ND"/>
+      <property name="Supplier" value="Digikey"/>
+      <property name="Sheetname" value="Microcontroller"/>
+      <property name="Sheetfile" value="MCU.kicad_sch"/>
+      <property name="ki_description" value="NPN transistor, base/emitter/collector"/>
+      <property name="ki_keywords" value="transistor NPN"/>
+      <sheetpath names="/Microcontroller/" tstamps="/60625ff5-21c7-44a3-8ce9-cc38254a738b/"/>
+      <tstamps>d1f753e9-189c-48dd-8866-23b98219d179</tstamps>
+    </comp>
+    <comp ref="R1">
+      <value>150R</value>
+      <footprint>Resistor_SMD:R_0402_1005Metric</footprint>
+      <datasheet>https://wmsc.lcsc.com/wmsc/upload/file/pdf/v2/lcsc/2205311900_UNI-ROYAL-Uniroyal-Elec-0402WGF1500TCE_C25082.pdf</datasheet>
+      <fields>
+        <field name="Manufacturer PN">0402WGF1500TCE</field>
+        <field name="Supplier">JLC</field>
+        <field name="Supplier PN">C25082</field>
+      </fields>
+      <libsource lib="Device" part="R" description="Resistor"/>
+      <property name="Manufacturer PN" value="0402WGF1500TCE"/>
+      <property name="Supplier PN" value="C25082"/>
+      <property name="Supplier" value="JLC"/>
+      <property name="Sheetname" value="Microcontroller"/>
+      <property name="Sheetfile" value="MCU.kicad_sch"/>
+      <property name="ki_description" value="Resistor"/>
+      <property name="ki_keywords" value="R res resistor"/>
+      <sheetpath names="/Microcontroller/" tstamps="/60625ff5-21c7-44a3-8ce9-cc38254a738b/"/>
+      <tstamps>94573443-aac9-48c2-b16f-8f680e7bc0ab</tstamps>
+    </comp>
+    <comp ref="R2">
+      <value>470R</value>
+      <footprint>Resistor_SMD:R_0402_1005Metric</footprint>
+      <datasheet>https://wmsc.lcsc.com/wmsc/upload/file/pdf/v2/lcsc/2205311900_UNI-ROYAL-Uniroyal-Elec-0402WGF4700TCE_C25117.pdf</datasheet>
+      <fields>
+        <field name="Manufacturer PN">0402WGF4700TCE</field>
+        <field name="Supplier">JLC</field>
+        <field name="Supplier PN">C25117</field>
+      </fields>
+      <libsource lib="Device" part="R" description="Resistor"/>
+      <property name="Manufacturer PN" value="0402WGF4700TCE"/>
+      <property name="Supplier PN" value="C25117"/>
+      <property name="Supplier" value="JLC"/>
+      <property name="Sheetname" value="Microcontroller"/>
+      <property name="Sheetfile" value="MCU.kicad_sch"/>
+      <property name="ki_description" value="Resistor"/>
+      <property name="ki_keywords" value="R res resistor"/>
+      <sheetpath names="/Microcontroller/" tstamps="/60625ff5-21c7-44a3-8ce9-cc38254a738b/"/>
+      <tstamps>4f1bbbc3-745d-430a-938d-96751831d74d</tstamps>
+    </comp>
+    <comp ref="R3">
+      <value>1M</value>
+      <footprint>Resistor_SMD:R_0402_1005Metric</footprint>
+      <datasheet>https://wmsc.lcsc.com/wmsc/upload/file/pdf/v2/lcsc/2206010030_UNI-ROYAL-Uniroyal-Elec-0402WGF1004TCE_C26083.pdf</datasheet>
+      <fields>
+        <field name="Manufacturer PN">0402WGF1004TCE</field>
+        <field name="Supplier">JLC</field>
+        <field name="Supplier PN">C26083</field>
+      </fields>
+      <libsource lib="Device" part="R" description="Resistor"/>
+      <property name="Manufacturer PN" value="0402WGF1004TCE"/>
+      <property name="Supplier PN" value="C26083"/>
+      <property name="Supplier" value="JLC"/>
+      <property name="Sheetname" value="Microcontroller"/>
+      <property name="Sheetfile" value="MCU.kicad_sch"/>
+      <property name="ki_description" value="Resistor"/>
+      <property name="ki_keywords" value="R res resistor"/>
+      <sheetpath names="/Microcontroller/" tstamps="/60625ff5-21c7-44a3-8ce9-cc38254a738b/"/>
+      <tstamps>fe9c2eb2-e267-46c4-b30d-9143a3295991</tstamps>
+    </comp>
+    <comp ref="R4">
+      <value>4.7k</value>
+      <footprint>Resistor_SMD:R_0402_1005Metric</footprint>
+      <datasheet>https://wmsc.lcsc.com/wmsc/upload/file/pdf/v2/lcsc/2206010045_UNI-ROYAL-Uniroyal-Elec-0402WGF4701TCE_C25900.pdf</datasheet>
+      <fields>
+        <field name="Manufacturer PN">0402WGF4701TCE</field>
+        <field name="Supplier">JLC</field>
+        <field name="Supplier PN">C25900</field>
+      </fields>
+      <libsource lib="Device" part="R" description="Resistor"/>
+      <property name="Manufacturer PN" value="0402WGF4701TCE"/>
+      <property name="Supplier PN" value="C25900"/>
+      <property name="Supplier" value="JLC"/>
+      <property name="Sheetname" value="Microcontroller"/>
+      <property name="Sheetfile" value="MCU.kicad_sch"/>
+      <property name="ki_description" value="Resistor"/>
+      <property name="ki_keywords" value="R res resistor"/>
+      <sheetpath names="/Microcontroller/" tstamps="/60625ff5-21c7-44a3-8ce9-cc38254a738b/"/>
+      <tstamps>4f64d2b5-efe7-49a2-a694-35d00eb65519</tstamps>
+    </comp>
+    <comp ref="R5">
+      <value>4.7k</value>
+      <footprint>Resistor_SMD:R_0402_1005Metric</footprint>
+      <datasheet>https://wmsc.lcsc.com/wmsc/upload/file/pdf/v2/lcsc/2206010045_UNI-ROYAL-Uniroyal-Elec-0402WGF4701TCE_C25900.pdf</datasheet>
+      <fields>
+        <field name="Manufacturer PN">0402WGF4701TCE</field>
+        <field name="Supplier">JLC</field>
+        <field name="Supplier PN">C25900</field>
+      </fields>
+      <libsource lib="Device" part="R" description="Resistor"/>
+      <property name="Manufacturer PN" value="0402WGF4701TCE"/>
+      <property name="Supplier PN" value="C25900"/>
+      <property name="Supplier" value="JLC"/>
+      <property name="Sheetname" value="Microcontroller"/>
+      <property name="Sheetfile" value="MCU.kicad_sch"/>
+      <property name="ki_description" value="Resistor"/>
+      <property name="ki_keywords" value="R res resistor"/>
+      <sheetpath names="/Microcontroller/" tstamps="/60625ff5-21c7-44a3-8ce9-cc38254a738b/"/>
+      <tstamps>a5f76432-f30d-47d2-a032-aebd02202545</tstamps>
+    </comp>
+    <comp ref="R6">
+      <value>1M</value>
+      <footprint>Resistor_SMD:R_0402_1005Metric</footprint>
+      <datasheet>https://wmsc.lcsc.com/wmsc/upload/file/pdf/v2/lcsc/2206010030_UNI-ROYAL-Uniroyal-Elec-0402WGF1004TCE_C26083.pdf</datasheet>
+      <fields>
+        <field name="Manufacturer PN">0402WGF1004TCE</field>
+        <field name="Supplier">JLC</field>
+        <field name="Supplier PN">C26083</field>
+      </fields>
+      <libsource lib="Device" part="R" description="Resistor"/>
+      <property name="Manufacturer PN" value="0402WGF1004TCE"/>
+      <property name="Supplier PN" value="C26083"/>
+      <property name="Supplier" value="JLC"/>
+      <property name="Sheetname" value="Microcontroller"/>
+      <property name="Sheetfile" value="MCU.kicad_sch"/>
+      <property name="ki_description" value="Resistor"/>
+      <property name="ki_keywords" value="R res resistor"/>
+      <sheetpath names="/Microcontroller/" tstamps="/60625ff5-21c7-44a3-8ce9-cc38254a738b/"/>
+      <tstamps>1181f5bc-76da-4342-87ee-da1468f965e8</tstamps>
+    </comp>
+    <comp ref="R7">
+      <value>1k</value>
+      <footprint>Resistor_SMD:R_0402_1005Metric</footprint>
+      <datasheet>https://wmsc.lcsc.com/wmsc/upload/file/pdf/v2/lcsc/2206010216_UNI-ROYAL-Uniroyal-Elec-0402WGF1001TCE_C11702.pdf</datasheet>
+      <fields>
+        <field name="Manufacturer PN">0402WGF1001TCE</field>
+        <field name="Supplier">JLC</field>
+        <field name="Supplier PN">C11702</field>
+      </fields>
+      <libsource lib="Device" part="R" description="Resistor"/>
+      <property name="Manufacturer PN" value="0402WGF1001TCE"/>
+      <property name="Supplier PN" value="C11702"/>
+      <property name="Supplier" value="JLC"/>
+      <property name="Sheetname" value="Microcontroller"/>
+      <property name="Sheetfile" value="MCU.kicad_sch"/>
+      <property name="ki_description" value="Resistor"/>
+      <property name="ki_keywords" value="R res resistor"/>
+      <sheetpath names="/Microcontroller/" tstamps="/60625ff5-21c7-44a3-8ce9-cc38254a738b/"/>
+      <tstamps>676e7549-0f26-44d1-a54e-9709319e47d7</tstamps>
+    </comp>
+    <comp ref="R8">
+      <value>0R</value>
+      <footprint>Resistor_SMD:R_0402_1005Metric</footprint>
+      <datasheet>https://wmsc.lcsc.com/wmsc/upload/file/pdf/v2/lcsc/2206010216_UNI-ROYAL-Uniroyal-Elec-0402WGF0000TCE_C17168.pdf</datasheet>
+      <fields>
+        <field name="Manufacturer PN">0402WGF0000TCE</field>
+        <field name="Supplier">JLC</field>
+        <field name="Supplier PN">C17168</field>
+      </fields>
+      <libsource lib="Device" part="R" description="Resistor"/>
+      <property name="Manufacturer PN" value="0402WGF0000TCE"/>
+      <property name="Supplier PN" value="C17168"/>
+      <property name="Supplier" value="JLC"/>
+      <property name="Sheetname" value="Microcontroller"/>
+      <property name="Sheetfile" value="MCU.kicad_sch"/>
+      <property name="ki_description" value="Resistor"/>
+      <property name="ki_keywords" value="R res resistor"/>
+      <sheetpath names="/Microcontroller/" tstamps="/60625ff5-21c7-44a3-8ce9-cc38254a738b/"/>
+      <tstamps>4bb0f70a-f0c5-43bd-a2cc-85096a31f3dc</tstamps>
+    </comp>
+    <comp ref="R26">
+      <value>10k</value>
+      <footprint>Resistor_SMD:R_0402_1005Metric</footprint>
+      <datasheet>https://wmsc.lcsc.com/wmsc/upload/file/pdf/v2/lcsc/2206010100_UNI-ROYAL-Uniroyal-Elec-0402WGF1002TCE_C25744.pdf</datasheet>
+      <fields>
+        <field name="Manufacturer PN">0402WGF1002TCE</field>
+        <field name="Supplier">JLC</field>
+        <field name="Supplier PN">C25744</field>
+      </fields>
+      <libsource lib="Device" part="R" description="Resistor"/>
+      <property name="Manufacturer PN" value="0402WGF1002TCE"/>
+      <property name="Supplier PN" value="C25744"/>
+      <property name="Supplier" value="JLC"/>
+      <property name="Sheetname" value="Microcontroller"/>
+      <property name="Sheetfile" value="MCU.kicad_sch"/>
+      <property name="ki_description" value="Resistor"/>
+      <property name="ki_keywords" value="R res resistor"/>
+      <sheetpath names="/Microcontroller/" tstamps="/60625ff5-21c7-44a3-8ce9-cc38254a738b/"/>
+      <tstamps>7a3fbe51-20df-4df9-9666-d2e5f63f02ef</tstamps>
+    </comp>
+    <comp ref="R27">
+      <value>10k</value>
+      <footprint>Resistor_SMD:R_0402_1005Metric</footprint>
+      <datasheet>https://wmsc.lcsc.com/wmsc/upload/file/pdf/v2/lcsc/2206010100_UNI-ROYAL-Uniroyal-Elec-0402WGF1002TCE_C25744.pdf</datasheet>
+      <fields>
+        <field name="Manufacturer PN">0402WGF1002TCE</field>
+        <field name="Supplier">JLC</field>
+        <field name="Supplier PN">C25744</field>
+      </fields>
+      <libsource lib="Device" part="R" description="Resistor"/>
+      <property name="Manufacturer PN" value="0402WGF1002TCE"/>
+      <property name="Supplier PN" value="C25744"/>
+      <property name="Supplier" value="JLC"/>
+      <property name="Sheetname" value="Microcontroller"/>
+      <property name="Sheetfile" value="MCU.kicad_sch"/>
+      <property name="ki_description" value="Resistor"/>
+      <property name="ki_keywords" value="R res resistor"/>
+      <sheetpath names="/Microcontroller/" tstamps="/60625ff5-21c7-44a3-8ce9-cc38254a738b/"/>
+      <tstamps>fdd6b0da-9401-45fa-8748-1ec7c9d0bdf0</tstamps>
+    </comp>
+    <comp ref="R28">
+      <value>10k</value>
+      <footprint>Resistor_SMD:R_0402_1005Metric</footprint>
+      <datasheet>https://wmsc.lcsc.com/wmsc/upload/file/pdf/v2/lcsc/2206010100_UNI-ROYAL-Uniroyal-Elec-0402WGF1002TCE_C25744.pdf</datasheet>
+      <fields>
+        <field name="Manufacturer PN">0402WGF1002TCE</field>
+        <field name="Supplier">JLC</field>
+        <field name="Supplier PN">C25744</field>
+      </fields>
+      <libsource lib="Device" part="R" description="Resistor"/>
+      <property name="Manufacturer PN" value="0402WGF1002TCE"/>
+      <property name="Supplier PN" value="C25744"/>
+      <property name="Supplier" value="JLC"/>
+      <property name="Sheetname" value="Microcontroller"/>
+      <property name="Sheetfile" value="MCU.kicad_sch"/>
+      <property name="ki_description" value="Resistor"/>
+      <property name="ki_keywords" value="R res resistor"/>
+      <sheetpath names="/Microcontroller/" tstamps="/60625ff5-21c7-44a3-8ce9-cc38254a738b/"/>
+      <tstamps>85bc552b-ea57-478b-9290-451f7fd5b3c4</tstamps>
+    </comp>
+    <comp ref="R29">
+      <value>10k</value>
+      <footprint>Resistor_SMD:R_0402_1005Metric</footprint>
+      <datasheet>https://wmsc.lcsc.com/wmsc/upload/file/pdf/v2/lcsc/2206010100_UNI-ROYAL-Uniroyal-Elec-0402WGF1002TCE_C25744.pdf</datasheet>
+      <fields>
+        <field name="Manufacturer PN">0402WGF1002TCE</field>
+        <field name="Supplier">JLC</field>
+        <field name="Supplier PN">C25744</field>
+      </fields>
+      <libsource lib="Device" part="R" description="Resistor"/>
+      <property name="Manufacturer PN" value="0402WGF1002TCE"/>
+      <property name="Supplier PN" value="C25744"/>
+      <property name="Supplier" value="JLC"/>
+      <property name="Sheetname" value="Microcontroller"/>
+      <property name="Sheetfile" value="MCU.kicad_sch"/>
+      <property name="ki_description" value="Resistor"/>
+      <property name="ki_keywords" value="R res resistor"/>
+      <sheetpath names="/Microcontroller/" tstamps="/60625ff5-21c7-44a3-8ce9-cc38254a738b/"/>
+      <tstamps>3de8538c-b612-433e-94f6-7ceb0b3ba82d</tstamps>
+    </comp>
+    <comp ref="R30">
+      <value>10k</value>
+      <footprint>Resistor_SMD:R_0402_1005Metric</footprint>
+      <datasheet>https://wmsc.lcsc.com/wmsc/upload/file/pdf/v2/lcsc/2206010100_UNI-ROYAL-Uniroyal-Elec-0402WGF1002TCE_C25744.pdf</datasheet>
+      <fields>
+        <field name="Manufacturer PN">0402WGF1002TCE</field>
+        <field name="Supplier">JLC</field>
+        <field name="Supplier PN">C25744</field>
+      </fields>
+      <libsource lib="Device" part="R" description="Resistor"/>
+      <property name="Manufacturer PN" value="0402WGF1002TCE"/>
+      <property name="Supplier PN" value="C25744"/>
+      <property name="Supplier" value="JLC"/>
+      <property name="Sheetname" value="Microcontroller"/>
+      <property name="Sheetfile" value="MCU.kicad_sch"/>
+      <property name="ki_description" value="Resistor"/>
+      <property name="ki_keywords" value="R res resistor"/>
+      <sheetpath names="/Microcontroller/" tstamps="/60625ff5-21c7-44a3-8ce9-cc38254a738b/"/>
+      <tstamps>87c18d3f-56d0-4325-a9ee-39b41231da31</tstamps>
+    </comp>
+    <comp ref="SW1">
+      <value>SW_Push</value>
+      <footprint>my_footprints:KMR2_1</footprint>
+      <datasheet>https://www.ckswitches.com/media/1479/kmr2.pdf</datasheet>
+      <fields>
+        <field name="Manufacturer PN">KMR231GLFS</field>
+        <field name="Supplier">Digikey</field>
+        <field name="Supplier PN">401-1429-1-ND</field>
+      </fields>
+      <libsource lib="Switch" part="SW_Push" description="Push button switch, generic, two pins"/>
+      <property name="Manufacturer PN" value="KMR231GLFS"/>
+      <property name="Supplier PN" value="401-1429-1-ND"/>
+      <property name="Supplier" value="Digikey"/>
+      <property name="Sheetname" value="Microcontroller"/>
+      <property name="Sheetfile" value="MCU.kicad_sch"/>
+      <property name="ki_description" value="Push button switch, generic, two pins"/>
+      <property name="ki_keywords" value="switch normally-open pushbutton push-button"/>
+      <sheetpath names="/Microcontroller/" tstamps="/60625ff5-21c7-44a3-8ce9-cc38254a738b/"/>
+      <tstamps>f0ff59d7-fa30-498f-a8f4-70ac9cdf8e3d</tstamps>
+    </comp>
+    <comp ref="SW2">
+      <value>SW_Push</value>
+      <footprint>my_footprints:KMR2_1</footprint>
+      <datasheet>https://www.ckswitches.com/media/1479/kmr2.pdf</datasheet>
+      <fields>
+        <field name="Manufacturer PN">KMR231GLFS</field>
+        <field name="Supplier">Digikey</field>
+        <field name="Supplier PN">401-1429-1-ND</field>
+      </fields>
+      <libsource lib="Switch" part="SW_Push" description="Push button switch, generic, two pins"/>
+      <property name="Manufacturer PN" value="KMR231GLFS"/>
+      <property name="Supplier PN" value="401-1429-1-ND"/>
+      <property name="Supplier" value="Digikey"/>
+      <property name="Sheetname" value="Microcontroller"/>
+      <property name="Sheetfile" value="MCU.kicad_sch"/>
+      <property name="ki_description" value="Push button switch, generic, two pins"/>
+      <property name="ki_keywords" value="switch normally-open pushbutton push-button"/>
+      <sheetpath names="/Microcontroller/" tstamps="/60625ff5-21c7-44a3-8ce9-cc38254a738b/"/>
+      <tstamps>c21614bc-6a92-4a00-ac5c-e3ae34023c48</tstamps>
+    </comp>
+    <comp ref="U1">
+      <value>STM8S007C8T6TR</value>
+      <footprint>Package_QFP:LQFP-48_7x7mm_P0.5mm</footprint>
+      <datasheet>https://www.st.com/content/ccc/resource/technical/document/datasheet/03/af/ba/15/7c/fe/4c/91/DM00037365.pdf/files/DM00037365.pdf/jcr:content/translations/en.DM00037365.pdf</datasheet>
+      <fields>
+        <field name="Manufacturer PN">STM8S007C8T6TR</field>
+        <field name="Supplier">Digikey</field>
+        <field name="Supplier PN">497-18848-1-ND</field>
+      </fields>
+      <libsource lib="my_library" part="STM8S007C8T6" description="Value line, 24 MHz STM8S 8-bit MCU, 64 Kbytes Flash, true data EEPROM, 10-bit ADC, timers, 2 UARTs, SPI, I²C"/>
+      <property name="Manufacturer PN" value="STM8S007C8T6TR"/>
+      <property name="Supplier PN" value="497-18848-1-ND"/>
+      <property name="Supplier" value="Digikey"/>
+      <property name="Sheetname" value="Microcontroller"/>
+      <property name="Sheetfile" value="MCU.kicad_sch"/>
+      <property name="ki_description" value="Value line, 24 MHz STM8S 8-bit MCU, 64 Kbytes Flash, true data EEPROM, 10-bit ADC, timers, 2 UARTs, SPI, I²C"/>
+      <property name="ki_keywords" value="STM8S007C8T6, Value line, STM8"/>
+      <sheetpath names="/Microcontroller/" tstamps="/60625ff5-21c7-44a3-8ce9-cc38254a738b/"/>
+      <tstamps>475838c3-b87d-4d66-947b-378514d87469 125361b4-5f09-49d0-bb0f-378b032189c2</tstamps>
+    </comp>
+    <comp ref="Y1">
+      <value>12MHz</value>
+      <footprint>Crystal:Crystal_SMD_3225-4Pin_3.2x2.5mm</footprint>
+      <datasheet>https://wmsc.lcsc.com/wmsc/upload/file/pdf/v2/lcsc/2403291504_YXC-X322512MSB4SI_C9002.pdf</datasheet>
+      <fields>
+        <field name="Manufacturer PN">X322512MSB4SI</field>
+        <field name="Supplier">JLC</field>
+        <field name="Supplier PN">C9002</field>
+      </fields>
+      <libsource lib="Device" part="Crystal_GND24" description="Four pin crystal, GND on pins 2 and 4"/>
+      <property name="Manufacturer PN" value="X322512MSB4SI"/>
+      <property name="Supplier PN" value="C9002"/>
+      <property name="Supplier" value="JLC"/>
+      <property name="Sheetname" value="Microcontroller"/>
+      <property name="Sheetfile" value="MCU.kicad_sch"/>
+      <property name="ki_description" value="Four pin crystal, GND on pins 2 and 4"/>
+      <property name="ki_keywords" value="quartz ceramic resonator oscillator"/>
+      <sheetpath names="/Microcontroller/" tstamps="/60625ff5-21c7-44a3-8ce9-cc38254a738b/"/>
+      <tstamps>39c66162-de58-44e1-9ae3-2998420e0c09</tstamps>
+    </comp>
+    <comp ref="C13">
+      <value>1.8nF</value>
+      <footprint>Capacitor_SMD:C_0402_1005Metric</footprint>
+      <datasheet>https://connect.kemet.com:7667/gateway/IntelliData-ComponentDocumentation/1.0/download/datasheet/C0402C182K3RACTU</datasheet>
+      <fields>
+        <field name="Manufacturer PN">399-17371-1-ND</field>
+        <field name="Supplier">Digikey</field>
+        <field name="Supplier PN">C0402C182K3RAC7867</field>
+      </fields>
+      <libsource lib="Device" part="C" description="Unpolarized capacitor"/>
+      <property name="Manufacturer PN" value="399-17371-1-ND"/>
+      <property name="Supplier PN" value="C0402C182K3RAC7867"/>
+      <property name="Supplier" value="Digikey"/>
+      <property name="Sheetname" value="Power"/>
+      <property name="Sheetfile" value="power.kicad_sch"/>
+      <property name="ki_description" value="Unpolarized capacitor"/>
+      <property name="ki_keywords" value="cap capacitor"/>
+      <sheetpath names="/Power/" tstamps="/ebc948db-a9d3-410a-bdbf-1c31db890e56/"/>
+      <tstamps>78652b07-9d73-49c8-8544-ede0ca9a7c78</tstamps>
+    </comp>
+    <comp ref="C14">
+      <value>1.8nF</value>
+      <footprint>Capacitor_SMD:C_0402_1005Metric</footprint>
+      <datasheet>https://connect.kemet.com:7667/gateway/IntelliData-ComponentDocumentation/1.0/download/datasheet/C0402C182K3RACTU</datasheet>
+      <fields>
+        <field name="Manufacturer PN">399-17371-1-ND</field>
+        <field name="Supplier">Digikey</field>
+        <field name="Supplier PN">C0402C182K3RAC7867</field>
+      </fields>
+      <libsource lib="Device" part="C" description="Unpolarized capacitor"/>
+      <property name="Manufacturer PN" value="399-17371-1-ND"/>
+      <property name="Supplier PN" value="C0402C182K3RAC7867"/>
+      <property name="Supplier" value="Digikey"/>
+      <property name="Sheetname" value="Power"/>
+      <property name="Sheetfile" value="power.kicad_sch"/>
+      <property name="ki_description" value="Unpolarized capacitor"/>
+      <property name="ki_keywords" value="cap capacitor"/>
+      <sheetpath names="/Power/" tstamps="/ebc948db-a9d3-410a-bdbf-1c31db890e56/"/>
+      <tstamps>08a61a15-c4ae-4b78-abcd-59c36d81be47</tstamps>
+    </comp>
+    <comp ref="C15">
+      <value>22pF</value>
+      <footprint>Capacitor_SMD:C_0402_1005Metric</footprint>
+      <datasheet>https://www.digikey.co.nz/en/products/detail/kemet/C0402C220K4RAC7867/8572389</datasheet>
+      <fields>
+        <field name="Manufacturer PN">399-17554-1-ND</field>
+        <field name="Supplier">Digikey</field>
+        <field name="Supplier PN">C0402C220K4RAC7867</field>
+      </fields>
+      <libsource lib="Device" part="C" description="Unpolarized capacitor"/>
+      <property name="Manufacturer PN" value="399-17554-1-ND"/>
+      <property name="Supplier PN" value="C0402C220K4RAC7867"/>
+      <property name="Supplier" value="Digikey"/>
+      <property name="Sheetname" value="Power"/>
+      <property name="Sheetfile" value="power.kicad_sch"/>
+      <property name="ki_description" value="Unpolarized capacitor"/>
+      <property name="ki_keywords" value="cap capacitor"/>
+      <sheetpath names="/Power/" tstamps="/ebc948db-a9d3-410a-bdbf-1c31db890e56/"/>
+      <tstamps>5e9738ec-6da7-4728-8996-7a5b34fdb186</tstamps>
+    </comp>
+    <comp ref="C16">
+      <value>100nF</value>
+      <footprint>Capacitor_SMD:C_0402_1005Metric</footprint>
+      <datasheet>https://wmsc.lcsc.com/wmsc/upload/file/pdf/v2/lcsc/2304140030_Samsung-Electro-Mechanics-CL05B104KO5NNNC_C1525.pdf</datasheet>
+      <fields>
+        <field name="Manufacturer PN">CL05B104KO5NNNC</field>
+        <field name="Supplier">JLC</field>
+        <field name="Supplier PN">C1525</field>
+        <field name="Voltage">16V</field>
+      </fields>
+      <libsource lib="Device" part="C" description="Unpolarized capacitor"/>
+      <property name="Manufacturer PN" value="CL05B104KO5NNNC"/>
+      <property name="Supplier PN" value="C1525"/>
+      <property name="Supplier" value="JLC"/>
+      <property name="Voltage" value="16V"/>
+      <property name="Sheetname" value="Power"/>
+      <property name="Sheetfile" value="power.kicad_sch"/>
+      <property name="ki_description" value="Unpolarized capacitor"/>
+      <property name="ki_keywords" value="cap capacitor"/>
+      <sheetpath names="/Power/" tstamps="/ebc948db-a9d3-410a-bdbf-1c31db890e56/"/>
+      <tstamps>2f1ccb53-ff66-48ea-87cb-44053b2dcc7e</tstamps>
+    </comp>
+    <comp ref="C17">
+      <value>10uF</value>
+      <footprint>Capacitor_SMD:C_0402_1005Metric</footprint>
+      <datasheet>https://wmsc.lcsc.com/wmsc/upload/file/pdf/v2/lcsc/2304140030_Samsung-Electro-Mechanics-CL10A106KP8NNNC_C19702.pdf</datasheet>
+      <fields>
+        <field name="Manufacturer PN">CL10A106KP8NNNC</field>
+        <field name="Supplier">JLC</field>
+        <field name="Supplier PN">C19702</field>
+        <field name="Voltage">10V</field>
+      </fields>
+      <libsource lib="Device" part="C" description="Unpolarized capacitor"/>
+      <property name="Manufacturer PN" value="CL10A106KP8NNNC"/>
+      <property name="Supplier PN" value="C19702"/>
+      <property name="Supplier" value="JLC"/>
+      <property name="Voltage" value="10V"/>
+      <property name="Sheetname" value="Power"/>
+      <property name="Sheetfile" value="power.kicad_sch"/>
+      <property name="ki_description" value="Unpolarized capacitor"/>
+      <property name="ki_keywords" value="cap capacitor"/>
+      <sheetpath names="/Power/" tstamps="/ebc948db-a9d3-410a-bdbf-1c31db890e56/"/>
+      <tstamps>d70799c1-4d17-465e-b862-42cc456acda8</tstamps>
+    </comp>
+    <comp ref="C18">
+      <value>100nF</value>
+      <footprint>Capacitor_SMD:C_0402_1005Metric</footprint>
+      <datasheet>https://wmsc.lcsc.com/wmsc/upload/file/pdf/v2/lcsc/2304140030_Samsung-Electro-Mechanics-CL05B104KO5NNNC_C1525.pdf</datasheet>
+      <fields>
+        <field name="Manufacturer PN">CL05B104KO5NNNC</field>
+        <field name="Supplier">JLC</field>
+        <field name="Supplier PN">C1525</field>
+        <field name="Voltage">16V</field>
+      </fields>
+      <libsource lib="Device" part="C" description="Unpolarized capacitor"/>
+      <property name="Manufacturer PN" value="CL05B104KO5NNNC"/>
+      <property name="Supplier PN" value="C1525"/>
+      <property name="Supplier" value="JLC"/>
+      <property name="Voltage" value="16V"/>
+      <property name="Sheetname" value="Power"/>
+      <property name="Sheetfile" value="power.kicad_sch"/>
+      <property name="ki_description" value="Unpolarized capacitor"/>
+      <property name="ki_keywords" value="cap capacitor"/>
+      <sheetpath names="/Power/" tstamps="/ebc948db-a9d3-410a-bdbf-1c31db890e56/"/>
+      <tstamps>802ed03d-3d56-418b-af82-1414ed4eb4d3</tstamps>
+    </comp>
+    <comp ref="C19">
+      <value>10uF</value>
+      <footprint>Capacitor_SMD:C_0402_1005Metric</footprint>
+      <datasheet>https://wmsc.lcsc.com/wmsc/upload/file/pdf/v2/lcsc/2304140030_Samsung-Electro-Mechanics-CL10A106KP8NNNC_C19702.pdf</datasheet>
+      <fields>
+        <field name="Manufacturer PN">CL10A106KP8NNNC</field>
+        <field name="Supplier">JLC</field>
+        <field name="Supplier PN">C19702</field>
+        <field name="Voltage">10V</field>
+      </fields>
+      <libsource lib="Device" part="C" description="Unpolarized capacitor"/>
+      <property name="Manufacturer PN" value="CL10A106KP8NNNC"/>
+      <property name="Supplier PN" value="C19702"/>
+      <property name="Supplier" value="JLC"/>
+      <property name="Voltage" value="10V"/>
+      <property name="Sheetname" value="Power"/>
+      <property name="Sheetfile" value="power.kicad_sch"/>
+      <property name="ki_description" value="Unpolarized capacitor"/>
+      <property name="ki_keywords" value="cap capacitor"/>
+      <sheetpath names="/Power/" tstamps="/ebc948db-a9d3-410a-bdbf-1c31db890e56/"/>
+      <tstamps>b091df74-2c80-4780-ab65-bd5a714b28e3</tstamps>
+    </comp>
+    <comp ref="C20">
+      <value>10uF</value>
+      <footprint>Capacitor_SMD:C_0402_1005Metric</footprint>
+      <datasheet>https://wmsc.lcsc.com/wmsc/upload/file/pdf/v2/lcsc/2304140030_Samsung-Electro-Mechanics-CL10A106KP8NNNC_C19702.pdf</datasheet>
+      <fields>
+        <field name="Manufacturer PN">CL10A106KP8NNNC</field>
+        <field name="Supplier">JLC</field>
+        <field name="Supplier PN">C19702</field>
+        <field name="Voltage">10V</field>
+      </fields>
+      <libsource lib="Device" part="C" description="Unpolarized capacitor"/>
+      <property name="Manufacturer PN" value="CL10A106KP8NNNC"/>
+      <property name="Supplier PN" value="C19702"/>
+      <property name="Supplier" value="JLC"/>
+      <property name="Voltage" value="10V"/>
+      <property name="Sheetname" value="Power"/>
+      <property name="Sheetfile" value="power.kicad_sch"/>
+      <property name="ki_description" value="Unpolarized capacitor"/>
+      <property name="ki_keywords" value="cap capacitor"/>
+      <sheetpath names="/Power/" tstamps="/ebc948db-a9d3-410a-bdbf-1c31db890e56/"/>
+      <tstamps>b1cd27dd-1e16-401e-87cc-bcdf83c47e6c</tstamps>
+    </comp>
+    <comp ref="C21">
+      <value>1uF</value>
+      <footprint>Capacitor_SMD:C_0402_1005Metric</footprint>
+      <datasheet>https://wmsc.lcsc.com/wmsc/upload/file/pdf/v2/lcsc/2304140030_Samsung-Electro-Mechanics-CL05A105KA5NQNC_C52923.pdf</datasheet>
+      <fields>
+        <field name="Manufacturer PN">CL05A105KA5NQNC</field>
+        <field name="Supplier">JLC</field>
+        <field name="Supplier PN">C52923</field>
+        <field name="Voltage">25V</field>
+      </fields>
+      <libsource lib="Device" part="C" description="Unpolarized capacitor"/>
+      <property name="Manufacturer PN" value="CL05A105KA5NQNC"/>
+      <property name="Supplier PN" value="C52923"/>
+      <property name="Supplier" value="JLC"/>
+      <property name="Voltage" value="25V"/>
+      <property name="Sheetname" value="Power"/>
+      <property name="Sheetfile" value="power.kicad_sch"/>
+      <property name="ki_description" value="Unpolarized capacitor"/>
+      <property name="ki_keywords" value="cap capacitor"/>
+      <sheetpath names="/Power/" tstamps="/ebc948db-a9d3-410a-bdbf-1c31db890e56/"/>
+      <tstamps>98d81a29-b426-4be0-bdbf-2f17fb2b00ee</tstamps>
+    </comp>
+    <comp ref="C22">
+      <value>10uF</value>
+      <footprint>Capacitor_SMD:C_0402_1005Metric</footprint>
+      <datasheet>https://wmsc.lcsc.com/wmsc/upload/file/pdf/v2/lcsc/2304140030_Samsung-Electro-Mechanics-CL10A106KP8NNNC_C19702.pdf</datasheet>
+      <fields>
+        <field name="Manufacturer PN">CL10A106KP8NNNC</field>
+        <field name="Supplier">JLC</field>
+        <field name="Supplier PN">C19702</field>
+        <field name="Voltage">10V</field>
+      </fields>
+      <libsource lib="Device" part="C" description="Unpolarized capacitor"/>
+      <property name="Manufacturer PN" value="CL10A106KP8NNNC"/>
+      <property name="Supplier PN" value="C19702"/>
+      <property name="Supplier" value="JLC"/>
+      <property name="Voltage" value="10V"/>
+      <property name="Sheetname" value="Power"/>
+      <property name="Sheetfile" value="power.kicad_sch"/>
+      <property name="ki_description" value="Unpolarized capacitor"/>
+      <property name="ki_keywords" value="cap capacitor"/>
+      <sheetpath names="/Power/" tstamps="/ebc948db-a9d3-410a-bdbf-1c31db890e56/"/>
+      <tstamps>b408eb16-4dc9-4964-bb7a-0d42587db44e</tstamps>
+    </comp>
+    <comp ref="C23">
+      <value>1uF</value>
+      <footprint>Capacitor_SMD:C_0402_1005Metric</footprint>
+      <datasheet>https://wmsc.lcsc.com/wmsc/upload/file/pdf/v2/lcsc/2304140030_Samsung-Electro-Mechanics-CL05A105KA5NQNC_C52923.pdf</datasheet>
+      <fields>
+        <field name="Manufacturer PN">CL05A105KA5NQNC</field>
+        <field name="Supplier">JLC</field>
+        <field name="Supplier PN">C52923</field>
+        <field name="Voltage">25V</field>
+      </fields>
+      <libsource lib="Device" part="C" description="Unpolarized capacitor"/>
+      <property name="Manufacturer PN" value="CL05A105KA5NQNC"/>
+      <property name="Supplier PN" value="C52923"/>
+      <property name="Supplier" value="JLC"/>
+      <property name="Voltage" value="25V"/>
+      <property name="Sheetname" value="Power"/>
+      <property name="Sheetfile" value="power.kicad_sch"/>
+      <property name="ki_description" value="Unpolarized capacitor"/>
+      <property name="ki_keywords" value="cap capacitor"/>
+      <sheetpath names="/Power/" tstamps="/ebc948db-a9d3-410a-bdbf-1c31db890e56/"/>
+      <tstamps>dc200fcd-5af0-48ad-bf9e-98b2541cce36</tstamps>
+    </comp>
+    <comp ref="C37">
+      <value>100nF</value>
+      <footprint>Capacitor_SMD:C_0402_1005Metric</footprint>
+      <datasheet>https://wmsc.lcsc.com/wmsc/upload/file/pdf/v2/lcsc/2304140030_Samsung-Electro-Mechanics-CL05B104KO5NNNC_C1525.pdf</datasheet>
+      <fields>
+        <field name="Manufacturer PN">CL05B104KO5NNNC</field>
+        <field name="Supplier">JLC</field>
+        <field name="Supplier PN">C1525</field>
+        <field name="Voltage">16V</field>
+      </fields>
+      <libsource lib="Device" part="C" description="Unpolarized capacitor"/>
+      <property name="Manufacturer PN" value="CL05B104KO5NNNC"/>
+      <property name="Supplier PN" value="C1525"/>
+      <property name="Supplier" value="JLC"/>
+      <property name="Voltage" value="16V"/>
+      <property name="Sheetname" value="Power"/>
+      <property name="Sheetfile" value="power.kicad_sch"/>
+      <property name="ki_description" value="Unpolarized capacitor"/>
+      <property name="ki_keywords" value="cap capacitor"/>
+      <sheetpath names="/Power/" tstamps="/ebc948db-a9d3-410a-bdbf-1c31db890e56/"/>
+      <tstamps>958e2409-68f3-4c7e-a996-242c950a9188</tstamps>
+    </comp>
+    <comp ref="D3">
+      <value>5.1V</value>
+      <footprint>Package_TO_SOT_SMD:SOT-23</footprint>
+      <datasheet>https://www.mccsemi.com/pdf/Products/BZX84C(B)2V4~BZX84C(B)75(SOT-23).pdf</datasheet>
+      <fields>
+        <field name="Manufacturer PN">BZX84C5V1-TP</field>
+        <field name="Supplier">Digikey</field>
+        <field name="Supplier PN">BZX84C5V1-TPMSDKR-ND</field>
+      </fields>
+      <libsource lib="Device" part="D_Zener" description="Zener diode"/>
+      <property name="Manufacturer PN" value="BZX84C5V1-TP"/>
+      <property name="Supplier PN" value="BZX84C5V1-TPMSDKR-ND"/>
+      <property name="Supplier" value="Digikey"/>
+      <property name="Sheetname" value="Power"/>
+      <property name="Sheetfile" value="power.kicad_sch"/>
+      <property name="ki_description" value="Zener diode"/>
+      <property name="ki_keywords" value="diode"/>
+      <sheetpath names="/Power/" tstamps="/ebc948db-a9d3-410a-bdbf-1c31db890e56/"/>
+      <tstamps>ec628fc6-2d15-4789-bd80-316799bfd899</tstamps>
+    </comp>
+    <comp ref="F1">
+      <value>250mA</value>
+      <footprint>Fuse:Fuse_0603_1608Metric</footprint>
+      <datasheet>http://www.kamaya.co.jp/upload/products_pdf/kamaya_products(FMC)_english_20170203_122640.pdf</datasheet>
+      <fields>
+        <field name="Manufacturer PN">FMC16501WBTP</field>
+        <field name="Supplier">Digikey</field>
+        <field name="Supplier PN">2315-FMC16501WBTPDKR-ND</field>
+      </fields>
+      <libsource lib="Device" part="Fuse" description="Fuse"/>
+      <property name="Manufacturer PN" value="FMC16501WBTP"/>
+      <property name="Supplier PN" value="2315-FMC16501WBTPDKR-ND"/>
+      <property name="Supplier" value="Digikey"/>
+      <property name="Sheetname" value="Power"/>
+      <property name="Sheetfile" value="power.kicad_sch"/>
+      <property name="ki_description" value="Fuse"/>
+      <property name="ki_keywords" value="fuse"/>
+      <sheetpath names="/Power/" tstamps="/ebc948db-a9d3-410a-bdbf-1c31db890e56/"/>
+      <tstamps>20c31d94-1919-4b26-9552-29865d9afb57</tstamps>
+    </comp>
+    <comp ref="J3">
+      <value>Conn_01x02</value>
+      <footprint>Connector_JST:JST_PH_S2B-PH-K_1x02_P2.00mm_Horizontal</footprint>
+      <datasheet>https://www.jst-mfg.com/product/pdf/eng/ePH.pdf</datasheet>
+      <fields>
+        <field name="Manufacturer PN">S2B-PH-K-S</field>
+        <field name="Supplier">Digikey</field>
+        <field name="Supplier PN">455-1719-ND</field>
+      </fields>
+      <libsource lib="Connector_Generic" part="Conn_01x02" description="Generic connector, single row, 01x02, script generated (kicad-library-utils/schlib/autogen/connector/)"/>
+      <property name="Manufacturer PN" value="S2B-PH-K-S"/>
+      <property name="Supplier PN" value="455-1719-ND"/>
+      <property name="Supplier" value="Digikey"/>
+      <property name="Sheetname" value="Power"/>
+      <property name="Sheetfile" value="power.kicad_sch"/>
+      <property name="ki_description" value="Generic connector, single row, 01x02, script generated (kicad-library-utils/schlib/autogen/connector/)"/>
+      <property name="ki_keywords" value="connector"/>
+      <sheetpath names="/Power/" tstamps="/ebc948db-a9d3-410a-bdbf-1c31db890e56/"/>
+      <tstamps>53603b9a-4e4f-4055-a181-a775b6f1d39b</tstamps>
+    </comp>
+    <comp ref="L1">
+      <value>1.5uH</value>
+      <footprint>Inductor_SMD:L_1008_2520Metric</footprint>
+      <datasheet>https://search.murata.co.jp/Ceramy/image/img/P02/JELF243B-0019.pdf</datasheet>
+      <fields>
+        <field name="ESR">88mOhm</field>
+        <field name="Manufacturer PN">LQM2HPN1R5MG0L</field>
+        <field name="Max Current">1.5A</field>
+        <field name="Supplier">Digikey</field>
+        <field name="Supplier PN">490-5113-1-ND</field>
+      </fields>
+      <libsource lib="Device" part="L" description="Inductor"/>
+      <property name="Manufacturer PN" value="LQM2HPN1R5MG0L"/>
+      <property name="Supplier PN" value="490-5113-1-ND"/>
+      <property name="Supplier" value="Digikey"/>
+      <property name="Max Current" value="1.5A"/>
+      <property name="ESR" value="88mOhm"/>
+      <property name="Sheetname" value="Power"/>
+      <property name="Sheetfile" value="power.kicad_sch"/>
+      <property name="ki_description" value="Inductor"/>
+      <property name="ki_keywords" value="inductor choke coil reactor magnetic"/>
+      <sheetpath names="/Power/" tstamps="/ebc948db-a9d3-410a-bdbf-1c31db890e56/"/>
+      <tstamps>f06e9258-9bbe-47f6-9419-8af774d4edc3</tstamps>
+    </comp>
+    <comp ref="L2">
+      <value>3.3uH</value>
+      <footprint>Inductor_SMD:L_0805_2012Metric</footprint>
+      <datasheet>https://product.tdk.com/en/system/files?file=dam/doc/product/inductor/inductor/smd/catalog/inductor_commercial_decoupling_mlz2012_en.pdf</datasheet>
+      <fields>
+        <field name="Manufacturer PN">MLZ2012N3R3LT000</field>
+        <field name="Max Current">750mA</field>
+        <field name="Supplier">Digikey</field>
+        <field name="Supplier PN">445-6759-1-ND</field>
+      </fields>
+      <libsource lib="Device" part="L" description="Inductor"/>
+      <property name="Manufacturer PN" value="MLZ2012N3R3LT000"/>
+      <property name="Supplier PN" value="445-6759-1-ND"/>
+      <property name="Supplier" value="Digikey"/>
+      <property name="Max Current" value="750mA"/>
+      <property name="Sheetname" value="Power"/>
+      <property name="Sheetfile" value="power.kicad_sch"/>
+      <property name="ki_description" value="Inductor"/>
+      <property name="ki_keywords" value="inductor choke coil reactor magnetic"/>
+      <sheetpath names="/Power/" tstamps="/ebc948db-a9d3-410a-bdbf-1c31db890e56/"/>
+      <tstamps>a36bb7f7-68ed-4de1-a890-8aae2295cde3</tstamps>
+    </comp>
+    <comp ref="Q2">
+      <value>Q_NMOS_GSD</value>
+      <footprint>Package_TO_SOT_SMD:SOT-323_SC-70</footprint>
+      <datasheet>https://www.panjit.com.tw/upload/datasheet/PJC7404.pdf</datasheet>
+      <fields>
+        <field name="Manufacturer PN">PJC7404_R1_00001</field>
+        <field name="Supplier">Digikey</field>
+        <field name="Supplier PN">3757-PJC7404_R1_00001CT-ND</field>
+      </fields>
+      <libsource lib="Device" part="Q_NMOS_GSD" description="N-MOSFET transistor, gate/source/drain"/>
+      <property name="Manufacturer PN" value="PJC7404_R1_00001"/>
+      <property name="Supplier PN" value="3757-PJC7404_R1_00001CT-ND"/>
+      <property name="Supplier" value="Digikey"/>
+      <property name="Sheetname" value="Power"/>
+      <property name="Sheetfile" value="power.kicad_sch"/>
+      <property name="ki_description" value="N-MOSFET transistor, gate/source/drain"/>
+      <property name="ki_keywords" value="transistor NMOS N-MOS N-MOSFET"/>
+      <sheetpath names="/Power/" tstamps="/ebc948db-a9d3-410a-bdbf-1c31db890e56/"/>
+      <tstamps>3a18c019-4e87-4b2e-9d9a-986fe677b2cb</tstamps>
+    </comp>
+    <comp ref="R9">
+      <value>0.1R</value>
+      <footprint>Resistor_SMD:R_1206_3216Metric</footprint>
+      <datasheet>https://wmsc.lcsc.com/wmsc/upload/file/pdf/v2/lcsc/2205311900_UNI-ROYAL-Uniroyal-Elec-1206W4F100LT5E_C25334.pdf</datasheet>
+      <fields>
+        <field name="Manufacturer PN">1206W4F100LT5E</field>
+        <field name="Power">250mW</field>
+        <field name="Supplier">JLC</field>
+        <field name="Supplier PN">C25334</field>
+      </fields>
+      <libsource lib="Device" part="R" description="Resistor"/>
+      <property name="Manufacturer PN" value="1206W4F100LT5E"/>
+      <property name="Supplier PN" value="C25334"/>
+      <property name="Supplier" value="JLC"/>
+      <property name="Power" value="250mW"/>
+      <property name="Sheetname" value="Power"/>
+      <property name="Sheetfile" value="power.kicad_sch"/>
+      <property name="ki_description" value="Resistor"/>
+      <property name="ki_keywords" value="R res resistor"/>
+      <sheetpath names="/Power/" tstamps="/ebc948db-a9d3-410a-bdbf-1c31db890e56/"/>
+      <tstamps>e46bb05e-5c73-495a-af43-e0a57b91392b</tstamps>
+    </comp>
+    <comp ref="R10">
+      <value>1k</value>
+      <footprint>Resistor_SMD:R_0402_1005Metric</footprint>
+      <datasheet>https://wmsc.lcsc.com/wmsc/upload/file/pdf/v2/lcsc/2206010216_UNI-ROYAL-Uniroyal-Elec-0402WGF1001TCE_C11702.pdf</datasheet>
+      <fields>
+        <field name="Manufacturer PN">0402WGF1001TCE</field>
+        <field name="Supplier">JLC</field>
+        <field name="Supplier PN">C11702</field>
+      </fields>
+      <libsource lib="Device" part="R" description="Resistor"/>
+      <property name="Manufacturer PN" value="0402WGF1001TCE"/>
+      <property name="Supplier PN" value="C11702"/>
+      <property name="Supplier" value="JLC"/>
+      <property name="Sheetname" value="Power"/>
+      <property name="Sheetfile" value="power.kicad_sch"/>
+      <property name="ki_description" value="Resistor"/>
+      <property name="ki_keywords" value="R res resistor"/>
+      <sheetpath names="/Power/" tstamps="/ebc948db-a9d3-410a-bdbf-1c31db890e56/"/>
+      <tstamps>7df1d8f0-f486-4982-a33b-50816629625b</tstamps>
+    </comp>
+    <comp ref="R11">
+      <value>1k</value>
+      <footprint>Resistor_SMD:R_0402_1005Metric</footprint>
+      <datasheet>https://wmsc.lcsc.com/wmsc/upload/file/pdf/v2/lcsc/2206010216_UNI-ROYAL-Uniroyal-Elec-0402WGF1001TCE_C11702.pdf</datasheet>
+      <fields>
+        <field name="Manufacturer PN">0402WGF1001TCE</field>
+        <field name="Supplier">JLC</field>
+        <field name="Supplier PN">C11702</field>
+      </fields>
+      <libsource lib="Device" part="R" description="Resistor"/>
+      <property name="Manufacturer PN" value="0402WGF1001TCE"/>
+      <property name="Supplier PN" value="C11702"/>
+      <property name="Supplier" value="JLC"/>
+      <property name="Sheetname" value="Power"/>
+      <property name="Sheetfile" value="power.kicad_sch"/>
+      <property name="ki_description" value="Resistor"/>
+      <property name="ki_keywords" value="R res resistor"/>
+      <sheetpath names="/Power/" tstamps="/ebc948db-a9d3-410a-bdbf-1c31db890e56/"/>
+      <tstamps>3c021af3-b8cf-4b2c-8be7-bd0817950eed</tstamps>
+    </comp>
+    <comp ref="R12">
+      <value>10k</value>
+      <footprint>Resistor_SMD:R_0402_1005Metric</footprint>
+      <datasheet>https://wmsc.lcsc.com/wmsc/upload/file/pdf/v2/lcsc/2206010100_UNI-ROYAL-Uniroyal-Elec-0402WGF1002TCE_C25744.pdf</datasheet>
+      <fields>
+        <field name="Manufacturer PN">0402WGF1002TCE</field>
+        <field name="Supplier">JLC</field>
+        <field name="Supplier PN">C25744</field>
+      </fields>
+      <libsource lib="Device" part="R" description="Resistor"/>
+      <property name="Manufacturer PN" value="0402WGF1002TCE"/>
+      <property name="Supplier PN" value="C25744"/>
+      <property name="Supplier" value="JLC"/>
+      <property name="Sheetname" value="Power"/>
+      <property name="Sheetfile" value="power.kicad_sch"/>
+      <property name="ki_description" value="Resistor"/>
+      <property name="ki_keywords" value="R res resistor"/>
+      <sheetpath names="/Power/" tstamps="/ebc948db-a9d3-410a-bdbf-1c31db890e56/"/>
+      <tstamps>630648b8-0799-49ec-ac34-e2be3c447b83</tstamps>
+    </comp>
+    <comp ref="R13">
+      <value>68k</value>
+      <footprint>Resistor_SMD:R_0402_1005Metric</footprint>
+      <datasheet>https://wmsc.lcsc.com/wmsc/upload/file/pdf/v2/lcsc/2206010030_UNI-ROYAL-Uniroyal-Elec-0402WGF6802TCE_C36871.pdf</datasheet>
+      <fields>
+        <field name="Manufacturer PN">0402WGF6802TCE</field>
+        <field name="Supplier">JLC</field>
+        <field name="Supplier PN">C36871</field>
+      </fields>
+      <libsource lib="Device" part="R" description="Resistor"/>
+      <property name="Manufacturer PN" value="0402WGF6802TCE"/>
+      <property name="Supplier PN" value="C36871"/>
+      <property name="Supplier" value="JLC"/>
+      <property name="Sheetname" value="Power"/>
+      <property name="Sheetfile" value="power.kicad_sch"/>
+      <property name="ki_description" value="Resistor"/>
+      <property name="ki_keywords" value="R res resistor"/>
+      <sheetpath names="/Power/" tstamps="/ebc948db-a9d3-410a-bdbf-1c31db890e56/"/>
+      <tstamps>1fc15413-bc06-47b2-adf9-fe982677ad7f</tstamps>
+    </comp>
+    <comp ref="R14">
+      <value>1M</value>
+      <footprint>Resistor_SMD:R_0402_1005Metric</footprint>
+      <datasheet>https://wmsc.lcsc.com/wmsc/upload/file/pdf/v2/lcsc/2206010030_UNI-ROYAL-Uniroyal-Elec-0402WGF1004TCE_C26083.pdf</datasheet>
+      <fields>
+        <field name="Manufacturer PN">0402WGF1004TCE</field>
+        <field name="Supplier">JLC</field>
+        <field name="Supplier PN">C26083</field>
+      </fields>
+      <libsource lib="Device" part="R" description="Resistor"/>
+      <property name="Manufacturer PN" value="0402WGF1004TCE"/>
+      <property name="Supplier PN" value="C26083"/>
+      <property name="Supplier" value="JLC"/>
+      <property name="Sheetname" value="Power"/>
+      <property name="Sheetfile" value="power.kicad_sch"/>
+      <property name="ki_description" value="Resistor"/>
+      <property name="ki_keywords" value="R res resistor"/>
+      <sheetpath names="/Power/" tstamps="/ebc948db-a9d3-410a-bdbf-1c31db890e56/"/>
+      <tstamps>d3600f4d-fd11-4f85-bcd1-9677ac26e47e</tstamps>
+    </comp>
+    <comp ref="R15">
+      <value>1M</value>
+      <footprint>Resistor_SMD:R_0402_1005Metric</footprint>
+      <datasheet>https://wmsc.lcsc.com/wmsc/upload/file/pdf/v2/lcsc/2206010030_UNI-ROYAL-Uniroyal-Elec-0402WGF1004TCE_C26083.pdf</datasheet>
+      <fields>
+        <field name="Manufacturer PN">0402WGF1004TCE</field>
+        <field name="Supplier">JLC</field>
+        <field name="Supplier PN">C26083</field>
+      </fields>
+      <libsource lib="Device" part="R" description="Resistor"/>
+      <property name="Manufacturer PN" value="0402WGF1004TCE"/>
+      <property name="Supplier PN" value="C26083"/>
+      <property name="Supplier" value="JLC"/>
+      <property name="Sheetname" value="Power"/>
+      <property name="Sheetfile" value="power.kicad_sch"/>
+      <property name="ki_description" value="Resistor"/>
+      <property name="ki_keywords" value="R res resistor"/>
+      <sheetpath names="/Power/" tstamps="/ebc948db-a9d3-410a-bdbf-1c31db890e56/"/>
+      <tstamps>d952a872-b38f-4320-af1d-bcdda9afbc76</tstamps>
+    </comp>
+    <comp ref="R16">
+      <value>1M</value>
+      <footprint>Resistor_SMD:R_0402_1005Metric</footprint>
+      <datasheet>https://wmsc.lcsc.com/wmsc/upload/file/pdf/v2/lcsc/2206010030_UNI-ROYAL-Uniroyal-Elec-0402WGF1004TCE_C26083.pdf</datasheet>
+      <fields>
+        <field name="Manufacturer PN">0402WGF1004TCE</field>
+        <field name="Supplier">JLC</field>
+        <field name="Supplier PN">C26083</field>
+      </fields>
+      <libsource lib="Device" part="R" description="Resistor"/>
+      <property name="Manufacturer PN" value="0402WGF1004TCE"/>
+      <property name="Supplier PN" value="C26083"/>
+      <property name="Supplier" value="JLC"/>
+      <property name="Sheetname" value="Power"/>
+      <property name="Sheetfile" value="power.kicad_sch"/>
+      <property name="ki_description" value="Resistor"/>
+      <property name="ki_keywords" value="R res resistor"/>
+      <sheetpath names="/Power/" tstamps="/ebc948db-a9d3-410a-bdbf-1c31db890e56/"/>
+      <tstamps>739b5155-cbdd-452f-a4b4-3446916e5555</tstamps>
+    </comp>
+    <comp ref="U2">
+      <value>NCS325</value>
+      <footprint>Package_TO_SOT_SMD:SOT-23-5</footprint>
+      <datasheet>http://www.onsemi.com/pub/Collateral/NCS325-D.PDF</datasheet>
+      <fields>
+        <field name="Manufacturer PN">NCS325SN2T1G</field>
+        <field name="Supplier">Digikey</field>
+        <field name="Supplier PN">NCS325SN2T1GOSCT-ND</field>
+      </fields>
+      <libsource lib="Amplifier_Operational" part="NCS325" description="Single operational amplifier, 50uV Offset, 0.25uV/C, 35uA Zero-Drift, SOT-23-5"/>
+      <property name="Manufacturer PN" value="NCS325SN2T1G"/>
+      <property name="Supplier PN" value="NCS325SN2T1GOSCT-ND"/>
+      <property name="Supplier" value="Digikey"/>
+      <property name="Sheetname" value="Power"/>
+      <property name="Sheetfile" value="power.kicad_sch"/>
+      <property name="ki_description" value="Single operational amplifier, 50uV Offset, 0.25uV/C, 35uA Zero-Drift, SOT-23-5"/>
+      <property name="ki_keywords" value="single opamp low-power"/>
+      <sheetpath names="/Power/" tstamps="/ebc948db-a9d3-410a-bdbf-1c31db890e56/"/>
+      <tstamps>84947f4a-9e5e-4525-b375-3fb0b5a27126</tstamps>
+    </comp>
+    <comp ref="U3">
+      <value>TPS63051RMWR</value>
+      <footprint>my_footprints:VQFN-12-HR_2.5x2.5mm_P0.5mm</footprint>
+      <datasheet>https://www.ti.com/lit/ds/symlink/tps63051.pdf?ts=1714117211770</datasheet>
+      <fields>
+        <field name="Manufacturer PN">TPS63051RMWR</field>
+        <field name="Supplier">Digikey</field>
+        <field name="Supplier PN">296-42650-1-ND</field>
+      </fields>
+      <libsource lib="my_library" part="TPS63051RMWR" description="2.5-5.5 VIN Single Inductor Buck-Boost With 1-A Switches and Adjustable Soft Start"/>
+      <property name="Manufacturer PN" value="TPS63051RMWR"/>
+      <property name="Supplier PN" value="296-42650-1-ND"/>
+      <property name="Supplier" value="Digikey"/>
+      <property name="Sheetname" value="Power"/>
+      <property name="Sheetfile" value="power.kicad_sch"/>
+      <property name="ki_description" value="2.5-5.5 VIN Single Inductor Buck-Boost With 1-A Switches and Adjustable Soft Start"/>
+      <property name="ki_keywords" value="Buck-Boost, 2.5-5.5 VIN, 1A"/>
+      <sheetpath names="/Power/" tstamps="/ebc948db-a9d3-410a-bdbf-1c31db890e56/"/>
+      <tstamps>bbf648fc-8180-475a-adbc-9f454d51554e</tstamps>
+    </comp>
+    <comp ref="U4">
+      <value>MIC94310-GYMT-TR</value>
+      <footprint>my_footprints:TDFN-4-1EP_1.2x1.6mm_P0.5mm</footprint>
+      <datasheet>http://ww1.microchip.com/downloads/en/devicedoc/mic94310.pdf</datasheet>
+      <fields>
+        <field name="Manufacturer PN">MIC94310-GYMT-TR</field>
+        <field name="Supplier">Digikey</field>
+        <field name="Supplier PN">576-4012-1-ND</field>
+      </fields>
+      <libsource lib="my_library" part="MIC94310-GYMT-TR" description="LDO Voltage Regulators 1.8Vo 3.6Vi 200mA Ripple Blocker, with Fixed Output Voltage Follower"/>
+      <property name="Manufacturer PN" value="MIC94310-GYMT-TR"/>
+      <property name="Supplier PN" value="576-4012-1-ND"/>
+      <property name="Supplier" value="Digikey"/>
+      <property name="Sheetname" value="Power"/>
+      <property name="Sheetfile" value="power.kicad_sch"/>
+      <property name="ki_description" value="LDO Voltage Regulators 1.8Vo 3.6Vi 200mA Ripple Blocker, with Fixed Output Voltage Follower"/>
+      <property name="ki_keywords" value="IC REG LINEAR 1.8V 200MA 4TMLF"/>
+      <sheetpath names="/Power/" tstamps="/ebc948db-a9d3-410a-bdbf-1c31db890e56/"/>
+      <tstamps>51d5e48e-3634-4bdf-a970-0cffa7e14da5</tstamps>
+    </comp>
+    <comp ref="C24">
+      <value>100nF</value>
+      <footprint>Capacitor_SMD:C_0402_1005Metric</footprint>
+      <datasheet>https://wmsc.lcsc.com/wmsc/upload/file/pdf/v2/lcsc/2304140030_Samsung-Electro-Mechanics-CL05B104KO5NNNC_C1525.pdf</datasheet>
+      <fields>
+        <field name="Manufacturer PN">CL05B104KO5NNNC</field>
+        <field name="Supplier">JLC</field>
+        <field name="Supplier PN">C1525</field>
+        <field name="Voltage">16V</field>
+      </fields>
+      <libsource lib="Device" part="C" description="Unpolarized capacitor"/>
+      <property name="Manufacturer PN" value="CL05B104KO5NNNC"/>
+      <property name="Supplier PN" value="C1525"/>
+      <property name="Supplier" value="JLC"/>
+      <property name="Voltage" value="16V"/>
+      <property name="Sheetname" value="Pressure sensor"/>
+      <property name="Sheetfile" value="pressure_sensor.kicad_sch"/>
+      <property name="ki_description" value="Unpolarized capacitor"/>
+      <property name="ki_keywords" value="cap capacitor"/>
+      <sheetpath names="/Pressure sensor/" tstamps="/c81a97f0-01ba-4e2a-b4b2-3d08d9bf2671/"/>
+      <tstamps>e328bb08-eda8-47eb-9991-a5abe125c5a3</tstamps>
+    </comp>
+    <comp ref="C25">
+      <value>100nF</value>
+      <footprint>Capacitor_SMD:C_0402_1005Metric</footprint>
+      <datasheet>https://wmsc.lcsc.com/wmsc/upload/file/pdf/v2/lcsc/2304140030_Samsung-Electro-Mechanics-CL05B104KO5NNNC_C1525.pdf</datasheet>
+      <fields>
+        <field name="Manufacturer PN">CL05B104KO5NNNC</field>
+        <field name="Supplier">JLC</field>
+        <field name="Supplier PN">C1525</field>
+        <field name="Voltage">16V</field>
+      </fields>
+      <libsource lib="Device" part="C" description="Unpolarized capacitor"/>
+      <property name="Manufacturer PN" value="CL05B104KO5NNNC"/>
+      <property name="Supplier PN" value="C1525"/>
+      <property name="Supplier" value="JLC"/>
+      <property name="Voltage" value="16V"/>
+      <property name="Sheetname" value="Pressure sensor"/>
+      <property name="Sheetfile" value="pressure_sensor.kicad_sch"/>
+      <property name="ki_description" value="Unpolarized capacitor"/>
+      <property name="ki_keywords" value="cap capacitor"/>
+      <sheetpath names="/Pressure sensor/" tstamps="/c81a97f0-01ba-4e2a-b4b2-3d08d9bf2671/"/>
+      <tstamps>8b3c60e9-6788-4651-ac3f-b1e5a8cb7541</tstamps>
+    </comp>
+    <comp ref="U5">
+      <value>SPL07-003</value>
+      <footprint>Package_LGA:ST_HLGA-10_2x2mm_P0.5mm_LayoutBorder3x2y</footprint>
+      <datasheet>https://mm.digikey.com/Volume0/opasdata/d220001/medias/docus/4843/SPL07-003.pdf</datasheet>
+      <fields>
+        <field name="Manufacturer PN">SPL07-003</field>
+        <field name="Supplier">Digikey</field>
+        <field name="Supplier PN">4719-SPL07-003CT-ND</field>
+      </fields>
+      <libsource lib="my_library" part="SPL07-003" description="Absolute pressure sensor Goertek"/>
+      <property name="Manufacturer PN" value="SPL07-003"/>
+      <property name="Supplier PN" value="4719-SPL07-003CT-ND"/>
+      <property name="Supplier" value="Digikey"/>
+      <property name="Sheetname" value="Pressure sensor"/>
+      <property name="Sheetfile" value="pressure_sensor.kicad_sch"/>
+      <property name="ki_description" value="Absolute pressure sensor Goertek"/>
+      <property name="ki_keywords" value="Pressure sensor absolute 15.95PSIA 300-1100hPa"/>
+      <sheetpath names="/Pressure sensor/" tstamps="/c81a97f0-01ba-4e2a-b4b2-3d08d9bf2671/"/>
+      <tstamps>75cc5e59-df1d-4eb5-bb1d-cc7bc0d6d447</tstamps>
+    </comp>
+    <comp ref="C26">
+      <value>2.2uF</value>
+      <footprint>Capacitor_SMD:C_0402_1005Metric</footprint>
+      <datasheet>https://wmsc.lcsc.com/wmsc/upload/file/pdf/v2/lcsc/2304140030_Samsung-Electro-Mechanics-CL05A225MQ5NSNC_C12530.pdf</datasheet>
+      <fields>
+        <field name="Manufacturer PN">CL05A225MQ5NSNC</field>
+        <field name="Supplier">JLC</field>
+        <field name="Supplier PN">C12530</field>
+        <field name="Voltage">6.3V</field>
+      </fields>
+      <libsource lib="Device" part="C" description="Unpolarized capacitor"/>
+      <property name="Manufacturer PN" value="CL05A225MQ5NSNC"/>
+      <property name="Supplier PN" value="C12530"/>
+      <property name="Supplier" value="JLC"/>
+      <property name="Voltage" value="6.3V"/>
+      <property name="Sheetname" value="GPS"/>
+      <property name="Sheetfile" value="gps.kicad_sch"/>
+      <property name="ki_description" value="Unpolarized capacitor"/>
+      <property name="ki_keywords" value="cap capacitor"/>
+      <sheetpath names="/GPS/" tstamps="/8a1e6a35-f87c-4284-aec3-66a93071d289/"/>
+      <tstamps>890aa06a-ad51-43d6-a77a-3466ca6f2f8d</tstamps>
+    </comp>
+    <comp ref="C27">
+      <value>10nF</value>
+      <footprint>Capacitor_SMD:C_0402_1005Metric</footprint>
+      <datasheet>https://wmsc.lcsc.com/wmsc/upload/file/pdf/v2/lcsc/2304140030_Samsung-Electro-Mechanics-CL05B103KB5NNNC_C15195.pdf</datasheet>
+      <fields>
+        <field name="Manufacturer PN">CL05B103KB5NNNC</field>
+        <field name="Supplier">JLC</field>
+        <field name="Supplier PN">C15195</field>
+        <field name="Voltage">50V</field>
+      </fields>
+      <libsource lib="Device" part="C" description="Unpolarized capacitor"/>
+      <property name="Manufacturer PN" value="CL05B103KB5NNNC"/>
+      <property name="Supplier PN" value="C15195"/>
+      <property name="Supplier" value="JLC"/>
+      <property name="Voltage" value="50V"/>
+      <property name="Sheetname" value="GPS"/>
+      <property name="Sheetfile" value="gps.kicad_sch"/>
+      <property name="ki_description" value="Unpolarized capacitor"/>
+      <property name="ki_keywords" value="cap capacitor"/>
+      <sheetpath names="/GPS/" tstamps="/8a1e6a35-f87c-4284-aec3-66a93071d289/"/>
+      <tstamps>8fc5115b-a860-45b4-a99f-f2f728d48ec3</tstamps>
+    </comp>
+    <comp ref="C28">
+      <value>100pF</value>
+      <footprint>Capacitor_SMD:C_0402_1005Metric</footprint>
+      <datasheet>https://wmsc.lcsc.com/wmsc/upload/file/pdf/v2/lcsc/2304140030_FH--Guangdong-Fenghua-Advanced-Tech-0402CG101J500NT_C1546.pdf</datasheet>
+      <fields>
+        <field name="Manufacturer PN">0402CG101J500NT</field>
+        <field name="Supplier">JLC</field>
+        <field name="Supplier PN">C1546</field>
+        <field name="Voltage">50V</field>
+      </fields>
+      <libsource lib="Device" part="C" description="Unpolarized capacitor"/>
+      <property name="Manufacturer PN" value="0402CG101J500NT"/>
+      <property name="Supplier PN" value="C1546"/>
+      <property name="Supplier" value="JLC"/>
+      <property name="Voltage" value="50V"/>
+      <property name="Sheetname" value="GPS"/>
+      <property name="Sheetfile" value="gps.kicad_sch"/>
+      <property name="ki_description" value="Unpolarized capacitor"/>
+      <property name="ki_keywords" value="cap capacitor"/>
+      <sheetpath names="/GPS/" tstamps="/8a1e6a35-f87c-4284-aec3-66a93071d289/"/>
+      <tstamps>0985ac8a-3619-4491-8572-a87ac2a71e86</tstamps>
+    </comp>
+    <comp ref="C29">
+      <value>100pF</value>
+      <footprint>Capacitor_SMD:C_0402_1005Metric</footprint>
+      <datasheet>https://wmsc.lcsc.com/wmsc/upload/file/pdf/v2/lcsc/2304140030_FH--Guangdong-Fenghua-Advanced-Tech-0402CG101J500NT_C1546.pdf</datasheet>
+      <fields>
+        <field name="Manufacturer PN">0402CG101J500NT</field>
+        <field name="Supplier">JLC</field>
+        <field name="Supplier PN">C1546</field>
+        <field name="Voltage">50V</field>
+      </fields>
+      <libsource lib="Device" part="C" description="Unpolarized capacitor"/>
+      <property name="Manufacturer PN" value="0402CG101J500NT"/>
+      <property name="Supplier PN" value="C1546"/>
+      <property name="Supplier" value="JLC"/>
+      <property name="Voltage" value="50V"/>
+      <property name="Sheetname" value="GPS"/>
+      <property name="Sheetfile" value="gps.kicad_sch"/>
+      <property name="ki_description" value="Unpolarized capacitor"/>
+      <property name="ki_keywords" value="cap capacitor"/>
+      <sheetpath names="/GPS/" tstamps="/8a1e6a35-f87c-4284-aec3-66a93071d289/"/>
+      <tstamps>d100aa95-6906-46d9-ae83-20409c9bc804</tstamps>
+    </comp>
+    <comp ref="R18">
+      <value>150R</value>
+      <footprint>Resistor_SMD:R_0402_1005Metric</footprint>
+      <datasheet>https://wmsc.lcsc.com/wmsc/upload/file/pdf/v2/lcsc/2205311900_UNI-ROYAL-Uniroyal-Elec-0402WGF1500TCE_C25082.pdf</datasheet>
+      <fields>
+        <field name="Manufacturer PN">0402WGF1500TCE</field>
+        <field name="Supplier">JLC</field>
+        <field name="Supplier PN">C25082</field>
+      </fields>
+      <libsource lib="Device" part="R" description="Resistor"/>
+      <property name="Manufacturer PN" value="0402WGF1500TCE"/>
+      <property name="Supplier PN" value="C25082"/>
+      <property name="Supplier" value="JLC"/>
+      <property name="Sheetname" value="GPS"/>
+      <property name="Sheetfile" value="gps.kicad_sch"/>
+      <property name="ki_description" value="Resistor"/>
+      <property name="ki_keywords" value="R res resistor"/>
+      <sheetpath names="/GPS/" tstamps="/8a1e6a35-f87c-4284-aec3-66a93071d289/"/>
+      <tstamps>e2e42d55-3a24-431b-a445-49c099a4f29e</tstamps>
+    </comp>
+    <comp ref="R19">
+      <value>0R</value>
+      <footprint>Resistor_SMD:R_0402_1005Metric</footprint>
+      <datasheet>https://wmsc.lcsc.com/wmsc/upload/file/pdf/v2/lcsc/2206010216_UNI-ROYAL-Uniroyal-Elec-0402WGF0000TCE_C17168.pdf</datasheet>
+      <fields>
+        <field name="Manufacturer PN">0402WGF0000TCE</field>
+        <field name="Supplier">JLC</field>
+        <field name="Supplier PN">C17168</field>
+      </fields>
+      <libsource lib="Device" part="R" description="Resistor"/>
+      <property name="Manufacturer PN" value="0402WGF0000TCE"/>
+      <property name="Supplier PN" value="C17168"/>
+      <property name="Supplier" value="JLC"/>
+      <property name="Sheetname" value="GPS"/>
+      <property name="Sheetfile" value="gps.kicad_sch"/>
+      <property name="ki_description" value="Resistor"/>
+      <property name="ki_keywords" value="R res resistor"/>
+      <sheetpath names="/GPS/" tstamps="/8a1e6a35-f87c-4284-aec3-66a93071d289/"/>
+      <tstamps>0b05ffc2-1853-4c49-88bd-251afc02d131</tstamps>
+    </comp>
+    <comp ref="R20">
+      <value>0R</value>
+      <footprint>Resistor_SMD:R_0402_1005Metric</footprint>
+      <datasheet>https://wmsc.lcsc.com/wmsc/upload/file/pdf/v2/lcsc/2206010216_UNI-ROYAL-Uniroyal-Elec-0402WGF0000TCE_C17168.pdf</datasheet>
+      <fields>
+        <field name="Manufacturer PN">0402WGF0000TCE</field>
+        <field name="Supplier">JLC</field>
+        <field name="Supplier PN">C17168</field>
+      </fields>
+      <libsource lib="Device" part="R" description="Resistor"/>
+      <property name="Manufacturer PN" value="0402WGF0000TCE"/>
+      <property name="Supplier PN" value="C17168"/>
+      <property name="Supplier" value="JLC"/>
+      <property name="Sheetname" value="GPS"/>
+      <property name="Sheetfile" value="gps.kicad_sch"/>
+      <property name="ki_description" value="Resistor"/>
+      <property name="ki_keywords" value="R res resistor"/>
+      <sheetpath names="/GPS/" tstamps="/8a1e6a35-f87c-4284-aec3-66a93071d289/"/>
+      <tstamps>cf9519e0-56f5-48f3-8800-7951e1e62974</tstamps>
+    </comp>
+    <comp ref="U6">
+      <value>YIC31612EBGG</value>
+      <footprint>my_footprints:24-SMD Module</footprint>
+      <datasheet>https://www.yic.com.tw/wp-content/uploads/2022/01/YIC31612EBGG.pdf</datasheet>
+      <fields>
+        <field name="Manufacturer PN">YIC31612EBGG</field>
+        <field name="Supplier">Digikey</field>
+        <field name="Supplier PN">3155-YIC31612EBGGCT-ND</field>
+      </fields>
+      <libsource lib="my_library" part="YIC31612EBGG" description="RF RECEIVER GNSS/GPS MODULE 1612"/>
+      <property name="Manufacturer PN" value="YIC31612EBGG"/>
+      <property name="Supplier PN" value="3155-YIC31612EBGGCT-ND"/>
+      <property name="Supplier" value="Digikey"/>
+      <property name="Sheetname" value="GPS"/>
+      <property name="Sheetfile" value="gps.kicad_sch"/>
+      <property name="ki_description" value="RF RECEIVER GNSS/GPS MODULE 1612"/>
+      <property name="ki_keywords" value="YIC3 RF Receiver BeiDou, Galileo, GLONASS, GNSS, GPS 1.561GHz, 1.575GHz, 1.602GHz -165dBm 460.8kbps Not Included"/>
+      <sheetpath names="/GPS/" tstamps="/8a1e6a35-f87c-4284-aec3-66a93071d289/"/>
+      <tstamps>16c8811f-b8ec-4a81-be63-afabe38b689f</tstamps>
+    </comp>
+    <comp ref="U9">
+      <value>Antenna_GPS</value>
+      <footprint>my_footprints:1582AT54A0045</footprint>
+      <datasheet>https://www.johansontechnology.com/datasheets/1582AT54A0045/1582AT54A0045.pdf</datasheet>
+      <fields>
+        <field name="Manufacturer PN">1582AT54A0045</field>
+        <field name="Supplier">Digikey</field>
+        <field name="Supplier PN">712-1582AT54A0045001ECT-ND</field>
+      </fields>
+      <libsource lib="my_library" part="1582AT54A0045" description="1.585GHz Global Navigation (GPS, GLONASS, Beidou, Galileo) SMD Chip Antenna"/>
+      <property name="Manufacturer PN" value="1582AT54A0045"/>
+      <property name="Supplier PN" value="712-1582AT54A0045001ECT-ND"/>
+      <property name="Supplier" value="Digikey"/>
+      <property name="Sheetname" value="GPS"/>
+      <property name="Sheetfile" value="gps.kicad_sch"/>
+      <property name="ki_description" value="1.585GHz Global Navigation (GPS, GLONASS, Beidou, Galileo) SMD Chip Antenna"/>
+      <property name="ki_keywords" value="1.585GHz Global Navigation (GPS, GLONASS, Beidou, Galileo) SMD Chip Antenna"/>
+      <sheetpath names="/GPS/" tstamps="/8a1e6a35-f87c-4284-aec3-66a93071d289/"/>
+      <tstamps>b453d777-6233-4bcf-9d47-426cda1d7c15</tstamps>
+    </comp>
+    <comp ref="C38">
+      <value>100nF</value>
+      <footprint>Capacitor_SMD:C_0402_1005Metric</footprint>
+      <datasheet>https://wmsc.lcsc.com/wmsc/upload/file/pdf/v2/lcsc/2304140030_Samsung-Electro-Mechanics-CL05B104KO5NNNC_C1525.pdf</datasheet>
+      <fields>
+        <field name="Manufacturer PN">CL05B104KO5NNNC</field>
+        <field name="Supplier">JLC</field>
+        <field name="Supplier PN">C1525</field>
+        <field name="Voltage">16V</field>
+      </fields>
+      <libsource lib="Device" part="C" description="Unpolarized capacitor"/>
+      <property name="Manufacturer PN" value="CL05B104KO5NNNC"/>
+      <property name="Supplier PN" value="C1525"/>
+      <property name="Supplier" value="JLC"/>
+      <property name="Voltage" value="16V"/>
+      <property name="Sheetname" value="Radio"/>
+      <property name="Sheetfile" value="radio.kicad_sch"/>
+      <property name="ki_description" value="Unpolarized capacitor"/>
+      <property name="ki_keywords" value="cap capacitor"/>
+      <sheetpath names="/Radio/" tstamps="/0b835f18-e97c-4530-9363-7eee1af6da75/"/>
+      <tstamps>be8573cc-5a0d-4634-9551-651c14371b3b</tstamps>
+    </comp>
+    <comp ref="D4">
+      <value>Blue</value>
+      <footprint>LED_SMD:LED_0603_1608Metric</footprint>
+      <datasheet>https://wmsc.lcsc.com/wmsc/upload/file/pdf/v2/lcsc/2205171716_Everlight-Elec-19-217-BHC-ZL1M2RY-6T_C2986058.pdf</datasheet>
+      <fields>
+        <field name="Manufacturer PN">19-217/BHC-ZL1M2RY/6T</field>
+        <field name="Supplier">JLC</field>
+        <field name="Supplier PN">C2986058</field>
+      </fields>
+      <libsource lib="Device" part="LED" description="Light emitting diode"/>
+      <property name="Manufacturer PN" value="19-217/BHC-ZL1M2RY/6T"/>
+      <property name="Supplier PN" value="C2986058"/>
+      <property name="Supplier" value="JLC"/>
+      <property name="Sheetname" value="Radio"/>
+      <property name="Sheetfile" value="radio.kicad_sch"/>
+      <property name="ki_description" value="Light emitting diode"/>
+      <property name="ki_keywords" value="LED diode"/>
+      <sheetpath names="/Radio/" tstamps="/0b835f18-e97c-4530-9363-7eee1af6da75/"/>
+      <tstamps>f306f7dd-4e01-4d9d-bb96-a5898233cfde</tstamps>
+    </comp>
+    <comp ref="J7">
+      <value>Conn_01x07_MountingPin</value>
+      <footprint>my_footprints:E220-400T30D</footprint>
+      <fields>
+        <field name="Manufacturer PN">E220-400T30D</field>
+        <field name="Supplier"/>
+        <field name="Supplier PN"/>
+      </fields>
+      <libsource lib="Connector_Generic_MountingPin" part="Conn_01x07_MountingPin" description="Generic connectable mounting pin connector, single row, 01x07, script generated (kicad-library-utils/schlib/autogen/connector/)"/>
+      <property name="Manufacturer PN" value="E220-400T30D"/>
+      <property name="Supplier PN" value=""/>
+      <property name="Supplier" value=""/>
+      <property name="Sheetname" value="Radio"/>
+      <property name="Sheetfile" value="radio.kicad_sch"/>
+      <property name="ki_description" value="Generic connectable mounting pin connector, single row, 01x07, script generated (kicad-library-utils/schlib/autogen/connector/)"/>
+      <property name="ki_keywords" value="connector"/>
+      <sheetpath names="/Radio/" tstamps="/0b835f18-e97c-4530-9363-7eee1af6da75/"/>
+      <tstamps>8fa1d286-322d-48c2-bb67-fb9f0361864f</tstamps>
+    </comp>
+    <comp ref="R21">
+      <value>1M</value>
+      <footprint>Resistor_SMD:R_0402_1005Metric</footprint>
+      <datasheet>https://wmsc.lcsc.com/wmsc/upload/file/pdf/v2/lcsc/2206010030_UNI-ROYAL-Uniroyal-Elec-0402WGF1004TCE_C26083.pdf</datasheet>
+      <fields>
+        <field name="Manufacturer PN">0402WGF1004TCE</field>
+        <field name="Supplier">JLC</field>
+        <field name="Supplier PN">C26083</field>
+      </fields>
+      <libsource lib="Device" part="R" description="Resistor"/>
+      <property name="Manufacturer PN" value="0402WGF1004TCE"/>
+      <property name="Supplier PN" value="C26083"/>
+      <property name="Supplier" value="JLC"/>
+      <property name="Sheetname" value="Radio"/>
+      <property name="Sheetfile" value="radio.kicad_sch"/>
+      <property name="ki_description" value="Resistor"/>
+      <property name="ki_keywords" value="R res resistor"/>
+      <sheetpath names="/Radio/" tstamps="/0b835f18-e97c-4530-9363-7eee1af6da75/"/>
+      <tstamps>7ac81e52-f0ad-4a05-b43c-3da61df4b32e</tstamps>
+    </comp>
+    <comp ref="R22">
+      <value>150R</value>
+      <footprint>Resistor_SMD:R_0402_1005Metric</footprint>
+      <datasheet>https://wmsc.lcsc.com/wmsc/upload/file/pdf/v2/lcsc/2205311900_UNI-ROYAL-Uniroyal-Elec-0402WGF1500TCE_C25082.pdf</datasheet>
+      <fields>
+        <field name="Manufacturer PN">0402WGF1500TCE</field>
+        <field name="Supplier">JLC</field>
+        <field name="Supplier PN">C25082</field>
+      </fields>
+      <libsource lib="Device" part="R" description="Resistor"/>
+      <property name="Manufacturer PN" value="0402WGF1500TCE"/>
+      <property name="Supplier PN" value="C25082"/>
+      <property name="Supplier" value="JLC"/>
+      <property name="Sheetname" value="Radio"/>
+      <property name="Sheetfile" value="radio.kicad_sch"/>
+      <property name="ki_description" value="Resistor"/>
+      <property name="ki_keywords" value="R res resistor"/>
+      <sheetpath names="/Radio/" tstamps="/0b835f18-e97c-4530-9363-7eee1af6da75/"/>
+      <tstamps>b1f75b8c-8bd9-4e50-bd30-2d369622b0ed</tstamps>
+    </comp>
+    <comp ref="R23">
+      <value>1M</value>
+      <footprint>Resistor_SMD:R_0402_1005Metric</footprint>
+      <datasheet>https://wmsc.lcsc.com/wmsc/upload/file/pdf/v2/lcsc/2206010030_UNI-ROYAL-Uniroyal-Elec-0402WGF1004TCE_C26083.pdf</datasheet>
+      <fields>
+        <field name="Manufacturer PN">0402WGF1004TCE</field>
+        <field name="Supplier">JLC</field>
+        <field name="Supplier PN">C26083</field>
+      </fields>
+      <libsource lib="Device" part="R" description="Resistor"/>
+      <property name="Manufacturer PN" value="0402WGF1004TCE"/>
+      <property name="Supplier PN" value="C26083"/>
+      <property name="Supplier" value="JLC"/>
+      <property name="Sheetname" value="Radio"/>
+      <property name="Sheetfile" value="radio.kicad_sch"/>
+      <property name="ki_description" value="Resistor"/>
+      <property name="ki_keywords" value="R res resistor"/>
+      <sheetpath names="/Radio/" tstamps="/0b835f18-e97c-4530-9363-7eee1af6da75/"/>
+      <tstamps>d67f71d6-e64e-40ab-8ac7-93cd6d0f1575</tstamps>
+    </comp>
+    <comp ref="C30">
+      <value>100nF</value>
+      <footprint>Capacitor_SMD:C_0402_1005Metric</footprint>
+      <datasheet>https://wmsc.lcsc.com/wmsc/upload/file/pdf/v2/lcsc/2304140030_Samsung-Electro-Mechanics-CL05B104KO5NNNC_C1525.pdf</datasheet>
+      <fields>
+        <field name="Manufacturer PN">CL05B104KO5NNNC</field>
+        <field name="Supplier">JLC</field>
+        <field name="Supplier PN">C1525</field>
+        <field name="Voltage">16V</field>
+      </fields>
+      <libsource lib="Device" part="C" description="Unpolarized capacitor"/>
+      <property name="Manufacturer PN" value="CL05B104KO5NNNC"/>
+      <property name="Supplier PN" value="C1525"/>
+      <property name="Supplier" value="JLC"/>
+      <property name="Voltage" value="16V"/>
+      <property name="Sheetname" value="IMU"/>
+      <property name="Sheetfile" value="imu.kicad_sch"/>
+      <property name="ki_description" value="Unpolarized capacitor"/>
+      <property name="ki_keywords" value="cap capacitor"/>
+      <sheetpath names="/IMU/" tstamps="/00230fc6-00d9-4789-9199-c0e29b2f6daa/"/>
+      <tstamps>dd44a5f4-5138-44aa-936e-736f5baed0cd</tstamps>
+    </comp>
+    <comp ref="C31">
+      <value>2.2uF</value>
+      <footprint>Capacitor_SMD:C_0402_1005Metric</footprint>
+      <datasheet>https://wmsc.lcsc.com/wmsc/upload/file/pdf/v2/lcsc/2304140030_Samsung-Electro-Mechanics-CL05A225MQ5NSNC_C12530.pdf</datasheet>
+      <fields>
+        <field name="Manufacturer PN">CL05A225MQ5NSNC</field>
+        <field name="Supplier">JLC</field>
+        <field name="Supplier PN">C12530</field>
+        <field name="Voltage">6.3V</field>
+      </fields>
+      <libsource lib="Device" part="C" description="Unpolarized capacitor"/>
+      <property name="Manufacturer PN" value="CL05A225MQ5NSNC"/>
+      <property name="Supplier PN" value="C12530"/>
+      <property name="Supplier" value="JLC"/>
+      <property name="Voltage" value="6.3V"/>
+      <property name="Sheetname" value="IMU"/>
+      <property name="Sheetfile" value="imu.kicad_sch"/>
+      <property name="ki_description" value="Unpolarized capacitor"/>
+      <property name="ki_keywords" value="cap capacitor"/>
+      <sheetpath names="/IMU/" tstamps="/00230fc6-00d9-4789-9199-c0e29b2f6daa/"/>
+      <tstamps>0c1f3d8a-dd11-40b1-beaf-ea911caf5011</tstamps>
+    </comp>
+    <comp ref="C32">
+      <value>10nF</value>
+      <footprint>Capacitor_SMD:C_0402_1005Metric</footprint>
+      <datasheet>https://wmsc.lcsc.com/wmsc/upload/file/pdf/v2/lcsc/2304140030_Samsung-Electro-Mechanics-CL05B103KB5NNNC_C15195.pdf</datasheet>
+      <fields>
+        <field name="Manufacturer PN">CL05B103KB5NNNC</field>
+        <field name="Supplier">JLC</field>
+        <field name="Supplier PN">C15195</field>
+        <field name="Voltage">50V</field>
+      </fields>
+      <libsource lib="Device" part="C" description="Unpolarized capacitor"/>
+      <property name="Manufacturer PN" value="CL05B103KB5NNNC"/>
+      <property name="Supplier PN" value="C15195"/>
+      <property name="Supplier" value="JLC"/>
+      <property name="Voltage" value="50V"/>
+      <property name="Sheetname" value="IMU"/>
+      <property name="Sheetfile" value="imu.kicad_sch"/>
+      <property name="ki_description" value="Unpolarized capacitor"/>
+      <property name="ki_keywords" value="cap capacitor"/>
+      <sheetpath names="/IMU/" tstamps="/00230fc6-00d9-4789-9199-c0e29b2f6daa/"/>
+      <tstamps>607157e8-0682-4184-bac5-61f76d87d16b</tstamps>
+    </comp>
+    <comp ref="U7">
+      <value>ICM-42670-P</value>
+      <footprint>Package_LGA:LGA-14_3x2.5mm_P0.5mm_LayoutBorder3x4y</footprint>
+      <datasheet>https://product.tdk.com/system/files/dam/doc/product/sensor/mortion-inertial/imu/data_sheet/ds-000451-icm-42670-p.pdf</datasheet>
+      <fields>
+        <field name="Manufacturer PN">ICM-42670-P</field>
+        <field name="Supplier">Digikey</field>
+        <field name="Supplier PN">1428-ICM-42670-PCT-ND</field>
+      </fields>
+      <libsource lib="my_library" part="ICM-42670-P" description="Accelerometer, Gyroscope, Temperature, 6 Axis Sensor I2C, SPI Output"/>
+      <property name="Manufacturer PN" value="ICM-42670-P"/>
+      <property name="Supplier" value="Digikey"/>
+      <property name="Supplier PN" value="1428-ICM-42670-PCT-ND"/>
+      <property name="Sheetname" value="IMU"/>
+      <property name="Sheetfile" value="imu.kicad_sch"/>
+      <property name="ki_description" value="Accelerometer, Gyroscope, Temperature, 6 Axis Sensor I2C, SPI Output"/>
+      <property name="ki_keywords" value="Accelerometer, Gyroscope, Temperature, 6 Axis"/>
+      <sheetpath names="/IMU/" tstamps="/00230fc6-00d9-4789-9199-c0e29b2f6daa/"/>
+      <tstamps>d35f47dd-9eb1-4f71-b36d-49b268b24978</tstamps>
+    </comp>
+    <comp ref="C33">
+      <value>100nF</value>
+      <footprint>Capacitor_SMD:C_0402_1005Metric</footprint>
+      <datasheet>https://wmsc.lcsc.com/wmsc/upload/file/pdf/v2/lcsc/2304140030_Samsung-Electro-Mechanics-CL05B104KO5NNNC_C1525.pdf</datasheet>
+      <fields>
+        <field name="Manufacturer PN">CL05B104KO5NNNC</field>
+        <field name="Supplier">JLC</field>
+        <field name="Supplier PN">C1525</field>
+        <field name="Voltage">16V</field>
+      </fields>
+      <libsource lib="Device" part="C" description="Unpolarized capacitor"/>
+      <property name="Manufacturer PN" value="CL05B104KO5NNNC"/>
+      <property name="Supplier PN" value="C1525"/>
+      <property name="Supplier" value="JLC"/>
+      <property name="Voltage" value="16V"/>
+      <property name="Sheetname" value="Temperature sensor"/>
+      <property name="Sheetfile" value="temp_sensor.kicad_sch"/>
+      <property name="ki_description" value="Unpolarized capacitor"/>
+      <property name="ki_keywords" value="cap capacitor"/>
+      <sheetpath names="/Temperature sensor/" tstamps="/61115e18-7772-4524-8bbc-217f26a5a331/"/>
+      <tstamps>22a345a3-049a-477a-acbb-5c038600d7be</tstamps>
+    </comp>
+    <comp ref="C34">
+      <value>1uF</value>
+      <footprint>Capacitor_SMD:C_0402_1005Metric</footprint>
+      <datasheet>https://wmsc.lcsc.com/wmsc/upload/file/pdf/v2/lcsc/2304140030_Samsung-Electro-Mechanics-CL05A105KA5NQNC_C52923.pdf</datasheet>
+      <fields>
+        <field name="Manufacturer PN">CL05A105KA5NQNC</field>
+        <field name="Supplier">JLC</field>
+        <field name="Supplier PN">C52923</field>
+        <field name="Voltage">25V</field>
+      </fields>
+      <libsource lib="Device" part="C" description="Unpolarized capacitor"/>
+      <property name="Manufacturer PN" value="CL05A105KA5NQNC"/>
+      <property name="Supplier PN" value="C52923"/>
+      <property name="Supplier" value="JLC"/>
+      <property name="Voltage" value="25V"/>
+      <property name="Sheetname" value="Temperature sensor"/>
+      <property name="Sheetfile" value="temp_sensor.kicad_sch"/>
+      <property name="ki_description" value="Unpolarized capacitor"/>
+      <property name="ki_keywords" value="cap capacitor"/>
+      <sheetpath names="/Temperature sensor/" tstamps="/61115e18-7772-4524-8bbc-217f26a5a331/"/>
+      <tstamps>e2dddc07-02f9-47ed-aea6-58728e4ef0a7</tstamps>
+    </comp>
+    <comp ref="C35">
+      <value>100nF</value>
+      <footprint>Capacitor_SMD:C_0402_1005Metric</footprint>
+      <datasheet>https://wmsc.lcsc.com/wmsc/upload/file/pdf/v2/lcsc/2304140030_Samsung-Electro-Mechanics-CL05B104KO5NNNC_C1525.pdf</datasheet>
+      <fields>
+        <field name="Manufacturer PN">CL05B104KO5NNNC</field>
+        <field name="Supplier">JLC</field>
+        <field name="Supplier PN">C1525</field>
+        <field name="Voltage">16V</field>
+      </fields>
+      <libsource lib="Device" part="C" description="Unpolarized capacitor"/>
+      <property name="Manufacturer PN" value="CL05B104KO5NNNC"/>
+      <property name="Supplier PN" value="C1525"/>
+      <property name="Supplier" value="JLC"/>
+      <property name="Voltage" value="16V"/>
+      <property name="Sheetname" value="Temperature sensor"/>
+      <property name="Sheetfile" value="temp_sensor.kicad_sch"/>
+      <property name="ki_description" value="Unpolarized capacitor"/>
+      <property name="ki_keywords" value="cap capacitor"/>
+      <sheetpath names="/Temperature sensor/" tstamps="/61115e18-7772-4524-8bbc-217f26a5a331/"/>
+      <tstamps>59ba25c6-773d-4692-8679-6bcdde5d42dd</tstamps>
+    </comp>
+    <comp ref="C36">
+      <value>100nF</value>
+      <footprint>Capacitor_SMD:C_0402_1005Metric</footprint>
+      <datasheet>https://wmsc.lcsc.com/wmsc/upload/file/pdf/v2/lcsc/2304140030_Samsung-Electro-Mechanics-CL05B104KO5NNNC_C1525.pdf</datasheet>
+      <fields>
+        <field name="Manufacturer PN">CL05B104KO5NNNC</field>
+        <field name="Supplier">JLC</field>
+        <field name="Supplier PN">C1525</field>
+        <field name="Voltage">16V</field>
+      </fields>
+      <libsource lib="Device" part="C" description="Unpolarized capacitor"/>
+      <property name="Manufacturer PN" value="CL05B104KO5NNNC"/>
+      <property name="Supplier PN" value="C1525"/>
+      <property name="Supplier" value="JLC"/>
+      <property name="Voltage" value="16V"/>
+      <property name="Sheetname" value="Temperature sensor"/>
+      <property name="Sheetfile" value="temp_sensor.kicad_sch"/>
+      <property name="ki_description" value="Unpolarized capacitor"/>
+      <property name="ki_keywords" value="cap capacitor"/>
+      <sheetpath names="/Temperature sensor/" tstamps="/61115e18-7772-4524-8bbc-217f26a5a331/"/>
+      <tstamps>cedda47a-5beb-4fae-b1bc-d28180f4133c</tstamps>
+    </comp>
+    <comp ref="R24">
+      <value>150R</value>
+      <footprint>Resistor_SMD:R_0402_1005Metric</footprint>
+      <datasheet>https://wmsc.lcsc.com/wmsc/upload/file/pdf/v2/lcsc/2205311900_UNI-ROYAL-Uniroyal-Elec-0402WGF1500TCE_C25082.pdf</datasheet>
+      <fields>
+        <field name="Manufacturer PN">0402WGF1500TCE</field>
+        <field name="Supplier">JLC</field>
+        <field name="Supplier PN">C25082</field>
+      </fields>
+      <libsource lib="Device" part="R" description="Resistor"/>
+      <property name="Manufacturer PN" value="0402WGF1500TCE"/>
+      <property name="Supplier PN" value="C25082"/>
+      <property name="Supplier" value="JLC"/>
+      <property name="Sheetname" value="Temperature sensor"/>
+      <property name="Sheetfile" value="temp_sensor.kicad_sch"/>
+      <property name="ki_description" value="Resistor"/>
+      <property name="ki_keywords" value="R res resistor"/>
+      <sheetpath names="/Temperature sensor/" tstamps="/61115e18-7772-4524-8bbc-217f26a5a331/"/>
+      <tstamps>987e1e59-64a5-47f7-bfca-10683a61c044</tstamps>
+    </comp>
+    <comp ref="R25">
+      <value>150R</value>
+      <footprint>Resistor_SMD:R_0402_1005Metric</footprint>
+      <datasheet>https://wmsc.lcsc.com/wmsc/upload/file/pdf/v2/lcsc/2205311900_UNI-ROYAL-Uniroyal-Elec-0402WGF1500TCE_C25082.pdf</datasheet>
+      <fields>
+        <field name="Manufacturer PN">0402WGF1500TCE</field>
+        <field name="Supplier">JLC</field>
+        <field name="Supplier PN">C25082</field>
+      </fields>
+      <libsource lib="Device" part="R" description="Resistor"/>
+      <property name="Manufacturer PN" value="0402WGF1500TCE"/>
+      <property name="Supplier PN" value="C25082"/>
+      <property name="Supplier" value="JLC"/>
+      <property name="Sheetname" value="Temperature sensor"/>
+      <property name="Sheetfile" value="temp_sensor.kicad_sch"/>
+      <property name="ki_description" value="Resistor"/>
+      <property name="ki_keywords" value="R res resistor"/>
+      <sheetpath names="/Temperature sensor/" tstamps="/61115e18-7772-4524-8bbc-217f26a5a331/"/>
+      <tstamps>64512f23-02c5-4d6c-9843-14dad4f15b46</tstamps>
+    </comp>
+    <comp ref="U8">
+      <value>MAX31855KASA</value>
+      <footprint>Package_SO:SOIC-8_3.9x4.9mm_P1.27mm</footprint>
+      <datasheet>http://datasheets.maximintegrated.com/en/ds/MAX31855.pdf</datasheet>
+      <fields>
+        <field name="Manufacturer PN">MAX31855KASA+T</field>
+        <field name="Supplier">Digikey</field>
+        <field name="Supplier PN">MAX31855KASA+TCT-ND</field>
+      </fields>
+      <libsource lib="Sensor_Temperature" part="MAX31855KASA" description="Cold Junction K-type Termocouple Interface, SPI, SO8"/>
+      <property name="Manufacturer PN" value="MAX31855KASA+T"/>
+      <property name="Supplier" value="Digikey"/>
+      <property name="Supplier PN" value="MAX31855KASA+TCT-ND"/>
+      <property name="Sheetname" value="Temperature sensor"/>
+      <property name="Sheetfile" value="temp_sensor.kicad_sch"/>
+      <property name="ki_description" value="Cold Junction K-type Termocouple Interface, SPI, SO8"/>
+      <property name="ki_keywords" value="Cold Junction Termocouple Interface SPI"/>
+      <sheetpath names="/Temperature sensor/" tstamps="/61115e18-7772-4524-8bbc-217f26a5a331/"/>
+      <tstamps>46ddf3bd-ad70-4d80-9c10-c10d0d2760e3</tstamps>
+    </comp>
+  </components>
+  <libparts>
+    <libpart lib="Amplifier_Operational" part="NCS325">
+      <description>Single operational amplifier, 50uV Offset, 0.25uV/C, 35uA Zero-Drift, SOT-23-5</description>
+      <docs>http://www.onsemi.com/pub/Collateral/NCS325-D.PDF</docs>
+      <footprints>
+        <fp>SOT?23*</fp>
+      </footprints>
+      <fields>
+        <field name="Reference">U</field>
+        <field name="Value">NCS325</field>
+        <field name="Footprint">Package_TO_SOT_SMD:SOT-23-5</field>
+        <field name="Datasheet">http://www.onsemi.com/pub/Collateral/NCS325-D.PDF</field>
+      </fields>
+      <pins>
+        <pin num="1" name="" type="output"/>
+        <pin num="2" name="V-" type="power_in"/>
+        <pin num="3" name="+" type="input"/>
+        <pin num="4" name="-" type="input"/>
+        <pin num="5" name="V+" type="power_in"/>
+      </pins>
+    </libpart>
+    <libpart lib="Connector" part="TestPoint">
+      <description>test point</description>
+      <docs>~</docs>
+      <footprints>
+        <fp>Pin*</fp>
+        <fp>Test*</fp>
+      </footprints>
+      <fields>
+        <field name="Reference">TP</field>
+        <field name="Value">TestPoint</field>
+        <field name="Datasheet">~</field>
+      </fields>
+      <pins>
+        <pin num="1" name="1" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="Connector_Generic" part="Conn_01x02">
+      <description>Generic connector, single row, 01x02, script generated (kicad-library-utils/schlib/autogen/connector/)</description>
+      <docs>~</docs>
+      <footprints>
+        <fp>Connector*:*_1x??_*</fp>
+      </footprints>
+      <fields>
+        <field name="Reference">J</field>
+        <field name="Value">Conn_01x02</field>
+        <field name="Datasheet">~</field>
+      </fields>
+      <pins>
+        <pin num="1" name="Pin_1" type="passive"/>
+        <pin num="2" name="Pin_2" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="Connector_Generic" part="Conn_02x05_Odd_Even">
+      <description>Generic connector, double row, 02x05, odd/even pin numbering scheme (row 1 odd numbers, row 2 even numbers), script generated (kicad-library-utils/schlib/autogen/connector/)</description>
+      <docs>~</docs>
+      <footprints>
+        <fp>Connector*:*_2x??_*</fp>
+      </footprints>
+      <fields>
+        <field name="Reference">J</field>
+        <field name="Value">Conn_02x05_Odd_Even</field>
+        <field name="Datasheet">~</field>
+      </fields>
+      <pins>
+        <pin num="1" name="Pin_1" type="passive"/>
+        <pin num="2" name="Pin_2" type="passive"/>
+        <pin num="3" name="Pin_3" type="passive"/>
+        <pin num="4" name="Pin_4" type="passive"/>
+        <pin num="5" name="Pin_5" type="passive"/>
+        <pin num="6" name="Pin_6" type="passive"/>
+        <pin num="7" name="Pin_7" type="passive"/>
+        <pin num="8" name="Pin_8" type="passive"/>
+        <pin num="9" name="Pin_9" type="passive"/>
+        <pin num="10" name="Pin_10" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="Connector_Generic_MountingPin" part="Conn_01x07_MountingPin">
+      <description>Generic connectable mounting pin connector, single row, 01x07, script generated (kicad-library-utils/schlib/autogen/connector/)</description>
+      <docs>~</docs>
+      <footprints>
+        <fp>Connector*:*_1x??-1MP*</fp>
+      </footprints>
+      <fields>
+        <field name="Reference">J</field>
+        <field name="Value">Conn_01x07_MountingPin</field>
+        <field name="Datasheet">~</field>
+      </fields>
+      <pins>
+        <pin num="1" name="Pin_1" type="passive"/>
+        <pin num="2" name="Pin_2" type="passive"/>
+        <pin num="3" name="Pin_3" type="passive"/>
+        <pin num="4" name="Pin_4" type="passive"/>
+        <pin num="5" name="Pin_5" type="passive"/>
+        <pin num="6" name="Pin_6" type="passive"/>
+        <pin num="7" name="Pin_7" type="passive"/>
+        <pin num="MP" name="MountPin" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="Device" part="Buzzer">
+      <description>Buzzer, polarized</description>
+      <docs>~</docs>
+      <footprints>
+        <fp>*Buzzer*</fp>
+      </footprints>
+      <fields>
+        <field name="Reference">BZ</field>
+        <field name="Value">Buzzer</field>
+        <field name="Datasheet">~</field>
+      </fields>
+      <pins>
+        <pin num="1" name="-" type="passive"/>
+        <pin num="2" name="+" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="Device" part="C">
+      <description>Unpolarized capacitor</description>
+      <docs>~</docs>
+      <footprints>
+        <fp>C_*</fp>
+      </footprints>
+      <fields>
+        <field name="Reference">C</field>
+        <field name="Value">C</field>
+        <field name="Datasheet">~</field>
+      </fields>
+      <pins>
+        <pin num="1" name="" type="passive"/>
+        <pin num="2" name="" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="Device" part="Crystal_GND24">
+      <description>Four pin crystal, GND on pins 2 and 4</description>
+      <docs>~</docs>
+      <footprints>
+        <fp>Crystal*</fp>
+      </footprints>
+      <fields>
+        <field name="Reference">Y</field>
+        <field name="Value">Crystal_GND24</field>
+        <field name="Datasheet">~</field>
+      </fields>
+      <pins>
+        <pin num="1" name="1" type="passive"/>
+        <pin num="2" name="2" type="passive"/>
+        <pin num="3" name="3" type="passive"/>
+        <pin num="4" name="4" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="Device" part="D_Zener">
+      <description>Zener diode</description>
+      <docs>~</docs>
+      <footprints>
+        <fp>TO-???*</fp>
+        <fp>*_Diode_*</fp>
+        <fp>*SingleDiode*</fp>
+        <fp>D_*</fp>
+      </footprints>
+      <fields>
+        <field name="Reference">D</field>
+        <field name="Value">D_Zener</field>
+        <field name="Datasheet">~</field>
+      </fields>
+      <pins>
+        <pin num="1" name="K" type="passive"/>
+        <pin num="2" name="A" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="Device" part="Fuse">
+      <description>Fuse</description>
+      <docs>~</docs>
+      <footprints>
+        <fp>*Fuse*</fp>
+      </footprints>
+      <fields>
+        <field name="Reference">F</field>
+        <field name="Value">Fuse</field>
+        <field name="Datasheet">~</field>
+      </fields>
+      <pins>
+        <pin num="1" name="" type="passive"/>
+        <pin num="2" name="" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="Device" part="L">
+      <description>Inductor</description>
+      <docs>~</docs>
+      <footprints>
+        <fp>Choke_*</fp>
+        <fp>*Coil*</fp>
+        <fp>Inductor_*</fp>
+        <fp>L_*</fp>
+      </footprints>
+      <fields>
+        <field name="Reference">L</field>
+        <field name="Value">L</field>
+        <field name="Datasheet">~</field>
+      </fields>
+      <pins>
+        <pin num="1" name="1" type="passive"/>
+        <pin num="2" name="2" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="Device" part="LED">
+      <description>Light emitting diode</description>
+      <docs>~</docs>
+      <footprints>
+        <fp>LED*</fp>
+        <fp>LED_SMD:*</fp>
+        <fp>LED_THT:*</fp>
+      </footprints>
+      <fields>
+        <field name="Reference">D</field>
+        <field name="Value">LED</field>
+        <field name="Datasheet">~</field>
+      </fields>
+      <pins>
+        <pin num="1" name="K" type="passive"/>
+        <pin num="2" name="A" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="Device" part="Q_NMOS_GSD">
+      <description>N-MOSFET transistor, gate/source/drain</description>
+      <docs>~</docs>
+      <fields>
+        <field name="Reference">Q</field>
+        <field name="Value">Q_NMOS_GSD</field>
+        <field name="Datasheet">~</field>
+      </fields>
+      <pins>
+        <pin num="1" name="G" type="input"/>
+        <pin num="2" name="S" type="passive"/>
+        <pin num="3" name="D" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="Device" part="Q_NPN_BEC">
+      <description>NPN transistor, base/emitter/collector</description>
+      <docs>~</docs>
+      <fields>
+        <field name="Reference">Q</field>
+        <field name="Value">Q_NPN_BEC</field>
+        <field name="Datasheet">~</field>
+      </fields>
+      <pins>
+        <pin num="1" name="B" type="input"/>
+        <pin num="2" name="E" type="passive"/>
+        <pin num="3" name="C" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="Device" part="R">
+      <description>Resistor</description>
+      <docs>~</docs>
+      <footprints>
+        <fp>R_*</fp>
+      </footprints>
+      <fields>
+        <field name="Reference">R</field>
+        <field name="Value">R</field>
+        <field name="Datasheet">~</field>
+      </fields>
+      <pins>
+        <pin num="1" name="" type="passive"/>
+        <pin num="2" name="" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="Jumper" part="SolderJumper_3_Bridged12">
+      <description>3-pole Solder Jumper, pins 1+2 closed/bridged</description>
+      <docs>~</docs>
+      <footprints>
+        <fp>SolderJumper*Bridged12*</fp>
+      </footprints>
+      <fields>
+        <field name="Reference">JP</field>
+        <field name="Value">SolderJumper_3_Bridged12</field>
+        <field name="Datasheet">~</field>
+      </fields>
+      <pins>
+        <pin num="1" name="A" type="passive"/>
+        <pin num="2" name="C" type="passive"/>
+        <pin num="3" name="B" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="Mechanical" part="MountingHole_Pad">
+      <description>Mounting Hole with connection</description>
+      <docs>~</docs>
+      <footprints>
+        <fp>MountingHole*Pad*</fp>
+      </footprints>
+      <fields>
+        <field name="Reference">H</field>
+        <field name="Value">MountingHole_Pad</field>
+        <field name="Datasheet">~</field>
+      </fields>
+      <pins>
+        <pin num="1" name="1" type="input"/>
+      </pins>
+    </libpart>
+    <libpart lib="Sensor_Temperature" part="MAX31855KASA">
+      <description>Cold Junction K-type Termocouple Interface, SPI, SO8</description>
+      <docs>http://datasheets.maximintegrated.com/en/ds/MAX31855.pdf</docs>
+      <footprints>
+        <fp>SOIC*3.9x4.9mm*P1.27mm*</fp>
+      </footprints>
+      <fields>
+        <field name="Reference">U</field>
+        <field name="Value">MAX31855KASA</field>
+        <field name="Footprint">Package_SO:SOIC-8_3.9x4.9mm_P1.27mm</field>
+        <field name="Datasheet">http://datasheets.maximintegrated.com/en/ds/MAX31855.pdf</field>
+      </fields>
+      <pins>
+        <pin num="1" name="GND" type="power_in"/>
+        <pin num="2" name="T-" type="passive"/>
+        <pin num="3" name="T+" type="passive"/>
+        <pin num="4" name="V_CC" type="power_in"/>
+        <pin num="5" name="SCK" type="input"/>
+        <pin num="6" name="~{CS}" type="input"/>
+        <pin num="7" name="SO" type="tri_state"/>
+      </pins>
+    </libpart>
+    <libpart lib="Switch" part="SW_Push">
+      <description>Push button switch, generic, two pins</description>
+      <docs>~</docs>
+      <fields>
+        <field name="Reference">SW</field>
+        <field name="Value">SW_Push</field>
+        <field name="Datasheet">~</field>
+      </fields>
+      <pins>
+        <pin num="1" name="1" type="passive"/>
+        <pin num="2" name="2" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="my_library" part="1582AT54A0045">
+      <description>1.585GHz Global Navigation (GPS, GLONASS, Beidou, Galileo) SMD Chip Antenna</description>
+      <docs>https://www.johansontechnology.com/datasheets/1582AT54A0045/1582AT54A0045.pdf</docs>
+      <fields>
+        <field name="Reference">U</field>
+        <field name="Footprint">my_footprints:1582AT54A0045</field>
+        <field name="Datasheet">https://www.johansontechnology.com/datasheets/1582AT54A0045/1582AT54A0045.pdf</field>
+      </fields>
+      <pins>
+        <pin num="1" name="Feed" type="input"/>
+        <pin num="2" name="GND" type="input"/>
+        <pin num="3" name="NC" type="no_connect"/>
+        <pin num="4" name="GND" type="input"/>
+        <pin num="5" name="CAP" type="input"/>
+      </pins>
+    </libpart>
+    <libpart lib="my_library" part="3817564">
+      <description>Miniature PCB Socket Connector PCB Mounting Socket For Type K Thermocouple</description>
+      <docs>https://docs.rs-online.com/edff/0900766b815bb578.pdf</docs>
+      <fields>
+        <field name="Reference">J</field>
+        <field name="Value">3817564</field>
+        <field name="Footprint">my_footprints:3817564</field>
+        <field name="Datasheet">https://docs.rs-online.com/edff/0900766b815bb578.pdf</field>
+      </fields>
+      <pins>
+        <pin num="1" name="1" type="passive"/>
+        <pin num="2" name="2" type="passive"/>
+        <pin num="MH1" name="MH1" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="my_library" part="ICM-42670-P">
+      <description>Accelerometer, Gyroscope, Temperature, 6 Axis Sensor I2C, SPI Output</description>
+      <docs>https://product.tdk.com/system/files/dam/doc/product/sensor/mortion-inertial/imu/data_sheet/ds-000451-icm-42670-p.pdf</docs>
+      <fields>
+        <field name="Reference">U?</field>
+        <field name="Value">ICM-42670-P</field>
+        <field name="Footprint">Package_LGA:LGA-14_3x2.5mm_P0.5mm_LayoutBorder3x4y</field>
+        <field name="Datasheet">https://product.tdk.com/system/files/dam/doc/product/sensor/mortion-inertial/imu/data_sheet/ds-000451-icm-42670-p.pdf</field>
+        <field name="Manufacturer PN">ICM-42670-P</field>
+      </fields>
+      <pins>
+        <pin num="1" name="AP_SDO/AP_AD0" type="bidirectional"/>
+        <pin num="2" name="RESV" type="passive"/>
+        <pin num="3" name="RESV" type="passive"/>
+        <pin num="4" name="INT1/INT" type="output"/>
+        <pin num="5" name="VDDIO" type="power_in"/>
+        <pin num="6" name="GND" type="power_in"/>
+        <pin num="7" name="FSYNC" type="input"/>
+        <pin num="8" name="VDD" type="power_in"/>
+        <pin num="9" name="INT2" type="output"/>
+        <pin num="10" name="RESV" type="passive"/>
+        <pin num="11" name="RESV" type="passive"/>
+        <pin num="12" name="AP_CS" type="input"/>
+        <pin num="13" name="AP_SCL/AP_SCLK" type="input"/>
+        <pin num="14" name="AP_SDA/AP_SDIO/AP_SDI" type="bidirectional"/>
+      </pins>
+    </libpart>
+    <libpart lib="my_library" part="MEM2061-01-188-00-A_REVA">
+      <description>MICRO SD PUSH PUSH, CLOSED, SMT,</description>
+      <docs>https://gct.co/files/specs/mem2061-spec.pdf</docs>
+      <fields>
+        <field name="Reference">J</field>
+        <field name="Value">MEM2061-01-188-00-A_REVA</field>
+        <field name="Footprint">my_footprints:MEM2061-01-188-00-A</field>
+        <field name="Datasheet">https://gct.co/files/specs/mem2061-spec.pdf</field>
+        <field name="Manufacturer PN">MEM2061-01-188-00-A</field>
+        <field name="Supplier PN">2073-MEM2061-01-188-00-ACT-ND</field>
+        <field name="Supplier">Digikey</field>
+      </fields>
+      <pins>
+        <pin num="1" name="DAT2" type="bidirectional"/>
+        <pin num="2" name="CD/DAT3" type="bidirectional"/>
+        <pin num="3" name="CMD" type="bidirectional"/>
+        <pin num="4" name="VDD" type="power_in"/>
+        <pin num="5" name="CLK" type="bidirectional"/>
+        <pin num="6" name="VSS" type="power_in"/>
+        <pin num="7" name="DAT0" type="bidirectional"/>
+        <pin num="8" name="DAT1" type="bidirectional"/>
+        <pin num="9" name="CD1" type="passive"/>
+        <pin num="10" name="CD2" type="passive"/>
+        <pin num="11" name="GND" type="power_in"/>
+        <pin num="12" name="GND__1" type="power_in"/>
+      </pins>
+    </libpart>
+    <libpart lib="my_library" part="MIC94310-GYMT-TR">
+      <description>LDO Voltage Regulators 1.8Vo 3.6Vi 200mA Ripple Blocker, with Fixed Output Voltage Follower</description>
+      <docs>http://ww1.microchip.com/downloads/en/devicedoc/mic94310.pdf</docs>
+      <fields>
+        <field name="Reference">U?</field>
+        <field name="Value">MIC94310-GYMT-TR</field>
+        <field name="Footprint">my_footprints:TDFN-4-1EP_1.2x1.6mm_P0.5mm</field>
+        <field name="Datasheet">http://ww1.microchip.com/downloads/en/devicedoc/mic94310.pdf</field>
+      </fields>
+      <pins>
+        <pin num="1" name="VOUT" type="passive"/>
+        <pin num="2" name="GND" type="passive"/>
+        <pin num="3" name="EN" type="passive"/>
+        <pin num="4" name="VIN" type="passive"/>
+        <pin num="5" name="EP" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="my_library" part="SPL07-003">
+      <description>Absolute pressure sensor Goertek</description>
+      <docs>https://mm.digikey.com/Volume0/opasdata/d220001/medias/docus/4843/SPL07-003.pdf</docs>
+      <fields>
+        <field name="Reference">U</field>
+        <field name="Footprint">Package_LGA:ST_HLGA-10_2x2mm_P0.5mm_LayoutBorder3x2y</field>
+        <field name="Datasheet">https://mm.digikey.com/Volume0/opasdata/d220001/medias/docus/4843/SPL07-003.pdf</field>
+      </fields>
+      <pins>
+        <pin num="1" name="VDDIO" type="power_in"/>
+        <pin num="2" name="SCL" type="passive"/>
+        <pin num="3" name="GND" type="power_in"/>
+        <pin num="4" name="SDA" type="passive"/>
+        <pin num="5" name="SDO" type="passive"/>
+        <pin num="6" name="CS" type="passive"/>
+        <pin num="7" name="NC" type="no_connect"/>
+        <pin num="8" name="GND" type="power_in"/>
+        <pin num="9" name="GND" type="power_in"/>
+        <pin num="10" name="VDDA" type="power_in"/>
+      </pins>
+    </libpart>
+    <libpart lib="my_library" part="STM8S007C8T6">
+      <description>Value line, 24 MHz STM8S 8-bit MCU, 64 Kbytes Flash, true data EEPROM, 10-bit ADC, timers, 2 UARTs, SPI, I²C</description>
+      <docs>https://www.st.com/content/ccc/resource/technical/document/datasheet/03/af/ba/15/7c/fe/4c/91/DM00037365.pdf/files/DM00037365.pdf/jcr:content/translations/en.DM00037365.pdf</docs>
+      <footprints>
+        <fp>LQFP48-7X7mm</fp>
+      </footprints>
+      <fields>
+        <field name="Reference">U</field>
+        <field name="Value">STM8S007C8T6</field>
+        <field name="Footprint">Package_QFP:LQFP-48_7x7mm_P0.5mm</field>
+        <field name="Datasheet">https://www.st.com/content/ccc/resource/technical/document/datasheet/03/af/ba/15/7c/fe/4c/91/DM00037365.pdf/files/DM00037365.pdf/jcr:content/translations/en.DM00037365.pdf</field>
+      </fields>
+      <pins>
+        <pin num="1" name="NRST" type="bidirectional"/>
+        <pin num="2" name="PA1/OSCIN" type="bidirectional"/>
+        <pin num="3" name="PA2/OSCOUT" type="bidirectional"/>
+        <pin num="4" name="VSSIO_1" type="power_in"/>
+        <pin num="5" name="VSS" type="power_in"/>
+        <pin num="6" name="VCAP" type="power_in"/>
+        <pin num="7" name="VDD" type="power_in"/>
+        <pin num="8" name="VDDIO_1" type="power_in"/>
+        <pin num="9" name="PA3" type="bidirectional"/>
+        <pin num="10" name="PA4" type="bidirectional"/>
+        <pin num="11" name="PA5" type="bidirectional"/>
+        <pin num="12" name="PA6" type="bidirectional"/>
+        <pin num="13" name="VDDA" type="power_in"/>
+        <pin num="14" name="VSSA" type="power_in"/>
+        <pin num="15" name="PB7" type="bidirectional"/>
+        <pin num="16" name="PB6" type="bidirectional"/>
+        <pin num="17" name="PB5" type="bidirectional"/>
+        <pin num="18" name="PB4" type="bidirectional"/>
+        <pin num="19" name="PB3" type="bidirectional"/>
+        <pin num="20" name="PB2" type="bidirectional"/>
+        <pin num="21" name="PB1" type="bidirectional"/>
+        <pin num="22" name="PB0" type="bidirectional"/>
+        <pin num="23" name="PE7" type="bidirectional"/>
+        <pin num="24" name="PE6" type="bidirectional"/>
+        <pin num="25" name="PE5" type="bidirectional"/>
+        <pin num="26" name="PC1" type="bidirectional"/>
+        <pin num="27" name="PC2" type="bidirectional"/>
+        <pin num="28" name="PC3" type="bidirectional"/>
+        <pin num="29" name="PC4" type="bidirectional"/>
+        <pin num="30" name="PC5" type="bidirectional"/>
+        <pin num="31" name="VSSIO_2" type="power_in"/>
+        <pin num="32" name="VDDIO_2" type="power_in"/>
+        <pin num="33" name="PC6" type="bidirectional"/>
+        <pin num="34" name="PC7" type="bidirectional"/>
+        <pin num="35" name="PG0" type="bidirectional"/>
+        <pin num="36" name="PG1" type="bidirectional"/>
+        <pin num="37" name="PE3" type="bidirectional"/>
+        <pin num="38" name="PE2" type="bidirectional"/>
+        <pin num="39" name="PE1" type="bidirectional"/>
+        <pin num="40" name="PE0" type="bidirectional"/>
+        <pin num="41" name="PD0" type="bidirectional"/>
+        <pin num="42" name="PD1" type="bidirectional"/>
+        <pin num="43" name="PD2" type="bidirectional"/>
+        <pin num="44" name="PD3" type="bidirectional"/>
+        <pin num="45" name="PD4" type="bidirectional"/>
+        <pin num="46" name="PD5" type="bidirectional"/>
+        <pin num="47" name="PD6" type="bidirectional"/>
+        <pin num="48" name="PD7" type="bidirectional"/>
+      </pins>
+    </libpart>
+    <libpart lib="my_library" part="TPS63051RMWR">
+      <description>2.5-5.5 VIN Single Inductor Buck-Boost With 1-A Switches and Adjustable Soft Start</description>
+      <docs>https://www.ti.com/lit/ds/symlink/tps63051.pdf?ts=1714117211770</docs>
+      <fields>
+        <field name="Reference">U</field>
+        <field name="Value">TPS63051RMWR</field>
+        <field name="Footprint">my_footprints:VQFN-12-HR_2.5x2.5mm_P0.5mm</field>
+        <field name="Datasheet">https://www.ti.com/lit/ds/symlink/tps63051.pdf?ts=1714117211770</field>
+        <field name="MPN">TPS63051RMWR</field>
+      </fields>
+      <pins>
+        <pin num="1" name="L1" type="bidirectional"/>
+        <pin num="2" name="GND" type="power_in"/>
+        <pin num="3" name="L2" type="bidirectional"/>
+        <pin num="4" name="VOUT" type="output"/>
+        <pin num="5" name="FB" type="input"/>
+        <pin num="6" name="PFM/PWM" type="input"/>
+        <pin num="7" name="SS" type="input"/>
+        <pin num="8" name="PG" type="output"/>
+        <pin num="9" name="GND" type="power_in"/>
+        <pin num="10" name="ILIM0" type="input"/>
+        <pin num="11" name="EN" type="input"/>
+        <pin num="12" name="VIN" type="input"/>
+      </pins>
+    </libpart>
+    <libpart lib="my_library" part="YIC31612EBGG">
+      <description>RF RECEIVER GNSS/GPS MODULE 1612</description>
+      <docs>https://www.yic.com.tw/wp-content/uploads/2022/01/YIC31612EBGG.pdf</docs>
+      <fields>
+        <field name="Reference">U</field>
+        <field name="Value">YIC31612EBGG</field>
+        <field name="Footprint">my_footprints:24-SMD Module</field>
+        <field name="Datasheet">https://www.yic.com.tw/wp-content/uploads/2022/01/YIC31612EBGG.pdf</field>
+      </fields>
+      <pins>
+        <pin num="1" name="NC" type="no_connect"/>
+        <pin num="2" name="NC" type="no_connect"/>
+        <pin num="3" name="PPS" type="output"/>
+        <pin num="4" name="NC" type="no_connect"/>
+        <pin num="5" name="NC" type="no_connect"/>
+        <pin num="6" name="NC" type="no_connect"/>
+        <pin num="7" name="NC" type="no_connect"/>
+        <pin num="8" name="NC" type="no_connect"/>
+        <pin num="9" name="VCC_RF" type="output"/>
+        <pin num="10" name="GND" type="power_in"/>
+        <pin num="11" name="RF_IN" type="input"/>
+        <pin num="12" name="GND" type="power_in"/>
+        <pin num="13" name="GND" type="power_in"/>
+        <pin num="14" name="NC" type="no_connect"/>
+        <pin num="15" name="NC" type="no_connect"/>
+        <pin num="16" name="NC" type="no_connect"/>
+        <pin num="17" name="NC" type="no_connect"/>
+        <pin num="18" name="NC" type="no_connect"/>
+        <pin num="19" name="NC" type="no_connect"/>
+        <pin num="20" name="TXD" type="output"/>
+        <pin num="21" name="RXD" type="input"/>
+        <pin num="22" name="VBATT" type="power_in"/>
+        <pin num="23" name="VCC" type="power_in"/>
+        <pin num="24" name="GND" type="power_in"/>
+      </pins>
+    </libpart>
+  </libparts>
+  <libraries>
+    <library logical="Amplifier_Operational">
+      <uri>C:\Program Files\KiCad\7.0\share\kicad\symbols\/Amplifier_Operational.kicad_sym</uri>
+    </library>
+    <library logical="Connector">
+      <uri>C:\Program Files\KiCad\7.0\share\kicad\symbols\/Connector.kicad_sym</uri>
+    </library>
+    <library logical="Connector_Generic">
+      <uri>C:\Program Files\KiCad\7.0\share\kicad\symbols\/Connector_Generic.kicad_sym</uri>
+    </library>
+    <library logical="Connector_Generic_MountingPin">
+      <uri>C:\Program Files\KiCad\7.0\share\kicad\symbols\/Connector_Generic_MountingPin.kicad_sym</uri>
+    </library>
+    <library logical="Device">
+      <uri>C:\Program Files\KiCad\7.0\share\kicad\symbols\/Device.kicad_sym</uri>
+    </library>
+    <library logical="Jumper">
+      <uri>C:\Program Files\KiCad\7.0\share\kicad\symbols\/Jumper.kicad_sym</uri>
+    </library>
+    <library logical="Mechanical">
+      <uri>C:\Program Files\KiCad\7.0\share\kicad\symbols\/Mechanical.kicad_sym</uri>
+    </library>
+    <library logical="Sensor_Temperature">
+      <uri>C:\Program Files\KiCad\7.0\share\kicad\symbols\/Sensor_Temperature.kicad_sym</uri>
+    </library>
+    <library logical="Switch">
+      <uri>C:\Program Files\KiCad\7.0\share\kicad\symbols\/Switch.kicad_sym</uri>
+    </library>
+    <library logical="my_library">
+      <uri>C:/Users/angus/Documents/Electronics/my-kicad-lib/my_symbols/my_library.kicad_sym</uri>
+    </library>
+  </libraries>
+  <nets>
+    <net code="3" name="/1V8A">
+      <node ref="C23" pin="1" pintype="passive"/>
+      <node ref="C24" pin="1" pintype="passive"/>
+      <node ref="C30" pin="1" pintype="passive"/>
+      <node ref="C31" pin="1" pintype="passive"/>
+      <node ref="U4" pin="1" pinfunction="VOUT" pintype="passive"/>
+      <node ref="U5" pin="10" pinfunction="VDDA" pintype="power_in"/>
+      <node ref="U7" pin="8" pinfunction="VDD" pintype="power_in"/>
+    </net>
+    <net code="4" name="/GPS/PPS">
+      <node ref="R18" pin="1" pintype="passive+no_connect"/>
+    </net>
+    <net code="5" name="/GPS_RXD">
+      <node ref="R19" pin="2" pintype="passive"/>
+      <node ref="U1" pin="46" pinfunction="PD5" pintype="bidirectional"/>
+    </net>
+    <net code="6" name="/GPS_TXD">
+      <node ref="R20" pin="2" pintype="passive"/>
+      <node ref="U1" pin="47" pinfunction="PD6" pintype="bidirectional"/>
+    </net>
+    <net code="7" name="/IMU/INT2">
+      <node ref="U7" pin="9" pinfunction="INT2" pintype="output+no_connect"/>
+    </net>
+    <net code="8" name="/IMU_FSYNC">
+      <node ref="U1" pin="16" pinfunction="PB6" pintype="bidirectional"/>
+      <node ref="U7" pin="7" pinfunction="FSYNC" pintype="input"/>
+    </net>
+    <net code="9" name="/IMU_INT">
+      <node ref="U1" pin="12" pinfunction="PA6" pintype="bidirectional"/>
+      <node ref="U7" pin="4" pinfunction="INT1/INT" pintype="output"/>
+    </net>
+    <net code="10" name="/Microcontroller/3V3D">
+      <node ref="C1" pin="1" pintype="passive"/>
+      <node ref="C10" pin="1" pintype="passive"/>
+      <node ref="C11" pin="1" pintype="passive"/>
+      <node ref="C19" pin="1" pintype="passive"/>
+      <node ref="C2" pin="1" pintype="passive"/>
+      <node ref="C20" pin="1" pintype="passive"/>
+      <node ref="C25" pin="1" pintype="passive"/>
+      <node ref="C26" pin="1" pintype="passive"/>
+      <node ref="C27" pin="1" pintype="passive"/>
+      <node ref="C32" pin="1" pintype="passive"/>
+      <node ref="C33" pin="1" pintype="passive"/>
+      <node ref="C37" pin="1" pintype="passive"/>
+      <node ref="C38" pin="1" pintype="passive"/>
+      <node ref="C39" pin="1" pintype="passive"/>
+      <node ref="C8" pin="1" pintype="passive"/>
+      <node ref="C9" pin="1" pintype="passive"/>
+      <node ref="J1" pin="7" pinfunction="Pin_7" pintype="passive"/>
+      <node ref="J1" pin="8" pinfunction="Pin_8" pintype="passive"/>
+      <node ref="J2" pin="4" pinfunction="VDD" pintype="power_in"/>
+      <node ref="J7" pin="6" pinfunction="Pin_6" pintype="passive"/>
+      <node ref="L2" pin="1" pinfunction="1" pintype="passive"/>
+      <node ref="R16" pin="1" pintype="passive"/>
+      <node ref="R22" pin="2" pintype="passive"/>
+      <node ref="R26" pin="2" pintype="passive"/>
+      <node ref="R27" pin="2" pintype="passive"/>
+      <node ref="R28" pin="2" pintype="passive"/>
+      <node ref="R29" pin="2" pintype="passive"/>
+      <node ref="R30" pin="2" pintype="passive"/>
+      <node ref="R4" pin="1" pintype="passive"/>
+      <node ref="R5" pin="1" pintype="passive"/>
+      <node ref="R6" pin="1" pintype="passive"/>
+      <node ref="R8" pin="1" pintype="passive"/>
+      <node ref="SW1" pin="2" pinfunction="2" pintype="passive"/>
+      <node ref="U1" pin="32" pinfunction="VDDIO_2" pintype="power_in"/>
+      <node ref="U1" pin="7" pinfunction="VDD" pintype="power_in"/>
+      <node ref="U1" pin="8" pinfunction="VDDIO_1" pintype="power_in"/>
+      <node ref="U3" pin="4" pinfunction="VOUT" pintype="output"/>
+      <node ref="U3" pin="5" pinfunction="FB" pintype="input"/>
+      <node ref="U5" pin="1" pinfunction="VDDIO" pintype="power_in"/>
+      <node ref="U6" pin="23" pinfunction="VCC" pintype="power_in"/>
+      <node ref="U7" pin="12" pinfunction="AP_CS" pintype="input"/>
+      <node ref="U7" pin="5" pinfunction="VDDIO" pintype="power_in"/>
+      <node ref="U8" pin="4" pinfunction="V_CC" pintype="power_in"/>
+    </net>
+    <net code="11" name="/Microcontroller/BUTTON">
+      <node ref="R3" pin="1" pintype="passive"/>
+      <node ref="SW1" pin="1" pinfunction="1" pintype="passive"/>
+      <node ref="U1" pin="26" pinfunction="PC1" pintype="bidirectional"/>
+    </net>
+    <net code="12" name="/Microcontroller/BUZZER_INDICATOR">
+      <node ref="R7" pin="1" pintype="passive"/>
+      <node ref="U1" pin="9" pinfunction="PA3" pintype="bidirectional"/>
+    </net>
+    <net code="13" name="/Microcontroller/I_{SENSE}">
+      <node ref="C15" pin="1" pintype="passive"/>
+      <node ref="R13" pin="2" pintype="passive"/>
+      <node ref="U1" pin="39" pinfunction="PE1" pintype="bidirectional"/>
+      <node ref="U2" pin="1" pintype="output"/>
+    </net>
+    <net code="14" name="/Microcontroller/LED_GREEN">
+      <node ref="R1" pin="1" pintype="passive"/>
+      <node ref="U1" pin="35" pinfunction="PG0" pintype="bidirectional"/>
+    </net>
+    <net code="15" name="/Microcontroller/LED_RED">
+      <node ref="R2" pin="1" pintype="passive"/>
+      <node ref="U1" pin="36" pinfunction="PG1" pintype="bidirectional"/>
+    </net>
+    <net code="16" name="/Microcontroller/NRST">
+      <node ref="C12" pin="1" pintype="passive"/>
+      <node ref="J1" pin="1" pinfunction="Pin_1" pintype="passive"/>
+      <node ref="R6" pin="2" pintype="passive"/>
+      <node ref="SW2" pin="1" pinfunction="1" pintype="passive"/>
+      <node ref="U1" pin="1" pinfunction="NRST" pintype="bidirectional"/>
+    </net>
+    <net code="17" name="/Microcontroller/SPI_MOSI">
+      <node ref="J2" pin="3" pinfunction="CMD" pintype="bidirectional"/>
+      <node ref="R30" pin="1" pintype="passive"/>
+      <node ref="U1" pin="33" pinfunction="PC6" pintype="bidirectional"/>
+    </net>
+    <net code="18" name="/Microcontroller/SPI_NSS">
+      <node ref="J2" pin="2" pinfunction="CD/DAT3" pintype="bidirectional"/>
+      <node ref="R29" pin="1" pintype="passive"/>
+      <node ref="U1" pin="40" pinfunction="PE0" pintype="bidirectional"/>
+    </net>
+    <net code="19" name="/Microcontroller/SWIM">
+      <node ref="J1" pin="3" pinfunction="Pin_3" pintype="passive"/>
+      <node ref="U1" pin="42" pinfunction="PD1" pintype="bidirectional"/>
+    </net>
+    <net code="20" name="/Microcontroller/VBATT_{SENSE}">
+      <node ref="R14" pin="2" pintype="passive"/>
+      <node ref="R15" pin="1" pintype="passive"/>
+      <node ref="U1" pin="38" pinfunction="PE2" pintype="bidirectional"/>
+    </net>
+    <net code="21" name="/PRESSURE_INT">
+      <node ref="U1" pin="22" pinfunction="PB0" pintype="bidirectional"/>
+      <node ref="U5" pin="5" pinfunction="SDO" pintype="passive"/>
+    </net>
+    <net code="22" name="/Power/3V3A">
+      <node ref="C16" pin="1" pintype="passive"/>
+      <node ref="C21" pin="1" pintype="passive"/>
+      <node ref="C22" pin="1" pintype="passive"/>
+      <node ref="C3" pin="1" pintype="passive"/>
+      <node ref="C4" pin="1" pintype="passive"/>
+      <node ref="L2" pin="2" pinfunction="2" pintype="passive"/>
+      <node ref="U1" pin="13" pinfunction="VDDA" pintype="power_in"/>
+      <node ref="U2" pin="5" pinfunction="V+" pintype="power_in"/>
+      <node ref="U4" pin="3" pinfunction="EN" pintype="passive"/>
+      <node ref="U4" pin="4" pinfunction="VIN" pintype="passive"/>
+    </net>
+    <net code="23" name="/Power/BAT_GND">
+      <node ref="C14" pin="2" pintype="passive"/>
+      <node ref="J3" pin="2" pinfunction="Pin_2" pintype="passive"/>
+      <node ref="R10" pin="1" pintype="passive"/>
+      <node ref="R9" pin="1" pintype="passive"/>
+    </net>
+    <net code="24" name="/Power/I_{sense_raw}">
+      <node ref="Q2" pin="3" pinfunction="D" pintype="passive"/>
+      <node ref="R11" pin="1" pintype="passive"/>
+      <node ref="R9" pin="2" pintype="passive"/>
+    </net>
+    <net code="25" name="/Power/PGOOD">
+      <node ref="R16" pin="2" pintype="passive"/>
+      <node ref="U3" pin="8" pinfunction="PG" pintype="output"/>
+    </net>
+    <net code="26" name="/RADIO_M0">
+      <node ref="J7" pin="1" pinfunction="Pin_1" pintype="passive"/>
+      <node ref="R21" pin="2" pintype="passive"/>
+      <node ref="U1" pin="29" pinfunction="PC4" pintype="bidirectional"/>
+    </net>
+    <net code="27" name="/RADIO_M1">
+      <node ref="J7" pin="2" pinfunction="Pin_2" pintype="passive"/>
+      <node ref="R23" pin="2" pintype="passive"/>
+      <node ref="U1" pin="28" pinfunction="PC3" pintype="bidirectional"/>
+    </net>
+    <net code="28" name="/RADIO_RXD">
+      <node ref="J7" pin="3" pinfunction="Pin_3" pintype="passive"/>
+      <node ref="U1" pin="11" pinfunction="PA5" pintype="bidirectional"/>
+    </net>
+    <net code="29" name="/RADIO_TXD">
+      <node ref="J7" pin="4" pinfunction="Pin_4" pintype="passive"/>
+      <node ref="U1" pin="10" pinfunction="PA4" pintype="bidirectional"/>
+    </net>
+    <net code="30" name="/Radio/AUX">
+      <node ref="D4" pin="1" pinfunction="K" pintype="passive"/>
+      <node ref="J7" pin="5" pinfunction="Pin_5" pintype="passive"/>
+    </net>
+    <net code="31" name="/SCL">
+      <node ref="R5" pin="2" pintype="passive"/>
+      <node ref="U1" pin="18" pinfunction="PB4" pintype="bidirectional"/>
+      <node ref="U5" pin="2" pinfunction="SCL" pintype="passive"/>
+      <node ref="U7" pin="13" pinfunction="AP_SCL/AP_SCLK" pintype="input"/>
+    </net>
+    <net code="32" name="/SDA">
+      <node ref="R4" pin="2" pintype="passive"/>
+      <node ref="U1" pin="17" pinfunction="PB5" pintype="bidirectional"/>
+      <node ref="U5" pin="4" pinfunction="SDA" pintype="passive"/>
+      <node ref="U7" pin="14" pinfunction="AP_SDA/AP_SDIO/AP_SDI" pintype="bidirectional"/>
+    </net>
+    <net code="33" name="/SPI_MISO">
+      <node ref="J2" pin="7" pinfunction="DAT0" pintype="bidirectional"/>
+      <node ref="R26" pin="1" pintype="passive"/>
+      <node ref="U1" pin="34" pinfunction="PC7" pintype="bidirectional"/>
+      <node ref="U8" pin="7" pinfunction="SO" pintype="tri_state"/>
+    </net>
+    <net code="34" name="/SPI_SCK">
+      <node ref="J2" pin="5" pinfunction="CLK" pintype="bidirectional"/>
+      <node ref="U1" pin="30" pinfunction="PC5" pintype="bidirectional"/>
+      <node ref="U8" pin="5" pinfunction="SCK" pintype="input"/>
+    </net>
+    <net code="35" name="/TC_CS">
+      <node ref="U1" pin="43" pinfunction="PD2" pintype="bidirectional"/>
+      <node ref="U8" pin="6" pinfunction="~{CS}" pintype="input"/>
+    </net>
+    <net code="36" name="/Temperature sensor/T+">
+      <node ref="R24" pin="1" pintype="passive"/>
+    </net>
+    <net code="37" name="/Temperature sensor/T-">
+      <node ref="R25" pin="1" pintype="passive"/>
+    </net>
+    <net code="39" name="GND">
+      <node ref="C1" pin="2" pintype="passive"/>
+      <node ref="C10" pin="2" pintype="passive"/>
+      <node ref="C11" pin="2" pintype="passive"/>
+      <node ref="C12" pin="2" pintype="passive"/>
+      <node ref="C16" pin="2" pintype="passive"/>
+      <node ref="C17" pin="2" pintype="passive"/>
+      <node ref="C18" pin="2" pintype="passive"/>
+      <node ref="C19" pin="2" pintype="passive"/>
+      <node ref="C2" pin="2" pintype="passive"/>
+      <node ref="C20" pin="2" pintype="passive"/>
+      <node ref="C21" pin="2" pintype="passive"/>
+      <node ref="C22" pin="2" pintype="passive"/>
+      <node ref="C23" pin="2" pintype="passive"/>
+      <node ref="C24" pin="2" pintype="passive"/>
+      <node ref="C25" pin="2" pintype="passive"/>
+      <node ref="C26" pin="2" pintype="passive"/>
+      <node ref="C27" pin="2" pintype="passive"/>
+      <node ref="C28" pin="2" pintype="passive"/>
+      <node ref="C29" pin="2" pintype="passive"/>
+      <node ref="C3" pin="2" pintype="passive"/>
+      <node ref="C30" pin="2" pintype="passive"/>
+      <node ref="C31" pin="2" pintype="passive"/>
+      <node ref="C32" pin="2" pintype="passive"/>
+      <node ref="C33" pin="2" pintype="passive"/>
+      <node ref="C35" pin="1" pintype="passive"/>
+      <node ref="C36" pin="2" pintype="passive"/>
+      <node ref="C37" pin="2" pintype="passive"/>
+      <node ref="C38" pin="2" pintype="passive"/>
+      <node ref="C39" pin="2" pintype="passive"/>
+      <node ref="C4" pin="2" pintype="passive"/>
+      <node ref="C5" pin="1" pintype="passive"/>
+      <node ref="C6" pin="2" pintype="passive"/>
+      <node ref="C7" pin="2" pintype="passive"/>
+      <node ref="C8" pin="2" pintype="passive"/>
+      <node ref="C9" pin="2" pintype="passive"/>
+      <node ref="D1" pin="1" pinfunction="K" pintype="passive"/>
+      <node ref="D2" pin="1" pinfunction="K" pintype="passive"/>
+      <node ref="D3" pin="2" pinfunction="A" pintype="passive"/>
+      <node ref="J1" pin="5" pinfunction="Pin_5" pintype="passive"/>
+      <node ref="J1" pin="6" pinfunction="Pin_6" pintype="passive"/>
+      <node ref="J2" pin="11" pinfunction="GND" pintype="power_in"/>
+      <node ref="J2" pin="12" pinfunction="GND__1" pintype="power_in"/>
+      <node ref="J2" pin="6" pinfunction="VSS" pintype="power_in"/>
+      <node ref="J7" pin="7" pinfunction="Pin_7" pintype="passive"/>
+      <node ref="J7" pin="MP" pinfunction="MountPin" pintype="passive"/>
+      <node ref="Q1" pin="2" pinfunction="E" pintype="passive"/>
+      <node ref="Q2" pin="2" pinfunction="S" pintype="passive"/>
+      <node ref="R15" pin="2" pintype="passive"/>
+      <node ref="R21" pin="1" pintype="passive"/>
+      <node ref="R23" pin="1" pintype="passive"/>
+      <node ref="R3" pin="2" pintype="passive"/>
+      <node ref="SW2" pin="2" pinfunction="2" pintype="passive"/>
+      <node ref="U1" pin="14" pinfunction="VSSA" pintype="power_in"/>
+      <node ref="U1" pin="31" pinfunction="VSSIO_2" pintype="power_in"/>
+      <node ref="U1" pin="4" pinfunction="VSSIO_1" pintype="power_in"/>
+      <node ref="U1" pin="5" pinfunction="VSS" pintype="power_in"/>
+      <node ref="U2" pin="2" pinfunction="V-" pintype="power_in"/>
+      <node ref="U3" pin="10" pinfunction="ILIM0" pintype="input"/>
+      <node ref="U3" pin="2" pinfunction="GND" pintype="power_in"/>
+      <node ref="U3" pin="9" pinfunction="GND" pintype="power_in"/>
+      <node ref="U4" pin="2" pinfunction="GND" pintype="passive"/>
+      <node ref="U4" pin="5" pinfunction="EP" pintype="passive"/>
+      <node ref="U5" pin="3" pinfunction="GND" pintype="power_in"/>
+      <node ref="U5" pin="8" pinfunction="GND" pintype="power_in"/>
+      <node ref="U5" pin="9" pinfunction="GND" pintype="power_in"/>
+      <node ref="U6" pin="10" pinfunction="GND" pintype="power_in"/>
+      <node ref="U6" pin="12" pinfunction="GND" pintype="power_in"/>
+      <node ref="U6" pin="13" pinfunction="GND" pintype="power_in"/>
+      <node ref="U6" pin="24" pinfunction="GND" pintype="power_in"/>
+      <node ref="U7" pin="1" pinfunction="AP_SDO/AP_AD0" pintype="bidirectional"/>
+      <node ref="U7" pin="10" pinfunction="RESV" pintype="passive"/>
+      <node ref="U7" pin="11" pinfunction="RESV" pintype="passive"/>
+      <node ref="U7" pin="2" pinfunction="RESV" pintype="passive"/>
+      <node ref="U7" pin="3" pinfunction="RESV" pintype="passive"/>
+      <node ref="U7" pin="6" pinfunction="GND" pintype="power_in"/>
+      <node ref="U8" pin="1" pinfunction="GND" pintype="power_in"/>
+      <node ref="U9" pin="2" pinfunction="GND" pintype="input"/>
+      <node ref="U9" pin="4" pinfunction="GND" pintype="input"/>
+      <node ref="U9" pin="5" pinfunction="CAP" pintype="input"/>
+      <node ref="Y1" pin="2" pinfunction="2" pintype="passive"/>
+      <node ref="Y1" pin="4" pinfunction="4" pintype="passive"/>
+    </net>
+    <net code="40" name="Net-(BZ1-+)">
+      <node ref="BZ1" pin="2" pinfunction="+" pintype="passive"/>
+      <node ref="Q1" pin="3" pinfunction="C" pintype="passive"/>
+    </net>
+    <net code="41" name="Net-(BZ1--)">
+      <node ref="BZ1" pin="1" pinfunction="-" pintype="passive"/>
+      <node ref="R8" pin="2" pintype="passive"/>
+    </net>
+    <net code="42" name="Net-(D1-A)">
+      <node ref="D1" pin="2" pinfunction="A" pintype="passive"/>
+      <node ref="R1" pin="2" pintype="passive"/>
+    </net>
+    <net code="43" name="Net-(D2-A)">
+      <node ref="D2" pin="2" pinfunction="A" pintype="passive"/>
+      <node ref="R2" pin="2" pintype="passive"/>
+    </net>
+    <net code="44" name="Net-(D3-K)">
+      <node ref="D3" pin="1" pinfunction="K" pintype="passive"/>
+      <node ref="Q2" pin="1" pinfunction="G" pintype="input"/>
+      <node ref="R12" pin="2" pintype="passive"/>
+    </net>
+    <net code="45" name="Net-(D4-A)">
+      <node ref="D4" pin="2" pinfunction="A" pintype="passive"/>
+      <node ref="R22" pin="1" pintype="passive"/>
+    </net>
+    <net code="46" name="Net-(J2-DAT1)">
+      <node ref="J2" pin="8" pinfunction="DAT1" pintype="bidirectional"/>
+      <node ref="R27" pin="1" pintype="passive"/>
+    </net>
+    <net code="47" name="Net-(J2-DAT2)">
+      <node ref="J2" pin="1" pinfunction="DAT2" pintype="bidirectional"/>
+      <node ref="R28" pin="1" pintype="passive"/>
+    </net>
+    <net code="48" name="Net-(J3-Pin_1)">
+      <node ref="F1" pin="1" pintype="passive"/>
+      <node ref="J3" pin="1" pinfunction="Pin_1" pintype="passive"/>
+    </net>
+    <net code="49" name="Net-(JP1-B)">
+      <node ref="C17" pin="1" pintype="passive"/>
+      <node ref="F1" pin="2" pintype="passive"/>
+      <node ref="R12" pin="1" pintype="passive"/>
+      <node ref="R14" pin="1" pintype="passive"/>
+      <node ref="U3" pin="11" pinfunction="EN" pintype="input"/>
+      <node ref="U3" pin="12" pinfunction="VIN" pintype="input"/>
+    </net>
+    <net code="50" name="Net-(JP1-C)">
+      <node ref="U3" pin="6" pinfunction="PFM/PWM" pintype="input"/>
+    </net>
+    <net code="51" name="Net-(Q1-B)">
+      <node ref="Q1" pin="1" pinfunction="B" pintype="input"/>
+      <node ref="R7" pin="2" pintype="passive"/>
+    </net>
+    <net code="52" name="Net-(U1A-PA1{slash}OSCIN)">
+      <node ref="C5" pin="2" pintype="passive"/>
+      <node ref="U1" pin="2" pinfunction="PA1/OSCIN" pintype="bidirectional"/>
+      <node ref="Y1" pin="1" pinfunction="1" pintype="passive"/>
+    </net>
+    <net code="53" name="Net-(U1A-PA2{slash}OSCOUT)">
+      <node ref="C6" pin="1" pintype="passive"/>
+      <node ref="U1" pin="3" pinfunction="PA2/OSCOUT" pintype="bidirectional"/>
+      <node ref="Y1" pin="3" pinfunction="3" pintype="passive"/>
+    </net>
+    <net code="54" name="Net-(U1B-VCAP)">
+      <node ref="C7" pin="1" pintype="passive"/>
+      <node ref="U1" pin="6" pinfunction="VCAP" pintype="power_in"/>
+    </net>
+    <net code="55" name="Net-(U2-+)">
+      <node ref="C13" pin="2" pintype="passive"/>
+      <node ref="C14" pin="1" pintype="passive"/>
+      <node ref="R11" pin="2" pintype="passive"/>
+      <node ref="U2" pin="3" pinfunction="+" pintype="input"/>
+    </net>
+    <net code="56" name="Net-(U2--)">
+      <node ref="C13" pin="1" pintype="passive"/>
+      <node ref="C15" pin="2" pintype="passive"/>
+      <node ref="R10" pin="2" pintype="passive"/>
+      <node ref="R13" pin="1" pintype="passive"/>
+      <node ref="U2" pin="4" pinfunction="-" pintype="input"/>
+    </net>
+    <net code="57" name="Net-(U3-L1)">
+      <node ref="L1" pin="2" pinfunction="2" pintype="passive"/>
+      <node ref="U3" pin="1" pinfunction="L1" pintype="bidirectional"/>
+    </net>
+    <net code="58" name="Net-(U3-L2)">
+      <node ref="L1" pin="1" pinfunction="1" pintype="passive"/>
+      <node ref="U3" pin="3" pinfunction="L2" pintype="bidirectional"/>
+    </net>
+    <net code="59" name="Net-(U3-SS)">
+      <node ref="C18" pin="1" pintype="passive"/>
+      <node ref="U3" pin="7" pinfunction="SS" pintype="input"/>
+    </net>
+    <net code="60" name="Net-(U6-PPS)">
+      <node ref="R18" pin="2" pintype="passive"/>
+      <node ref="U6" pin="3" pinfunction="PPS" pintype="output"/>
+    </net>
+    <net code="61" name="Net-(U6-RF_IN)">
+      <node ref="U6" pin="11" pinfunction="RF_IN" pintype="input"/>
+      <node ref="U9" pin="1" pinfunction="Feed" pintype="input"/>
+    </net>
+    <net code="62" name="Net-(U6-RXD)">
+      <node ref="C29" pin="1" pintype="passive"/>
+      <node ref="R19" pin="1" pintype="passive"/>
+      <node ref="U6" pin="21" pinfunction="RXD" pintype="input"/>
+    </net>
+    <net code="63" name="Net-(U6-TXD)">
+      <node ref="C28" pin="1" pintype="passive"/>
+      <node ref="R20" pin="1" pintype="passive"/>
+      <node ref="U6" pin="20" pinfunction="TXD" pintype="output"/>
+    </net>
+    <net code="64" name="Net-(U8-T+)">
+      <node ref="C34" pin="1" pintype="passive"/>
+      <node ref="C35" pin="2" pintype="passive"/>
+      <node ref="R24" pin="2" pintype="passive"/>
+      <node ref="U8" pin="3" pinfunction="T+" pintype="passive"/>
+    </net>
+    <net code="65" name="Net-(U8-T-)">
+      <node ref="C34" pin="2" pintype="passive"/>
+      <node ref="C36" pin="1" pintype="passive"/>
+      <node ref="R25" pin="2" pintype="passive"/>
+      <node ref="U8" pin="2" pinfunction="T-" pintype="passive"/>
+    </net>
+    <net code="66" name="unconnected-(J1-Pin_2-Pad2)">
+      <node ref="J1" pin="2" pinfunction="Pin_2" pintype="passive+no_connect"/>
+    </net>
+    <net code="67" name="unconnected-(J1-Pin_4-Pad4)">
+      <node ref="J1" pin="4" pinfunction="Pin_4" pintype="passive+no_connect"/>
+    </net>
+    <net code="68" name="unconnected-(J1-Pin_9-Pad9)">
+      <node ref="J1" pin="9" pinfunction="Pin_9" pintype="passive+no_connect"/>
+    </net>
+    <net code="69" name="unconnected-(J1-Pin_10-Pad10)">
+      <node ref="J1" pin="10" pinfunction="Pin_10" pintype="passive+no_connect"/>
+    </net>
+    <net code="70" name="unconnected-(J2-CD1-Pad9)">
+      <node ref="J2" pin="9" pinfunction="CD1" pintype="passive+no_connect"/>
+    </net>
+    <net code="71" name="unconnected-(J2-CD2-Pad10)">
+      <node ref="J2" pin="10" pinfunction="CD2" pintype="passive+no_connect"/>
+    </net>
+    <net code="72" name="unconnected-(U1A-PB1-Pad21)">
+      <node ref="U1" pin="21" pinfunction="PB1" pintype="bidirectional+no_connect"/>
+    </net>
+    <net code="73" name="unconnected-(U1A-PB2-Pad20)">
+      <node ref="U1" pin="20" pinfunction="PB2" pintype="bidirectional+no_connect"/>
+    </net>
+    <net code="74" name="unconnected-(U1A-PB3-Pad19)">
+      <node ref="U1" pin="19" pinfunction="PB3" pintype="bidirectional+no_connect"/>
+    </net>
+    <net code="75" name="unconnected-(U1A-PB7-Pad15)">
+      <node ref="U1" pin="15" pinfunction="PB7" pintype="bidirectional+no_connect"/>
+    </net>
+    <net code="76" name="unconnected-(U1A-PC2-Pad27)">
+      <node ref="U1" pin="27" pinfunction="PC2" pintype="bidirectional+no_connect"/>
+    </net>
+    <net code="77" name="unconnected-(U1A-PD0-Pad41)">
+      <node ref="U1" pin="41" pinfunction="PD0" pintype="bidirectional+no_connect"/>
+    </net>
+    <net code="78" name="unconnected-(U1A-PD3-Pad44)">
+      <node ref="U1" pin="44" pinfunction="PD3" pintype="bidirectional+no_connect"/>
+    </net>
+    <net code="79" name="unconnected-(U1A-PD4-Pad45)">
+      <node ref="U1" pin="45" pinfunction="PD4" pintype="bidirectional+no_connect"/>
+    </net>
+    <net code="80" name="unconnected-(U1A-PD7-Pad48)">
+      <node ref="U1" pin="48" pinfunction="PD7" pintype="bidirectional+no_connect"/>
+    </net>
+    <net code="81" name="unconnected-(U1A-PE3-Pad37)">
+      <node ref="U1" pin="37" pinfunction="PE3" pintype="bidirectional+no_connect"/>
+    </net>
+    <net code="82" name="unconnected-(U1A-PE5-Pad25)">
+      <node ref="U1" pin="25" pinfunction="PE5" pintype="bidirectional+no_connect"/>
+    </net>
+    <net code="83" name="unconnected-(U1A-PE6-Pad24)">
+      <node ref="U1" pin="24" pinfunction="PE6" pintype="bidirectional+no_connect"/>
+    </net>
+    <net code="84" name="unconnected-(U1A-PE7-Pad23)">
+      <node ref="U1" pin="23" pinfunction="PE7" pintype="bidirectional+no_connect"/>
+    </net>
+    <net code="85" name="unconnected-(U5-CS-Pad6)">
+      <node ref="U5" pin="6" pinfunction="CS" pintype="passive+no_connect"/>
+    </net>
+    <net code="86" name="unconnected-(U5-NC-Pad7)">
+      <node ref="U5" pin="7" pinfunction="NC" pintype="no_connect"/>
+    </net>
+    <net code="87" name="unconnected-(U6-NC-Pad1)">
+      <node ref="U6" pin="1" pinfunction="NC" pintype="no_connect"/>
+    </net>
+    <net code="88" name="unconnected-(U6-NC-Pad2)">
+      <node ref="U6" pin="2" pinfunction="NC" pintype="no_connect"/>
+    </net>
+    <net code="89" name="unconnected-(U6-NC-Pad4)">
+      <node ref="U6" pin="4" pinfunction="NC" pintype="no_connect"/>
+    </net>
+    <net code="90" name="unconnected-(U6-NC-Pad5)">
+      <node ref="U6" pin="5" pinfunction="NC" pintype="no_connect"/>
+    </net>
+    <net code="91" name="unconnected-(U6-NC-Pad6)">
+      <node ref="U6" pin="6" pinfunction="NC" pintype="no_connect"/>
+    </net>
+    <net code="92" name="unconnected-(U6-NC-Pad7)">
+      <node ref="U6" pin="7" pinfunction="NC" pintype="no_connect"/>
+    </net>
+    <net code="93" name="unconnected-(U6-NC-Pad8)">
+      <node ref="U6" pin="8" pinfunction="NC" pintype="no_connect"/>
+    </net>
+    <net code="94" name="unconnected-(U6-NC-Pad14)">
+      <node ref="U6" pin="14" pinfunction="NC" pintype="no_connect"/>
+    </net>
+    <net code="95" name="unconnected-(U6-NC-Pad15)">
+      <node ref="U6" pin="15" pinfunction="NC" pintype="no_connect"/>
+    </net>
+    <net code="96" name="unconnected-(U6-NC-Pad16)">
+      <node ref="U6" pin="16" pinfunction="NC" pintype="no_connect"/>
+    </net>
+    <net code="97" name="unconnected-(U6-NC-Pad17)">
+      <node ref="U6" pin="17" pinfunction="NC" pintype="no_connect"/>
+    </net>
+    <net code="98" name="unconnected-(U6-NC-Pad18)">
+      <node ref="U6" pin="18" pinfunction="NC" pintype="no_connect"/>
+    </net>
+    <net code="99" name="unconnected-(U6-NC-Pad19)">
+      <node ref="U6" pin="19" pinfunction="NC" pintype="no_connect"/>
+    </net>
+    <net code="100" name="unconnected-(U6-VBATT-Pad22)">
+      <node ref="U6" pin="22" pinfunction="VBATT" pintype="power_in+no_connect"/>
+    </net>
+    <net code="101" name="unconnected-(U6-VCC_RF-Pad9)">
+      <node ref="U6" pin="9" pinfunction="VCC_RF" pintype="output+no_connect"/>
+    </net>
+    <net code="102" name="unconnected-(U9-NC-Pad3)">
+      <node ref="U9" pin="3" pinfunction="NC" pintype="no_connect"/>
+    </net>
+  </nets>
+</export>

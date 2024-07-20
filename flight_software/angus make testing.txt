@@ -1,0 +1,7 @@
+MUST compile only 1 file at a time.
+
+-mstm8 to generate code for stm8 MCUs
+
+-L gives the path to search for .lib files. MUST be absolute path
+
+sdcc main.c projectlib.lib -L C:\Users\angus\Documents\Electronics\Projects\rocketeering\flight_software\libs

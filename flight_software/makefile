@@ -1,4 +1,9 @@
-# My attempt at writing a makefile fully from scratch. Works on windows
+# My attempt at writing a makefile fully from scratch.
+# Inspiration from:
+# https://makefiletutorial.com/
+# https://github.com/bschwand/STM8-SPL-SDCC/blob/master/Project/STM8S_StdPeriph_Template/SDCC/Makefile
+# https://github.com/EMBEDONIX/stm8/blob/master/examples/leddance/Makefile
+
 
 # Specifies the compiler I am using
 # The directory to put all output files in
@@ -41,12 +46,21 @@ SPL_INC_DIR := ./libs/STM8S_StdPeriph_Driver/inc
 SPL_LIB_DIR := ./libs
 SPL_LIB := projectlib.lib
 
+# Add paths for the preprocessor to search for the .h files to #include
 INCLUDES := -I$(PRJ_INC_DIR) -I$(SPL_INC_DIR)
 
+# The vpathdirective is used to specify where source files can live, to allow make to find them
+# https://makefiletutorial.com/#the-vpath-directive
 VPATH=$(PRJ_SRC_DIR)
 
+# This prevents make from not running clean if for some reason we had a file named clean
+# https://makefiletutorial.com/#phony
+.PHONY: clean
+
+# The default make target, as it is listed first
 all: $(BUILD_DIR) $(TARGET)
 
+# Make rule to create the build directory if it doesnt exist
 $(BUILD_DIR) :
 	mkdir $(BUILD_DIR)
 
@@ -58,9 +72,11 @@ $(BUILD_DIR) :
 ./$(BUILD_DIR)/%.rel : %.c
 	$(CC) $(CFLAGS) $(INCLUDES) -c $? -o ./$(BUILD_DIR)/
 
+# The rule to make the desired binary excecutable
 $(TARGET) : $(PRJ_OBJECTS)
 	$(CC) $(CFLAGS) $(INCLUDES) $(SPL_LIB) -L $(SPL_LIB_DIR) $^ -o $(TARGET)
 
+# Rule to delete all the build files
 clean:
 	$(RM_CMD) $(BUILD_DIR)
 

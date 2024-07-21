@@ -9,10 +9,12 @@ BUILD_DIR := build
 PROCESSOR := stm8s007c8
 TARGET := ./$(BUILD_DIR)/flight_software.ihx
 
+# The family of our microcontroller, for stm8s.h. Could be done in my application code instead
+# Defines the compiler for stm8s.h. Could be done in my application code instead
 # Flags for the sdcc compiler. -lstm8 and -mstm8 let it know its compiling for an stm8 target
-# The family of our microcontroller
-CFLAGS := -mstm8 -lstm8
 DEVICE := STM8S007
+COMPILER := __CSMC__
+CFLAGS := -mstm8 -lstm8 -D$(DEVICE) -D$(COMPILER)
 
 # TODO: Uncomment the one you are using
 OS := windows
@@ -22,38 +24,45 @@ OS := windows
 ifeq ($(OS), linux)
 	RM_CMD = rm -r
 else ifeq ($(OS), windows)
-	RM_CMD = rmdir
+	RM_CMD = rmdir /Q /S
 endif
 
 # Set project folder and files 
 PRJ_SRC_DIR := ./src
 PRJ_INC_DIR := ./inc
 PRJ_SOURCE := $(wildcard $(PRJ_SRC_DIR)/*.c)
-PRJ_OBJECTS := $(addprefix ./$(BUILD_DIR)/, $(PRJ_SOURCE:.c=.rel))
+
+# Below performs string substitution on the PRJ_SOURCE to change from e.g. ./src/main.c to ./build/main.rel
+# See https://makefiletutorial.com/#string-substitution for details
+PRJ_OBJECTS := $(PRJ_SOURCE:$(PRJ_SRC_DIR)/%.c=./$(BUILD_DIR)/%.rel)
 
 # Set SPL folder and files
-SPL_SRC_DIR := ./
+SPL_INC_DIR := ./libs/STM8S_StdPeriph_Driver/inc
+SPL_LIB_DIR := ./libs
+SPL_LIB := projectlib.lib
 
-INCLUDES := -I$(PRJ_INC_DIR) -I
+INCLUDES := -I$(PRJ_INC_DIR) -I$(SPL_INC_DIR)
 
 VPATH=$(PRJ_SRC_DIR)
+
+all: $(BUILD_DIR) $(TARGET)
+
+$(BUILD_DIR) :
+	mkdir $(BUILD_DIR)
 
 # Below is a pattern rule to make all the required object files (.rel) from their .c files.
 # Any targets that match ./$(BUILD_DIR)/%.rel are built from their %.c match (where % is the stem match)
 # As the path for the .c files is not specified in the prereq, it needs to be on the VPATH
-# so that make can find them
+# so that make can find them.
+# -o flag sets the dir to put all build files in
 ./$(BUILD_DIR)/%.rel : %.c
-	$(CC) $(CFLAGS) $(INCLUDES) -D$(DEVICE) $(INCLUDES) - $< -o $@
-
-# all: $(BUILD_DIR) $(TARGET)
+	$(CC) $(CFLAGS) $(INCLUDES) -c $? -o ./$(BUILD_DIR)/
 
 $(TARGET) : $(PRJ_OBJECTS)
+	$(CC) $(CFLAGS) $(INCLUDES) $(SPL_LIB) -L $(SPL_LIB_DIR) $^ -o $(TARGET)
 
-# $(BUILD_DIR) :
-# 	mkdir $(BUILD_DIR)
-
-# clean:
-# 	$(RM_CMD) $(BUILD_DIR)
+clean:
+	$(RM_CMD) $(BUILD_DIR)
 
 
 

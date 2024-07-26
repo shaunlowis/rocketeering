@@ -11,7 +11,6 @@
 # The target filename of the exccecutable we are making
 CC := sdcc
 BUILD_DIR := build
-PROCESSOR := stm8s007c8
 TARGET := ./$(BUILD_DIR)/flight_software.ihx
 
 # The family of our microcontroller, for stm8s.h. Could be done in my application code instead
@@ -24,6 +23,10 @@ CFLAGS := -mstm8 -lstm8 -D$(DEVICE) -D$(COMPILER)
 # TODO: Uncomment the one you are using
 OS := windows
 #OS := linux
+
+# for flashing
+PROGRAMMER=stlinkv2
+PROCESSOR := stm8s007c8
 
 # Sets the variable RM_CMD to the linux or windows command accordingly
 ifeq ($(OS), linux)
@@ -75,6 +78,10 @@ $(BUILD_DIR) :
 # The rule to make the desired binary excecutable
 $(TARGET) : $(PRJ_OBJECTS)
 	$(CC) $(CFLAGS) $(INCLUDES) $(SPL_LIB) -L $(SPL_LIB_DIR) $^ -o $(TARGET)
+
+# The rule to make and flash using stm8flash. Only works on linux as stm8flash not available on windows
+flash: $(TARGET)
+	stm8flash -c$(PROGRAMMER) -p$(PROCESSOR) -w $(TARGET)
 
 # Rule to delete all the build files
 clean:

@@ -45,9 +45,10 @@ PRJ_SOURCE := $(wildcard $(PRJ_SRC_DIR)/*.c)
 PRJ_OBJECTS := $(PRJ_SOURCE:$(PRJ_SRC_DIR)/%.c=./$(BUILD_DIR)/%.rel)
 
 # Set SPL folder and files
+SPL_MAKE_DIR := ./libs/STM8S_StdPeriph_Driver/
 SPL_INC_DIR := ./libs/STM8S_StdPeriph_Driver/inc
-SPL_LIB_DIR := ./libs
-SPL_LIB := projectlib.lib
+SPL_LIB_DIR := ./libs/STM8S_StdPeriph_Driver/
+SPL_LIB := spl.lib
 
 # Add paths for the preprocessor to search for the .h files to #include
 INCLUDES := -I$(PRJ_INC_DIR) -I$(SPL_INC_DIR)
@@ -61,11 +62,14 @@ VPATH=$(PRJ_SRC_DIR)
 .PHONY: clean
 
 # The default make target, as it is listed first
-all: $(BUILD_DIR) $(TARGET)
+all: $(BUILD_DIR) $(TARGET) $(SPL_LIB)
 
 # Make rule to create the build directory if it doesnt exist
 $(BUILD_DIR) :
 	mkdir $(BUILD_DIR)
+
+$(SPL_LIB):
+	make -C $(SPL_MAKE_DIR) OS=$(OS) DEVICE=$(DEVICE)
 
 # Below is a pattern rule to make all the required object files (.rel) from their .c files.
 # Any targets that match ./$(BUILD_DIR)/%.rel are built from their %.c match (where % is the stem match)
@@ -76,7 +80,7 @@ $(BUILD_DIR) :
 	$(CC) $(CFLAGS) $(INCLUDES) -c $? -o ./$(BUILD_DIR)/
 
 # The rule to make the desired binary excecutable
-$(TARGET) : $(PRJ_OBJECTS)
+$(TARGET) : $(PRJ_OBJECTS) $(SPL_LIB) 
 	$(CC) $(CFLAGS) $(INCLUDES) $(SPL_LIB) -L $(SPL_LIB_DIR) $^ -o $(TARGET)
 
 # The rule to make and flash using stm8flash. Only works on linux as stm8flash not available on windows
@@ -86,6 +90,7 @@ flash: $(TARGET)
 # Rule to delete all the build files
 clean:
 	$(RM_CMD) $(BUILD_DIR)
+	make -C $(SPL_MAKE_DIR) OS=$(OS) DEVICE=$(DEVICE) clean
 
 
 

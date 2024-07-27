@@ -20,13 +20,10 @@
  *********************************************************************/
 
 
-#include "stm8s.h"
-#include "stm8s_gpio.h"
+#include "common.h"
+#include "gpio.h"
 
-#define LED_PORT  GPIOG
-#define LED_PIN   GPIO_PIN_0 // This is pin PG0, or pin 35 on the schematic.
-
-#define DELAYTIME 0xF000
+#define DELAYTIME 0xF00
 void delay (uint16_t count);
 
 void assert_failed(uint8_t* file, uint32_t line);

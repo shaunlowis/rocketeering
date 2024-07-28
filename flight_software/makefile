@@ -15,9 +15,9 @@ TARGET := ./$(BUILD_DIR)/flight_software.ihx
 
 # The family of our microcontroller, for stm8s.h. Could be done in my application code instead
 # Defines the compiler for stm8s.h. Could be done in my application code instead
-# Flags for the sdcc compiler. -lstm8 and -mstm8 let it know its compiling for an stm8 target
+# Flags for the sdcc compiler. see ./docs/sdccman.pdf for details
 DEVICE := STM8S007
-COMPILER := __CSMC__
+COMPILER := SDCC
 CFLAGS := -mstm8 -lstm8 -D$(DEVICE) -D$(COMPILER)
 
 # TODO: Uncomment the one you are using

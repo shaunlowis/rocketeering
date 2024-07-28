@@ -2,8 +2,8 @@
   ******************************************************************************
   * @file    stm8s_clk.c
   * @author  MCD Application Team
-  * @version V2.3.0
-  * @date    16-June-2017
+  * @version V2.2.0
+  * @date    30-September-2014
   * @brief   This file contains all the functions for the CLK peripheral.
    ******************************************************************************
   * @attention
@@ -45,7 +45,7 @@
   * @{
   */
 
-CONST uint8_t HSIDivFactor[4] = {1, 2, 4, 8}; /*!< Holds the different HSI Divider factors */
+CONST uint8_t HSIDivExp[4] = {0, 1, 2, 3}; /*!< Holds the HSI Divider exponents */
 CONST uint8_t CLKPrescTable[8] = {1, 2, 4, 8, 10, 16, 20, 40}; /*!< Holds the different CLK prescaler values */
 
 /**
@@ -300,7 +300,7 @@ void CLK_PeripheralClockConfig(CLK_Peripheral_TypeDef CLK_Peripheral, Functional
   * It can be set of the values of @ref CLK_SwitchMode_TypeDef
   * @param   CLK_NewClock choice of the future clock.
   * It can be set of the values of @ref CLK_Source_TypeDef
-  * @param   ITState Enable or Disable the Clock Switch interrupt.
+  * @param   NewState Enable or Disable the Clock Switch interrupt.
   * @param   CLK_CurrentClockState current clock to switch OFF or to keep ON.
   * It can be set of the values of @ref CLK_CurrentClockState_TypeDef
   * @note LSI selected as master clock source only if LSI_EN option bit is set.
@@ -494,7 +494,7 @@ void CLK_ITConfig(CLK_IT_TypeDef CLK_IT, FunctionalState NewState)
 
 /**
   * @brief  Configures the HSI and CPU clock dividers.
-  * @param  CLK_Prescaler Specifies the HSI or CPU clock divider to apply.
+  * @param   ClockPrescaler Specifies the HSI or CPU clock divider to apply.
   * @retval None
   */
 void CLK_SYSCLKConfig(CLK_Prescaler_TypeDef CLK_Prescaler)
@@ -570,7 +570,7 @@ uint32_t CLK_GetClockFreq(void)
 {
   uint32_t clockfrequency = 0;
   CLK_Source_TypeDef clocksource = CLK_SOURCE_HSI;
-  uint8_t tmp = 0, presc = 0;
+  uint8_t tmp = 0;
   
   /* Get CLK source. */
   clocksource = (CLK_Source_TypeDef)CLK->CMSR;
@@ -579,8 +579,7 @@ uint32_t CLK_GetClockFreq(void)
   {
     tmp = (uint8_t)(CLK->CKDIVR & CLK_CKDIVR_HSIDIV);
     tmp = (uint8_t)(tmp >> 3);
-    presc = HSIDivFactor[tmp];
-    clockfrequency = HSI_VALUE / presc;
+    clockfrequency = HSI_VALUE >> HSIDivExp[tmp];
   }
   else if ( clocksource == CLK_SOURCE_LSI)
   {

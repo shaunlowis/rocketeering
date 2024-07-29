@@ -1,0 +1,6 @@
+{
+    "files.associations": {
+        "stm8s_clk.h": "c",
+        "common.h": "c"
+    }
+}

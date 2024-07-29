@@ -18,7 +18,7 @@ TARGET := ./$(BUILD_DIR)/flight_software.ihx
 # Flags for the sdcc compiler. see ./docs/sdccman.pdf for details
 DEVICE := STM8S007
 COMPILER := SDCC
-CFLAGS := -mstm8 -lstm8 -D$(DEVICE) -D$(COMPILER)
+CFLAGS := -mstm8 -lstm8 -D$(DEVICE) -D$(COMPILER) --verbose
 
 # TODO: Uncomment the one you are using
 OS := windows

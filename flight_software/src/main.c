@@ -1,6 +1,7 @@
 #include "common.h"
 #include "gpio.h"
 #include "ebyte_radio.h"
+#include "SPL07_pressure.h"
 
 void assert_failed(uint8_t* file, uint32_t line);
 void clock_config(void);
@@ -10,12 +11,15 @@ void main(void)
   clock_config();
   GPIO_Init(LED_PORT, LED_PIN, GPIO_MODE_OUT_PP_LOW_FAST);
   radio_uart_init();
+  spl07_init();
 
   while (1){
     GPIO_WriteReverse(LED_PORT, LED_PIN);
+    delay_ms(1000);
     char buff[] = "Hello world!\n";
     radio_transmit_string(buff, sizeof(buff)/sizeof(buff[0]));
-    delay_ms(1000);
+    spl07_test();
+    
   }
 }
 
@@ -41,11 +45,14 @@ void assert_failed(uint8_t* file, uint32_t line)
 { 
   /* User can add his own implementation to report the file name and line number,
      ex: printf("Wrong parameters value: file %s on line %d\r\n", file, line) */
-  (void) file; // As they are unused, to prevent compiler warning. delete this line if used
-  (void) line; // As they are unused, to prevent compiler warning. delete this line if used
   /* Infinite loop */
   while (1)
   {
+    char buff[1000];
+    sprintf(buff, "Wrong parameters value: file %s on line %d\r\n", file, line);
+    radio_transmit_string(buff, sizeof(buff)/sizeof(buff[0]));
+    GPIO_WriteReverse(LED_PORT, LED_PIN);
+    delay_ms(100);
   }
 }
 #endif

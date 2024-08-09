@@ -16,8 +16,7 @@ void main(void)
   while (1){
     GPIO_WriteReverse(LED_PORT, LED_PIN);
     delay_ms(1000);
-    char buff[] = "Hello world!\n";
-    radio_transmit_string(buff, sizeof(buff)/sizeof(buff[0]));
+    radio_print("Hello world!\r\n");
     spl07_test();
     
   }
@@ -30,6 +29,15 @@ void clock_config(void)
   TIM4_Config();
 }
 
+void print_bits_of_byte(uint8_t byte)
+{
+  char bits[9];
+  for (int i = 0; i < 8; i++)
+  {
+    bits[i] = (byte & (1 << (7-i))) ? '1' : '0';
+  }
+  radio_print(bits);
+}
 
 
 #ifdef USE_FULL_ASSERT
@@ -50,7 +58,7 @@ void assert_failed(uint8_t* file, uint32_t line)
   {
     char buff[1000];
     sprintf(buff, "Wrong parameters value: file %s on line %d\r\n", file, line);
-    radio_transmit_string(buff, sizeof(buff)/sizeof(buff[0]));
+    radio_print(buff);
     GPIO_WriteReverse(LED_PORT, LED_PIN);
     delay_ms(100);
   }

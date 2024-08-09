@@ -21,8 +21,8 @@ COMPILER := SDCC
 CFLAGS := -mstm8 -lstm8 -D$(DEVICE) -D$(COMPILER) --verbose
 
 # TODO: Uncomment the one you are using
-OS := windows
-#OS := linux
+#OS := windows
+OS := linux
 
 # for flashing
 PROGRAMMER=stlinkv2
@@ -32,7 +32,7 @@ PROCESSOR := stm8s007c8
 ifeq ($(OS), linux)
 	RM_CMD = rm -r
 else ifeq ($(OS), windows)
-	RM_CMD = rmdir /Q /S
+	RM_CMD = rmdir /s /q
 endif
 
 # Set project folder and files 

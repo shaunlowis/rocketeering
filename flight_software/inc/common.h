@@ -11,3 +11,5 @@
 #include "ebyte_radio.h"
 
 #define F_CPU 16000000UL // 16 MHz 
+
+void print_bits_of_byte(uint8_t byte);

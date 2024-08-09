@@ -8,13 +8,15 @@ void radio_uart_init(void)
 }
 
 
-void radio_transmit_string(char buff[], int len)
+void radio_print(char buff[])
 {
-    for (int i=0; i<len; i++)
+    int i = 0;
+    while (buff[i] != '\0')
     {
         UART1_SendData8(buff[i]);
         // Blocks until transmit data register is empty, and ready for another one
         while(!UART1_GetFlagStatus(UART1_FLAG_TXE)) continue;
+        i++;
     }
     // Now wait for transmission to be complete
     while(!UART1_GetFlagStatus(UART1_FLAG_TC)) continue;

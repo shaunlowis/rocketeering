@@ -10,6 +10,8 @@
 #include "delay.h"
 #include "ebyte_radio.h"
 
+#define DEBUG_ENABLE
+
 #define F_CPU 16000000UL // 16 MHz 
 
 void print_bits_of_byte(uint8_t byte);

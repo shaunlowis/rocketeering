@@ -536,7 +536,7 @@ void I2C_SendData(uint8_t Data)
  *     Using the function I2C_GetFlagStatus() which simply returns the status of
  *     one single flag (ie. I2C_FLAG_RXNE ...).
  *     - When to use:
- *        - This function could be used for specific applications or in debug phase.
+ *        - This function could be used for specific applications or in DEBUG_ENABLE phase.
  *        - It is suitable when only one flag checking is needed (most I2C events
  *          are monitored through multiple flags).
  *     - Limitations:

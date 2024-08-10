@@ -10,6 +10,7 @@ void radio_uart_init(void)
 
 void radio_print(char buff[])
 {
+    #ifdef DEBUG_ENABLE
     int i = 0;
     while (buff[i] != '\0')
     {
@@ -21,4 +22,5 @@ void radio_print(char buff[])
     // Now wait for transmission to be complete
     while(!UART1_GetFlagStatus(UART1_FLAG_TC)) continue;
     delay_ms(100); // Needed to send one after another
+    #endif
 }

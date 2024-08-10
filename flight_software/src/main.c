@@ -15,9 +15,9 @@ void main(void)
 
   while (1){
     GPIO_WriteReverse(LED_PORT, LED_PIN);
-    delay_ms(1000);
     radio_print("Hello world!\r\n");
     spl07_test();
+    delay_ms(1000);
     
   }
 }

@@ -4,24 +4,56 @@
 #define SPL07_CHIP_ADDR (0x77 << 1) // Left shifted by 1 as SPL expects it in this form
 
 #define SPL07_MEAS_CFG_ADDR 0x08
+#define SPL07_MEAS_CFG_W_MASK 0x07
+
+#define SPL07_PRS_CFG_ADDR 0x06
+#define SPL07_TMP_CFG_ADDR 0x07
 
 #define CONTINUOUS_PRESS_TEMP 0x07
+#define PRS_16_SPS_8X_OVERSAMPLING 0x01000011
+#define TMP_16_SPS_1X_OVERSAMPLING 0x01000000
 
 void spl07_init(void)
 {
     I2C_Cmd(ENABLE);
     I2C_Init(80000, 0x69, I2C_DUTYCYCLE_2, I2C_ACK_CURR, I2C_ADDMODE_7BIT, F_CPU/1000000);
 
+    uint8_t res = 0;
+    
     // Configure pressure measurement PRS_CFG
+    res = i2c_write_and_verify_byte(SPL07_CHIP_ADDR, SPL07_PRS_CFG_ADDR, PRS_16_SPS_8X_OVERSAMPLING, 0xFF);
+    if (res==I2C_FAILURE) radio_print("Failure writing and verifying byte\r\n");
 
     // Configure temperature measurement TMP_CFG
+    res = i2c_write_and_verify_byte(SPL07_CHIP_ADDR, SPL07_TMP_CFG_ADDR, TMP_16_SPS_1X_OVERSAMPLING, 0xFF);
+    if (res==I2C_FAILURE) radio_print("Failure writing and verifying byte\r\n");
 
     // Set measurement mode MEAS_CFG
-    i2c_write_byte(SPL07_CHIP_ADDR, SPL07_MEAS_CFG_ADDR, CONTINUOUS_PRESS_TEMP);
-    char ret_val[1];
-    i2c_read(SPL07_CHIP_ADDR, SPL07_MEAS_CFG_ADDR, ret_val, 1);
-    print_bits_of_byte(ret_val[0]);
-    radio_print("\r\n");
+    res = i2c_write_and_verify_byte(SPL07_CHIP_ADDR, SPL07_MEAS_CFG_ADDR, CONTINUOUS_PRESS_TEMP, SPL07_MEAS_CFG_W_MASK);
+    if (res==I2C_FAILURE) radio_print("Failure writing and verifying byte\r\n");
+
+}
+
+uint8_t i2c_write_and_verify_byte(uint8_t device_address, uint8_t register_address, uint8_t byte, uint8_t write_mask)
+{
+    i2c_write_byte(device_address, register_address, byte);
+    uint8_t ret_val[1];
+    i2c_read(device_address, register_address, ret_val, 1);
+
+    for (int i=0; i<8; i++)
+    {   
+        if ((write_mask >> i) & 1) // Need to check the bit
+        {
+            uint8_t bit_mask = 1<<i;
+            if ((ret_val[0] & bit_mask) != (byte & bit_mask))
+            {
+                return I2C_FAILURE;
+            }
+        }
+    }
+
+    return I2C_SUCCESS;
+
 }
 
 void i2c_read(uint8_t device_address, uint8_t register_address, uint8_t bytes[], uint8_t num_bytes)

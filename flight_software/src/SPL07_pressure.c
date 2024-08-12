@@ -5,13 +5,21 @@
 
 #define SPL07_MEAS_CFG_ADDR 0x08
 #define SPL07_MEAS_CFG_W_MASK 0x07
-
 #define SPL07_PRS_CFG_ADDR 0x06
 #define SPL07_TMP_CFG_ADDR 0x07
+#define SPL07_PRS_B2_ADDR 0x00
 
 #define CONTINUOUS_PRESS_TEMP 0x07
 #define PRS_16_SPS_8X_OVERSAMPLING 0x01000011
 #define TMP_16_SPS_1X_OVERSAMPLING 0x01000000
+
+#define NUM_PRESSURE_BYTES 3
+#define NUM_TEMP_BYTES 3
+
+void i2c_write_byte(uint8_t device_address, uint8_t register_address, uint8_t byte);
+void i2c_read(uint8_t device_address, uint8_t register_address, uint8_t bytes[], uint8_t num_bytes);
+uint8_t i2c_write_and_verify_byte(uint8_t device_address, uint8_t register_address, uint8_t byte, uint8_t write_mask);
+
 
 void spl07_init(void)
 {
@@ -125,4 +133,18 @@ void spl07_test(void)
     print_bits_of_byte(bytes[0]);
     print_bits_of_byte(bytes[1]);
     radio_print("\r\n");    
+}
+
+int spl07_read_pressure()
+{
+    uint8_t bytes[NUM_PRESSURE_BYTES];
+    i2c_read(SPL07_CHIP_ADDR, SPL07_PRS_B2_ADDR, bytes, NUM_PRESSURE_BYTES);
+    print_bits_of_byte(bytes[0]);
+    print_bits_of_byte(bytes[1]);
+    print_bits_of_byte(bytes[2]);
+
+    int32_t press_raw = (bytes[0] << 16) | (bytes[1] << 8) | bytes[2];
+    char buff[256];
+    sprintf(buff, "  Pressure = %d\r\n", press_raw);
+    radio_print(buff);
 }

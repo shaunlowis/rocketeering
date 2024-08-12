@@ -15,8 +15,8 @@ void main(void)
 
   while (1){
     GPIO_WriteReverse(LED_PORT, LED_PIN);
-    radio_print("Hello world!\r\n");
-    spl07_test();
+    //radio_print("Hello world!\r\n");
+    spl07_read_pressure();
     delay_ms(1000);
     
   }
@@ -36,6 +36,7 @@ void print_bits_of_byte(uint8_t byte)
   {
     bits[i] = (byte & (1 << (7-i))) ? '1' : '0';
   }
+  bits[9] = '\0';
   radio_print(bits);
 }
 

@@ -20,20 +20,10 @@ DEVICE := STM8S007
 COMPILER := SDCC
 CFLAGS := -mstm8 -lstm8 -D$(DEVICE) -D$(COMPILER) --verbose
 
-# TODO: Uncomment the one you are using
-#OS := windows
-OS := linux
-
 # for flashing
 PROGRAMMER=stlinkv2
 PROCESSOR := stm8s007c8
 
-# Sets the variable RM_CMD to the linux or windows command accordingly
-ifeq ($(OS), linux)
-	RM_CMD = rm -r
-else ifeq ($(OS), windows)
-	RM_CMD = rmdir /s /q
-endif
 
 # Set project folder and files 
 PRJ_SRC_DIR := ./src
@@ -69,7 +59,7 @@ $(BUILD_DIR) :
 	mkdir $(BUILD_DIR)
 
 $(SPL_LIB):
-	make -C $(SPL_MAKE_DIR) OS=$(OS) DEVICE=$(DEVICE)
+	make -C $(SPL_MAKE_DIR) DEVICE=$(DEVICE)
 
 # Below is a pattern rule to make all the required object files (.rel) from their .c files.
 # Any targets that match ./$(BUILD_DIR)/%.rel are built from their %.c match (where % is the stem match)
@@ -89,8 +79,8 @@ flash: $(TARGET)
 
 # Rule to delete all the build files
 clean:
-	$(RM_CMD) $(BUILD_DIR)
-	make -C $(SPL_MAKE_DIR) OS=$(OS) DEVICE=$(DEVICE) clean
+	rm -r $(BUILD_DIR)
+	make -C $(SPL_MAKE_DIR) DEVICE=$(DEVICE) clean
 
 
 

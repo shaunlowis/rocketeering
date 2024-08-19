@@ -11,11 +11,12 @@ void main(void)
   clock_config();
   GPIO_Init(LED_PORT, LED_PIN, GPIO_MODE_OUT_PP_LOW_FAST);
   radio_uart_init();
+  radio_print("Radio initialized\r\n");
   spl07_init();
 
   while (1){
     GPIO_WriteReverse(LED_PORT, LED_PIN);
-    //radio_print("Hello world!\r\n");
+    
     spl07_read_pressure();
     delay_ms(1000);
     

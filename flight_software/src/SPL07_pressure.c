@@ -31,6 +31,14 @@ void spl07_init(void)
     I2C_Cmd(ENABLE);
     I2C_Init(80000, 0x69, I2C_DUTYCYCLE_2, I2C_ACK_CURR, I2C_ADDMODE_7BIT, F_CPU/1000000);
 
+    spl07_read_cal_coefs();
+    for (int i=0; i<NUM_COEF_REGS; i++)
+    {
+        print_bits_of_byte(coef_arr[i]);
+        radio_print("\r\n");
+    }
+    while(1) continue;
+
     uint8_t res = 0;
     
     // Configure pressure measurement PRS_CFG
@@ -44,14 +52,6 @@ void spl07_init(void)
     // Set measurement mode MEAS_CFG
     res = i2c_write_and_verify_byte(SPL07_CHIP_ADDR, SPL07_MEAS_CFG_ADDR, CONTINUOUS_PRESS_TEMP, SPL07_MEAS_CFG_W_MASK);
     if (res==I2C_FAILURE) radio_print("Failure writing and verifying byte\r\n");
-
-    spl07_read_cal_coefs();
-    for (int i=0; i<NUM_COEF_REGS; i++)
-    {
-        print_bits_of_byte(coef_arr[i]);
-        radio_print("\r\n");
-    }
-    while(1) continue;
 }
 
 uint8_t i2c_write_and_verify_byte(uint8_t device_address, uint8_t register_address, uint8_t byte, uint8_t write_mask)
@@ -112,6 +112,7 @@ void i2c_read(uint8_t device_address, uint8_t register_address, uint8_t bytes[],
     I2C_AcknowledgeConfig(I2C_ACK_NONE); // Send a nack on next byte recieved to let slaveknow we are done
     while(!I2C_CheckEvent(I2C_EVENT_MASTER_BYTE_RECEIVED)) continue;
     bytes[num_bytes-1] = I2C_ReceiveData();
+    
     I2C_GenerateSTOP(ENABLE);
 }
 
@@ -152,10 +153,9 @@ void spl07_read_cal_coefs(void)
     #define SPL07_C0_REG_ADDR 0x10
     for (int i=0; i<NUM_COEF_REGS; i++)
     {
-        i2c_read(SPL07_CHIP_ADDR, SPL07_C0_REG_ADDR + i, coef_arr[i], 1);
-        char buff[500];
-        sprintf(buff, "Reg %d value %d\r\n", SPL07_C0_REG_ADDR + i, coef_arr[i]);
-        radio_print(buff);
+        //uint8_t temp_byte = 0;
+        i2c_read(SPL07_CHIP_ADDR, SPL07_C0_REG_ADDR + i, &coef_arr[i], 1);
+        //coef_arr[i] = temp_byte;
     }
 }
 

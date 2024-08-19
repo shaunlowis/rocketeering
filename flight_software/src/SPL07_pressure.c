@@ -1,3 +1,4 @@
+// https://mm.digikey.com/Volume0/opasdata/d220001/medias/docus/4843/SPL07-003.pdf 
 // https://github.com/betaflight/betaflight/blob/6dcc2689182aa22707dce16448c57b40af9dd957/src/main/drivers/barometer/barometer_dps310.c#L73
 
 #include "SPL07_pressure.h"
@@ -19,7 +20,28 @@
 #define NUM_TEMP_BYTES 3
 #define NUM_COEF_REGS 21
 
-uint8_t coef_arr[NUM_COEF_REGS];
+
+typedef struct {
+    int16_t c0;     // 12bit
+    int16_t c1;     // 12bit
+    int32_t c00;    // 20bit
+    int32_t c10;    // 20bit
+    int16_t c01;    // 16bit
+    int16_t c11;    // 16bit
+    int16_t c20;    // 16bit
+    int16_t c21;    // 16bit
+    int16_t c30;    // 16bit
+    int16_t c31;    // 12bit
+    int16_t c40;    // 12bit
+} calibrationCoefficients_t;
+
+typedef struct {
+    calibrationCoefficients_t   calib;
+    float                       pressure;       // Pa
+    float                       temperature;    // DegC
+} baroState_t;
+
+static baroState_t  baroState;
 
 void i2c_write_byte(uint8_t device_address, uint8_t register_address, uint8_t byte);
 void i2c_read(uint8_t device_address, uint8_t register_address, uint8_t bytes[], uint8_t num_bytes);
@@ -32,11 +54,7 @@ void spl07_init(void)
     I2C_Init(80000, 0x69, I2C_DUTYCYCLE_2, I2C_ACK_CURR, I2C_ADDMODE_7BIT, F_CPU/1000000);
 
     spl07_read_cal_coefs();
-    for (int i=0; i<NUM_COEF_REGS; i++)
-    {
-        print_bits_of_byte(coef_arr[i]);
-        radio_print("\r\n");
-    }
+
     while(1) continue;
 
     uint8_t res = 0;
@@ -150,13 +168,49 @@ void spl07_test(void)
 
 void spl07_read_cal_coefs(void)
 {
+    // First extract all the registers
     #define SPL07_C0_REG_ADDR 0x10
+    uint8_t coef_arr[NUM_COEF_REGS];
+
     for (int i=0; i<NUM_COEF_REGS; i++)
     {
-        //uint8_t temp_byte = 0;
         i2c_read(SPL07_CHIP_ADDR, SPL07_C0_REG_ADDR + i, &coef_arr[i], 1);
-        //coef_arr[i] = temp_byte;
     }
+
+    // Now sort them into their coef vals, see section 7.11 of datasheet
+
+    // 0x11 c0 [3:0] + 0x10 c0 [11:4]
+    baroState.calib.c0 = getTwosComplement(((uint32_t)coef_arr[0] << 4) | (((uint32_t)coef_arr[1] >> 4) & 0x0F), 12);
+
+    // 0x11 c1 [11:8] + 0x12 c1 [7:0]
+    baroState.calib.c1 = getTwosComplement((((uint32_t)coef_arr[1] & 0x0F) << 8) | (uint32_t)coef_arr[2], 12);
+
+    // 0x13 c00 [19:12] + 0x14 c00 [11:4] + 0x15 c00 [3:0]
+    baroState.calib.c00 = getTwosComplement(((uint32_t)coef_arr[3] << 12) | ((uint32_t)coef_arr[4] << 4) | (((uint32_t)coef_arr[5] >> 4) & 0x0F), 20);
+
+    // 0x15 c10 [19:16] + 0x16 c10 [15:8] + 0x17 c10 [7:0]
+    baroState.calib.c10 = getTwosComplement((((uint32_t)coef_arr[5] & 0x0F) << 16) | ((uint32_t)coef_arr[6] << 8) | (uint32_t)coef_arr[7], 20);
+
+    // 0x18 c01 [15:8] + 0x19 c01 [7:0]
+    baroState.calib.c01 = getTwosComplement(((uint32_t)coef_arr[8] << 8) | (uint32_t)coef_arr[9], 16);
+
+    // 0x1A c11 [15:8] + 0x1B c11 [7:0]
+    baroState.calib.c11 = getTwosComplement(((uint32_t)coef_arr[10] << 8) | (uint32_t)coef_arr[11], 16);
+
+    // 0x1C c20 [15:8] + 0x1D c20 [7:0]
+    baroState.calib.c20 = getTwosComplement(((uint32_t)coef_arr[12] << 8) | (uint32_t)coef_arr[13], 16);
+
+    // 0x1E c21 [15:8] + 0x1F c21 [7:0]
+    baroState.calib.c21 = getTwosComplement(((uint32_t)coef_arr[14] << 8) | (uint32_t)coef_arr[15], 16);
+
+    // 0x20 c30 [15:8] + 0x21 c30 [7:0]
+    baroState.calib.c30 = getTwosComplement(((uint32_t)coef_arr[16] << 8) | (uint32_t)coef_arr[17], 16);
+
+    // 0x23 c31 [3:0] + 0x22 c31 [11:4]
+    baroState.calib.c31 = getTwosComplement(((uint32_t)coef_arr[18] << 4) | (((uint32_t)coef_arr[19] >> 4) & 0x0F), 12);
+
+    // 0x23 c40 [11:8] + 0x24 c40 [7:0]
+    baroState.calib.c40 = getTwosComplement((((uint32_t)coef_arr[19] & 0x0F) << 8) | (uint32_t)coef_arr[20], 12);
 }
 
 int spl07_read_pressure()
@@ -171,4 +225,5 @@ int spl07_read_pressure()
     char buff[256];
     sprintf(buff, "  Pressure = %d\r\n", press_raw);
     radio_print(buff);
+    return 1;
 }

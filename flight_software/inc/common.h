@@ -14,4 +14,5 @@
 
 #define F_CPU 16000000UL // 16 MHz 
 
+int32_t getTwosComplement(uint32_t raw, uint8_t length);
 void print_bits_of_byte(uint8_t byte);

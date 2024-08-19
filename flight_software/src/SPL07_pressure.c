@@ -1,3 +1,5 @@
+// https://github.com/betaflight/betaflight/blob/6dcc2689182aa22707dce16448c57b40af9dd957/src/main/drivers/barometer/barometer_dps310.c#L73
+
 #include "SPL07_pressure.h"
 #include "common.h"
 
@@ -15,11 +17,14 @@
 
 #define NUM_PRESSURE_BYTES 3
 #define NUM_TEMP_BYTES 3
+#define NUM_COEF_REGS 21
+
+uint8_t coef_arr[NUM_COEF_REGS];
 
 void i2c_write_byte(uint8_t device_address, uint8_t register_address, uint8_t byte);
 void i2c_read(uint8_t device_address, uint8_t register_address, uint8_t bytes[], uint8_t num_bytes);
 uint8_t i2c_write_and_verify_byte(uint8_t device_address, uint8_t register_address, uint8_t byte, uint8_t write_mask);
-
+void spl07_read_cal_coefs(void);
 
 void spl07_init(void)
 {
@@ -40,6 +45,13 @@ void spl07_init(void)
     res = i2c_write_and_verify_byte(SPL07_CHIP_ADDR, SPL07_MEAS_CFG_ADDR, CONTINUOUS_PRESS_TEMP, SPL07_MEAS_CFG_W_MASK);
     if (res==I2C_FAILURE) radio_print("Failure writing and verifying byte\r\n");
 
+    spl07_read_cal_coefs();
+    for (int i=0; i<NUM_COEF_REGS; i++)
+    {
+        print_bits_of_byte(coef_arr[i]);
+        radio_print("\r\n");
+    }
+    while(1) continue;
 }
 
 uint8_t i2c_write_and_verify_byte(uint8_t device_address, uint8_t register_address, uint8_t byte, uint8_t write_mask)
@@ -135,6 +147,18 @@ void spl07_test(void)
     radio_print("\r\n");    
 }
 
+void spl07_read_cal_coefs(void)
+{
+    #define SPL07_C0_REG_ADDR 0x10
+    for (int i=0; i<NUM_COEF_REGS; i++)
+    {
+        i2c_read(SPL07_CHIP_ADDR, SPL07_C0_REG_ADDR + i, coef_arr[i], 1);
+        char buff[500];
+        sprintf(buff, "Reg %d value %d\r\n", SPL07_C0_REG_ADDR + i, coef_arr[i]);
+        radio_print(buff);
+    }
+}
+
 int spl07_read_pressure()
 {
     uint8_t bytes[NUM_PRESSURE_BYTES];
@@ -143,7 +167,7 @@ int spl07_read_pressure()
     print_bits_of_byte(bytes[1]);
     print_bits_of_byte(bytes[2]);
 
-    int32_t press_raw = (bytes[0] << 16) | (bytes[1] << 8) | bytes[2];
+    int press_raw = getTwosComplement(((uint32_t)bytes[0] << 16) | ((uint32_t)bytes[1] << 8) | (uint32_t)bytes[2], 24);
     char buff[256];
     sprintf(buff, "  Pressure = %d\r\n", press_raw);
     radio_print(buff);

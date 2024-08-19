@@ -40,6 +40,16 @@ void print_bits_of_byte(uint8_t byte)
   radio_print(bits);
 }
 
+int32_t getTwosComplement(uint32_t raw, uint8_t length)
+{
+    if (raw & ((int)1 << (length - 1))) {
+        return ((int32_t)raw) - ((int32_t)1 << length);
+    }
+    else {
+        return raw;
+    }
+}
+
 
 #ifdef USE_FULL_ASSERT
 

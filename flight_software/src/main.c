@@ -17,7 +17,7 @@ void main(void)
   while (1){
     GPIO_WriteReverse(LED_PORT, LED_PIN);
     
-    spl07_read_pressure();
+    spl07_update_baro();
     delay_ms(1000);
     
   }

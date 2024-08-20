@@ -3,6 +3,7 @@
         "stm8s_clk.h": "c",
         "common.h": "c",
         "spl07_pressure.h": "c",
-        "ebyte_radio.h": "c"
+        "ebyte_radio.h": "c",
+        "stdint.h": "c"
     }
 }

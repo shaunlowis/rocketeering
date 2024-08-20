@@ -6,7 +6,7 @@ endif
 # Defines the compiler for stm8s.h. Could be done in my application code instead
 # Flags for the sdcc compiler. -lstm8 and -mstm8 let it know its compiling for an stm8 target
 COMPILER := SDCC
-CFLAGS := -mstm8 -lstm8 -D$(DEVICE) -D$(COMPILER)
+CFLAGS := -mstm8 -lstm8 -D$(DEVICE) -D$(COMPILER) -DUSE_FLOATS=1
 #specify compiler
 CC:=sdcc
 #specify library formatter

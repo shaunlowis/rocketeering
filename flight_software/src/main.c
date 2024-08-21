@@ -13,11 +13,12 @@ void main(void)
   radio_uart_init();
   radio_print("Radio initialized\r\n");
   spl07_init();
-
+  delay_ms(1000);
+  spl07_update_baro();
   while (1){
     GPIO_WriteReverse(LED_PORT, LED_PIN);
     
-    spl07_update_baro();
+    
     delay_ms(1000);
     
   }
@@ -44,6 +45,7 @@ void print_bits_of_byte(uint8_t byte)
 int32_t getTwosComplement(uint32_t raw, uint8_t length)
 {
     if (raw & ((int)1 << (length - 1))) {
+        radio_print("Negative!\r\n");
         return ((int32_t)raw) - ((int32_t)1 << length);
     }
     else {

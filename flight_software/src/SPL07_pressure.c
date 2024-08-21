@@ -245,46 +245,63 @@ void spl07_read_cal_coefs(void)
 
     // 0x23 c40 [11:8] + 0x24 c40 [7:0]
     baroState.calib.c40 = getTwosComplement((((uint32_t)coef_arr[19] & 0x0F) << 8) | (uint32_t)coef_arr[20], 12);
-
-    spl07_print_cal_coefs();
 }
 
 void spl07_update_baro()
 {
     // Choose compensation scale factors kT (for temperature) and kP (for pressure) based on the chosen precision rate.
     // The scaling factors are listed in Table 9 of the datasheet, and the compensation factors are in table 4.
-    static float kP = 7864320; // 8 times
-    static float kT = 524288; // 1 times
+    float kP = 7864320.0f; // 8 times
+    float kT = 524288.0f; // 1 times
 
     uint8_t buf[NUM_PRESSURE_AND_TEMP_BYTES];
     i2c_read(SPL07_CHIP_ADDR, SPL07_PRS_B2_ADDR, buf, NUM_PRESSURE_AND_TEMP_BYTES);
+    for (int i=0; i<NUM_PRESSURE_AND_TEMP_BYTES; i++)
+    {
+        print_bits_of_byte(buf[i]);
+        radio_print(" ");
+    }
+    radio_print("\r\n");
 
     // Read the pressure and temperature result from the registers
-    const int32_t Praw = getTwosComplement((buf[0] << 16) + (buf[1] << 8) + buf[2], 24);
-    const int32_t Traw = getTwosComplement((buf[3] << 16) + (buf[4] << 8) + buf[5], 24);
+    uint32_t num = ((uint32_t)buf[0] << 16) + ((uint32_t)buf[1] << 8) + (uint32_t)buf[2];
+    char pbuf[256];
+    sprintf(pbuf, "Pressure reg: %"PRIu32"\r\n", num);
+    radio_print(pbuf);
+    radio_print("Praw compli \r\n");
+    int32_t Praw = getTwosComplement(((uint32_t)buf[0] << 16) + ((uint32_t)buf[1] << 8) + (uint32_t)buf[2], 24);
+    radio_print("Traw compli \r\n");
+    int32_t Traw = getTwosComplement(((uint32_t)buf[3] << 16) + ((uint32_t)buf[4] << 8) + (uint32_t)buf[5], 24);
 
     // Calculate scaled measurement results.
-    const float Praw_sc = Praw / kP;
-    const float Traw_sc = Traw / kT;
+    float Praw_sc = Praw / kP;
+    float Traw_sc = Traw / kT;
 
     // Calculate compensated measurement results
-    const float c0 = baroState.calib.c0;
-    const float c1 = baroState.calib.c1;
-    const float c00 = baroState.calib.c00;
-    const float c01 = baroState.calib.c01;
-    const float c10 = baroState.calib.c10;
-    const float c11 = baroState.calib.c11;
-    const float c20 = baroState.calib.c20;
-    const float c21 = baroState.calib.c21;
-    const float c30 = baroState.calib.c30;
-    const float c31 = baroState.calib.c31;
-    const float c40 = baroState.calib.c40;
+    float c0 = baroState.calib.c0;
+    float c1 = baroState.calib.c1;
+    float c00 = baroState.calib.c00;
+    float c01 = baroState.calib.c01;
+    float c10 = baroState.calib.c10;
+    float c11 = baroState.calib.c11;
+    float c20 = baroState.calib.c20;
+    float c21 = baroState.calib.c21;
+    float c30 = baroState.calib.c30;
+    float c31 = baroState.calib.c31;
+    float c40 = baroState.calib.c40;
 
     // See section 4.6 Calibration and Measurement Compensation of datasheet
     baroState.pressure = c00 + Praw_sc * (c10 + Praw_sc * (c20 + Praw_sc * (c30 + Praw_sc * c40))) + Traw_sc * c01 + Traw_sc * Praw_sc * (c11 + Praw_sc * (c21 + Praw_sc * c31));
     baroState.temperature = c0 * 0.5f + c1 * Traw_sc;
 
-    char pbuf[256];
+    
+    spl07_print_cal_coefs();
+    sprintf(pbuf, "kP = %f, kT = %f\r\n", kP, kT);
+    radio_print(pbuf);
+    sprintf(pbuf, "Praw = %" PRId32 ", Traw = %" PRId32 "\r\n", Praw, Traw);
+    radio_print(pbuf);
+    sprintf(pbuf, "Praw_sc = %f, Traw_sc = %f\r\n", Praw_sc, Traw_sc);
+    radio_print(pbuf);
     sprintf(pbuf, "Pressure = %f, Temp = %f\r\n", baroState.pressure, baroState.temperature);
     radio_print(pbuf);
 

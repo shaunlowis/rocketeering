@@ -12,6 +12,8 @@ void main(void)
   GPIO_Init(LED_PORT, LED_PIN, GPIO_MODE_OUT_PP_LOW_FAST);
   radio_uart_init();
   radio_print("Radio initialized\r\n");
+  // getTwosComplement(16660470, 24);
+  // while(1) continue;
   spl07_init();
   while (1){
     GPIO_WriteReverse(LED_PORT, LED_PIN);
@@ -51,25 +53,31 @@ void print_bits_of_byte(uint8_t byte)
 //     }
 // }
 
-void logRawValue(uint32_t raw, uint8_t length, uint32_t comp) {
+void logRawValue(uint32_t raw, uint8_t length, uint32_t comp, int32_t res) {
     char buff[256];
-    sprintf(buff, "Raw = %"PRIu32" length = %"PRIu8" comp = %"PRIu32"\r\n", raw, length, comp);
+    sprintf(buff, "Raw = %"PRIu32" | length = %"PRIu8" | comp = %"PRIu32" | res = %"PRId32"\r\n", raw, length, comp, res);
     radio_print(buff);
 }
 
 int32_t getTwosComplement(uint32_t raw, uint8_t length) {
   uint32_t comparison = (uint32_t)1<<(length - 1);
-  logRawValue(raw, length, comparison);  // Separate logging functionality
+  int32_t result = 0;
+  
   // Check if the sign bit is set
   if (raw & comparison) {
-      radio_print("Negative\r\n");
       // If the sign bit is set, convert to two's complement
-      return (int32_t)(raw | (~0U << length));
+      radio_print("Negative\r\n");
+      uint32_t mask = ((uint32_t)1 << length) - 1;
+      raw = (raw ^ mask) + 1; // Invert each bit then add one
+      
+      result = -1 * (int32_t)raw; // Make it negative
   } else {
       radio_print("Positive\r\n");
       // If the sign bit is not set, it's already a positive value
-      return (int32_t)raw;
+      result = (int32_t)raw;
   }
+  logRawValue(raw, length, comparison, result);  // Separate logging functionality
+  return result;
 }
 
 

@@ -3,6 +3,7 @@
 
 #include "SPL07_pressure.h"
 #include "common.h"
+#include "i2c_driver_STM8S007.h"
 
 #define SPL07_CHIP_ADDR (0x77 << 1) // Left shifted by 1 as SPL expects it in this form
 
@@ -17,8 +18,8 @@
 
 
 #define CONTINUOUS_PRESS_TEMP 0x07
-#define PRS_16_SPS_1X_OVERSAMPLING 0b01000000
-#define TMP_16_SPS_1X_OVERSAMPLING 0b01000000
+#define PRS_4_SPS_64X_OVERSAMPLING 0b00100110
+#define TMP_4_SPS_1X_OVERSAMPLING  0b00100000
 #define P_SHIFT_EN 0b00000100
 #define ALL_DISABLE 0x00
 
@@ -64,108 +65,21 @@ void spl07_init(void)
     uint8_t res = 0;
     
     // Configure pressure measurement PRS_CFG
-    res = i2c_write_and_verify_byte(SPL07_CHIP_ADDR, SPL07_PRS_CFG_ADDR, PRS_16_SPS_1X_OVERSAMPLING, 0xFF);
+    res = i2c_write_and_verify_byte(SPL07_CHIP_ADDR, SPL07_PRS_CFG_ADDR, PRS_4_SPS_64X_OVERSAMPLING, 0xFF);
     if (res==I2C_FAILURE) radio_print_debug("Failure writing and verifying SPL07_PRS_CFG_ADDR\r\n");
 
     // Configure temperature measurement TMP_CFG
-    res = i2c_write_and_verify_byte(SPL07_CHIP_ADDR, SPL07_TMP_CFG_ADDR, TMP_16_SPS_1X_OVERSAMPLING, 0xFF);
+    res = i2c_write_and_verify_byte(SPL07_CHIP_ADDR, SPL07_TMP_CFG_ADDR, TMP_4_SPS_1X_OVERSAMPLING, 0xFF);
     if (res==I2C_FAILURE) radio_print_debug("Failure writing and verifying SPL07_TMP_CFG_ADDR\r\n");
 
     // Int and FIFO config
-    res = i2c_write_and_verify_byte(SPL07_CHIP_ADDR, SPL07_CFG_ADDR, ALL_DISABLE, 0xFF); // All disable
+    res = i2c_write_and_verify_byte(SPL07_CHIP_ADDR, SPL07_CFG_ADDR, P_SHIFT_EN, 0xFF); // All disable
     if (res==I2C_FAILURE) radio_print_debug("Failure writing and verifying SPL07_CFG_ADDR\r\n");
 
     // Set measurement mode MEAS_CFG
     res = i2c_write_and_verify_byte(SPL07_CHIP_ADDR, SPL07_MEAS_CFG_ADDR, CONTINUOUS_PRESS_TEMP, SPL07_MEAS_CFG_W_MASK);
     if (res==I2C_FAILURE) radio_print_debug("Failure writing and verifying SPL07_MEAS_CFG_ADDR\r\n");
 
-}
-
-uint8_t i2c_write_and_verify_byte(uint8_t device_address, uint8_t register_address, uint8_t byte, uint8_t write_mask)
-{
-    i2c_write_byte(device_address, register_address, byte);
-    uint8_t ret_val[1];
-    i2c_read(device_address, register_address, ret_val, 1);
-    char buff[100];
-    // sprintf(buff, "Register 0x%x has value = ", register_address);
-    radio_print_debug(buff);
-    print_bits_of_byte(ret_val[0]);
-    radio_print_debug("\r\n");
-
-    for (int i=0; i<8; i++)
-    {   
-        if ((write_mask >> i) & 1) // Need to check the bit
-        {
-            uint8_t bit_mask = 1<<i;
-            if ((ret_val[0] & bit_mask) != (byte & bit_mask))
-            {
-                return I2C_FAILURE;
-            }
-        }
-    }
-
-    return I2C_SUCCESS;
-
-}
-
-void i2c_read(uint8_t device_address, uint8_t register_address, uint8_t bytes[], uint8_t num_bytes)
-{
-    if (num_bytes > 1) I2C_AcknowledgeConfig(I2C_ACK_CURR); // Need to ack the bytes recieved so that we keep reading;
-    else I2C_AcknowledgeConfig(I2C_ACK_NONE); // Send a nack on next byte recieved
-
-    // TODO: add timeouts to whiles
-    I2C_GenerateSTART(ENABLE);
-    while(!I2C_CheckEvent(I2C_EVENT_MASTER_MODE_SELECT)) continue;
-
-    //radio_print_debug("Addr W\r\n");
-    I2C_Send7bitAddress(device_address, I2C_DIRECTION_TX);
-    while(!I2C_CheckEvent(I2C_EVENT_MASTER_TRANSMITTER_MODE_SELECTED)) continue;
-
-    //radio_print_debug("Data\r\n");
-    I2C_SendData(register_address);
-    while(!I2C_CheckEvent(I2C_EVENT_MASTER_BYTE_TRANSMITTED)) continue;
-    
-    //radio_print_debug("Repeated start\r\n");
-    I2C_GenerateSTART(ENABLE);
-    while(!I2C_CheckEvent(I2C_EVENT_MASTER_MODE_SELECT)) continue;
-
-    //radio_print_debug("Addr R\r\n");
-    I2C_Send7bitAddress(device_address, I2C_DIRECTION_RX);
-    while(!I2C_CheckEvent(I2C_EVENT_MASTER_RECEIVER_MODE_SELECTED)) continue;
-
-    // Read bytes with ack (if reading multiple bytes)
-    for (int i=0; i<num_bytes - 1; i++) // -1 as we must NACK the last byte
-    {
-        while(!I2C_CheckEvent(I2C_EVENT_MASTER_BYTE_RECEIVED)) continue;
-        bytes[i] = I2C_ReceiveData();
-    }
-
-    // Nack to next byte recieved
-    I2C_AcknowledgeConfig(I2C_ACK_NONE); // Send a nack on next byte recieved to let slaveknow we are done
-    while(!I2C_CheckEvent(I2C_EVENT_MASTER_BYTE_RECEIVED)) continue;
-    bytes[num_bytes-1] = I2C_ReceiveData();
-    
-    I2C_GenerateSTOP(ENABLE);
-}
-
-void i2c_write_byte(uint8_t device_address, uint8_t register_address, uint8_t byte)
-{
-    // TODO: add timeouts to whiles
-    I2C_GenerateSTART(ENABLE);
-    while(!I2C_CheckEvent(I2C_EVENT_MASTER_MODE_SELECT)) continue;
-
-    I2C_Send7bitAddress(device_address, I2C_DIRECTION_TX);
-    while(!I2C_CheckEvent(I2C_EVENT_MASTER_TRANSMITTER_MODE_SELECTED)) continue;
-
-    //radio_print_debug("Data\r\n");
-    I2C_SendData(register_address);
-    while(!I2C_CheckEvent(I2C_EVENT_MASTER_BYTE_TRANSMITTED)) continue;
-
-    //radio_print_debug("Data\r\n");
-    I2C_SendData(byte);
-    while(!I2C_CheckEvent(I2C_EVENT_MASTER_BYTE_TRANSMITTED)) continue;
-
-    I2C_GenerateSTOP(ENABLE);
 }
 
 void spl07_print_cal_coefs(void)
@@ -193,18 +107,6 @@ void spl07_print_cal_coefs(void)
     radio_print_debug(buff);
     sprintf(buff, "c40: %f\r\n", baroState.calib.c40);
     radio_print_debug(buff);
-}
-
-
-void spl07_test(void)
-{  
-    //radio_print_debug("Start\r\n");
-    uint8_t bytes[] = {0xff, 0xff};
-    i2c_read(SPL07_CHIP_ADDR, SPL07_MEAS_CFG_ADDR, bytes, 1);
-    radio_print_debug("Retval bits = ");
-    print_bits_of_byte(bytes[0]);
-    print_bits_of_byte(bytes[1]);
-    radio_print_debug("\r\n");    
 }
 
 void spl07_read_cal_coefs(void)
@@ -258,9 +160,7 @@ void spl07_update_baro()
     char pbuf[256]; // Debugging
     // Choose compensation scale factors kT (for temperature) and kP (for pressure) based on the chosen precision rate.
     // The scaling factors are listed in Table 9 of the datasheet, and the compensation factors are in table 4.
-    // float kP = 7864320.0f; // 8 times
-    // float kP = 253952.0f; // 16 times
-    float kP = 524288.0f; // 1 times
+    float kP = 1040384.0f; // 64 times
     float kT = 524288.0f; // 1 times
 
     uint8_t buf[NUM_PRESSURE_AND_TEMP_BYTES];

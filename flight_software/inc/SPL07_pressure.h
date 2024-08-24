@@ -7,7 +7,7 @@
 
 void spl07_init(void);
 void spl07_test(void);
-void spl07_update_baro();
+void spl07_update_baro(void);
 
 
 #endif // SPL07_PRESSURE_H

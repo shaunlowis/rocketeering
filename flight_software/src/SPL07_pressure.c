@@ -3,7 +3,6 @@
 
 #include "SPL07_pressure.h"
 #include "common.h"
-#include <inttypes.h>
 
 #define SPL07_CHIP_ADDR (0x77 << 1) // Left shifted by 1 as SPL expects it in this form
 
@@ -18,8 +17,10 @@
 
 
 #define CONTINUOUS_PRESS_TEMP 0x07
-#define PRS_16_SPS_8X_OVERSAMPLING 0x01000011
-#define TMP_16_SPS_1X_OVERSAMPLING 0x01000000
+#define PRS_16_SPS_1X_OVERSAMPLING 0b01000000
+#define TMP_16_SPS_1X_OVERSAMPLING 0b01000000
+#define P_SHIFT_EN 0b00000100
+#define ALL_DISABLE 0x00
 
 #define NUM_PRESSURE_AND_TEMP_BYTES 6
 #define NUM_COEF_REGS 21
@@ -63,7 +64,7 @@ void spl07_init(void)
     uint8_t res = 0;
     
     // Configure pressure measurement PRS_CFG
-    res = i2c_write_and_verify_byte(SPL07_CHIP_ADDR, SPL07_PRS_CFG_ADDR, PRS_16_SPS_8X_OVERSAMPLING, 0xFF);
+    res = i2c_write_and_verify_byte(SPL07_CHIP_ADDR, SPL07_PRS_CFG_ADDR, PRS_16_SPS_1X_OVERSAMPLING, 0xFF);
     if (res==I2C_FAILURE) radio_print("Failure writing and verifying SPL07_PRS_CFG_ADDR\r\n");
 
     // Configure temperature measurement TMP_CFG
@@ -71,12 +72,13 @@ void spl07_init(void)
     if (res==I2C_FAILURE) radio_print("Failure writing and verifying SPL07_TMP_CFG_ADDR\r\n");
 
     // Int and FIFO config
-    res = i2c_write_and_verify_byte(SPL07_CHIP_ADDR, SPL07_CFG_ADDR, 0x00, 0xFF); // All disable
+    res = i2c_write_and_verify_byte(SPL07_CHIP_ADDR, SPL07_CFG_ADDR, ALL_DISABLE, 0xFF); // All disable
     if (res==I2C_FAILURE) radio_print("Failure writing and verifying SPL07_CFG_ADDR\r\n");
 
     // Set measurement mode MEAS_CFG
     res = i2c_write_and_verify_byte(SPL07_CHIP_ADDR, SPL07_MEAS_CFG_ADDR, CONTINUOUS_PRESS_TEMP, SPL07_MEAS_CFG_W_MASK);
     if (res==I2C_FAILURE) radio_print("Failure writing and verifying SPL07_MEAS_CFG_ADDR\r\n");
+
 }
 
 uint8_t i2c_write_and_verify_byte(uint8_t device_address, uint8_t register_address, uint8_t byte, uint8_t write_mask)
@@ -84,6 +86,11 @@ uint8_t i2c_write_and_verify_byte(uint8_t device_address, uint8_t register_addre
     i2c_write_byte(device_address, register_address, byte);
     uint8_t ret_val[1];
     i2c_read(device_address, register_address, ret_val, 1);
+    char buff[100];
+    sprintf(buff, "Register 0x%x has value = ", register_address);
+    radio_print(buff);
+    print_bits_of_byte(ret_val[0]);
+    radio_print("\r\n");
 
     for (int i=0; i<8; i++)
     {   
@@ -210,7 +217,6 @@ void spl07_read_cal_coefs(void)
     {
         i2c_read(SPL07_CHIP_ADDR, SPL07_C0_REG_ADDR + i, &coef_arr[i], 1);
     }
-
     // Now sort them into their coef vals, see section 7.11 of datasheet
 
     // 0x11 c0 [3:0] + 0x10 c0 [11:4]
@@ -249,10 +255,17 @@ void spl07_read_cal_coefs(void)
 
 void spl07_update_baro()
 {
+    char pbuf[256];
     // Choose compensation scale factors kT (for temperature) and kP (for pressure) based on the chosen precision rate.
     // The scaling factors are listed in Table 9 of the datasheet, and the compensation factors are in table 4.
-    float kP = 7864320.0f; // 8 times
+    // float kP = 7864320.0f; // 8 times
+    // float kP = 253952.0f; // 16 times
+    float kP = 524288.0f; // 1 times
     float kT = 524288.0f; // 1 times
+
+    spl07_print_cal_coefs();
+    sprintf(pbuf, "kP = %f, kT = %f\r\n", kP, kT);
+    radio_print(pbuf);
 
     uint8_t buf[NUM_PRESSURE_AND_TEMP_BYTES];
     i2c_read(SPL07_CHIP_ADDR, SPL07_PRS_B2_ADDR, buf, NUM_PRESSURE_AND_TEMP_BYTES);
@@ -265,17 +278,22 @@ void spl07_update_baro()
 
     // Read the pressure and temperature result from the registers
     uint32_t num = ((uint32_t)buf[0] << 16) + ((uint32_t)buf[1] << 8) + (uint32_t)buf[2];
-    char pbuf[256];
     sprintf(pbuf, "Pressure reg: %"PRIu32"\r\n", num);
     radio_print(pbuf);
+
     radio_print("Praw compli \r\n");
     int32_t Praw = getTwosComplement(((uint32_t)buf[0] << 16) + ((uint32_t)buf[1] << 8) + (uint32_t)buf[2], 24);
     radio_print("Traw compli \r\n");
     int32_t Traw = getTwosComplement(((uint32_t)buf[3] << 16) + ((uint32_t)buf[4] << 8) + (uint32_t)buf[5], 24);
+    sprintf(pbuf, "Praw = %d, Traw = %d\r\n", Praw, Traw);
+    radio_print(pbuf);
 
     // Calculate scaled measurement results.
     float Praw_sc = Praw / kP;
     float Traw_sc = Traw / kT;
+    
+    sprintf(pbuf, "Praw_sc = %f, Traw_sc = %f\r\n", Praw_sc, Traw_sc);
+    radio_print(pbuf);
 
     // Calculate compensated measurement results
     float c0 = baroState.calib.c0;
@@ -295,13 +313,6 @@ void spl07_update_baro()
     baroState.temperature = c0 * 0.5f + c1 * Traw_sc;
 
     
-    spl07_print_cal_coefs();
-    sprintf(pbuf, "kP = %f, kT = %f\r\n", kP, kT);
-    radio_print(pbuf);
-    sprintf(pbuf, "Praw = %" PRId32 ", Traw = %" PRId32 "\r\n", Praw, Traw);
-    radio_print(pbuf);
-    sprintf(pbuf, "Praw_sc = %f, Traw_sc = %f\r\n", Praw_sc, Traw_sc);
-    radio_print(pbuf);
     sprintf(pbuf, "Pressure = %f, Temp = %f\r\n", baroState.pressure, baroState.temperature);
     radio_print(pbuf);
 

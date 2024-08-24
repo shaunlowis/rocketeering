@@ -13,13 +13,10 @@ void main(void)
   radio_uart_init();
   radio_print("Radio initialized\r\n");
   spl07_init();
-  delay_ms(1000);
-  spl07_update_baro();
   while (1){
     GPIO_WriteReverse(LED_PORT, LED_PIN);
     
-    
-    delay_ms(1000);
+    spl07_update_baro();
     
   }
 }
@@ -38,19 +35,41 @@ void print_bits_of_byte(uint8_t byte)
   {
     bits[i] = (byte & (1 << (7-i))) ? '1' : '0';
   }
-  bits[9] = '\0';
+  bits[8] = '\0';
   radio_print(bits);
 }
 
-int32_t getTwosComplement(uint32_t raw, uint8_t length)
-{
-    if (raw & ((int)1 << (length - 1))) {
-        radio_print("Negative!\r\n");
-        return ((int32_t)raw) - ((int32_t)1 << length);
-    }
-    else {
-        return raw;
-    }
+// int32_t getTwosComplement(uint32_t raw, uint8_t length)
+// {
+
+//     if (raw & ((int)1 << (length - 1))) {
+//         radio_print("Negative!\r\n");
+//         return ((int32_t)raw) - ((int32_t)1 << length);
+//     }
+//     else {
+//         return (int32_t) raw;
+//     }
+// }
+
+void logRawValue(uint32_t raw, uint8_t length, uint32_t comp) {
+    char buff[256];
+    sprintf(buff, "Raw = %"PRIu32" length = %"PRIu8" comp = %"PRIu32"\r\n", raw, length, comp);
+    radio_print(buff);
+}
+
+int32_t getTwosComplement(uint32_t raw, uint8_t length) {
+  uint32_t comparison = (uint32_t)1<<(length - 1);
+  logRawValue(raw, length, comparison);  // Separate logging functionality
+  // Check if the sign bit is set
+  if (raw & comparison) {
+      radio_print("Negative\r\n");
+      // If the sign bit is set, convert to two's complement
+      return (int32_t)(raw | (~0U << length));
+  } else {
+      radio_print("Positive\r\n");
+      // If the sign bit is not set, it's already a positive value
+      return (int32_t)raw;
+  }
 }
 
 

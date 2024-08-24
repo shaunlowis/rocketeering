@@ -8,7 +8,7 @@ void radio_uart_init(void)
 }
 
 
-void radio_print(char buff[])
+void radio_print_debug(char buff[])
 {
     #ifdef DEBUG_ENABLE
     int i = 0;

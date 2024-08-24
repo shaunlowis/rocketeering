@@ -2,7 +2,7 @@
 #define EBYTE_RADIO_H
 
 void radio_uart_init(void);
-void radio_print(char buff[]);
+void radio_print_debug(char buff[]);
 
 
 

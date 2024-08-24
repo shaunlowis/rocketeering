@@ -8,3 +8,6 @@ https://community.platformio.org/t/how-does-platformio-link-duse-floats-1/28458/
 To access the alternate pin functions you need to program the option byte accordingly. E.g. we use I2C on pins 16 & 17 which is their alternate function.
 
 Option byte is in EEPROM and should be programmed a minimal number of times. You can use STVP as per [this guide](https://documentation.help/STM8-FlashTool-STVP/Prog0122.htm).
+
+## Int type width only 2 bytes
+On 32 bit systems ints are typically 4 bytes (STM32) and also in 64-bit AIX and Linux applications. In SDCC it is only 2 bytes (same as AVR actually) as per section 1.1 of the [SDCC manual](docs/sdccman.pdf). Therefore code such as `uint32_t comparison = 1<<(length - 1);` does not work as expected for length>16. This is because the 1 defaults to an int, and trying to leftshift it more than 16 bits is outside its width. You must specify the 1 as a 32 bit int, e.g. `uint32_t comparison = (uint32_t)1<<(length - 1);`

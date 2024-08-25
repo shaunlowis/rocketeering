@@ -12,7 +12,10 @@ void main(void)
   GPIO_Init(LED_PORT, LED_PIN, GPIO_MODE_OUT_PP_LOW_FAST);
   radio_uart_init();
   radio_print_debug("Radio initialized\r\n");
-  spl07_init();
+  i2c_init();
+  imu_init(); // Needs i2c_init called first
+  while(1) continue;
+  spl07_init(); // Needs i2c_init called first
   while (1){
     GPIO_WriteReverse(LED_PORT, LED_PIN);
     

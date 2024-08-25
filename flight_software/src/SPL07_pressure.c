@@ -57,9 +57,6 @@ void spl07_print_cal_coefs(void);
 
 void spl07_init(void)
 {
-    I2C_Cmd(ENABLE);
-    I2C_Init(80000, 0x69, I2C_DUTYCYCLE_2, I2C_ACK_CURR, I2C_ADDMODE_7BIT, F_CPU/1000000);
-
     spl07_read_cal_coefs();
 
     uint8_t res = 0;

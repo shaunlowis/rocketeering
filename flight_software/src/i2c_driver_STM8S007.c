@@ -1,6 +1,12 @@
 #include "common.h"
 #include "i2c_driver_STM8S007.h"
 
+void i2c_init(void)
+{
+    I2C_Cmd(ENABLE);
+    I2C_Init(80000, 0x69, I2C_DUTYCYCLE_2, I2C_ACK_CURR, I2C_ADDMODE_7BIT, F_CPU/1000000);
+}
+
 uint8_t i2c_write_and_verify_byte(uint8_t device_address, uint8_t register_address, uint8_t byte, uint8_t write_mask)
 {
     i2c_write_byte(device_address, register_address, byte);
@@ -71,19 +77,22 @@ void i2c_read(uint8_t device_address, uint8_t register_address, uint8_t bytes[],
 void i2c_write_byte(uint8_t device_address, uint8_t register_address, uint8_t byte)
 {
     // TODO: add timeouts to whiles
+    radio_print_debug("Start\r\n");
     I2C_GenerateSTART(ENABLE);
     while(!I2C_CheckEvent(I2C_EVENT_MASTER_MODE_SELECT)) continue;
 
+    radio_print_debug("Chip addr\r\n");
     I2C_Send7bitAddress(device_address, I2C_DIRECTION_TX);
     while(!I2C_CheckEvent(I2C_EVENT_MASTER_TRANSMITTER_MODE_SELECTED)) continue;
 
-    //radio_print_debug("Data\r\n");
+    radio_print_debug("Reg addr\r\n");
     I2C_SendData(register_address);
     while(!I2C_CheckEvent(I2C_EVENT_MASTER_BYTE_TRANSMITTED)) continue;
 
-    //radio_print_debug("Data\r\n");
+    radio_print_debug("Data\r\n");
     I2C_SendData(byte);
     while(!I2C_CheckEvent(I2C_EVENT_MASTER_BYTE_TRANSMITTED)) continue;
 
+    radio_print_debug("Stop\r\n");
     I2C_GenerateSTOP(ENABLE);
 }

@@ -2,6 +2,10 @@
 #include "gpio.h"
 #include "ebyte_radio.h"
 #include "SPL07_pressure.h"
+#include "YIC_gps.h"
+#include "i2c_driver_STM8S007.h"
+#include "ICM42670_imu.h"
+
 
 void assert_failed(uint8_t* file, uint32_t line);
 void clock_config(void);
@@ -10,12 +14,17 @@ void main(void)
 {
   clock_config();
   GPIO_Init(LED_PORT, LED_PIN, GPIO_MODE_OUT_PP_LOW_FAST);
+
   radio_uart_init();
   radio_print_debug("Radio initialized\r\n");
-  i2c_init();
-  imu_init(); // Needs i2c_init called first
-  while(1) continue;
-  spl07_init(); // Needs i2c_init called first
+
+  //i2c_init();
+  //imu_init(); // Needs i2c_init called first
+  //spl07_init(); // Needs i2c_init called first
+
+  gps_init();
+  gps_test();
+  
   while (1){
     GPIO_WriteReverse(LED_PORT, LED_PIN);
     

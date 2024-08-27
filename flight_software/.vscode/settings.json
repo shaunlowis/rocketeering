@@ -4,6 +4,7 @@
         "common.h": "c",
         "spl07_pressure.h": "c",
         "ebyte_radio.h": "c",
-        "stdint.h": "c"
+        "stdint.h": "c",
+        "icm42670_imu.h": "c"
     }
 }

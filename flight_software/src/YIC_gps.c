@@ -34,15 +34,7 @@ void gps_init(void)
     UART3_Cmd(ENABLE);
     UART3_Init(9600, UART3_WORDLENGTH_8D, UART3_STOPBITS_1, UART3_PARITY_NO, UART3_MODE_TXRX_ENABLE);
     GPIO_WriteReverse(LED_PORT, LED_PIN);
-    gps_uart_send_string("$PMTK251,115200*1F\r\n");
-    GPIO_WriteReverse(LED_PORT, LED_PIN);
-    gps_uart_send_string("$PMTK251,115200*1F\r\n");
-    GPIO_WriteReverse(LED_PORT, LED_PIN);
-    gps_uart_send_string("$PMTK251,115200*1F\r\n");
-    GPIO_WriteReverse(LED_PORT, LED_PIN);
-    gps_uart_send_string("$PMTK251,115200*1F\r\n");
-    GPIO_WriteReverse(LED_PORT, LED_PIN);
-    gps_uart_send_string("$PMTK251,115200*1F\r\n");
+    gps_uart_send_string("$PGKC147,115200*06\r\n"); // Change baud rate to 115200
     GPIO_WriteReverse(LED_PORT, LED_PIN);
     UART3_DeInit();
     delay_ms(1000);

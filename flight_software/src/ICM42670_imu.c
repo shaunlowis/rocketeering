@@ -1,7 +1,7 @@
 #include "ICM42670_imu.h"
 #include "i2c_driver_STM8S007.h"
 
-#define IMU_CHIP_ADDR (0b1101000 << 1) // Left shifted by 1 as SPL expects it in this form
+#define IMU_CHIP_ADDR 0b11010000 // Actaul address << 1 as SPL expects it in this form
 
 // Register addresses
 #define IMU_PWR_MGMT0_REG_ADDR      0x1F
@@ -53,7 +53,7 @@ void imu_init(void)
 
     res = i2c_write_and_verify_byte(IMU_CHIP_ADDR, IMU_ACCEL_CONFIG1_REG_ADDR, ACCEL_LPF_BYPASS, ACCEL_LPF_BYPASS_WMASK);
     if (res==I2C_FAILURE) radio_print_debug("Failure writing and verifying IMU_ACCEL_CONFIG1_REG_ADDR\r\n");    
-
+    
     // Gyro config
     res = i2c_write_and_verify_byte(IMU_CHIP_ADDR, IMU_GYRO_CONFIG0_REG_ADDR, _2000_DPS_100_HZ, _2000_DPS_100_HZ_WMASK);
     if (res==I2C_FAILURE) radio_print_debug("Failure writing and verifying IMU_GYRO_CONFIG0_REG_ADDR\r\n");

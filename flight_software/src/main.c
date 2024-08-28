@@ -18,17 +18,18 @@ void main(void)
   radio_uart_init();
   radio_print_debug("Radio initialized\r\n");
 
-  //i2c_init();
-  //imu_init(); // Needs i2c_init called first
-  //spl07_init(); // Needs i2c_init called first
+  i2c_init();
+  imu_init(); // Needs i2c_init called first
+  spl07_init(); // Needs i2c_init called first
 
-  gps_init();
-  gps_test();
+  // gps_init();
+  // gps_test();
   
   while (1){
     GPIO_WriteReverse(LED_PORT, LED_PIN);
     
     spl07_update_baro();
+    delay_ms(500);
     
   }
 }

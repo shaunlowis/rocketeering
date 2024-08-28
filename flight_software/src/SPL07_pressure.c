@@ -5,7 +5,7 @@
 #include "common.h"
 #include "i2c_driver_STM8S007.h"
 
-#define SPL07_CHIP_ADDR (0x77 << 1) // Left shifted by 1 as SPL expects it in this form
+#define SPL07_CHIP_ADDR 0xEE // = (0x77 << 1), i.e left shifted by 1 as SPL expects it in this form
 
 
 #define SPL07_PRS_B2_ADDR 0x00
@@ -152,7 +152,7 @@ void spl07_read_cal_coefs(void)
     baroState.calib.c40 = (float)getTwosComplement((((uint32_t)coef_arr[19] & 0x0F) << 8) | (uint32_t)coef_arr[20], 12);
 }
 
-void spl07_update_baro()
+void spl07_update_baro(void)
 {
     char pbuf[256]; // Debugging
     // Choose compensation scale factors kT (for temperature) and kP (for pressure) based on the chosen precision rate.

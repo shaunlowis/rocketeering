@@ -27,8 +27,8 @@ void main(void)
   
   while (1){
     GPIO_WriteReverse(LED_PORT, LED_PIN);
-    
-    spl07_update_baro();
+    update_imu_state();
+    //spl07_update_baro();
     delay_ms(500);
     
   }
@@ -55,7 +55,11 @@ void print_bits_of_byte(uint8_t byte)
 int32_t getTwosComplement(uint32_t raw, uint8_t length) {
   uint32_t comparison = (uint32_t)1<<(length - 1);
   int32_t result = 0;
-  
+
+  // char pbuf[50];
+  // sprintf(pbuf, "Raw: %"PRIu32"   |   Length: %"PRIu8"   |   Comp: %"PRIu32"\r\n", raw, length, comparison);
+  // radio_print_debug(pbuf);
+
   // Check if the sign bit is set
   if (raw & comparison) {
       // If the sign bit is set, convert to two's complement

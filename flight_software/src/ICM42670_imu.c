@@ -1,5 +1,6 @@
 #include "ICM42670_imu.h"
 #include "i2c_driver_STM8S007.h"
+#include "inttypes.h"
 
 #define IMU_CHIP_ADDR 0b11010000 // Actaul address << 1 as SPL expects it in this form
 
@@ -10,6 +11,8 @@
 #define IMU_GYRO_CONFIG1_REG_ADDR   0x23
 #define IMU_ACCEL_CONFIG1_REG_ADDR  0x24
 #define IMU_INTF_CONFIG1_REG_ADDR   0x36
+
+#define IMU_ACCEL_DATA_Z1           0x0F
 
 // Reguister write values and masks
 #define IDLE_LN_GYRO_ACCEL          0b00011111
@@ -30,17 +33,17 @@
 #define PURE_I2C_DEFAULT_CLK        0b00000001
 #define PURE_I2C_DEFAULT_CLK_WMASK  0b00001111
 
-/* Init:
+typedef struct {
+    float   accel_x_g;
+    float   accel_y_g;
+    float   accel_z_g;
 
-- Gyroscope Low-Noise Mode (gyro + accel on)
-- no ints
-- ACCEL_MODE low noise
-- 1st order LPF bandwidth ACCEL_UI_FILT_BW and GYRO_UI_FILT_BW
-- Data rates: GYRO_ODR and ACCEL_ODR
-- Full scale range selection (- +/- 16g for accelerometer, something for gyro)
-- Fifo? probs not
+    float   gyro_x_dps;
+    float   gyro_y_dps;
+    float   gyro_z_dps;
+} imuState_t;
 
-*/
+static imuState_t imu_state;
 
 void imu_init(void)
 {
@@ -72,4 +75,19 @@ void imu_init(void)
 
     radio_print_debug("IMU init complete\r\n");
     // Should do self test here (SELFTEST, ST_BUSY, ST_DONE, ST_STATUS1, ST_STATUS2. All part of MREG1 map (requires special shit to write))
+}
+
+
+void update_imu_state(void)
+{
+    // Read Z accelerometer
+    uint8_t buf[2];
+    i2c_read(IMU_CHIP_ADDR, IMU_ACCEL_DATA_Z1, buf, 2);
+    int32_t z_accel_raw = getTwosComplement(((uint32_t)buf[0] << 8) + (uint32_t)buf[1], 16);
+    print_bits_of_byte(buf[0]);
+    radio_print_debug(" ");
+    print_bits_of_byte(buf[1]);
+    char pbuf[256];
+    sprintf(pbuf, "  Z_accel_raw = %"PRId32"\r\n", z_accel_raw);
+    radio_print_debug(pbuf);
 }

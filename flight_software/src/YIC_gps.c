@@ -31,15 +31,18 @@ void gps_uart_send_string(char buff[])
 
 void gps_init(void)
 {
+    // Enable Uart at default GPS baud rate of 9600
     UART3_Cmd(ENABLE);
     UART3_Init(9600, UART3_WORDLENGTH_8D, UART3_STOPBITS_1, UART3_PARITY_NO, UART3_MODE_TXRX_ENABLE);
-    GPIO_WriteReverse(LED_PORT, LED_PIN);
+    
+    // Increase baud rate of GPS
     gps_uart_send_string("$PGKC147,115200*06\r\n"); // Change baud rate to 115200
-    GPIO_WriteReverse(LED_PORT, LED_PIN);
     UART3_DeInit();
     delay_ms(1000);
     UART3_Init(115200, UART3_WORDLENGTH_8D, UART3_STOPBITS_1, UART3_PARITY_NO, UART3_MODE_TXRX_ENABLE);
 
+    // Setup interrups for rx
+    UART3_ITConfig(UART3_IT_RXNE_OR, ENABLE);
 }
 
 void gps_test(void)
@@ -59,5 +62,11 @@ void gps_test(void)
             count = 0;
         }
     }
+    
+}
+
+// https://github.com/rumpeltux/stm8s-sdcc-examples/blob/master/serial_interrupt.c
+ISR(uart3_isr, UART3_T_RXNE_vector)
+{
     
 }

@@ -6,6 +6,7 @@
         "ebyte_radio.h": "c",
         "stdint.h": "c",
         "icm42670_imu.h": "c",
-        "inttypes.h": "c"
+        "inttypes.h": "c",
+        "yic_gps.h": "c"
     }
 }

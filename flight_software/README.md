@@ -13,3 +13,8 @@ Option byte is in EEPROM and should be programmed a minimal number of times. You
 On 32 bit systems ints are typically 4 bytes (STM32) and also in 64-bit AIX and Linux applications. In SDCC it is only 2 bytes (same as AVR actually) as per section 1.1 of the [SDCC manual](docs/sdccman.pdf). Therefore code such as `uint32_t comparison = 1<<(length - 1);` does not work as expected for length>16. This is because the 1 defaults to an int, and trying to leftshift it more than 16 bits is outside its width. You must specify the 1 as a 32 bit int, e.g. `uint32_t comparison = (uint32_t)1<<(length - 1);`
 
 Lesson is to make code portable between different devices you shouldn't rely on the type widths being the same. And when taking code from forums/gpt, try specifying the compiler. Looking/Asking for C code is not enough.
+
+## Interrupts
+You need to match your interrupt handler function to the interrupt vector, so that your ISR actually gets called when the interrupt happens. This is achieved using the IRQ no assigned to the interrupt in the Interrupt Vector Mapping table of thhe STM8S007C8 Datasheet. 
+
+E.g. UART3 RX full is number 20 with vector address 0x008058

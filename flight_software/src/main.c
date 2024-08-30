@@ -10,8 +10,12 @@
 void assert_failed(uint8_t* file, uint32_t line);
 void clock_config(void);
 
+void int_init(void);
+
+
 void main(void)
 {
+  //int_init();
   clock_config();
   GPIO_Init(LED_PORT, LED_PIN, GPIO_MODE_OUT_PP_LOW_FAST);
 
@@ -27,11 +31,17 @@ void main(void)
   
   while (1){
     GPIO_WriteReverse(LED_PORT, LED_PIN);
-    update_imu_state();
-    //spl07_update_baro();
+    //update_imu_state();
+    spl07_update_baro();
     delay_ms(500);
     
   }
+}
+
+void int_init(void)
+{
+  ITC_SetSoftwarePriority(ITC_IRQ_UART3_RX, ITC_PRIORITYLEVEL_2); 
+  ITC_SetSoftwarePriority(ITC_IRQ_TIM4_OVF, ITC_PRIORITYLEVEL_3); // Want this to have the highest priority in our code
 }
 
 void clock_config(void)

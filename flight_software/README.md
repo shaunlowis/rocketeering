@@ -1,3 +1,15 @@
+# Debugger
+Debug is available via [openocd](https://openocd.org/). Various windows install methods, I used [Chocolatey](https://community.chocolatey.org/packages/openocd). This installs it in `C:\ProgramData\chocolatey\lib`.
+
+Openocd uses .cfg files to specify how to use boards (e.g. stm nucleo), targets (e.g. stm8s or even specific chips) and interfaces (e.g. stlink). These .cfg files are human readable and installed in the scripts folder of openocd, 
+`C:\ProgramData\chocolatey\lib\openocd\tools\install\share\openocd\scripts`. See the [readme](https://openocd.org/doc-release/README) for more details.
+
+
+`openocd -f interface/stlink-dap.cfg -f target/stm8s.cfg`
+
+https://packages.msys2.org/package/mingw-w64-x86_64-gdb-multiarch?repo=mingw64
+Needs mysys2 bin dir on path
+
 # Coding notes/findings
 
 ## Printf Floats

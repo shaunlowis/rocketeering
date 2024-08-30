@@ -29,15 +29,16 @@ void TIM4_Config(void)
 
 	TIM4_DeInit();
 	TIM4_TimeBaseInit(TIM4_PRESCALER_16, 250); //TimerClock = 16000000 / 16 / 250 = 4000Hz
+	disableInterrupts(); // Must do before ITC_SetSoftwarePriority
 	TIM4_ClearFlag(TIM4_FLAG_UPDATE);
+	ITC_SetSoftwarePriority(ITC_IRQ_TIM4_OVF, ITC_PRIORITYLEVEL_3); // Want this to have the highest priority in our code
 	TIM4_ITConfig(TIM4_IT_UPDATE, ENABLE);
-
 	enableInterrupts(); // global interrupt enable
 	TIM4_Cmd(ENABLE);  //Start Timer 4
 }
 
-// INTERRUPT_HANDLER(TIM4_UPD_OVF_IRQHandler, 23) // throws a warning w / SDCC >= 4.3.0
-void TIM4_UPD_OVF_IRQHandler(void) __interrupt(23) // now compiles w/SDCC 4.3.0. not tested for function, yet
+//void TIM4_UPD_OVF_IRQHandler(void) __interrupt(23) // now compiles w/SDCC 4.3.0. not tested for function, yet
+INTERRUPT_HANDLER(TIM4_UPD_OVF_IRQHandler, ITC_IRQ_TIM4_OVF) // throws a warning w / SDCC >= 4.3.0
 {
 	tick++;
 	TIM4_ClearITPendingBit(TIM4_IT_UPDATE);

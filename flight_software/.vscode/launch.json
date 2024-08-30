@@ -1,0 +1,26 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "setupCommands": [
+    {
+        "text": "set remotetimeout 10",
+    }
+    ],
+    "configurations": [
+        {
+            "type": "stm8-debug",
+            "request": "launch",
+            "name": "sdcc launch",
+            "serverType": "stm8-sdcc",
+            "executable": "build/flight_software.elf",
+            "cpu": "STM8S007C8",
+            "port": "3333",
+            "openOcdConfigs": [
+                "interface/stlink-dap.cfg",
+                "target/stm8s.cfg"
+            ]
+        }
+    ]
+}

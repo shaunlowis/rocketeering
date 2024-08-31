@@ -12,7 +12,7 @@ uint8_t i2c_write_and_verify_byte(uint8_t device_address, uint8_t register_addre
     i2c_write_byte(device_address, register_address, byte);
     uint8_t ret_val[1];
     i2c_read(device_address, register_address, ret_val, 1);
-    char buff[100];
+    // char buff[100];
     // sprintf(buff, "Register 0x%x has value = ", register_address);
     // radio_print_debug(buff);
     // print_bits_of_byte(ret_val[0]);

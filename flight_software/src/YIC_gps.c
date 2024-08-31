@@ -57,9 +57,10 @@ INTERRUPT_HANDLER(UART3_RXNE_IRQHandler, ITC_IRQ_UART3_RX)
 static void nmea_circbuff_write_complete(void)
 {
     // Not really the writing function, just handles incrementing the write index
+
     if (nmea_circbuff.current_length == NMEA_CIRCBUFF_SIZE)
     {
-        GPIO_WriteHigh(RED_LED_PORT, RED_LED_PIN);
+        GPIO_WriteReverse(RED_LED_PORT, RED_LED_PIN);
         nmea_circbuff.current_length = 0; // Reset buffer (will lose all unread values
     }
     nmea_circbuff.wi++;
@@ -102,6 +103,8 @@ static void nmea_parse_char(char c)
             } else if (c == NMEA_END_CHAR)
             {
                 curr_msg_p->msg_buff[curr_msg_p->length++] = c;
+                // add a null char
+                curr_msg_p->msg_buff[curr_msg_p->length] = '\0';
                 nmea_circbuff_write_complete();
                 curr_msg_p->state = IDLE;              
             } else 
@@ -172,12 +175,11 @@ void gps_test(void)
 {
     while(1)
     {
-
-        delay_ms(100);
         if (nmea_circbuff.current_length > 0)
         {
+            nmea_msg_t* nmea_read_msg_ptr = &nmea_circbuff.buffer[nmea_circbuff.ri];
+            radio_print_debug(nmea_read_msg_ptr->msg_buff);
             nmea_circbuff_read_complete();
-            
         }
     }
     

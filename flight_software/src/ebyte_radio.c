@@ -21,6 +21,6 @@ void radio_print_debug(char buff[])
     }
     // Now wait for transmission to be complete
     while(!UART1_GetFlagStatus(UART1_FLAG_TC)) continue;
-    delay_ms(100); // Needed to send one after another
+    //delay_ms(100); // Needed to send one after another
     #endif
 }

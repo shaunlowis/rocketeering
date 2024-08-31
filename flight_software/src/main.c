@@ -17,8 +17,8 @@ void main(void)
 {
   //int_init();
   clock_config();
-  GPIO_Init(LED_PORT, LED_PIN, GPIO_MODE_OUT_PP_LOW_FAST);
-
+  GPIO_Init(GREEN_LED_PORT, GREEN_LED_PIN, GPIO_MODE_OUT_PP_LOW_FAST);
+  GPIO_Init(RED_LED_PORT, RED_LED_PIN, GPIO_MODE_OUT_PP_LOW_FAST);
   radio_uart_init();
   radio_print_debug("Radio initialized\r\n");
 
@@ -30,18 +30,12 @@ void main(void)
   spl07_init(); // Needs i2c_init called first
   
   while (1){
-    GPIO_WriteReverse(LED_PORT, LED_PIN);
+    GPIO_WriteReverse(GREEN_LED_PORT, GREEN_LED_PIN);
     //update_imu_state();
     spl07_update_baro();
     delay_ms(500);
     
   }
-}
-
-void int_init(void)
-{
-  ITC_SetSoftwarePriority(ITC_IRQ_UART3_RX, ITC_PRIORITYLEVEL_2); 
-  ITC_SetSoftwarePriority(ITC_IRQ_TIM4_OVF, ITC_PRIORITYLEVEL_3); // Want this to have the highest priority in our code
 }
 
 void clock_config(void)
@@ -103,7 +97,7 @@ void assert_failed(uint8_t* file, uint32_t line)
     char buff[1000];
     sprintf(buff, "Wrong parameters value: file %s on line %d\r\n", file, line);
     radio_print_debug(buff);
-    GPIO_WriteReverse(LED_PORT, LED_PIN);
+    GPIO_WriteReverse(GREEN_LED_PORT, GREEN_LED_PIN);
     delay_ms(100);
   }
 }

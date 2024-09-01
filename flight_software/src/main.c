@@ -19,20 +19,22 @@ void main(void)
   clock_config();
   GPIO_Init(GREEN_LED_PORT, GREEN_LED_PIN, GPIO_MODE_OUT_PP_LOW_FAST);
   GPIO_Init(RED_LED_PORT, RED_LED_PIN, GPIO_MODE_OUT_PP_LOW_FAST);
+  GPIO_Init(BUZZER_PORT, BUZZER_PIN, GPIO_MODE_OUT_PP_LOW_FAST);
+
   radio_uart_init();
   radio_print_debug("Radio initialized\r\n");
 
-  gps_init();
-  gps_test();
+  // gps_init();
+  // gps_test();
 
-  i2c_init();
-  imu_init(); // Needs i2c_init called first
-  spl07_init(); // Needs i2c_init called first
+  // i2c_init();
+  // imu_init(); // Needs i2c_init called first
+  // spl07_init(); // Needs i2c_init called first
   
   while (1){
     GPIO_WriteReverse(GREEN_LED_PORT, GREEN_LED_PIN);
     //update_imu_state();
-    spl07_update_baro();
+    //spl07_update_baro();
     delay_ms(500);
     
   }

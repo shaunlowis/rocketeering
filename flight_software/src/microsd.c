@@ -21,6 +21,7 @@
   
 /* Includes ------------------------------------------------------------------*/
 #include "microsd.h"
+#include "ebyte_radio.h"
 
 /* Private typedef -----------------------------------------------------------*/
 /* Private define ------------------------------------------------------------*/
@@ -133,10 +134,14 @@ void MSD_ChipSelect(FunctionalState NewState)
   */
 u8 MSD_GoIdleState(void)
 {
+  radio_print_debug("Here\r\n");
+
   /* MSD chip select low */
   MSD_ChipSelect(ENABLE);
+
   /* Send CMD0 (GO_IDLE_STATE) to put MSD in SPI mode */
   MSD_SendCmd(MSD_GO_IDLE_STATE, 0, 0x95);
+  radio_print_debug("Idle sent\r\n");
 
   /* Wait for In Idle State Response (R1 Format) equal to 0x01 */
   if (MSD_GetResponse(MSD_IN_IDLE_STATE))
@@ -144,6 +149,7 @@ u8 MSD_GoIdleState(void)
     /* No Idle State Response: return response failue */
     return MSD_RESPONSE_FAILURE;
   }
+  radio_print_debug("Idle response recieved\r\n");
   /*----------Activates the card initialization process-----------*/
   do
   {
@@ -158,8 +164,10 @@ u8 MSD_GoIdleState(void)
     /* Send CMD1 (Activates the card process) until response equal to 0x0 */
     MSD_SendCmd(MSD_SEND_OP_COND, 0, 0xFF);
     /* Wait for no error Response (R1 Format) equal to 0x00 */
+    radio_print_debug("Trying to activate card init process\r\n");
   }
   while (MSD_GetResponse(MSD_RESPONSE_NO_ERROR));
+  radio_print_debug("No error response recieved\r\n");
 
   /* MSD chip select high */
   MSD_ChipSelect(DISABLE);

@@ -5,16 +5,10 @@
 #include "YIC_gps.h"
 #include "i2c_driver_STM8S007.h"
 #include "ICM42670_imu.h"
-// #include "pff.h"
-// #include "microsd.h"
-
+#include "microsd.h"
 
 void assert_failed(uint8_t* file, uint32_t line);
 void clock_config(void);
-// void die (		/* Stop with dying message */
-// 	FRESULT rc	/* FatFs return value */
-// );
-
 
 void main(void)
 {
@@ -24,12 +18,26 @@ void main(void)
   radio_uart_init();
   radio_print_debug("Radio initialized\r\n");
 
-  gps_init();
-  gps_test();
+  
+  SPI_Init(SPI_FIRSTBIT_MSB,
+           SPI_BAUDRATEPRESCALER_2,
+           SPI_MODE_MASTER,
+           SPI_CLOCKPOLARITY_LOW,
+           SPI_CLOCKPHASE_1EDGE,
+           SPI_DATADIRECTION_2LINES_FULLDUPLEX,
+           SPI_NSS_HARD,
+           1);
+  SPI_Cmd(ENABLE);
 
-  i2c_init();
-  imu_init(); // Needs i2c_init called first
-  spl07_init(); // Needs i2c_init called first
+  radio_print_debug("SPI initialized\r\n");
+  MSD_Init();
+  radio_print_debug("SD initialized\r\n");
+  // gps_init();
+  // gps_test();
+
+  // i2c_init();
+  // imu_init(); // Needs i2c_init called first
+  // spl07_init(); // Needs i2c_init called first
   
   while (1){
     GPIO_WriteReverse(GREEN_LED_PORT, GREEN_LED_PIN);
@@ -39,16 +47,6 @@ void main(void)
     
   }
 }
-
-// void die (		/* Stop with dying message */
-// 	FRESULT rc	/* FatFs return value */
-// )
-// {
-//   char buff[50];
-//   sprintf(buff, "Failed with rc=%u.\r\n", rc);
-// 	radio_print_debug(buff);
-// 	for (;;) ;
-// }
 
 void clock_config(void)
 {

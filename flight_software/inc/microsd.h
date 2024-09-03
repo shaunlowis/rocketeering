@@ -73,6 +73,7 @@
 /* Commands: CMDxx = CMD-number | 0x40 */
 #define MSD_GO_IDLE_STATE          ((u8)0)   /* CMD0=0x40 */
 #define MSD_SEND_OP_COND           ((u8)1)   /* CMD1=0x41 */
+#define MSD_SEND_IF_COND           ((u8)8)   /* CMD8=0x48*/
 #define MSD_SEND_CSD               ((u8)9)   /* CMD9=0x49 */
 #define MSD_SEND_CID               ((u8)10)  /* CMD10=0x4A */
 #define MSD_STOP_TRANSMISSION      ((u8)12)  /* CMD12=0x4C */
@@ -96,6 +97,7 @@
 #define MSD_ERASE                  ((u8)38)  /* CMD38=0x66 */
 #define MSD_READ_OCR               ((u8)39)  /* CMD39=0x67 */
 #define MSD_CRC_ON_OFF             ((u8)40)  /* CMD40=0x68 */
+#define MSD_APP_CMD                ((u8)55)  /* CMD55=???*/
 
 
 /* Exported functions ------------------------------------------------------- */

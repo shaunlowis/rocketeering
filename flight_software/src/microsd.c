@@ -21,7 +21,7 @@
   
 /* Includes ------------------------------------------------------------------*/
 #include "microsd.h"
-#include "ebyte_radio.h"
+#include "common.h"
 
 /* Private typedef -----------------------------------------------------------*/
 /* Private define ------------------------------------------------------------*/
@@ -134,22 +134,37 @@ void MSD_ChipSelect(FunctionalState NewState)
   */
 u8 MSD_GoIdleState(void)
 {
-  radio_print_debug("Here\r\n");
-
   /* MSD chip select low */
   MSD_ChipSelect(ENABLE);
 
   /* Send CMD0 (GO_IDLE_STATE) to put MSD in SPI mode */
   MSD_SendCmd(MSD_GO_IDLE_STATE, 0, 0x95);
-  radio_print_debug("Idle sent\r\n");
-
+  //radio_print_debug("Idle sent\r\n");
+  MSD_ChipSelect(DISABLE);
+  MSD_ChipSelect(ENABLE);
   /* Wait for In Idle State Response (R1 Format) equal to 0x01 */
   if (MSD_GetResponse(MSD_IN_IDLE_STATE))
   {
     /* No Idle State Response: return response failue */
+    radio_print_debug("SD response failure\r\n");
     return MSD_RESPONSE_FAILURE;
   }
-  radio_print_debug("Idle response recieved\r\n");
+  //radio_print_debug("Idle response recieved\r\n");
+
+  // Send CMD8 (interface condition)
+  MSD_ChipSelect(DISABLE);
+  MSD_ChipSelect(ENABLE);
+  MSD_SendCmd(MSD_SEND_IF_COND, 0x1AA, 0x87);
+  /* Wait for In Idle State Response (R1 Format) equal to 0x01 */
+  if (MSD_GetResponse(MSD_IN_IDLE_STATE))
+  {
+    /* No Idle State Response: return response failue */
+    radio_print_debug("SD response failure\r\n");
+    return MSD_RESPONSE_FAILURE;
+  }
+  radio_print_debug("Here\r\n");
+  delay_ms(3000);
+  u8 res = 0;
   /*----------Activates the card initialization process-----------*/
   do
   {
@@ -161,12 +176,18 @@ u8 MSD_GoIdleState(void)
     /* MSD chip select low */
     MSD_ChipSelect(ENABLE);
 
-    /* Send CMD1 (Activates the card process) until response equal to 0x0 */
-    MSD_SendCmd(MSD_SEND_OP_COND, 0, 0xFF);
+    
+    // /* Send CMD1 (Activates the card process) until response equal to 0x0 */
+    u32 amcd41_cmd = 0x40000000;
+    //MSD_SendCmd(MSD_APP_CMD, 0x00000000, 0x00); // Defines to card that next cmd is an application specific command
+    MSD_SendCmd(MSD_SEND_OP_COND, amcd41_cmd, 0x00);
     /* Wait for no error Response (R1 Format) equal to 0x00 */
-    radio_print_debug("Trying to activate card init process\r\n");
+    res = MSD_GetResponse(MSD_RESPONSE_NO_ERROR);
+    char buff[50];
+    sprintf(buff, "%"PRIu8"\r\n", res);
+    radio_print_debug(buff);
   }
-  while (MSD_GetResponse(MSD_RESPONSE_NO_ERROR));
+  while (res != MSD_RESPONSE_NO_ERROR);
   radio_print_debug("No error response recieved\r\n");
 
   /* MSD chip select high */

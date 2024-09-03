@@ -15,6 +15,7 @@ void main(void)
   clock_config();
   GPIO_Init(GREEN_LED_PORT, GREEN_LED_PIN, GPIO_MODE_OUT_PP_LOW_FAST);
   GPIO_Init(RED_LED_PORT, RED_LED_PIN, GPIO_MODE_OUT_PP_LOW_FAST);
+  //GPIO_Init(MSD_CS_PORT, MSD_CS_PIN, GPIO_MODE_OUT_PP_HIGH_FAST);
   radio_uart_init();
   radio_print_debug("Radio initialized\r\n");
 
@@ -29,6 +30,23 @@ void main(void)
            1);
   SPI_Cmd(ENABLE);
 
+  // while(1)
+  // {
+  //   GPIO_WriteLow(MSD_CS_PORT, MSD_CS_PIN); /* CS pin low: MSD enabled */
+  //   u8 DataOut = 0;
+  //   /* Wait until the transmit buffer is empty */
+  //   while (SPI_GetFlagStatus(SPI_FLAG_TXE) == RESET);
+  //   /* Send the byte */
+  //   SPI_SendData(0xff);
+  //   /* Wait to receive a byte*/
+  //   while(SPI_GetFlagStatus(SPI_FLAG_RXNE) == RESET);
+  //   /*Return the byte read from the SPI bus */ 
+  //   DataOut = SPI_ReceiveData();
+  //   GPIO_WriteHigh(MSD_CS_PORT, MSD_CS_PIN); /* CS pin low: MSD enabled */
+
+  //   delay_ms(1000);
+  // }
+
   radio_print_debug("SPI initialized\r\n");
   MSD_Init();
   radio_print_debug("SD initialized\r\n");
@@ -42,7 +60,7 @@ void main(void)
   while (1){
     GPIO_WriteReverse(GREEN_LED_PORT, GREEN_LED_PIN);
     //update_imu_state();
-    spl07_update_baro();
+    //spl07_update_baro();
     delay_ms(500);
     
   }

@@ -30,3 +30,6 @@ Lesson is to make code portable between different devices you shouldn't rely on 
 You need to match your interrupt handler function to the interrupt vector, so that your ISR actually gets called when the interrupt happens. This is achieved using the IRQ no assigned to the interrupt in the Interrupt Vector Mapping table of thhe STM8S007C8 Datasheet. 
 
 E.g. UART3 RX full is number 20 with vector address 0x008058
+
+## SD Card init/working
+SD cards work based on [commands](https://chlazza.nfshost.com/sdcardinfo.html). Must send in certain order to init and expect correct responses. Demo [here](http://www.rjhcoding.com/avrc-sd-interface-3.php) but like [this guy](https://stackoverflow.com/questions/8080718/sdhc-microsd-card-and-spi-initialization) I had to also remove the CMD55 and set HCS bit in CMD1. Might be wrong.

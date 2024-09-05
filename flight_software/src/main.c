@@ -6,6 +6,7 @@
 #include "i2c_driver_STM8S007.h"
 #include "ICM42670_imu.h"
 #include "microsd.h"
+#include "pff.h"
 
 void assert_failed(uint8_t* file, uint32_t line);
 void clock_config(void);

@@ -33,3 +33,5 @@ E.g. UART3 RX full is number 20 with vector address 0x008058
 
 ## SD Card init/working
 SD cards work based on [commands](https://chlazza.nfshost.com/sdcardinfo.html). Must send in certain order to init and expect correct responses. Demo [here](http://www.rjhcoding.com/avrc-sd-interface-3.php) but like [this guy](https://stackoverflow.com/questions/8080718/sdhc-microsd-card-and-spi-initialization) I had to also remove the CMD55 and set HCS bit in CMD1. Might be wrong.
+
+https://github.com/joaquimorg/STM8SProjects/tree/master look in FM folder

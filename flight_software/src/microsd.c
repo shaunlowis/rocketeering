@@ -22,12 +22,24 @@
 /* Includes ------------------------------------------------------------------*/
 #include "microsd.h"
 #include "common.h"
-
+#include "pff.h"
 /* Private typedef -----------------------------------------------------------*/
 /* Private define ------------------------------------------------------------*/
 /* Private macro -------------------------------------------------------------*/
 /* Private function prototypes -----------------------------------------------*/
 /* Private functions ---------------------------------------------------------*/
+
+DRESULT disk_readp (
+	BYTE *buff,		/* Pointer to the read buffer (NULL:Read bytes are forwarded to the stream) */
+	DWORD sector,	/* Sector number (LBA) */
+	WORD offset,	/* Byte offset to read from (0..511) */
+	WORD count		/* Number of bytes to read (ofs + cnt mus be <= 512) */
+)
+{
+  DRESULT res = MSD_ReadBytes(buff, sector, offset, count);
+	return res;
+
+}
 
 /**
   * @brief Write a byte in the MicroSD card the SPI peripheral.
@@ -506,6 +518,54 @@ void Delay_(u16 nCount)
     {
         nCount--;
     }
+}
+
+DRESULT disk_writep (
+	const BYTE *buff,	/* Pointer to the bytes to be written (NULL:Initiate/Finalize sector write) */
+	DWORD sc			/* Number of bytes to send, Sector number (LBA) or zero */
+)
+{
+	DRESULT res;
+	UINT bc, tmr;
+	static UINT wc;
+
+
+	res = RES_ERROR;
+
+  /* MSD chip select low */
+  MSD_ChipSelect(ENABLE);
+
+	if (buff) {		/* Send data bytes */
+		bc = (UINT)sc;
+		while (bc && wc) {		/* Send data bytes to the card */
+			/* Send the pointed byte */
+      MSD_WriteByte(*buff);
+      buff++;
+			wc--; bc--;
+		}
+		res = RES_OK;
+
+	} else if(sc) { /* Initiate sector write transaction */
+    /* Send CMD24 (MSD_WRITE_BLOCK) to write blocks */
+    MSD_SendCmd(MSD_WRITE_BLOCK, sc, 0xFF);
+
+    /* Check if the MSD acknowledged the write block command: R1 response (0x00: no errors) */
+    if (MSD_GetResponse(MSD_RESPONSE_NO_ERROR))
+    {
+      return MSD_RESPONSE_FAILURE;
+    }
+    /* Send dummy byte */
+    MSD_WriteByte(DUMMY);
+    /* Send the data token to signify the start of the data */
+    MSD_WriteByte(MSD_START_DATA_SINGLE_BLOCK_WRITE);
+    /* Write the block data to MSD : write count data by block */
+
+  } else { /* Finalize sector write transaction TODO */
+
+  }
+
+
+
 }
 
 /**

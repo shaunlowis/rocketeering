@@ -99,8 +99,27 @@
 #define MSD_CRC_ON_OFF             ((u8)40)  /* CMD40=0x68 */
 #define MSD_APP_CMD                ((u8)55)  /* CMD55=???*/
 
+/* Status of Disk Functions */
+// typedef BYTE DSTATUS;
+
+#define STA_NOINIT		0x01	/* Drive not initialized */
+#define STA_NODISK		0x02	/* No medium in the drive */
+
+
+/* Results of Disk Functions */
+typedef enum {
+	RES_OK = 0,		/* 0: Function succeeded */
+	RES_ERROR,		/* 1: Disk error */
+	RES_NOTRDY,		/* 2: Not ready */
+	RES_PARERR		/* 3: Invalid parameter */
+} DRESULT;
+
 
 /* Exported functions ------------------------------------------------------- */
+// pff functions
+DRESULT disk_readp (BYTE* buff, DWORD sector, WORD offset, WORD count);
+DRESULT disk_writep (const BYTE* buff, DWORD sc);
+
 
 /*----- High layer function -----*/
 u8 MSD_Init(void);

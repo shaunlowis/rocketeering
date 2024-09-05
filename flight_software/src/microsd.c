@@ -162,8 +162,7 @@ u8 MSD_GoIdleState(void)
     radio_print_debug("SD response failure\r\n");
     return MSD_RESPONSE_FAILURE;
   }
-  radio_print_debug("Here\r\n");
-  delay_ms(3000);
+  radio_print_debug("SD in idle and IF CMD recieved\r\n");
   u8 res = 0;
   /*----------Activates the card initialization process-----------*/
   do

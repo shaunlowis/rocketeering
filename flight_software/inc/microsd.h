@@ -25,6 +25,7 @@
 
 /* Includes ------------------------------------------------------------------*/
 #include "stm8s.h"
+#include "integer.h"
 
 /* Private define ------------------------------------------------------------*/
 /* Block Size */
@@ -116,9 +117,8 @@ typedef enum {
 
 
 /* Exported functions ------------------------------------------------------- */
-// pff functions
-DRESULT disk_readp (BYTE* buff, DWORD sector, WORD offset, WORD count);
-DRESULT disk_writep (const BYTE* buff, DWORD sc);
+DRESULT disk_readp(BYTE* buff, DWORD sector, WORD offset, WORD count);
+DRESULT disk_writep(const BYTE* buff, DWORD sc);
 
 
 /*----- High layer function -----*/

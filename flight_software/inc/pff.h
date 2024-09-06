@@ -22,6 +22,7 @@ extern "C" {
 #endif
 
 #include "pffconf.h"
+#include "common.h"
 
 #if PF_DEFINED != PFCONF_DEF
 #error Wrong configuration file (pffconf.h).

@@ -199,7 +199,7 @@ u8 MSD_GoIdleState(void)
     radio_print_debug(buff);
   }
   while (res != MSD_RESPONSE_NO_ERROR);
-  radio_print_debug("No error response recieved\r\n");
+  radio_print_debug("SD initialized\r\n");
 
   /* MSD chip select high */
   MSD_ChipSelect(DISABLE);
@@ -526,9 +526,8 @@ DRESULT disk_writep (
 )
 {
 	DRESULT res;
-	UINT bc, tmr;
+	UINT bc;
 	static UINT wc;
-
 
 	res = RES_ERROR;
 
@@ -561,11 +560,23 @@ DRESULT disk_writep (
     /* Write the block data to MSD : write count data by block */
 
   } else { /* Finalize sector write transaction TODO */
-  todo!!
+    /* Put CRC bytes (not really needed by us, but required by MSD) */
+    MSD_ReadByte();
+    MSD_ReadByte();
+    if (MSD_GetDataResponse() == MSD_DATA_OK)
+    {
+      /* Set response value to success */
+      res = RES_OK;
+    } else {
+      res = RES_ERROR;
+    }
   }
-
-
-
+  /* MSD chip select high */
+  MSD_ChipSelect(DISABLE);
+  /* Send dummy byte: 8 Clock pulses of delay */
+  MSD_WriteByte(DUMMY);
+  /* Returns the reponse */
+  return res;
 }
 
 /**

@@ -41,6 +41,9 @@ nmea_msg_circbuff_t nmea_circbuff = {.current_length=0,
                                      .ri=0,
                                      .wi=0};
 
+struct minmea_sentence_gsa gsa_frame;
+struct minmea_sentence_rmc rmc_frame;
+
 
 static void gps_uart_send_string(char buff[]);
 static void nmea_parse_char(char c);
@@ -178,70 +181,68 @@ void gps_init(void)
 void minmea_decode(char* line)
 {
     enum minmea_sentence_id id = minmea_sentence_id(line, false);
-    char buf1[50];
-    sprintf(buf1, "ID: %"PRId16"\r\n", (int16_t)id);
-    radio_print_debug(buf1);
+    char buff[500];
+    // char buf1[50];
+    // sprintf(buf1, "ID: %"PRId16"\r\n", (int16_t)id);
+    // radio_print_debug(buf1);
     switch (id) 
         {
-        // case MINMEA_SENTENCE_RMC: {
-        //     struct minmea_sentence_rmc frame;
-        //     if (minmea_parse_rmc(&frame, line)) {
-        //         char buff[256];
-        //         sprintf(buff, "$xxRMC floating point degree coordinates and speed: (%f,%f) %f\r\n",
-        //                 minmea_tocoord(&frame.latitude),
-        //                 minmea_tocoord(&frame.longitude),
-        //                 minmea_tofloat(&frame.speed));
+        case MINMEA_SENTENCE_RMC: {
+            if (minmea_parse_rmc(&rmc_frame, line)) {
+                sprintf(buff, "$xxRMC floating point degree coordinates and speed: (%f,%f) %f\r\n",
+                        minmea_tocoord(&rmc_frame.latitude),
+                        minmea_tocoord(&rmc_frame.longitude),
+                        minmea_tofloat(&rmc_frame.speed));
+                radio_print_debug(buff);
+            }
+            else {
+                radio_print_debug("$xxRMC sentence is not parsed\r\n");
+            }
+        } break;
+
+        // case MINMEA_SENTENCE_GGA:
+        //     struct minmea_sentence_gga frame;
+        //     if (minmea_parse_gga(&frame, line)) {
+                
+        //         sprintf(buff, "$xxGGA: fix quality: %d\r\n", frame.fix_quality);
         //         radio_print_debug(buff);
         //     }
         //     else {
-        //         radio_print_debug("$xxRMC sentence is not parsed\r\n");
+        //         radio_print_debug("$xxGGA sentence is not parsed\r\n");
         //     }
-        // } break;
+        //     break;
 
-        case MINMEA_SENTENCE_GGA:
-            struct minmea_sentence_gga frame;
-            if (minmea_parse_gga(&frame, line)) {
-                char buff[256];
-                sprintf(buff, "$xxGGA: fix quality: %d\r\n", frame.fix_quality);
+        case MINMEA_SENTENCE_GSA: {
+            if (minmea_parse_gsa(&gsa_frame, line)) {
+                // sprintf(buff, "$xxGSA pdop %f, hdop %f, vdop %f\r\n",
+                //         minmea_tofloat(&gsa_frame.pdop),
+                //         minmea_tofloat(&gsa_frame.hdop),
+                //         minmea_tofloat(&gsa_frame.vdop)
+                //         );
+                // radio_print_debug(buff);
+                radio_print_debug("GSA sucess\r\n");
             }
             else {
-                radio_print_debug("$xxGGA sentence is not parsed\r\n");
+                radio_print_debug("$xxGSA sentence is not parsed\r\n");
             }
-            break;
+        } break;
 
-        // case MINMEA_SENTENCE_GST: {
-        //     struct minmea_sentence_gst frame;
-        //     if (minmea_parse_gst(&frame, line)) {
-        //         radio_print_debug("$xxGST: raw latitude,longitude and altitude error deviation: (%d/%d,%d/%d,%d/%d)\n",
-        //                 frame.latitude_error_deviation.value, frame.latitude_error_deviation.scale,
-        //                 frame.longitude_error_deviation.value, frame.longitude_error_deviation.scale,
-        //                 frame.altitude_error_deviation.value, frame.altitude_error_deviation.scale);
-        //         radio_print_debug("$xxGST fixed point latitude,longitude and altitude error deviation"
-        //                " scaled to one decimal place: (%d,%d,%d)\n",
-        //                 minmea_rescale(&frame.latitude_error_deviation, 10),
-        //                 minmea_rescale(&frame.longitude_error_deviation, 10),
-        //                 minmea_rescale(&frame.altitude_error_deviation, 10));
-        //         radio_print_debug("$xxGST floating point degree latitude, longitude and altitude error deviation: (%f,%f,%f)",
-        //                 minmea_tofloat(&frame.latitude_error_deviation),
-        //                 minmea_tofloat(&frame.longitude_error_deviation),
-        //                 minmea_tofloat(&frame.altitude_error_deviation));
-        //     }
-        //     else {
-        //         radio_print_debug("$xxGST sentence is not parsed\n");
-        //     }
-        // } break;
 
         // case MINMEA_SENTENCE_GSV: {
         //     struct minmea_sentence_gsv frame;
         //     if (minmea_parse_gsv(&frame, line)) {
-        //         radio_print_debug("$xxGSV: message %d of %d\n", frame.msg_nr, frame.total_msgs);
-        //         radio_print_debug("$xxGSV: satellites in view: %d\n", frame.total_sats);
+        //         sprintf(buff, "$xxGSV: message %d of %d\n", frame.msg_nr, frame.total_msgs);
+        //         radio_print_debug(buff);
+        //         sprintf(buff, "$xxGSV: satellites in view: %d\n", frame.total_sats);
+        //         radio_print_debug(buff);
+                
         //         for (int i = 0; i < 4; i++)
-        //             radio_print_debug("$xxGSV: sat nr %d, elevation: %d, azimuth: %d, snr: %d dbm\n",
+        //             sprintf(buff, "$xxGSV: sat nr %d, elevation: %d, azimuth: %d, snr: %d dbm\n",
         //                 frame.sats[i].nr,
         //                 frame.sats[i].elevation,
         //                 frame.sats[i].azimuth,
         //                 frame.sats[i].snr);
+        //             radio_print_debug(buff);
         //     }
         //     else {
         //         radio_print_debug("$xxGSV sentence is not parsed\n");
@@ -251,44 +252,30 @@ void minmea_decode(char* line)
         // case MINMEA_SENTENCE_VTG: {
         //    struct minmea_sentence_vtg frame;
         //    if (minmea_parse_vtg(&frame, line)) {
-        //         radio_print_debug("$xxVTG: true track degrees = %f\n",
+        //         sprintf(buff, "$xxVTG: true track degrees = %f\n",
         //                minmea_tofloat(&frame.true_track_degrees));
-        //         radio_print_debug("        magnetic track degrees = %f\n",
+        //         radio_print_debug(buff);
+        //         sprintf(buff, "        magnetic track degrees = %f\n",
         //                minmea_tofloat(&frame.magnetic_track_degrees));
-        //         radio_print_debug("        speed knots = %f\n",
+        //         radio_print_debug(buff);
+        //         sprintf(buff, "        speed knots = %f\n",
         //                 minmea_tofloat(&frame.speed_knots));
-        //         radio_print_debug("        speed kph = %f\n",
+        //         radio_print_debug(buff);
+        //         sprintf(buff, "        speed kph = %f\n",
         //                 minmea_tofloat(&frame.speed_kph));
+        //         radio_print_debug(buff);
         //    }
         //    else {
-        //         radio_print_debug("$xxVTG sentence is not parsed\n");
+        //         radio_print_debug("$xxVTG sentence is not parsed\r\n");
         //    }
         // } break;
 
-        // case MINMEA_SENTENCE_ZDA: {
-        //     struct minmea_sentence_zda frame;
-        //     if (minmea_parse_zda(&frame, line)) {
-        //         radio_print_debug("$xxZDA: %d:%d:%d %02d.%02d.%d UTC%+03d:%02d\n",
-        //                frame.time.hours,
-        //                frame.time.minutes,
-        //                frame.time.seconds,
-        //                frame.date.day,
-        //                frame.date.month,
-        //                frame.date.year,
-        //                frame.hour_offset,
-        //                frame.minute_offset);
-        //     }
-        //     else {
-        //         radio_print_debug("$xxZDA sentence is not parsed\n");
-        //     }
-        // } break;
-
-        // case MINMEA_INVALID: {
-        //     radio_print_debug("$xxxxx sentence is not valid\r\n");
-        // } break;
+        case MINMEA_INVALID: {
+            radio_print_debug("$xxxxx sentence is not valid\r\n");
+        } break;
 
         default: {
-            // radio_print_debug("$xxxxx sentence is not parsed\n");
+            //radio_print_debug("$xxxxx sentence is not parsed\n");
         } break;
     }
 }
@@ -301,7 +288,7 @@ void gps_test(void)
         {
             nmea_msg_t* nmea_read_msg_ptr = &nmea_circbuff.buffer[nmea_circbuff.ri];
             char* line = nmea_read_msg_ptr->msg_buff;
-            radio_print_debug(line);
+            //radio_print_debug(line);
             minmea_decode(line);
             nmea_circbuff_read_complete();
         }

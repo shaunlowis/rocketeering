@@ -61,8 +61,8 @@ void main(void)
   // res = pf_mount(&fatfs);
   // sprintf(pbuff, "Res = "PRId16"\r\n", (uint16_t)res);
   // radio_print_debug(pbuff);
-  // // gps_init();
-  // // gps_test();
+  gps_init();
+  gps_test();
 
   // // i2c_init();
   // // imu_init(); // Needs i2c_init called first

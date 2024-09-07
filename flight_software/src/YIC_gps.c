@@ -51,7 +51,8 @@ static void write_nmea_circbuff(void);
 // Look at interrupt vector mapping table 10 of the datasheet for the IRQ no.
 INTERRUPT_HANDLER(UART3_RXNE_IRQHandler, ITC_IRQ_UART3_RX)
 {
-    char c = UART3_ReceiveData8(); 
+    char c = UART3_ReceiveData8();
+
     // Call nmea parse char
     nmea_parse_char(c);
 }
@@ -63,7 +64,7 @@ static void nmea_circbuff_write_complete(void)
     if (nmea_circbuff.current_length == NMEA_CIRCBUFF_SIZE)
     {
         GPIO_WriteReverse(RED_LED_PORT, RED_LED_PIN);
-        nmea_circbuff.current_length = 0; // Reset buffer (will lose all unread values
+        nmea_circbuff.current_length = 0; // Reset buffer (will lose all unread values)
     }
     nmea_circbuff.wi++;
     nmea_circbuff.current_length++;
@@ -107,7 +108,8 @@ static void nmea_parse_char(char c)
                 curr_msg_p->msg_buff[curr_msg_p->length++] = c;
                 // add a null char
                 curr_msg_p->msg_buff[curr_msg_p->length] = '\0';
-                curr_msg_p->state = IDLE; 
+                curr_msg_p->state = IDLE;
+                curr_msg_p->length = 0;
                 nmea_circbuff_write_complete();             
             } else 
             {
@@ -302,7 +304,6 @@ void gps_test(void)
             radio_print_debug(line);
             minmea_decode(line);
             nmea_circbuff_read_complete();
-            delay_ms(1000);
         }
     }
     

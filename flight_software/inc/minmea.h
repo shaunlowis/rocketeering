@@ -97,7 +97,7 @@ enum minmea_gll_status {
     MINMEA_GLL_STATUS_DATA_NOT_VALID = 'V',
 };
 
-// FAA mode added to some fields in NMEA 2.3.
+/* FAA mode added to some fields in NMEA 2.3. */
 enum minmea_faa_mode {
     MINMEA_FAA_MODE_AUTONOMOUS = 'A',
     MINMEA_FAA_MODE_DIFFERENTIAL = 'D',
@@ -230,10 +230,12 @@ bool minmea_parse_zda(struct minmea_sentence_zda *frame, const char *sentence);
  */
 int minmea_getdatetime(struct tm *tm, const struct minmea_date *date, const struct minmea_time *time_);
 
-// /**
-//  * Convert GPS UTC date/time representation to a UNIX timestamp.
-//  */
-// int minmea_gettime(struct timespec *ts, struct minmea_date *date, struct minmea_time *time_);
+/*
+
+ * Convert GPS UTC date/time representation to a UNIX timestamp.
+
+int minmea_gettime(struct timespec *ts, struct minmea_date *date, struct minmea_time *time_);
+*/
 
 /**
  * Rescale a fixed-point value to a different scale. Rounds towards zero.

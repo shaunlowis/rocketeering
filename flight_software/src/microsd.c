@@ -151,7 +151,6 @@ u8 MSD_GoIdleState(void)
 
   /* Send CMD0 (GO_IDLE_STATE) to put MSD in SPI mode */
   MSD_SendCmd(MSD_GO_IDLE_STATE, 0, 0x95);
-  //radio_print_debug("Idle sent\r\n");
   MSD_ChipSelect(DISABLE);
   MSD_ChipSelect(ENABLE);
   /* Wait for In Idle State Response (R1 Format) equal to 0x01 */
@@ -161,9 +160,8 @@ u8 MSD_GoIdleState(void)
     radio_print_debug("SD response failure\r\n");
     return MSD_RESPONSE_FAILURE;
   }
-  //radio_print_debug("Idle response recieved\r\n");
 
-  // Send CMD8 (interface condition)
+  /* Send CMD8 (interface condition) */
   MSD_ChipSelect(DISABLE);
   MSD_ChipSelect(ENABLE);
   MSD_SendCmd(MSD_SEND_IF_COND, 0x1AA, 0x87);
@@ -188,9 +186,9 @@ u8 MSD_GoIdleState(void)
     MSD_ChipSelect(ENABLE);
 
     
-    // /* Send CMD1 (Activates the card process) until response equal to 0x0 */
+    /* Send CMD1 (Activates the card process) until response equal to 0x0 */
     u32 amcd41_cmd = 0x40000000;
-    //MSD_SendCmd(MSD_APP_CMD, 0x00000000, 0x00); // Defines to card that next cmd is an application specific command
+    /*MSD_SendCmd(MSD_APP_CMD, 0x00000000, 0x00); // Defines to card that next cmd is an application specific command*/
     MSD_SendCmd(MSD_SEND_OP_COND, amcd41_cmd, 0x00);
     /* Wait for no error Response (R1 Format) equal to 0x00 */
     res = MSD_GetResponse(MSD_RESPONSE_NO_ERROR);

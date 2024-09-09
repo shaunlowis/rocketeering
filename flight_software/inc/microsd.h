@@ -101,7 +101,7 @@
 #define MSD_APP_CMD                ((u8)55)  /* CMD55=???*/
 
 /* Status of Disk Functions */
-// typedef BYTE DSTATUS;
+/* typedef BYTE DSTATUS; */
 
 #define STA_NOINIT		0x01	/* Drive not initialized */
 #define STA_NODISK		0x02	/* No medium in the drive */

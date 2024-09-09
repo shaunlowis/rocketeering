@@ -56,7 +56,7 @@
 
 /****************************************************************************/
 
-//typedef const char * ptr_t;
+/*typedef const char * ptr_t; */
 #define ptr_t const char *
 
 #ifdef toupper
@@ -72,7 +72,7 @@
 #undef isdigit
 #endif
 
-//#define toupper(c) ((c)&=~0x20)
+/* #define toupper(c) ((c)&=~0x20) */
 #define toupper(c) ((c)&=0xDF)
 #define tolower(c) ((c)|=0x20)
 #define islower(c) ((unsigned char)c >= (unsigned char)'a' && (unsigned char)c <= (unsigned char)'z')
@@ -231,7 +231,7 @@ output_float (float f, unsigned char reqWidth,
 {
   unsigned char charsOutputted = 0;
  #if defined (__SDCC_mcs51)
-  char fpBuffer[16];      //mcs51 has only a small stack
+  char fpBuffer[16];      /* mcs51 has only a small stack */
  #else
   char fpBuffer[128];
  #endif
@@ -243,7 +243,7 @@ output_float (float f, unsigned char reqWidth,
               _Bool left, _Bool zero, _Bool sign, _Bool space)
 {
   __xdata char fpBuffer[128];
-#endif //__SDCC_STACK_AUTO
+#endif /* __SDCC_STACK_AUTO */
   _Bool negative = 0;
   unsigned long integerPart;
   float rounding;
@@ -252,7 +252,7 @@ output_float (float f, unsigned char reqWidth,
   unsigned char minWidth, i;
   signed char exp = -128;
 
-  // save the sign
+  /* save the sign */
   if (f<0)
   {
     negative=1;
@@ -261,7 +261,7 @@ output_float (float f, unsigned char reqWidth,
 
   if (f>0x00ffffff)
   {
-    // this part is from Frank van der Hulst
+    /* this part is from Frank van der Hulst */
 
     for (exp = 0; f >= 10.0; exp++) f /=10.0;
     for (       ; f < 1.0;   exp--) f *=10.0;
@@ -284,11 +284,11 @@ output_float (float f, unsigned char reqWidth,
     space = 0;
   }
 
-  // display some decimals as default
+  /* display some decimals as default */
   if (reqDecimals==-1)
     reqDecimals=DEFAULT_FLOAT_PRECISION;
 
-  // round the float
+  /* round the float */
   rounding = 0.5;
   for (i=reqDecimals; i>0; i--)
   {
@@ -296,11 +296,11 @@ output_float (float f, unsigned char reqWidth,
   }
   f += rounding;
 
-  // split the float
+  /* split the float */
   integerPart = f;
   decimalPart = f - integerPart;
 
-  // fill the buffer with the integerPart (in reversed order!)
+  /* fill the buffer with the integerPart (in reversed order!) */
   while (integerPart)
   {
     fpBuffer[fpBI++]='0' + integerPart%10;
@@ -308,26 +308,26 @@ output_float (float f, unsigned char reqWidth,
   }
   if (!fpBI)
   {
-    // we need at least a 0
+    /* we need at least a 0 */
     fpBuffer[fpBI++]='0';
   }
 
-  // fill buffer with the decimalPart (in normal order)
+  /* fill buffer with the decimalPart (in normal order) */
   fpBD=fpBI;
 
   for (i=reqDecimals; i>0; i--)
   {
       decimalPart *= 10.0;
-      // truncate the float
+      /* truncate the float */
       integerPart = decimalPart;
       fpBuffer[fpBD++] = '0' + integerPart;
       decimalPart -= integerPart;
   }
 
-  minWidth=fpBI; // we need at least these
-  minWidth+=reqDecimals?reqDecimals+1:0; // maybe these
+  minWidth=fpBI; /* we need at least these */
+  minWidth+=reqDecimals?reqDecimals+1:0; /* maybe these */
   if (negative || sign || space)
-    minWidth++; // and maybe even this :)
+    minWidth++; /* and maybe even this :) */
 
   if (!left && reqWidth>i)
   {
@@ -386,13 +386,13 @@ output_float (float f, unsigned char reqWidth,
     }
   }
 
-  // output the integer part
+  /* output the integer part */
   i=fpBI-1;
   do {
     OUTPUT_CHAR (fpBuffer[i], p);
   } while (i--);
 
-  // output the decimal part
+  /* output the decimal part */
   if (reqDecimals)
   {
     OUTPUT_CHAR ('.', p);
@@ -426,9 +426,10 @@ output_float (float f, unsigned char reqWidth,
   return charsOutputted;
 #else
   return;
-#endif //__SDCC_STACK_AUTO
+#endif /* __SDCC_STACK_AUTO */
 }
-#endif //USE_FLOATS
+#endif /* USE_FLOATS */
+
 
 int
 _print_format (pfn_outputchar pfn, void* pvoid, const char *format, va_list ap)
@@ -462,7 +463,7 @@ _print_format (pfn_outputchar pfn, void* pvoid, const char *format, va_list ap)
   p = pvoid;
 #endif
 
-  // reset output chars
+  /* reset output chars */
   charsOutputted = 0;
 
 #ifdef __SDCC_ds390
@@ -521,7 +522,7 @@ get_conversion_spec:
         if (decimals==-1)
           decimals=0;
         else
-          ; // duplicate, ignore
+          ; /* duplicate, ignore */
         goto get_conversion_spec;
       }
 
@@ -547,7 +548,7 @@ get_conversion_spec:
       case 'B': /* byte */
         char_argument = 1;
         goto get_conversion_spec;
-//      case '#': /* not supported */
+      /* case '#':  not supported */
       case 'H': /* short */
       case 'J': /* intmax_t */
       case 'T': /* ptrdiff_t */
@@ -690,7 +691,7 @@ get_conversion_spec:
         break;
 
       default:
-        // nothing special, just output the character
+        /* nothing special, just output the character */
         OUTPUT_CHAR( c, p );
         break;
       }
@@ -704,30 +705,30 @@ get_conversion_spec:
         {
           OUTPUT_CHAR (c, p);
         }
-        // treat as long hex
-        //radix=16;
-        //long_argument=1;
-        //zero_padding=1;
-        //width=8;
+        /* treat as long hex
+        radix=16;
+        long_argument=1;
+        zero_padding=1;
+        width=8; */
 #else
-        // ignore b and l conversion spec for now
+        /* ignore b and l conversion spec for now */
 #ifdef __SDCC_STACK_AUTO
         charsOutputted += OUTPUT_FLOAT(value.f, width, decimals, left_justify,
                                      zero_padding, prefix_sign, prefix_space);
 #else
         OUTPUT_FLOAT(value.f, width, decimals, left_justify,
                      zero_padding, prefix_sign, prefix_space);
-#endif //__SDCC_STACK_AUTO
-#endif //USE_FLOATS
+#endif /* __SDCC_STACK_AUTO */
+#endif /* USE_FLOATS */
       }
       else if (radix != 0)
       {
-        // Apparently we have to output an integral type
-        // with radix "radix"
+        /* Apparently we have to output an integral type
+        with radix "radix" */
         unsigned char MEM_SPACE_BUF store[6];
         unsigned char MEM_SPACE_BUF_PP *pstore = &store[5];
 
-        // store value in byte[0] (LSB) ... byte[3] (MSB)
+        /* store value in byte[0] (LSB) ... byte[3] (MSB) */
         if (char_argument)
         {
           value.l = va_arg(ap, char);
@@ -740,7 +741,7 @@ get_conversion_spec:
         {
           value.l = va_arg(ap, long);
         }
-        else // must be int
+        else /* must be int */
         {
           value.l = va_arg(ap, int);
           if (!signed_argument)
@@ -782,9 +783,9 @@ get_conversion_spec:
 
         if (width == 0)
         {
-          // default width. We set it to 1 to output
-          // at least one character in case the value itself
-          // is zero (i.e. length==0)
+          /* default width. We set it to 1 to output
+          at least one character in case the value itself
+          is zero (i.e. length==0) */
           width = 1;
         }
 
@@ -798,25 +799,25 @@ get_conversion_spec:
           }
         }
 
-        if (signed_argument) // this now means the original value was negative
+        if (signed_argument) /* this now means the original value was negative */
         {
           OUTPUT_CHAR( '-', p );
-          // adjust width to compensate for this character
+          /* adjust width to compensate for this character */
           width--;
         }
         else if (length != 0)
         {
-          // value > 0
+          /* value > 0 */
           if (prefix_sign)
           {
             OUTPUT_CHAR( '+', p );
-            // adjust width to compensate for this character
+            /* adjust width to compensate for this character */
             width--;
           }
           else if (prefix_space)
           {
             OUTPUT_CHAR( ' ', p );
-            // adjust width to compensate for this character
+            /* adjust width to compensate for this character */
             width--;
           }
         }
@@ -869,7 +870,7 @@ get_conversion_spec:
     }
     else
     {
-      // nothing special, just output the character
+      /* nothing special, just output the character */
       OUTPUT_CHAR( c, p );
     }
   }

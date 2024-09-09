@@ -15,12 +15,11 @@ void radio_print_debug(char buff[])
     while (buff[i] != '\0')
     {
         UART1_SendData8(buff[i]);
-        // Blocks until transmit data register is empty, and ready for another one
+        /* Blocks until transmit data register is empty, and ready for another one */
         while(!UART1_GetFlagStatus(UART1_FLAG_TXE)) continue;
         i++;
     }
-    // Now wait for transmission to be complete
+    /* Now wait for transmission to be complete*/
     while(!UART1_GetFlagStatus(UART1_FLAG_TC)) continue;
-    //delay_ms(100); // Needed to send one after another
     #endif
 }

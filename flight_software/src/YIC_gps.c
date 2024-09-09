@@ -1,8 +1,7 @@
-// Broadcasts messages in NMEA format
-// Decoder: https://github.com/kosma/minmea
+/*Broadcasts messages in NMEA format
+Decoder: https://github.com/kosma/minmea
 
-
-/* Change baud rate with PMKT251 
+Change baud rate with PMKT251 
 https://cdn.sparkfun.com/assets/parts/1/2/2/8/0/PMTK_Packet_User_Manual.pdf
 https://forum.arduino.cc/t/changing-gps-baud-rate-with-minimal-nmeagps-and-gpsport/586590/2
 */
@@ -13,9 +12,9 @@ https://forum.arduino.cc/t/changing-gps-baud-rate-with-minimal-nmeagps-and-gpspo
 #include <math.h>
 #include "minmea.h"
 
-#define NMEA_CIRCBUFF_SIZE 12 // x2 number of messsages GPS sends
+#define NMEA_CIRCBUFF_SIZE 12 /* x2 number of messsages GPS sends */
 #define NMEA_START_CHAR '$'
-#define NMEA_END_CHAR1 '\n' // '\r'
+#define NMEA_END_CHAR1 '\n' /* '\r' */
 #define NMEA_END_CHAR2 '\n'
 
 
@@ -50,24 +49,24 @@ static void nmea_parse_char(char c);
 static void write_nmea_circbuff(void);
 
 
-// See stm8s.h INTERRUPT_HANDLER for how to define interrupt handler.
-// Look at interrupt vector mapping table 10 of the datasheet for the IRQ no.
+/* See stm8s.h INTERRUPT_HANDLER for how to define interrupt handler.
+Look at interrupt vector mapping table 10 of the datasheet for the IRQ no. */
 INTERRUPT_HANDLER(UART3_RXNE_IRQHandler, ITC_IRQ_UART3_RX)
 {
     char c = UART3_ReceiveData8();
 
-    // Call nmea parse char
+    /* Call nmea parse char */
     nmea_parse_char(c);
 }
 
 static void nmea_circbuff_write_complete(void)
 {
-    // Not really the writing function, just handles incrementing the write index
+    /* Not really the writing function, just handles incrementing the write index */
 
     if (nmea_circbuff.current_length == NMEA_CIRCBUFF_SIZE)
     {
         GPIO_WriteReverse(RED_LED_PORT, RED_LED_PIN);
-        nmea_circbuff.current_length = 0; // Reset buffer (will lose all unread values)
+        nmea_circbuff.current_length = 0; /* Reset buffer (will lose all unread values) */
     }
     nmea_circbuff.wi++;
     nmea_circbuff.current_length++;
@@ -90,7 +89,7 @@ static void nmea_circbuff_read_complete(void)
 static void nmea_parse_char(char c)
 {
     nmea_msg_t* curr_msg_p = &nmea_circbuff.buffer[nmea_circbuff.wi];
-    // Check if we have got a new message
+    /* Check if we have got a new message */
     switch (curr_msg_p->state) {
         case IDLE:
             if (c == NMEA_START_CHAR)
@@ -102,14 +101,14 @@ static void nmea_parse_char(char c)
         case DECODING:
             if (c == NMEA_START_CHAR)
             {
-                // Did not recieve stop, discard the packet and reset the nmea_msg
+                /* Did not recieve stop, discard the packet and reset the nmea_msg */
                 curr_msg_p->length = 0;
                 curr_msg_p->msg_buff[curr_msg_p->length++] = c;
                 curr_msg_p->state = DECODING;
             } else if ((c == NMEA_END_CHAR1) || (c == NMEA_END_CHAR2))
             {
                 curr_msg_p->msg_buff[curr_msg_p->length++] = c;
-                // add a null char
+                /* add a null char */
                 curr_msg_p->msg_buff[curr_msg_p->length] = '\0';
                 curr_msg_p->state = IDLE;
                 curr_msg_p->length = 0;
@@ -120,7 +119,7 @@ static void nmea_parse_char(char c)
             }
             break;
     }
-    // Ensure there wont be memory overrun of msg buffer
+    /* Ensure there wont be memory overrun of msg buffer */
     if (curr_msg_p->length == MINMEA_MAX_SENTENCE_LENGTH - 1)
     {
         curr_msg_p->length = 0;
@@ -135,18 +134,18 @@ static void gps_uart_send_string(char buff[])
     while (buff[i] != '\0')
     {
         UART3_SendData8(buff[i]);
-        // Blocks until transmit data register is empty, and ready for another one
+        /* Blocks until transmit data register is empty, and ready for another one */
         while(!UART3_GetFlagStatus(UART3_FLAG_TXE)) continue;
         i++;
     }
-    // Now wait for transmission to be complete
+    /* Now wait for transmission to be complete */
     while(!UART3_GetFlagStatus(UART3_FLAG_TC)) continue;
-    delay_ms(100); // Needed to send one after another
+    delay_ms(100); /* Needed to send one after another */
 }
 
 void gps_init(void)
 {
-    // init the nmea circbuff to default values
+    /* init the nmea circbuff to default values */
     for(int i=0; i<NMEA_CIRCBUFF_SIZE; i++)
     {
         nmea_circbuff.buffer[i].length = 0;
@@ -154,13 +153,13 @@ void gps_init(void)
     }
 
     radio_print_debug("Initialising GPS\r\n");
-    // Enable Uart at default GPS baud rate of 9600
+    /* Enable Uart at default GPS baud rate of 9600 */
     
     UART3_Init(9600, UART3_WORDLENGTH_8D, UART3_STOPBITS_1, UART3_PARITY_NO, UART3_MODE_TXRX_ENABLE);
     UART3_Cmd(ENABLE);
 
-    // Increase baud rate of GPS
-    gps_uart_send_string("$PGKC147,115200*06\r\n"); // Change baud rate to 115200
+    /* Increase baud rate of GPS */
+    gps_uart_send_string("$PGKC147,115200*06\r\n"); /* Change baud rate to 115200 */
     UART3_Cmd(DISABLE);
     UART3_DeInit();
     delay_ms(1000);
@@ -168,11 +167,11 @@ void gps_init(void)
 
     UART3_Init(115200, UART3_WORDLENGTH_8D, UART3_STOPBITS_1, UART3_PARITY_NO, UART3_MODE_TXRX_ENABLE);
 
-    // // Setup interrups for rx
+    /* Setup interrups for rx */
     radio_print_debug("Setting up interrupts\r\n");
-    disableInterrupts(); // Must do before ITC_SetSoftwarePriority
-    UART3_ClearFlag(UART3_FLAG_RXNE); // Clear flag in case it is set
-    ITC_SetSoftwarePriority(ITC_IRQ_UART3_RX, ITC_PRIORITYLEVEL_2); // Need lower priority than delay interrupt
+    disableInterrupts(); /* Must do before ITC_SetSoftwarePriority */
+    UART3_ClearFlag(UART3_FLAG_RXNE); 
+    ITC_SetSoftwarePriority(ITC_IRQ_UART3_RX, ITC_PRIORITYLEVEL_2); /* Need lower priority than delay interrupt */
     UART3_ITConfig(UART3_IT_RXNE_OR, ENABLE);
     enableInterrupts();
     UART3_Cmd(ENABLE); 
@@ -182,9 +181,6 @@ void minmea_decode(char* line)
 {
     enum minmea_sentence_id id = minmea_sentence_id(line, false);
     char buff[500];
-    // char buf1[50];
-    // sprintf(buf1, "ID: %"PRId16"\r\n", (int16_t)id);
-    // radio_print_debug(buf1);
     switch (id) 
         {
         case MINMEA_SENTENCE_RMC: {
@@ -200,26 +196,8 @@ void minmea_decode(char* line)
             }
         } break;
 
-        // case MINMEA_SENTENCE_GGA:
-        //     struct minmea_sentence_gga frame;
-        //     if (minmea_parse_gga(&frame, line)) {
-                
-        //         sprintf(buff, "$xxGGA: fix quality: %d\r\n", frame.fix_quality);
-        //         radio_print_debug(buff);
-        //     }
-        //     else {
-        //         radio_print_debug("$xxGGA sentence is not parsed\r\n");
-        //     }
-        //     break;
-
         case MINMEA_SENTENCE_GSA: {
             if (minmea_parse_gsa(&gsa_frame, line)) {
-                // sprintf(buff, "$xxGSA pdop %f, hdop %f, vdop %f\r\n",
-                //         minmea_tofloat(&gsa_frame.pdop),
-                //         minmea_tofloat(&gsa_frame.hdop),
-                //         minmea_tofloat(&gsa_frame.vdop)
-                //         );
-                // radio_print_debug(buff);
                 radio_print_debug("GSA sucess\r\n");
             }
             else {
@@ -227,55 +205,12 @@ void minmea_decode(char* line)
             }
         } break;
 
-
-        // case MINMEA_SENTENCE_GSV: {
-        //     struct minmea_sentence_gsv frame;
-        //     if (minmea_parse_gsv(&frame, line)) {
-        //         sprintf(buff, "$xxGSV: message %d of %d\n", frame.msg_nr, frame.total_msgs);
-        //         radio_print_debug(buff);
-        //         sprintf(buff, "$xxGSV: satellites in view: %d\n", frame.total_sats);
-        //         radio_print_debug(buff);
-                
-        //         for (int i = 0; i < 4; i++)
-        //             sprintf(buff, "$xxGSV: sat nr %d, elevation: %d, azimuth: %d, snr: %d dbm\n",
-        //                 frame.sats[i].nr,
-        //                 frame.sats[i].elevation,
-        //                 frame.sats[i].azimuth,
-        //                 frame.sats[i].snr);
-        //             radio_print_debug(buff);
-        //     }
-        //     else {
-        //         radio_print_debug("$xxGSV sentence is not parsed\n");
-        //     }
-        // } break;
-
-        // case MINMEA_SENTENCE_VTG: {
-        //    struct minmea_sentence_vtg frame;
-        //    if (minmea_parse_vtg(&frame, line)) {
-        //         sprintf(buff, "$xxVTG: true track degrees = %f\n",
-        //                minmea_tofloat(&frame.true_track_degrees));
-        //         radio_print_debug(buff);
-        //         sprintf(buff, "        magnetic track degrees = %f\n",
-        //                minmea_tofloat(&frame.magnetic_track_degrees));
-        //         radio_print_debug(buff);
-        //         sprintf(buff, "        speed knots = %f\n",
-        //                 minmea_tofloat(&frame.speed_knots));
-        //         radio_print_debug(buff);
-        //         sprintf(buff, "        speed kph = %f\n",
-        //                 minmea_tofloat(&frame.speed_kph));
-        //         radio_print_debug(buff);
-        //    }
-        //    else {
-        //         radio_print_debug("$xxVTG sentence is not parsed\r\n");
-        //    }
-        // } break;
-
         case MINMEA_INVALID: {
             radio_print_debug("$xxxxx sentence is not valid\r\n");
         } break;
 
         default: {
-            //radio_print_debug("$xxxxx sentence is not parsed\n");
+            /* radio_print_debug("$xxxxx sentence is not parsed\n"); */
         } break;
     }
 }
@@ -288,7 +223,7 @@ void gps_test(void)
         {
             nmea_msg_t* nmea_read_msg_ptr = &nmea_circbuff.buffer[nmea_circbuff.ri];
             char* line = nmea_read_msg_ptr->msg_buff;
-            //radio_print_debug(line);
+            /* radio_print_debug(line); */
             minmea_decode(line);
             nmea_circbuff_read_complete();
         }

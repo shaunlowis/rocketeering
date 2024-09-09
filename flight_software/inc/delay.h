@@ -1,5 +1,5 @@
 
-// https://github.com/prosper00/STM8-AD9833-Function-Generator/tree/main
+/* https://github.com/prosper00/STM8-AD9833-Function-Generator/tree/main */
 #ifndef DELAY_H
 #define DELAY_H
 
@@ -14,4 +14,4 @@ void delay_us(uint16_t us);
 uint16_t millis(void);
 uint32_t micros(void);
 
-#endif //DELAY_H
+#endif /* DELAY_H */

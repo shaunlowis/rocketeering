@@ -7,7 +7,7 @@
 #include "ICM42670_imu.h"
 #include "microsd.h"
 #include "pff.h"
-#include "inttypes.h"
+#include <inttypes.h>
 
 void assert_failed(uint8_t* file, uint32_t line);
 void clock_config(void);
@@ -17,61 +17,34 @@ void main(void)
   clock_config();
   GPIO_Init(GREEN_LED_PORT, GREEN_LED_PIN, GPIO_MODE_OUT_PP_LOW_FAST);
   GPIO_Init(RED_LED_PORT, RED_LED_PIN, GPIO_MODE_OUT_PP_LOW_FAST);
-  //GPIO_Init(MSD_CS_PORT, MSD_CS_PIN, GPIO_MODE_OUT_PP_HIGH_FAST);
+  /* GPIO_Init(MSD_CS_PORT, MSD_CS_PIN, GPIO_MODE_OUT_PP_HIGH_FAST); */
   radio_uart_init();
   radio_print_debug("Radio initialized\r\n");
 
-  
-  // SPI_Init(SPI_FIRSTBIT_MSB,
-          //  SPI_BAUDRATEPRESCALER_2,
-          //  SPI_MODE_MASTER,
-          //  SPI_CLOCKPOLARITY_LOW,
-          //  SPI_CLOCKPHASE_1EDGE,
-          //  SPI_DATADIRECTION_2LINES_FULLDUPLEX,
-          //  SPI_NSS_HARD,
-          //  1);
-  // SPI_Cmd(ENABLE);
 
-  // // while(1)
-  // // {
-  // //   GPIO_WriteLow(MSD_CS_PORT, MSD_CS_PIN); /* CS pin low: MSD enabled */
-  // //   u8 DataOut = 0;
-  // //   /* Wait until the transmit buffer is empty */
-  // //   while (SPI_GetFlagStatus(SPI_FLAG_TXE) == RESET);
-  // //   /* Send the byte */
-  // //   SPI_SendData(0xff);
-  // //   /* Wait to receive a byte*/
-  // //   while(SPI_GetFlagStatus(SPI_FLAG_RXNE) == RESET);
-  // //   /*Return the byte read from the SPI bus */ 
-  // //   DataOut = SPI_ReceiveData();
-  // //   GPIO_WriteHigh(MSD_CS_PORT, MSD_CS_PIN); /* CS pin low: MSD enabled */
+  FATFS fatfs;			/* File system object */
+	DIR dir;				/* Directory object */
+	FILINFO fno;			/* File information object */
+	UINT bw, br, i;
+	BYTE buff[64];
+  FRESULT res;
+  char pbuff[100];
 
-  // //   delay_ms(1000);
-  // // }  
-
-  // FATFS fatfs;			/* File system object */
-	// DIR dir;				/* Directory object */
-	// FILINFO fno;			/* File information object */
-	// UINT bw, br, i;
-	// BYTE buff[64];
-  // FRESULT res;
-  // char pbuff[100];
-
-  // radio_print_debug("SPI initialized\r\n");
-  // res = pf_mount(&fatfs);
-  // sprintf(pbuff, "Res = "PRId16"\r\n", (uint16_t)res);
-  // radio_print_debug(pbuff);
+  /* radio_print_debug("SPI initialized\r\n");
+  res = pf_mount(&fatfs);
+  sprintf(pbuff, "Res = "PRId16"\r\n", (uint16_t)res);
+  radio_print_debug(pbuff);
   gps_init();
-  gps_test();
+  gps_test(); */
 
-  // // i2c_init();
-  // // imu_init(); // Needs i2c_init called first
-  // // spl07_init(); // Needs i2c_init called first
+  /* i2c_init();
+  imu_init(); // Needs i2c_init called first
+  spl07_init(); // Needs i2c_init called first */
   
   while (1){
     GPIO_WriteReverse(GREEN_LED_PORT, GREEN_LED_PIN);
-    //update_imu_state();
-    //spl07_update_baro();
+    /* update_imu_state(); */
+    /* spl07_update_baro(); */
     delay_ms(500);
     
   }
@@ -99,18 +72,14 @@ int32_t getTwosComplement(uint32_t raw, uint8_t length) {
   uint32_t comparison = (uint32_t)1<<(length - 1);
   int32_t result = 0;
 
-  // char pbuf[50];
-  // sprintf(pbuf, "Raw: %"PRIu32"   |   Length: %"PRIu8"   |   Comp: %"PRIu32"\r\n", raw, length, comparison);
-  // radio_print_debug(pbuf);
-
-  // Check if the sign bit is set
+  /* Check if the sign bit is set */
   if (raw & comparison) {
-      // If the sign bit is set, convert to two's complement
-      uint32_t mask = ((uint32_t)1 << length) - 1; // inverting mask
-      raw = (raw ^ mask) + 1; // Invert each bit then add one
-      result = -1 * (int32_t)raw; // Make it negative
+      /* If the sign bit is set, convert to two's complement */
+      uint32_t mask = ((uint32_t)1 << length) - 1; /* inverting mask */
+      raw = (raw ^ mask) + 1; /* Invert each bit then add one */
+      result = -1 * (int32_t)raw; /* Make it negative */
   } else {
-      // If the sign bit is not set, it's already a positive value
+      /* If the sign bit is not set, it's already a positive value */
       result = (int32_t)raw;
   }
   return result;

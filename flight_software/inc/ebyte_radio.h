@@ -6,4 +6,4 @@ void radio_print_debug(char buff[]);
 
 
 
-#endif // EBYTE_RADIO_H
+#endif /* EBYTE_RADIO_H */

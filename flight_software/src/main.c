@@ -6,8 +6,11 @@
 #include "i2c_driver_STM8S007.h"
 #include "ICM42670_imu.h"
 #include "microsd.h"
-#include "pff.h"
 #include <inttypes.h>
+#include "ff.h"		/* Declarations of FatFs API */
+
+FATFS FatFs;		/* FatFs work area needed for each volume */
+FIL Fil;			/* File object needed for each open file */
 
 void assert_failed(uint8_t* file, uint32_t line);
 void clock_config(void);
@@ -21,15 +24,14 @@ void main(void)
   radio_uart_init();
   radio_print_debug("Radio initialized\r\n");
 
+  UINT bw;
+	FRESULT fr;
 
-  FATFS fatfs;			/* File system object */
-	DIR dir;				/* Directory object */
-	FILINFO fno;			/* File information object */
-	UINT bw, br, i;
-	BYTE buff[64];
-  FRESULT res;
+
+	fr = f_mount(&FatFs, "", 0);		/* Give a work area to the default drive */
   char pbuff[100];
-
+  sprintf(pbuff, "fr = %d\r\n", (uint16_t)fr);
+  radio_print_debug(pbuff);
   /* radio_print_debug("SPI initialized\r\n");
   res = pf_mount(&fatfs);
   sprintf(pbuff, "Res = "PRId16"\r\n", (uint16_t)res);

@@ -40,6 +40,24 @@ void radio_print_debug(char buff[])
     #endif
 }
 
+void send_float(float val)
+{
+    unsigned char *byte_ptr = (unsigned char *)&val;
+    int i = 0;
+    UART1_SendData8(byte_ptr[i++]);
+    while(!UART1_GetFlagStatus(UART1_FLAG_TXE)) continue;
+    while(!UART1_GetFlagStatus(UART1_FLAG_TC)) continue;
+    UART1_SendData8(byte_ptr[i++]);
+    while(!UART1_GetFlagStatus(UART1_FLAG_TXE)) continue;
+    while(!UART1_GetFlagStatus(UART1_FLAG_TC)) continue;
+    UART1_SendData8(byte_ptr[i++]);
+    while(!UART1_GetFlagStatus(UART1_FLAG_TXE)) continue;
+    while(!UART1_GetFlagStatus(UART1_FLAG_TC)) continue;
+    UART1_SendData8(byte_ptr[i++]);
+    while(!UART1_GetFlagStatus(UART1_FLAG_TXE)) continue;
+    while(!UART1_GetFlagStatus(UART1_FLAG_TC)) continue;
+}
+
 void send_telemetry(void)
 {
     // Get GPS data
@@ -61,21 +79,24 @@ void send_telemetry(void)
     float pressure = get_baro_pressure();
     
     char buf[1000];
-    sprintf(buf, "%f %f %f %c %u %u %u %f %f\r\naccel %f %f %f gyro %f %f %f press %f\r\n\n", lati,
-                                                longi,
-                                                speed,
-                                                mode,
-                                                fix_type,
-                                                fix_quality,
-                                                sats_tracked,
-                                                gps_alt,
-                                                height,
-                                                imu_state.accel_x_g,
-                                                imu_state.accel_y_g,
-                                                imu_state.accel_z_g,
-                                                imu_state.gyro_x_dps,
-                                                imu_state.gyro_y_dps,
-                                                imu_state.gyro_z_dps,
-                                                pressure);
-    radio_print_debug(buf);
+    float test = 10.0;
+    unsigned char *byte_ptr = (unsigned char *)&test;
+    send_float(test);
+    // sprintf(buf, "%f %f %f %c %u %u %u %f %f\r\naccel %f %f %f gyro %f %f %f press %f\r\n\n", lati,
+    //                                             longi,
+    //                                             speed,
+    //                                             mode,
+    //                                             fix_type,
+    //                                             fix_quality,
+    //                                             sats_tracked,
+    //                                             gps_alt,
+    //                                             height,
+    //                                             imu_state.accel_x_g,
+    //                                             imu_state.accel_y_g,
+    //                                             imu_state.accel_z_g,
+    //                                             imu_state.gyro_x_dps,
+    //                                             imu_state.gyro_y_dps,
+    //                                             imu_state.gyro_z_dps,
+    //                                             pressure);
+    //radio_print_debug(buf);
 }

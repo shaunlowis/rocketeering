@@ -61,7 +61,7 @@ void send_telemetry(void)
     float pressure = get_baro_pressure();
     
     char buf[1000];
-    sprintf(buf, "%f %f %f %c %u %u %u %f %f\r\n", lati,
+    sprintf(buf, "%f %f %f %c %u %u %u %f %f\r\naccel %f %f %f gyro %f %f %f press %f\r\n\n", lati,
                                                 longi,
                                                 speed,
                                                 mode,
@@ -69,6 +69,13 @@ void send_telemetry(void)
                                                 fix_quality,
                                                 sats_tracked,
                                                 gps_alt,
-                                                height);
+                                                height,
+                                                imu_state.accel_x_g,
+                                                imu_state.accel_y_g,
+                                                imu_state.accel_z_g,
+                                                imu_state.gyro_x_dps,
+                                                imu_state.gyro_y_dps,
+                                                imu_state.gyro_z_dps,
+                                                pressure);
     radio_print_debug(buf);
 }

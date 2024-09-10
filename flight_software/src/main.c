@@ -47,7 +47,7 @@ void main(void)
     read_gps_buffer();
     update_imu_state();
     spl07_update_baro();
-    //send_telemetry();
+    send_telemetry();
     delay_ms(1000);
   }
 

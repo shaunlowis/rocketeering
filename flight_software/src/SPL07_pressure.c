@@ -189,8 +189,8 @@ void spl07_update_baro(void)
     baroState.temperature = c0 * 0.5f + c1 * Traw_sc;
 
     
-    sprintf(pbuf, "Pressure = %f, Temp = %f\r\n", baroState.pressure, baroState.temperature);
-    radio_print_debug(pbuf);
+    // sprintf(pbuf, "Pressure = %f, Temp = %f\r\n", baroState.pressure, baroState.temperature);
+    // radio_print_debug(pbuf);
 }
 
 float get_baro_pressure(void)

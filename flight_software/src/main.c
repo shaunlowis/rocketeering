@@ -21,22 +21,22 @@ void main(void)
   radio_uart_init();
   radio_print_debug("Radio initialized\r\n");
 
-  SPI_DeInit();
-  SPI_Init(SPI_FIRSTBIT_MSB,
-           SPI_BAUDRATEPRESCALER_2,
-           SPI_MODE_MASTER,
-           SPI_CLOCKPOLARITY_LOW,
-           SPI_CLOCKPHASE_1EDGE,
-           SPI_DATADIRECTION_2LINES_FULLDUPLEX,
-           SPI_NSS_HARD,
-           1);
-  SPI_Cmd(ENABLE);
-  radio_print_debug("SPI initialized\r\n");
-  MSD_Init();
-  radio_print_debug("SD initialized\r\n");
+  // SPI_DeInit();
+  // SPI_Init(SPI_FIRSTBIT_MSB,
+  //          SPI_BAUDRATEPRESCALER_2,
+  //          SPI_MODE_MASTER,
+  //          SPI_CLOCKPOLARITY_LOW,
+  //          SPI_CLOCKPHASE_1EDGE,
+  //          SPI_DATADIRECTION_2LINES_FULLDUPLEX,
+  //          SPI_NSS_HARD,
+  //          1);
+  // SPI_Cmd(ENABLE);
+  // radio_print_debug("SPI initialized\r\n");
+  // MSD_Init();
+  // radio_print_debug("SD initialized\r\n");
 
-  gps_init();
-  gps_test();
+  // gps_init();
+  // gps_test();
 
   // // i2c_init();
   // // imu_init(); // Needs i2c_init called first

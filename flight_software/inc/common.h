@@ -7,7 +7,7 @@
 #include <string.h>
 #include <inttypes.h>
 
-
+#include "gpio.h"
 #include "stm8s.h"
 #include "delay.h"
 #include "ebyte_radio.h"

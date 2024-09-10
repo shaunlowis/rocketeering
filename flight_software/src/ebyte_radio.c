@@ -40,35 +40,35 @@ void radio_print_debug(char buff[])
     #endif
 }
 
-// void send_telemetry(void)
-// {
-//     // Get GPS data
-//     float lati = gps_get_lat_float();
-//     float longi = gps_get_long_float();
-//     float speed = gps_get_speed_float();
-//     char mode = gps_get_mode();
-//     int fix_type = gps_get_fix_type();
-//     int fix_quality = gps_get_fix_quality();
-//     int sats_tracked = gps_get_satellites_tracked();
-//     float gps_alt = gps_get_altitude();
-//     float height = gps_get_height();
+void send_telemetry(void)
+{
+    // Get GPS data
+    float lati = gps_get_lat_float();
+    float longi = gps_get_long_float();
+    float speed = gps_get_speed_float();
+    char mode = gps_get_mode();
+    int fix_type = gps_get_fix_type();
+    int fix_quality = gps_get_fix_quality();
+    int sats_tracked = gps_get_satellites_tracked();
+    float gps_alt = gps_get_altitude();
+    float height = gps_get_height();
 
-//     // get imu state
-//     imuState_t imu_state;
-//     imu_state = get_imu_state();
+    // get imu state
+    imuState_t imu_state;
+    imu_state = get_imu_state();
 
-//     // Get pressure state
-//     float pressure = get_baro_pressure();
+    // Get pressure state
+    float pressure = get_baro_pressure();
     
-//     char buf[1000];
-//     sprintf(buf, "%f %f %f %c %u %u %u %f %f\r\n", lati,
-//                                                 longi,
-//                                                 speed,
-//                                                 mode,
-//                                                 fix_type,
-//                                                 fix_quality,
-//                                                 sats_tracked,
-//                                                 gps_alt,
-//                                                 height);
-//     radio_print_debug(buf);
-// }
+    char buf[1000];
+    sprintf(buf, "%f %f %f %c %u %u %u %f %f\r\n", lati,
+                                                longi,
+                                                speed,
+                                                mode,
+                                                fix_type,
+                                                fix_quality,
+                                                sats_tracked,
+                                                gps_alt,
+                                                height);
+    radio_print_debug(buf);
+}

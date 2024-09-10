@@ -11,6 +11,12 @@ https://packages.msys2.org/package/mingw-w64-x86_64-gdb-multiarch?repo=mingw64
 Needs mysys2 bin dir on path
 
 # Coding notes/findings
+## I2C is extremely tempermental. May appear to not work. Seems to randomly stop working with various history commits. Try:
+ - Make clean
+ - flash
+ - unplug pwr, dbg, programmer
+ - plug in pwr, dbg, programmer
+
 
 ## Printf Floats
 Cannot printf floats by default, says `<NO FLOAT>`. See Compiler support routines of the [SDCC manual](docs/sdccman.pdf) for details. To enable add `-DUSE_FLOATS=1` to command line flags.

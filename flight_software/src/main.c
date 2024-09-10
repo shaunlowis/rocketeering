@@ -17,50 +17,24 @@ void main(void)
   clock_config();
   GPIO_Init(GREEN_LED_PORT, GREEN_LED_PIN, GPIO_MODE_OUT_PP_LOW_FAST);
   GPIO_Init(RED_LED_PORT, RED_LED_PIN, GPIO_MODE_OUT_PP_LOW_FAST);
-  //GPIO_Init(MSD_CS_PORT, MSD_CS_PIN, GPIO_MODE_OUT_PP_HIGH_FAST);
+  GPIO_Init(MSD_CS_PORT, MSD_CS_PIN, GPIO_MODE_OUT_PP_HIGH_FAST);
   radio_uart_init();
   radio_print_debug("Radio initialized\r\n");
 
-  
-  // SPI_Init(SPI_FIRSTBIT_MSB,
-          //  SPI_BAUDRATEPRESCALER_2,
-          //  SPI_MODE_MASTER,
-          //  SPI_CLOCKPOLARITY_LOW,
-          //  SPI_CLOCKPHASE_1EDGE,
-          //  SPI_DATADIRECTION_2LINES_FULLDUPLEX,
-          //  SPI_NSS_HARD,
-          //  1);
-  // SPI_Cmd(ENABLE);
+  SPI_DeInit();
+  SPI_Init(SPI_FIRSTBIT_MSB,
+           SPI_BAUDRATEPRESCALER_2,
+           SPI_MODE_MASTER,
+           SPI_CLOCKPOLARITY_LOW,
+           SPI_CLOCKPHASE_1EDGE,
+           SPI_DATADIRECTION_2LINES_FULLDUPLEX,
+           SPI_NSS_HARD,
+           1);
+  SPI_Cmd(ENABLE);
+  radio_print_debug("SPI initialized\r\n");
+  MSD_Init();
+  radio_print_debug("SD initialized\r\n");
 
-  // // while(1)
-  // // {
-  // //   GPIO_WriteLow(MSD_CS_PORT, MSD_CS_PIN); /* CS pin low: MSD enabled */
-  // //   u8 DataOut = 0;
-  // //   /* Wait until the transmit buffer is empty */
-  // //   while (SPI_GetFlagStatus(SPI_FLAG_TXE) == RESET);
-  // //   /* Send the byte */
-  // //   SPI_SendData(0xff);
-  // //   /* Wait to receive a byte*/
-  // //   while(SPI_GetFlagStatus(SPI_FLAG_RXNE) == RESET);
-  // //   /*Return the byte read from the SPI bus */ 
-  // //   DataOut = SPI_ReceiveData();
-  // //   GPIO_WriteHigh(MSD_CS_PORT, MSD_CS_PIN); /* CS pin low: MSD enabled */
-
-  // //   delay_ms(1000);
-  // // }  
-
-  // FATFS fatfs;			/* File system object */
-	// DIR dir;				/* Directory object */
-	// FILINFO fno;			/* File information object */
-	// UINT bw, br, i;
-	// BYTE buff[64];
-  // FRESULT res;
-  // char pbuff[100];
-
-  // radio_print_debug("SPI initialized\r\n");
-  // res = pf_mount(&fatfs);
-  // sprintf(pbuff, "Res = "PRId16"\r\n", (uint16_t)res);
-  // radio_print_debug(pbuff);
   gps_init();
   gps_test();
 
@@ -73,6 +47,7 @@ void main(void)
     //update_imu_state();
     //spl07_update_baro();
     delay_ms(500);
+    
     
   }
 }

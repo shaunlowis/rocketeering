@@ -110,6 +110,7 @@ void update_imu_state(void)
     imu_state.gyro_x_dps = read_and_convert_imu_value(IMU_GYRO_DATA_X1, GYRO_SENS_SCALE_F);
     imu_state.gyro_y_dps = read_and_convert_imu_value(IMU_GYRO_DATA_Y1, GYRO_SENS_SCALE_F);
     imu_state.gyro_z_dps = read_and_convert_imu_value(IMU_GYRO_DATA_Z1, GYRO_SENS_SCALE_F);
+    print_imu_data();
 }
 
 

@@ -44,16 +44,6 @@
 #define GYRO_SENS_SCALE_F           16.4f // Needs updating if full scale range changes
 
 
-typedef struct {
-    float   accel_x_g;
-    float   accel_y_g;
-    float   accel_z_g;
-
-    float   gyro_x_dps;
-    float   gyro_y_dps;
-    float   gyro_z_dps;
-} imuState_t;
-
 static imuState_t imu_state;
 
 void imu_init(void)
@@ -120,5 +110,10 @@ void update_imu_state(void)
     imu_state.gyro_x_dps = read_and_convert_imu_value(IMU_GYRO_DATA_X1, GYRO_SENS_SCALE_F);
     imu_state.gyro_y_dps = read_and_convert_imu_value(IMU_GYRO_DATA_Y1, GYRO_SENS_SCALE_F);
     imu_state.gyro_z_dps = read_and_convert_imu_value(IMU_GYRO_DATA_Z1, GYRO_SENS_SCALE_F);
-    print_imu_data();
+}
+
+
+imuState_t get_imu_state(void)
+{
+    return imu_state;
 }

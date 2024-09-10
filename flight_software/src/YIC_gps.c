@@ -43,6 +43,7 @@ nmea_msg_circbuff_t nmea_circbuff = {.current_length=0,
 
 struct minmea_sentence_gsa gsa_frame;
 struct minmea_sentence_rmc rmc_frame;
+struct minmea_sentence_gga gga_frame;
 
 
 static void gps_uart_send_string(char buff[]);
@@ -181,117 +182,80 @@ void gps_init(void)
 void minmea_decode(char* line)
 {
     enum minmea_sentence_id id = minmea_sentence_id(line, false);
-    char buff[500];
-    // char buf1[50];
-    // sprintf(buf1, "ID: %"PRId16"\r\n", (int16_t)id);
-    // radio_print_debug(buf1);
     switch (id) 
         {
         case MINMEA_SENTENCE_RMC: {
-            if (minmea_parse_rmc(&rmc_frame, line)) {
-                sprintf(buff, "$xxRMC floating point degree coordinates and speed: (%f,%f) %f\r\n",
-                        minmea_tocoord(&rmc_frame.latitude),
-                        minmea_tocoord(&rmc_frame.longitude),
-                        minmea_tofloat(&rmc_frame.speed));
-                radio_print_debug(buff);
-            }
-            else {
-                radio_print_debug("$xxRMC sentence is not parsed\r\n");
-            }
+            // radio_print_debug("RMC\r\n");
+            minmea_parse_rmc(&rmc_frame, line);
         } break;
-
-        // case MINMEA_SENTENCE_GGA:
-        //     struct minmea_sentence_gga frame;
-        //     if (minmea_parse_gga(&frame, line)) {
-                
-        //         sprintf(buff, "$xxGGA: fix quality: %d\r\n", frame.fix_quality);
-        //         radio_print_debug(buff);
-        //     }
-        //     else {
-        //         radio_print_debug("$xxGGA sentence is not parsed\r\n");
-        //     }
-        //     break;
 
         case MINMEA_SENTENCE_GSA: {
-            if (minmea_parse_gsa(&gsa_frame, line)) {
-                // sprintf(buff, "$xxGSA pdop %f, hdop %f, vdop %f\r\n",
-                //         minmea_tofloat(&gsa_frame.pdop),
-                //         minmea_tofloat(&gsa_frame.hdop),
-                //         minmea_tofloat(&gsa_frame.vdop)
-                //         );
-                // radio_print_debug(buff);
-                radio_print_debug("GSA sucess\r\n");
-            }
-            else {
-                radio_print_debug("$xxGSA sentence is not parsed\r\n");
-            }
+            // radio_print_debug("GSA\r\n");
+            minmea_parse_gsa(&gsa_frame, line);
         } break;
 
-
-        // case MINMEA_SENTENCE_GSV: {
-        //     struct minmea_sentence_gsv frame;
-        //     if (minmea_parse_gsv(&frame, line)) {
-        //         sprintf(buff, "$xxGSV: message %d of %d\n", frame.msg_nr, frame.total_msgs);
-        //         radio_print_debug(buff);
-        //         sprintf(buff, "$xxGSV: satellites in view: %d\n", frame.total_sats);
-        //         radio_print_debug(buff);
-                
-        //         for (int i = 0; i < 4; i++)
-        //             sprintf(buff, "$xxGSV: sat nr %d, elevation: %d, azimuth: %d, snr: %d dbm\n",
-        //                 frame.sats[i].nr,
-        //                 frame.sats[i].elevation,
-        //                 frame.sats[i].azimuth,
-        //                 frame.sats[i].snr);
-        //             radio_print_debug(buff);
-        //     }
-        //     else {
-        //         radio_print_debug("$xxGSV sentence is not parsed\n");
-        //     }
-        // } break;
-
-        // case MINMEA_SENTENCE_VTG: {
-        //    struct minmea_sentence_vtg frame;
-        //    if (minmea_parse_vtg(&frame, line)) {
-        //         sprintf(buff, "$xxVTG: true track degrees = %f\n",
-        //                minmea_tofloat(&frame.true_track_degrees));
-        //         radio_print_debug(buff);
-        //         sprintf(buff, "        magnetic track degrees = %f\n",
-        //                minmea_tofloat(&frame.magnetic_track_degrees));
-        //         radio_print_debug(buff);
-        //         sprintf(buff, "        speed knots = %f\n",
-        //                 minmea_tofloat(&frame.speed_knots));
-        //         radio_print_debug(buff);
-        //         sprintf(buff, "        speed kph = %f\n",
-        //                 minmea_tofloat(&frame.speed_kph));
-        //         radio_print_debug(buff);
-        //    }
-        //    else {
-        //         radio_print_debug("$xxVTG sentence is not parsed\r\n");
-        //    }
-        // } break;
-
-        case MINMEA_INVALID: {
-            radio_print_debug("$xxxxx sentence is not valid\r\n");
-        } break;
-
+        case MINMEA_SENTENCE_GGA: {
+            // radio_print_debug("GGA\r\n");
+            minmea_parse_gga(&gga_frame, line);
+        }
         default: {
             //radio_print_debug("$xxxxx sentence is not parsed\n");
         } break;
     }
 }
 
-void gps_test(void)
+void read_gps_buffer(void)
 {
-    while(1)
+    while (nmea_circbuff.current_length > 0)
     {
-        if (nmea_circbuff.current_length > 0)
-        {
-            nmea_msg_t* nmea_read_msg_ptr = &nmea_circbuff.buffer[nmea_circbuff.ri];
-            char* line = nmea_read_msg_ptr->msg_buff;
-            //radio_print_debug(line);
-            minmea_decode(line);
-            nmea_circbuff_read_complete();
-        }
+        nmea_msg_t* nmea_read_msg_ptr = &nmea_circbuff.buffer[nmea_circbuff.ri];
+        char* line = nmea_read_msg_ptr->msg_buff;
+        minmea_decode(line);
+        nmea_circbuff_read_complete();
     }
-    
+}
+
+float gps_get_lat_float(void)
+{
+    return minmea_tocoord(&gga_frame.latitude);
+}
+
+float gps_get_long_float(void)
+{
+    return minmea_tocoord(&gga_frame.longitude);
+}
+
+float gps_get_speed_float(void)
+{
+    return minmea_tofloat(&rmc_frame.speed);
+}
+
+char gps_get_mode(void)
+{
+    return gsa_frame.mode;
+}
+
+int gps_get_fix_type(void)
+{
+    return gsa_frame.fix_type;
+}
+
+int gps_get_fix_quality(void)
+{
+    return gga_frame.fix_quality;
+}
+
+int gps_get_satellites_tracked(void)
+{
+    return gga_frame.satellites_tracked;
+}
+
+float gps_get_altitude(void)
+{
+    return minmea_tofloat(&gga_frame.altitude);
+}
+
+float gps_get_height(void)
+{
+    return minmea_tofloat(&gga_frame.height);
 }

@@ -1,6 +1,9 @@
 #include "common.h"
 #include "stm8s_uart1.h"
 #include "ebyte_radio.h"
+#include "YIC_gps.h"
+#include "ICM42670_imu.h"
+#include "SPL07_pressure.h"
 
 INTERRUPT_HANDLER(UART1_RXNE_IRQHandler, ITC_IRQ_UART1_RX)
 {
@@ -35,4 +38,37 @@ void radio_print_debug(char buff[])
     while(!UART1_GetFlagStatus(UART1_FLAG_TC)) continue;
     //delay_ms(100); // Needed to send one after another
     #endif
+}
+
+void send_telemetry(void)
+{
+    // Get GPS data
+    float lati = gps_get_lat_float();
+    float longi = gps_get_long_float();
+    float speed = gps_get_speed_float();
+    char mode = gps_get_mode();
+    int fix_type = gps_get_fix_type();
+    int fix_quality = gps_get_fix_quality();
+    int sats_tracked = gps_get_satellites_tracked();
+    float gps_alt = gps_get_altitude();
+    float height = gps_get_height();
+
+    // get imu state
+    imuState_t imu_state;
+    imu_state = get_imu_state();
+
+    // Get pressure state
+    float pressure = get_baro_pressure();
+    
+    char buf[1000];
+    sprintf(buf, "%f %f %f %c %u %u %u %f %f\r\n", lati,
+                                                longi,
+                                                speed,
+                                                mode,
+                                                fix_type,
+                                                fix_quality,
+                                                sats_tracked,
+                                                gps_alt,
+                                                height);
+    radio_print_debug(buf);
 }

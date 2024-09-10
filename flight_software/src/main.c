@@ -19,6 +19,9 @@ void main(void)
   GPIO_Init(RED_LED_PORT, RED_LED_PIN, GPIO_MODE_OUT_PP_LOW_FAST);
   GPIO_Init(MSD_CS_PORT, MSD_CS_PIN, GPIO_MODE_OUT_PP_HIGH_FAST);
   radio_uart_init();
+  // i2c_init();
+  // imu_init(); // Needs i2c_init called first
+  // spl07_init(); // Needs i2c_init called first
   radio_print_debug("Radio initialized\r\n");
 
   // SPI_DeInit();
@@ -35,12 +38,15 @@ void main(void)
   // MSD_Init();
   // radio_print_debug("SD initialized\r\n");
 
-  // gps_init();
-  // gps_test();
+  gps_init();
+  while(1)
+  {
+    read_gps_buffer();
+    send_telemetry();
+    delay_ms(1000);
+  }
 
-  // // i2c_init();
-  // // imu_init(); // Needs i2c_init called first
-  // // spl07_init(); // Needs i2c_init called first
+
   
   while (1){
     GPIO_WriteReverse(GREEN_LED_PORT, GREEN_LED_PIN);

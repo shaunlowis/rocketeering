@@ -89,6 +89,7 @@ float read_and_convert_imu_value(uint8_t reg1_addr, float scale_factor)
 
 void print_imu_data(void)
 {
+    #ifdef DEBUG_ENABLE
     char buff[256];
     sprintf(buff, "Accelerometer [X, Y, Z] = [%.3f, %.3f, %.3f] g\r\nGyroscope     [X, Y, Z] = [%.3f, %.3f, %.3f] dps\r\n\r\n\r\n", imu_state.accel_x_g,
                                                                           imu_state.accel_y_g,
@@ -97,6 +98,7 @@ void print_imu_data(void)
                                                                           imu_state.gyro_y_dps,
                                                                           imu_state.gyro_z_dps);
     radio_print_debug(buff);
+    #endif
 
 }
 

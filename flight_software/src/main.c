@@ -6,8 +6,8 @@
 #include "i2c_driver_STM8S007.h"
 #include "ICM42670_imu.h"
 #include "microsd.h"
-#include "pff.h"
 #include "inttypes.h"
+#include "logging.h"
 
 void assert_failed(uint8_t* file, uint32_t line);
 void clock_config(void);
@@ -22,23 +22,46 @@ void main(void)
 
   radio_print_debug("Radio initialized\r\n");
 
-  i2c_init();
-  imu_init(); // Needs i2c_init called first
-  spl07_init(); // Needs i2c_init called first
+  // i2c_init();
+  // imu_init(); // Needs i2c_init called first
+  // spl07_init(); // Needs i2c_init called first
 
-  // SPI_DeInit();
-  // SPI_Init(SPI_FIRSTBIT_MSB,
-  //          SPI_BAUDRATEPRESCALER_2,
-  //          SPI_MODE_MASTER,
-  //          SPI_CLOCKPOLARITY_LOW,
-  //          SPI_CLOCKPHASE_1EDGE,
-  //          SPI_DATADIRECTION_2LINES_FULLDUPLEX,
-  //          SPI_NSS_HARD,
-  //          1);
-  // SPI_Cmd(ENABLE);
-  // radio_print_debug("SPI initialized\r\n");
-  // MSD_Init();
-  // radio_print_debug("SD initialized\r\n");
+  SPI_DeInit();
+  SPI_Init(SPI_FIRSTBIT_MSB,
+           SPI_BAUDRATEPRESCALER_2,
+           SPI_MODE_MASTER,
+           SPI_CLOCKPOLARITY_LOW,
+           SPI_CLOCKPHASE_1EDGE,
+           SPI_DATADIRECTION_2LINES_FULLDUPLEX,
+           SPI_NSS_HARD,
+           1);
+  SPI_Cmd(ENABLE);
+  radio_print_debug("SPI initialized\r\n");
+  MSD_Init();
+  radio_print_debug("SD initialized\r\n");
+
+  print_sd_to_radio();
+  //add_data_to_log_buff();
+  //test_log_buff();
+
+  // char bytes[512];
+  // for (int i = 0; i < 512; i++)
+  // {
+  //   bytes[i] = 0xFF;
+  // }
+  // MSD_WriteBlock(bytes, 1024, 512);
+
+  // char bytes_read[512];
+  // MSD_ReadBlock(bytes_read, 1024, 512);
+
+  // char pbuff[10];
+  // for (int i=0; i<255; i++)
+  // {
+  //   sprintf(pbuff, "%d\r\n", (int)bytes_read[i]);
+  //   radio_print_debug(pbuff);
+  // }
+
+
 
   gps_init();
   while(1)
@@ -119,8 +142,10 @@ void assert_failed(uint8_t* file, uint32_t line)
   while (1)
   {
     char buff[1000];
+    #ifdef DEBUG_ENABLE
     sprintf(buff, "Wrong parameters value: file %s on line %d\r\n", file, line);
     radio_print_debug(buff);
+    #endif
     GPIO_WriteReverse(GREEN_LED_PORT, GREEN_LED_PIN);
     delay_ms(100);
   }

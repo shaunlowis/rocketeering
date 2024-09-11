@@ -10,6 +10,7 @@
         "yic_gps.h": "c",
         "minmea.h": "c",
         "stm8s_spi_sd.h": "c",
-        "pff.h": "c"
+        "pff.h": "c",
+        "delay.h": "c"
     }
 }

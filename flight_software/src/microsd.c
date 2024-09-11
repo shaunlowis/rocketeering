@@ -22,7 +22,6 @@
 /* Includes ------------------------------------------------------------------*/
 #include "microsd.h"
 #include "common.h"
-#include "pff.h"
 /* Private typedef -----------------------------------------------------------*/
 /* Private define ------------------------------------------------------------*/
 /* Private macro -------------------------------------------------------------*/
@@ -195,8 +194,6 @@ u8 MSD_GoIdleState(void)
     /* Wait for no error Response (R1 Format) equal to 0x00 */
     res = MSD_GetResponse(MSD_RESPONSE_NO_ERROR);
     char buff[50];
-    sprintf(buff, "%"PRIu8"\r\n", res);
-    radio_print_debug(buff);
   }
   while (res != MSD_RESPONSE_NO_ERROR);
   radio_print_debug("SD initialized\r\n");

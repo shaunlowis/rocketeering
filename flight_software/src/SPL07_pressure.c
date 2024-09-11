@@ -81,6 +81,7 @@ void spl07_init(void)
 
 void spl07_print_cal_coefs(void)
 {
+    #ifdef DEBUG_ENABLE
     char buff[256];
     sprintf(buff, "c0: %f\r\n", (float)baroState.calib.c0);
     radio_print_debug(buff);
@@ -104,6 +105,7 @@ void spl07_print_cal_coefs(void)
     radio_print_debug(buff);
     sprintf(buff, "c40: %f\r\n", baroState.calib.c40);
     radio_print_debug(buff);
+    #endif
 }
 
 void spl07_read_cal_coefs(void)

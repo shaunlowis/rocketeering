@@ -69,8 +69,8 @@ void delay_us(uint16_t us)
 }
 
 /** returns the number of milliseconds that have passed since boot  **/
-uint16_t millis(void){
-	return((uint16_t)(tick >> 2)); // divide tick by 4 returns milliseconds
+uint32_t millis(void){
+	return((uint32_t)(tick >> 2)); // divide tick by 4 returns milliseconds
 }
 
 /** returns the number of microseconds that have passed since boot  **/

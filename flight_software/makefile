@@ -18,7 +18,7 @@ TARGET := ./$(BUILD_DIR)/flight_software.ihx
 # Flags for the sdcc compiler. see ./docs/sdccman.pdf for details
 DEVICE := STM8S007
 COMPILER := SDCC
-CFLAGS := -mstm8 -lstm8 -D$(DEVICE) -D$(COMPILER) --verbose -DUSE_FLOATS=1
+CFLAGS := -mstm8 -lstm8 -D$(DEVICE) -D$(COMPILER) --verbose -DUSE_FLOATS=1 --opt-code-size
 
 # for flashing
 PROGRAMMER=stlinkv2

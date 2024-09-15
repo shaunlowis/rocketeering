@@ -82,7 +82,7 @@ void send_telemetry(void)
     // float test = 10.0;
     // unsigned char *byte_ptr = (unsigned char *)&test;
     // send_float(test);
-    sprintf(buf, "%f %f %f %c %u %u %u %f %f\r\naccel %f %f %f gyro %f %f %f press %f\r\n\n", lati,
+    sprintf(buf, "%f %f %f %c %u %u %u %.2f %.2f\r\naccel %.2f %.2f %.2f gyro %.1f %.1f %.1f press %.0f\r\n\n", lati,
                                                 longi,
                                                 speed,
                                                 mode,

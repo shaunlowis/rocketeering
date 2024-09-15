@@ -71,7 +71,7 @@ void main(void)
     update_imu_state();
     spl07_update_baro();
     send_telemetry();
-    delay_ms(100); // Needs some delay
+    delay_ms(50); // Needs some delay
   }
 
 

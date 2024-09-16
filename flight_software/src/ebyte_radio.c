@@ -78,25 +78,34 @@ void send_telemetry(void)
     // Get pressure state
     float pressure = get_baro_pressure();
 
+    // Thermocouple
+    uint16_t tc_temp = 69; // TODO: Replace with get_tc_temp() function
+
+    // Battery
+    int16_t batt_voltage = 69; // TODO: Replace with get_batt_voltage() function
+    int16_t batt_current = 69; // TODO: Replace with get_batt_current() function
+
     char buf[1000];
-    // float test = 10.0;
-    // unsigned char *byte_ptr = (unsigned char *)&test;
-    // send_float(test);
-    sprintf(buf, "%f %f %f %c %u %u %u %.2f %.2f\r\naccel %.2f %.2f %.2f gyro %.1f %.1f %.1f press %.0f\r\n\n", lati,
-                                                longi,
-                                                speed,
-                                                mode,
-                                                fix_type,
-                                                fix_quality,
-                                                sats_tracked,
-                                                gps_alt,
-                                                height,
-                                                imu_state.accel_x_g,
-                                                imu_state.accel_y_g,
-                                                imu_state.accel_z_g,
-                                                imu_state.gyro_x_dps,
-                                                imu_state.gyro_y_dps,
-                                                imu_state.gyro_z_dps,
-                                                pressure);
+    sprintf(buf, "%f,%f,%f,%c,%u,%u,%u,%.2f,%.2f,%.2f,%.2f,%.2f,%.1f,%.1f,%.1f,%.0f,%u,%d,%d\r\n", 
+            lati,
+            longi,
+            speed,
+            mode,
+            fix_type,
+            fix_quality,
+            sats_tracked,
+            gps_alt,
+            height,
+            imu_state.accel_x_g,
+            imu_state.accel_y_g,
+            imu_state.accel_z_g,
+            imu_state.gyro_x_dps,
+            imu_state.gyro_y_dps,
+            imu_state.gyro_z_dps,
+            pressure,
+            tc_temp,
+            batt_voltage,
+            batt_current);
+
     radio_print_debug(buf);
 }

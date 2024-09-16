@@ -70,6 +70,9 @@ void send_telemetry(void)
     int sats_tracked = gps_get_satellites_tracked();
     float gps_alt = gps_get_altitude();
     float height = gps_get_height();
+    float pdop = gps_get_pdop();
+    float hdop = gps_get_hdop();
+    float vdop = gps_get_vdop();
 
     // get imu state
     imuState_t imu_state;
@@ -86,7 +89,11 @@ void send_telemetry(void)
     int16_t batt_current = 69; // TODO: Replace with get_batt_current() function
 
     char buf[1000];
-    sprintf(buf, "%f,%f,%f,%c,%u,%u,%u,%.2f,%.2f,%.2f,%.2f,%.2f,%.1f,%.1f,%.1f,%.0f,%u,%d,%d\r\n", 
+    // TODO: add hdop, vdop and/or pdop???
+    sprintf(buf, "%f,%f,%f,%f,%f,%f,%c,%u,%u,%u,%.2f,%.2f,%.2f,%.2f,%.2f,%.1f,%.1f,%.1f,%.0f,%u,%d,%d\r\n", 
+            pdop,
+            hdop,
+            vdop,
             lati,
             longi,
             speed,

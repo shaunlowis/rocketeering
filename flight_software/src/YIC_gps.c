@@ -259,3 +259,18 @@ float gps_get_height(void)
 {
     return minmea_tofloat(&gga_frame.height);
 }
+
+float gps_get_pdop(void)
+{
+    return minmea_tofloat(&gsa_frame.pdop);
+}
+
+float gps_get_hdop(void)
+{
+    return minmea_tofloat(&gsa_frame.hdop);
+}
+
+float gps_get_vdop(void)
+{
+    return minmea_tofloat(&gsa_frame.vdop);
+}

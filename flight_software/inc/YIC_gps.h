@@ -17,5 +17,8 @@ int gps_get_fix_quality(void);
 int gps_get_satellites_tracked(void);
 float gps_get_altitude(void);
 float gps_get_height(void);
+float gps_get_pdop(void);
+float gps_get_hdop(void);
+float gps_get_vdop(void);
 
 #endif // YIC_GPS_H

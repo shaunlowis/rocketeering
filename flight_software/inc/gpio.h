@@ -7,3 +7,9 @@
 
 #define RED_LED_PORT  GPIOG
 #define RED_LED_PIN   GPIO_PIN_1 // This is pin PG1, or pin 36 on the schematic.
+
+#define M0_RADIO_PORT GPIOC
+#define M0_RADIO_PIN GPIO_PIN_4
+
+#define M1_RADIO_PORT GPIOC
+#define M1_RADIO_PIN  GPIO_PIN_3

@@ -12,6 +12,8 @@
 void assert_failed(uint8_t* file, uint32_t line);
 void clock_config(void);
 
+#define MAIN_LOOP_FREQ_HZ 50
+
 void main(void)
 {
   clock_config();
@@ -20,9 +22,9 @@ void main(void)
   GPIO_Init(MSD_CS_PORT, MSD_CS_PIN, GPIO_MODE_OUT_PP_HIGH_FAST);
   GPIO_Init(M0_RADIO_PORT, M0_RADIO_PIN, GPIO_MODE_OUT_PP_LOW_FAST);
   GPIO_Init(M1_RADIO_PORT, M1_RADIO_PIN, GPIO_MODE_OUT_PP_LOW_FAST);
-  // radio_uart_init();
+  radio_uart_init();
 
-  // radio_print_debug("Radio initialized\r\n");
+  radio_print_debug("Radio initialized\r\n");
 
   // i2c_init();
   // imu_init(); // Needs i2c_init called first
@@ -66,15 +68,34 @@ void main(void)
 
 
 
-  
+  uint32_t loop_start_time;
+  uint32_t current_time;
   while(1)
   {
+    loop_start_time = millis();
     GPIO_WriteReverse(GREEN_LED_PORT, GREEN_LED_PIN);
     // read_gps_buffer();
     // update_imu_state();
     // spl07_update_baro();
     // send_telemetry();
-    delay_ms(1000); // Needs some delay
+    char buff[200];
+    for (int i=0; i<200-3; i++)
+    {
+      buff[i] = 'x';
+    }
+    buff[200-3] = '\r';
+    buff[200-2] = '\n';
+    buff[200-1] = '\0';
+    int end = sprintf(buff, "%"PRIu32"\r\n", loop_start_time);
+    buff[end] = 'x';
+    radio_print_debug(buff);
+    
+    // Paced loop, wait until time to continue
+    current_time = millis();
+    while(current_time - loop_start_time < (1000 / MAIN_LOOP_FREQ_HZ))
+    {
+      current_time = millis();
+    }
   }
 
 

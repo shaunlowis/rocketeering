@@ -20,27 +20,28 @@ void main(void)
   GPIO_Init(MSD_CS_PORT, MSD_CS_PIN, GPIO_MODE_OUT_PP_HIGH_FAST);
   GPIO_Init(M0_RADIO_PORT, M0_RADIO_PIN, GPIO_MODE_OUT_PP_LOW_FAST);
   GPIO_Init(M1_RADIO_PORT, M1_RADIO_PIN, GPIO_MODE_OUT_PP_LOW_FAST);
-  // radio_uart_init();
+  radio_uart_init();
 
-  // radio_print_debug("Radio initialized\r\n");
+  radio_print_debug("Radio initialized\r\n");
 
   // i2c_init();
   // imu_init(); // Needs i2c_init called first
   // spl07_init(); // Needs i2c_init called first
   //gps_init();
 
-  // SPI_DeInit();
-  // SPI_Init(SPI_FIRSTBIT_MSB,
-  //          SPI_BAUDRATEPRESCALER_2,
-  //          SPI_MODE_MASTER,
-  //          SPI_CLOCKPOLARITY_LOW,
-  //          SPI_CLOCKPHASE_1EDGE,
-  //          SPI_DATADIRECTION_2LINES_FULLDUPLEX,
-  //          SPI_NSS_HARD,
-  //          1);
-  // SPI_Cmd(ENABLE);
-  // radio_print_debug("SPI initialized\r\n");
-  // MSD_Init();
+  // SPI setup:
+  SPI_DeInit();
+  SPI_Init(SPI_FIRSTBIT_MSB,
+           SPI_BAUDRATEPRESCALER_2,
+           SPI_MODE_MASTER,
+           SPI_CLOCKPOLARITY_LOW,
+           SPI_CLOCKPHASE_1EDGE,
+           SPI_DATADIRECTION_2LINES_FULLDUPLEX,
+           SPI_NSS_HARD,
+           1);
+  SPI_Cmd(ENABLE);
+  radio_print_debug("SPI initialized\r\n");
+  MSD_Init();
   // radio_print_debug("SD initialized\r\n");
 
   // print_sd_to_radio();
@@ -70,6 +71,14 @@ void main(void)
   while(1)
   {
     GPIO_WriteReverse(GREEN_LED_PORT, GREEN_LED_PIN);
+    // Can pass direct string or sprintf into a char buff and pass into here, like this:
+    // char pbuff[10];
+    // for (int i=0; i<255; i++)
+    // {
+    //   sprintf(pbuff, "%d\r\n", (int)bytes_read[i]);
+    //   radio_print_debug(pbuff);
+    // }
+    radio_print_debug("peepeepoopoo\r\n");
     // read_gps_buffer();
     // update_imu_state();
     // spl07_update_baro();
@@ -83,7 +92,6 @@ void main(void)
     GPIO_WriteReverse(GREEN_LED_PORT, GREEN_LED_PIN);
 
     delay_ms(500);
-    
     
   }
 }

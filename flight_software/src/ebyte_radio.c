@@ -100,7 +100,7 @@ void send_telemetry(void)
             mode,
             fix_type,
             fix_quality,
-            sats_tracked,
+            sats_tracked
             gps_alt,
             height,
             imu_state.accel_x_g,

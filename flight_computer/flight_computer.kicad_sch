@@ -238,6 +238,10 @@
     (stroke (width 0) (type default))
     (uuid 288107a0-c8cc-4e2f-9417-ca7054a1f874)
   )
+  (wire (pts (xy 88.9 121.92) (xy 102.87 121.92))
+    (stroke (width 0) (type default))
+    (uuid 297cd993-1dde-4bc8-ac91-a1e04640f91c)
+  )
   (wire (pts (xy 139.7 137.16) (xy 156.21 137.16))
     (stroke (width 0) (type default))
     (uuid 2ad61475-42e8-438d-92db-0c4373f88029)
@@ -1006,6 +1010,10 @@
     (pin "SPI_MISO" input (at 139.7 157.48 0)
       (effects (font (size 1.27 1.27)) (justify right))
       (uuid 75d89998-13e1-4057-860b-16f53ed95bc4)
+    )
+    (pin "VBUS_5V_IN" output (at 102.87 121.92 180)
+      (effects (font (size 1.27 1.27)) (justify left))
+      (uuid af44df49-c01c-4fa7-8f98-86ac6bbd4029)
     )
     (instances
       (project "flight_computer"

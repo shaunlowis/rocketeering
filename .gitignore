@@ -15,3 +15,9 @@
 *.rel
 *.rst
 *.sym
+
+# kicad BS:
+*.kicad_pcb.lck
+
+# VS Code settings
+settings.json

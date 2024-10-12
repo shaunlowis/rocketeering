@@ -21,6 +21,7 @@
     "peacock.color": "#1862be",
     "files.associations": {
         "stm8s.h": "c",
-        "common.h": "c"
+        "common.h": "c",
+        "inttypes.h": "c"
     }
 }

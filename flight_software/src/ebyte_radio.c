@@ -15,11 +15,11 @@ void radio_uart_init(void)
 {
     UART1_Cmd(ENABLE);
     UART1_Init(115200, UART1_WORDLENGTH_8D, UART1_STOPBITS_1, UART1_PARITY_NO, UART1_SYNCMODE_CLOCK_DISABLE, UART1_MODE_TXRX_ENABLE);
-    disableInterrupts(); // Must do before ITC_SetSoftwarePriority
-    UART1_ClearFlag(UART1_FLAG_RXNE); // Clear flag in case it is set
-    ITC_SetSoftwarePriority(ITC_IRQ_UART1_RX, ITC_PRIORITYLEVEL_2); // Need lower priority than delay interrupt
-    UART1_ITConfig(UART1_IT_RXNE_OR, ENABLE);
-    enableInterrupts();
+    // disableInterrupts(); // Must do before ITC_SetSoftwarePriority
+    // UART1_ClearFlag(UART1_FLAG_RXNE); // Clear flag in case it is set
+    // ITC_SetSoftwarePriority(ITC_IRQ_UART1_RX, ITC_PRIORITYLEVEL_2); // Need lower priority than delay interrupt
+    // UART1_ITConfig(UART1_IT_RXNE_OR, ENABLE);
+    // enableInterrupts();
 }
 
 

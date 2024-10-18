@@ -13,7 +13,7 @@
 void assert_failed(uint8_t* file, uint32_t line);
 void clock_config(void);
 
-#define MAIN_LOOP_FREQ_HZ 50 // 20 mins logging 200 chars @ 50 Hz is around 12 mB.
+#define MAIN_LOOP_FREQ_HZ 1 // 20 mins logging 200 chars @ 50 Hz is around 12 mB.
 
 void main(void)
 {
@@ -21,18 +21,18 @@ void main(void)
   GPIO_Init(GREEN_LED_PORT, GREEN_LED_PIN, GPIO_MODE_OUT_PP_LOW_FAST);
   GPIO_Init(RED_LED_PORT, RED_LED_PIN, GPIO_MODE_OUT_PP_LOW_FAST);
   GPIO_Init(MSD_CS_PORT, MSD_CS_PIN, GPIO_MODE_OUT_PP_HIGH_FAST);
-  GPIO_Init(M0_RADIO_PORT, M0_RADIO_PIN, GPIO_MODE_OUT_PP_LOW_FAST);
-  GPIO_Init(M1_RADIO_PORT, M1_RADIO_PIN, GPIO_MODE_OUT_PP_LOW_FAST);
   radio_uart_init();
 
   radio_print_debug("Radio initialized\r\n");
 
   init_battery_measurements();
-  // i2c_init();
-  // imu_init(); // Needs i2c_init called first
-  // spl07_init(); // Needs i2c_init called first
-  //gps_init();
+  i2c_init();
+  imu_init(); // Needs i2c_init called first
+  spl07_init(); // Needs i2c_init called first
+  gps_init();
 
+
+  // =========== TRYING SD CARD OVER SPI DOESNT WORK==========
   // SPI_DeInit();
   // SPI_Init(SPI_FIRSTBIT_MSB,
   //          SPI_BAUDRATEPRESCALER_2,
@@ -76,21 +76,31 @@ void main(void)
   {
     loop_start_time = millis();
     GPIO_WriteReverse(GREEN_LED_PORT, GREEN_LED_PIN);
-    // read_gps_buffer();
-    // update_imu_state();
-    // spl07_update_baro();
-    // send_telemetry();
-    char buff[200];
-    for (int i=0; i<200-3; i++)
-    {
-      buff[i] = 'x';
-    }
-    buff[200-3] = '\r';
-    buff[200-2] = '\n';
-    buff[200-1] = '\0';
-    int end = sprintf(buff, "%"PRIu32"\r\n", loop_start_time);
-    buff[end] = 'x';
-    radio_print_debug(buff);
+
+    // Read all sensors
+    read_gps_buffer();
+    update_imu_state();
+    spl07_update_baro();
+    read_batt_voltage();
+    read_batt_current();
+    float batt_voltage_V = get_batt_voltage();
+    float batt_current_mA = get_batt_current();
+
+    // Log to SD
+    send_telemetry();
+
+
+    // char buff[200];
+    // for (int i=0; i<200-3; i++)
+    // {
+    //   buff[i] = 'x';
+    // }
+    // buff[200-3] = '\r';
+    // buff[200-2] = '\n';
+    // buff[200-1] = '\0';
+    // int end = sprintf(buff, "%"PRIu32"\r\n", loop_start_time);
+    // buff[end] = 'x';
+    // radio_print_debug(buff);
     
     // Paced loop, wait until time to continue
     current_time = millis();

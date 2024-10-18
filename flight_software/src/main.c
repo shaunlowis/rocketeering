@@ -13,7 +13,7 @@
 void assert_failed(uint8_t* file, uint32_t line);
 void clock_config(void);
 
-#define MAIN_LOOP_FREQ_HZ 1 // 20 mins logging 200 chars @ 50 Hz is around 12 mB.
+#define MAIN_LOOP_FREQ_HZ 10 // 20 mins logging 200 chars @ 50 Hz is around 12 mB.
 
 void main(void)
 {

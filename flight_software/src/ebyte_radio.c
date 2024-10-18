@@ -61,6 +61,9 @@ void send_float(float val)
 
 void send_telemetry(void)
 {
+    // Get timestamp
+    uint32_t timestamp = millis();
+
     // Get GPS data
     float lati = gps_get_lat_float();
     float longi = gps_get_long_float();
@@ -91,7 +94,8 @@ void send_telemetry(void)
 
     char buf[1000];
     // TODO: add hdop, vdop and/or pdop???
-    sprintf(buf, "%f,%f,%f,%f,%f,%f,%c,%u,%u,%u,%.2f,%.2f,%.2f,%.2f,%.2f,%.1f,%.1f,%.1f,%.0f,%u,%.2f,%.1f\r\n", 
+    sprintf(buf, "%"PRIu32",%f,%f,%f,%f,%f,%f,%c,%u,%u,%u,%.2f,%.2f,%.2f,%.2f,%.2f,%.1f,%.1f,%.1f,%.0f,%u,%.2f,%.1f\r\n", 
+            timestamp,
             pdop,
             hdop,
             vdop,

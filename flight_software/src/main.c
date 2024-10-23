@@ -13,7 +13,7 @@
 void assert_failed(uint8_t* file, uint32_t line);
 void clock_config(void);
 
-#define MAIN_LOOP_FREQ_HZ 10 // 20 mins logging 200 chars @ 50 Hz is around 12 mB.
+#define MAIN_LOOP_FREQ_HZ 20 // 20 mins logging 200 chars @ 50 Hz is around 12 mB.
 
 void main(void)
 {
@@ -30,7 +30,6 @@ void main(void)
   imu_init(); // Needs i2c_init called first
   spl07_init(); // Needs i2c_init called first
   gps_init();
-
 
   // =========== TRYING SD CARD OVER SPI DOESNT WORK==========
   // SPI_DeInit();
@@ -68,8 +67,6 @@ void main(void)
   //   radio_print_debug(pbuff);
   // }
 
-
-
   uint32_t loop_start_time;
   uint32_t current_time;
   while(1)
@@ -88,19 +85,6 @@ void main(void)
 
     // Log to SD
     send_telemetry();
-
-
-    // char buff[200];
-    // for (int i=0; i<200-3; i++)
-    // {
-    //   buff[i] = 'x';
-    // }
-    // buff[200-3] = '\r';
-    // buff[200-2] = '\n';
-    // buff[200-1] = '\0';
-    // int end = sprintf(buff, "%"PRIu32"\r\n", loop_start_time);
-    // buff[end] = 'x';
-    // radio_print_debug(buff);
     
     // Paced loop, wait until time to continue
     current_time = millis();
@@ -109,16 +93,6 @@ void main(void)
       current_time = millis();
     }
   }
-
-
-  
-  // while (1){
-  //   GPIO_WriteReverse(GREEN_LED_PORT, GREEN_LED_PIN);
-
-  //   delay_ms(500);
-    
-    
-  // }
 }
 
 void clock_config(void)
@@ -142,10 +116,6 @@ void print_bits_of_byte(uint8_t byte)
 int32_t getTwosComplement(uint32_t raw, uint8_t length) {
   uint32_t comparison = (uint32_t)1<<(length - 1);
   int32_t result = 0;
-
-  // char pbuf[50];
-  // sprintf(pbuf, "Raw: %"PRIu32"   |   Length: %"PRIu8"   |   Comp: %"PRIu32"\r\n", raw, length, comparison);
-  // radio_print_debug(pbuf);
 
   // Check if the sign bit is set
   if (raw & comparison) {
@@ -183,7 +153,7 @@ void assert_failed(uint8_t* file, uint32_t line)
     radio_print_debug(buff);
     #endif
     GPIO_WriteReverse(GREEN_LED_PORT, GREEN_LED_PIN);
-    delay_ms(100);
+    delay_ms(2000);
   }
 }
 #endif

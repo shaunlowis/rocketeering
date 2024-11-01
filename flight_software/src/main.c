@@ -47,7 +47,6 @@ void main(void)
   // "Drive CS low and apply a clock signal at SCK to read the results at SO."
   GPIO_Init(THERMO_CHIP_PORT, THERMO_CHIP_PIN_SELECT, GPIO_MODE_OUT_PP_HIGH_FAST);
 
-  
   radio_print_debug("Thermocouple initialized\r\n");
 
   // read_thermocouple();
@@ -89,22 +88,93 @@ void main(void)
     // Drive CS low:
     GPIO_WriteLow(THERMO_CHIP_PORT, THERMO_CHIP_PIN_SELECT);
 
+    // bit D[31:18] is the 14-bit thermocouple temperature data.
+
     // to store the 4x 8bit reads from thermocouple SPI
     uint8_t thermocouple_data_buff[4];
     for (int i=0; i<4; i++)
     {
       SPI_SendData(0xFF);
       thermocouple_data_buff[i] = SPI_ReceiveData();
+
+      // Debug print to verify each byte received --> This showed data output:
+      // Byte 0: 48
+      // Byte 1: 1
+      // Byte 2: 240
+      // Byte 3: 28
+
+      // char pbuff[100];
+      // sprintf(pbuff, "Byte %d: %u\n", i, thermocouple_data_buff[i]);
+      // radio_print_debug(pbuff);
+      // radio_print_debug("\r\n");
     }
 
-    // DOES IT WORK
-    char pbuff[100];
-    for (int i=0; i<4; i++)
-    {
-      sprintf(pbuff, "%u ", thermocouple_data_buff[i]);
-      radio_print_debug(pbuff);
+    // Print each byte in thermocouple_data_buff:
+    // Byte 0: 0x00
+    // Byte 1: 0x01
+    // Byte 2: 0xF0
+    // Byte 3: 0x1C
+    char pbuff[50];
+    for (int i = 0; i < 4; i++) {
+        sprintf(pbuff, "Byte %d: 0x%02X\r\n", i, thermocouple_data_buff[i]);
+        radio_print_debug(pbuff);
     }
-    radio_print_debug("\r\n");
+
+    // We cast the uint8s to a 32 bit int:
+    uint32_t thermocouple_32 = thermocouple_data_buff[0] | (thermocouple_data_buff[1] << 8) | (thermocouple_data_buff[2] << 16) | (thermocouple_data_buff[3] << 24);
+
+    // Just check the 32 bit int directly
+    // char pbuff[50];
+    // sprintf(pbuff, "Combined thermocouple_32: 0x%" PRIx32 "\r\n", thermocouple_32);
+    // radio_print_debug(pbuff);
+
+    // Now we try a bit mask:
+    int16_t thermocouple_temp = (thermocouple_32 >> 18) & 0x3FFF;
+
+    if (thermocouple_temp & 0x2000) {  // Check if the 14th bit (sign bit) is set
+    thermocouple_temp |= 0xC000;  // Set the remaining high bits for 16-bit signed extension
+    }
+
+    // char pbuff[50];
+    // sprintf(pbuff, "Thermocouple temperature: %" PRId16 "\r\n", thermocouple_temp);
+    // radio_print_debug(pbuff);
+    // radio_print_debug("\r\n");
+
+    // char pbuf[50];
+  // sprintf(pbuf, "Raw: %"PRIu32"   |   Length: %"PRIu8"   |   Comp: %"PRIu32"\r\n", raw, length, comparison);
+  // radio_print_debug(pbuf);
+
+    // char pbuff[10];
+    // for (int i=0; i<255; i++)
+    // {
+    //   sprintf(pbuff, "%d\r\n", (int)extracted_bits[i]);
+    //   radio_print_debug(pbuff);
+    // }
+
+    // Then we index our array for the thermocouple reading and print that:
+    // char pbuff[100];
+    // for (int i=0; i<33; i++)
+    // {
+    //   if (i > 18 && i < 31)
+    //   {
+    //     sprintf(pbuff, "%u ", thermocouple_32);
+    //     radio_print_debug(pbuff);
+    //   }
+    // }
+    // radio_print_debug("\r\n");
+
+    // uint8_t data_section = thermocouple_32[31:18];
+
+    // // Then we index our array for the thermocouple reading and print that:
+    // char pbuff[100];
+    // for (int i=0; i<33; i++)
+    // {
+
+    //   sprintf(pbuff, "%u ", data_section);
+    //   radio_print_debug(pbuff);
+
+    // }
+    // radio_print_debug("\r\n");
 
     // Then drive CS high:
     GPIO_WriteHigh(THERMO_CHIP_PORT, THERMO_CHIP_PIN_SELECT);

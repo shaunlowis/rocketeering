@@ -106,26 +106,19 @@ void main(void)
       // char pbuff[100];
       // sprintf(pbuff, "Byte %d: %u\n", i, thermocouple_data_buff[i]);
       // radio_print_debug(pbuff);
-      // radio_print_debug("\r\n");
-    }
-
-    // Print each byte in thermocouple_data_buff:
-    // Byte 0: 0x00
-    // Byte 1: 0x01
-    // Byte 2: 0xF0
-    // Byte 3: 0x1C
-    char pbuff[50];
-    for (int i = 0; i < 4; i++) {
-        sprintf(pbuff, "Byte %d: 0x%02X\r\n", i, thermocouple_data_buff[i]);
-        radio_print_debug(pbuff);
+      // if (i == 3)
+      // {
+      //   radio_print_debug("\r\n");
+      // }
     }
 
     // We cast the uint8s to a 32 bit int:
-    uint32_t thermocouple_32 = thermocouple_data_buff[0] | (thermocouple_data_buff[1] << 8) | (thermocouple_data_buff[2] << 16) | (thermocouple_data_buff[3] << 24);
+    // uint32_t thermocouple_32 = thermocouple_data_buff[0] | (thermocouple_data_buff[1] << 8) | (thermocouple_data_buff[2] << 16) | (thermocouple_data_buff[3] << 24);
+    uint32_t thermocouple_32 = thermocouple_data_buff[3] | (thermocouple_data_buff[2] << 8) | (thermocouple_data_buff[1] << 16) | (thermocouple_data_buff[0] << 24);
 
     // Just check the 32 bit int directly
     // char pbuff[50];
-    // sprintf(pbuff, "Combined thermocouple_32: 0x%" PRIx32 "\r\n", thermocouple_32);
+    // sprintf(pbuff, "Combined thermocouple_32: 0x%08x\r\n", thermocouple_32);
     // radio_print_debug(pbuff);
 
     // Now we try a bit mask:
@@ -135,46 +128,10 @@ void main(void)
     thermocouple_temp |= 0xC000;  // Set the remaining high bits for 16-bit signed extension
     }
 
-    // char pbuff[50];
-    // sprintf(pbuff, "Thermocouple temperature: %" PRId16 "\r\n", thermocouple_temp);
-    // radio_print_debug(pbuff);
-    // radio_print_debug("\r\n");
-
-    // char pbuf[50];
-  // sprintf(pbuf, "Raw: %"PRIu32"   |   Length: %"PRIu8"   |   Comp: %"PRIu32"\r\n", raw, length, comparison);
-  // radio_print_debug(pbuf);
-
-    // char pbuff[10];
-    // for (int i=0; i<255; i++)
-    // {
-    //   sprintf(pbuff, "%d\r\n", (int)extracted_bits[i]);
-    //   radio_print_debug(pbuff);
-    // }
-
-    // Then we index our array for the thermocouple reading and print that:
-    // char pbuff[100];
-    // for (int i=0; i<33; i++)
-    // {
-    //   if (i > 18 && i < 31)
-    //   {
-    //     sprintf(pbuff, "%u ", thermocouple_32);
-    //     radio_print_debug(pbuff);
-    //   }
-    // }
-    // radio_print_debug("\r\n");
-
-    // uint8_t data_section = thermocouple_32[31:18];
-
-    // // Then we index our array for the thermocouple reading and print that:
-    // char pbuff[100];
-    // for (int i=0; i<33; i++)
-    // {
-
-    //   sprintf(pbuff, "%u ", data_section);
-    //   radio_print_debug(pbuff);
-
-    // }
-    // radio_print_debug("\r\n");
+    char pbuff[50];
+    sprintf(pbuff, "Thermocouple temperature: %" PRId16 "\r\n", thermocouple_temp);
+    radio_print_debug(pbuff);
+    radio_print_debug("\r\n");
 
     // Then drive CS high:
     GPIO_WriteHigh(THERMO_CHIP_PORT, THERMO_CHIP_PIN_SELECT);
@@ -193,19 +150,6 @@ void main(void)
     delay_ms(500);
   }
 }
-
-// void read_thermocouple(void)
-// { 
-//   uint8_t thermocouple_data_buff[14];
-//   thermocouple_data_buff = SPI_ReceiveData();
-//     // Can pass direct string or sprintf into a char buff and pass into here, like this:
-//     char pbuff[14];
-//     for (int i=0; i<255; i++)
-//     {
-//       sprintf(pbuff, "%d\r\n", (int)pbuff[i]);
-//       radio_print_debug(pbuff);
-//     }
-// }
 
 void clock_config(void)
 {

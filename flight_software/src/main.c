@@ -11,6 +11,7 @@
 
 void assert_failed(uint8_t* file, uint32_t line);
 void clock_config(void);
+uint8_t spi_read_byte(void);
 
 void main(void)
 {
@@ -51,7 +52,7 @@ void main(void)
 
   // read_thermocouple();
 
-  // MSD_Init();
+  //MSD_Init();
   // radio_print_debug("SD initialized\r\n");
 
   // print_sd_to_radio();
@@ -94,8 +95,7 @@ void main(void)
     uint8_t thermocouple_data_buff[4];
     for (int i=0; i<4; i++)
     {
-      SPI_SendData(0xFF);
-      thermocouple_data_buff[i] = SPI_ReceiveData();
+      thermocouple_data_buff[i] = spi_read_byte();
 
       // Debug print to verify each byte received --> This showed data output:
       // Byte 0: 48
@@ -112,24 +112,42 @@ void main(void)
       // }
     }
 
-    // We cast the uint8s to a 32 bit int:
-    // uint32_t thermocouple_32 = thermocouple_data_buff[0] | (thermocouple_data_buff[1] << 8) | (thermocouple_data_buff[2] << 16) | (thermocouple_data_buff[3] << 24);
-    uint32_t thermocouple_32 = thermocouple_data_buff[3] | (thermocouple_data_buff[2] << 8) | (thermocouple_data_buff[1] << 16) | (thermocouple_data_buff[0] << 24);
+    // Checked on scope, IC sends most significant bit first, byte zero should contain start of temp data bits 32-24.
+    print_bits_of_byte(thermocouple_data_buff[0]);
+    print_bits_of_byte(thermocouple_data_buff[1]);
+    print_bits_of_byte(thermocouple_data_buff[2]);
+    print_bits_of_byte(thermocouple_data_buff[3]);
+    radio_print_debug("\r\n");
 
-    // Just check the 32 bit int directly
-    // char pbuff[50];
-    // sprintf(pbuff, "Combined thermocouple_32: 0x%08x\r\n", thermocouple_32);
+
+    char pbuff[100];
+    // sprintf(pbuff, "Byte %d: %x\r\nByte %d: %x\r\nByte %d: %x\r\nByte %d: %x\r\n\r\n", 0, thermocouple_data_buff[0], 
+    //                                                                                    1, thermocouple_data_buff[1],
+    //                                                                                    2, thermocouple_data_buff[2],
+    //                                                                                    3, thermocouple_data_buff[3]);
     // radio_print_debug(pbuff);
 
+
+    // We cast the uint8s to a 32 bit int.MSB first from IC so order as below
+    uint32_t thermocouple_32 = ((uint32_t)thermocouple_data_buff[3]) | ((uint32_t)thermocouple_data_buff[2] << 8) | ((uint32_t)thermocouple_data_buff[1] << 16) | ((uint32_t)thermocouple_data_buff[0] << 24);
+
+    // Just check the 32 bit int directly
+    //char pbuff[50];
+    sprintf(pbuff, "Combined thermocouple_32: %"PRIu32"  0x%08x\r\n", thermocouple_32, thermocouple_32);
+    radio_print_debug(pbuff);
+
     // Now we try a bit mask:
-    int16_t thermocouple_temp = (thermocouple_32 >> 18) & 0x3FFF;
+    uint32_t thermocouple_temp = (thermocouple_32 >> 18) & 0x3FFF;
 
-    if (thermocouple_temp & 0x2000) {  // Check if the 14th bit (sign bit) is set
-    thermocouple_temp |= 0xC000;  // Set the remaining high bits for 16-bit signed extension
-    }
+    int32_t temp = getTwosComplement(thermocouple_temp, 14);
+    // if (thermocouple_temp & 0x2000) {  // Check if the 14th bit (sign bit) is set
+    // thermocouple_temp |= 0xC000;  // Set the remaining high bits for 16-bit signed extension
+    // }
+    float temp_f = (float)temp / 4.0;
 
-    char pbuff[50];
-    sprintf(pbuff, "Thermocouple temperature: %" PRId16 "\r\n", thermocouple_temp);
+    // char pbuff[50];
+
+    sprintf(pbuff, "Thermocouple temperature: %" PRId32 " %f\r\n", temp, temp_f);
     radio_print_debug(pbuff);
     radio_print_debug("\r\n");
 
@@ -140,7 +158,7 @@ void main(void)
     // update_imu_state();
     // spl07_update_baro();
     // send_telemetry();
-    delay_ms(1000); // Needs some delay
+    delay_ms(250); // Needs some delay
   }
 
 
@@ -167,6 +185,16 @@ void print_bits_of_byte(uint8_t byte)
   }
   bits[8] = '\0';
   radio_print_debug(bits);
+}
+
+uint8_t spi_read_byte(void)
+{
+  /* Wait until the transmit buffer is empty */
+    while (SPI_GetFlagStatus(SPI_FLAG_TXE) == RESET);
+    SPI_SendData(0xFF);
+    /* Wait to receive a byte*/
+    while(SPI_GetFlagStatus(SPI_FLAG_RXNE) == RESET);
+    return SPI_ReceiveData();
 }
 
 int32_t getTwosComplement(uint32_t raw, uint8_t length) {

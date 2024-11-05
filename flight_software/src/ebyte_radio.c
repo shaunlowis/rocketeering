@@ -4,6 +4,7 @@
 #include "YIC_gps.h"
 #include "ICM42670_imu.h"
 #include "SPL07_pressure.h"
+#include "battery.h"
 
 INTERRUPT_HANDLER(UART1_RXNE_IRQHandler, ITC_IRQ_UART1_RX)
 {
@@ -15,11 +16,11 @@ void radio_uart_init(void)
 {
     UART1_Cmd(ENABLE);
     UART1_Init(115200, UART1_WORDLENGTH_8D, UART1_STOPBITS_1, UART1_PARITY_NO, UART1_SYNCMODE_CLOCK_DISABLE, UART1_MODE_TXRX_ENABLE);
-    disableInterrupts(); // Must do before ITC_SetSoftwarePriority
-    UART1_ClearFlag(UART1_FLAG_RXNE); // Clear flag in case it is set
-    ITC_SetSoftwarePriority(ITC_IRQ_UART1_RX, ITC_PRIORITYLEVEL_2); // Need lower priority than delay interrupt
-    UART1_ITConfig(UART1_IT_RXNE_OR, ENABLE);
-    enableInterrupts();
+    // disableInterrupts(); // Must do before ITC_SetSoftwarePriority
+    // UART1_ClearFlag(UART1_FLAG_RXNE); // Clear flag in case it is set
+    // ITC_SetSoftwarePriority(ITC_IRQ_UART1_RX, ITC_PRIORITYLEVEL_2); // Need lower priority than delay interrupt
+    // UART1_ITConfig(UART1_IT_RXNE_OR, ENABLE);
+    // enableInterrupts();
 }
 
 
@@ -60,6 +61,9 @@ void send_float(float val)
 
 void send_telemetry(void)
 {
+    // Get timestamp
+    uint32_t timestamp = millis();
+
     // Get GPS data
     float lati = gps_get_lat_float();
     float longi = gps_get_long_float();
@@ -85,12 +89,13 @@ void send_telemetry(void)
     uint16_t tc_temp = 69; // TODO: Replace with get_tc_temp() function
 
     // Battery
-    int16_t batt_voltage = 69; // TODO: Replace with get_batt_voltage() function
-    int16_t batt_current = 69; // TODO: Replace with get_batt_current() function
+    float batt_voltage_V = get_batt_voltage();
+    float batt_current_mA = get_batt_current();
 
     char buf[1000];
     // TODO: add hdop, vdop and/or pdop???
-    sprintf(buf, "%f,%f,%f,%f,%f,%f,%c,%u,%u,%u,%.2f,%.2f,%.2f,%.2f,%.2f,%.1f,%.1f,%.1f,%.0f,%u,%d,%d\r\n", 
+    sprintf(buf, "%"PRIu32",%f,%f,%f,%f,%f,%f,%c,%u,%u,%u,%.2f,%.2f,%.2f,%.2f,%.2f,%.1f,%.1f,%.1f,%.0f,%u,%.2f,%.1f\r\n", 
+            timestamp,
             pdop,
             hdop,
             vdop,
@@ -111,8 +116,8 @@ void send_telemetry(void)
             imu_state.gyro_z_dps,
             pressure,
             tc_temp,
-            batt_voltage,
-            batt_current);
+            batt_voltage_V,
+            batt_current_mA);
 
     radio_print_debug(buf);
 }

@@ -208,10 +208,13 @@ void read_gps_buffer(void)
 {
     while (nmea_circbuff.current_length > 0)
     {
+        disableInterrupts();
         nmea_msg_t* nmea_read_msg_ptr = &nmea_circbuff.buffer[nmea_circbuff.ri];
+        enableInterrupts();
         char* line = nmea_read_msg_ptr->msg_buff;
         minmea_decode(line);
         nmea_circbuff_read_complete();
+        
     }
 }
 

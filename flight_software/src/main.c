@@ -9,10 +9,13 @@
 #include "inttypes.h"
 #include "logging.h"
 // #include "MAX31855_therm.h"
+#include "battery.h"
 
 void assert_failed(uint8_t* file, uint32_t line);
 void clock_config(void);
 uint8_t spi_read_byte(void);
+
+#define MAIN_LOOP_FREQ_HZ 20 // 20 mins logging 200 chars @ 50 Hz is around 12 mB.
 
 void main(void)
 {
@@ -26,10 +29,11 @@ void main(void)
 
   radio_print_debug("Radio initialized\r\n");
 
-  // i2c_init();
-  // imu_init(); // Needs i2c_init called first
-  // spl07_init(); // Needs i2c_init called first
-  //gps_init();
+  init_battery_measurements();
+  i2c_init();
+  imu_init(); // Needs i2c_init called first
+  spl07_init(); // Needs i2c_init called first
+  gps_init();
 
   // SPI setup:
   SPI_DeInit();
@@ -71,9 +75,8 @@ void main(void)
   //   radio_print_debug(pbuff);
   // }
 
-
-
-  
+  uint32_t loop_start_time;
+  uint32_t current_time;
   while(1)
   {
     GPIO_WriteReverse(GREEN_LED_PORT, GREEN_LED_PIN);
@@ -91,7 +94,25 @@ void main(void)
   
   while (1){
     GPIO_WriteReverse(GREEN_LED_PORT, GREEN_LED_PIN);
-    delay_ms(500);
+
+    // Read all sensors
+    read_gps_buffer();
+    update_imu_state();
+    spl07_update_baro();
+    read_batt_voltage();
+    read_batt_current();
+    float batt_voltage_V = get_batt_voltage();
+    float batt_current_mA = get_batt_current();
+
+    // Log to SD
+    send_telemetry();
+    
+    // Paced loop, wait until time to continue
+    current_time = millis();
+    while(current_time - loop_start_time < (1000 / MAIN_LOOP_FREQ_HZ))
+    {
+      current_time = millis();
+    }
   }
 }
 
@@ -126,10 +147,6 @@ uint8_t spi_read_byte(void)
 int32_t getTwosComplement(uint32_t raw, uint8_t length) {
   uint32_t comparison = (uint32_t)1<<(length - 1);
   int32_t result = 0;
-
-  // char pbuf[50];
-  // sprintf(pbuf, "Raw: %"PRIu32"   |   Length: %"PRIu8"   |   Comp: %"PRIu32"\r\n", raw, length, comparison);
-  // radio_print_debug(pbuf);
 
   // Check if the sign bit is set
   if (raw & comparison) {
@@ -209,7 +226,7 @@ void assert_failed(uint8_t* file, uint32_t line)
     radio_print_debug(buff);
     #endif
     GPIO_WriteReverse(GREEN_LED_PORT, GREEN_LED_PIN);
-    delay_ms(100);
+    delay_ms(2000);
   }
 }
 #endif

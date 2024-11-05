@@ -22,6 +22,8 @@
     "files.associations": {
         "stm8s.h": "c",
         "common.h": "c",
-        "inttypes.h": "c"
+        "inttypes.h": "c",
+        "ebyte_radio.h": "c",
+        "max31855_therm.h": "c"
     }
 }

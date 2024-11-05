@@ -13,3 +13,6 @@
 
 #define M1_RADIO_PORT GPIOC
 #define M1_RADIO_PIN  GPIO_PIN_3
+
+#define THERMO_CHIP_PORT GPIOD
+#define THERMO_CHIP_PIN_SELECT  GPIO_PIN_2 // This is pin PD2, or pin 43 on the schematic.

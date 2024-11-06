@@ -12,6 +12,7 @@
         "stm8s_spi_sd.h": "c",
         "pff.h": "c",
         "delay.h": "c",
-        "battery.h": "c"
+        "battery.h": "c",
+        "max31855_therm.h": "c"
     }
 }

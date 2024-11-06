@@ -86,7 +86,7 @@ void send_telemetry(void)
     float pressure = get_baro_pressure();
 
     // Thermocouple
-    uint16_t tc_temp = 69; // TODO: Replace with get_tc_temp() function
+    uint16_t tc_temp = 69.0; // TODO: Replace with get_tc_temp() function
 
     // Battery
     float batt_voltage_V = get_batt_voltage();

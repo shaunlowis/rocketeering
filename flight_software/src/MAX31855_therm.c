@@ -5,7 +5,7 @@
 
 static uint32_t read_thermo_reg(void);
 static uint8_t spi_read_byte(void);
-void print_thermo_state(void);
+static void print_thermo_state(void);
 
 static thermocoupleState_t thermo_state = {.tc_temp_C=0.0, 
                                            .cjc_temp_C=0.0, 
@@ -59,15 +59,10 @@ static uint32_t read_thermo_reg(void)
 
     // We cast the uint8s to a 32 bit int. MSB first from IC so order as below
     uint32_t thermocouple_reg_32 = ((uint32_t)thermocouple_data_buff[3]) | ((uint32_t)thermocouple_data_buff[2] << 8) | ((uint32_t)thermocouple_data_buff[1] << 16) | ((uint32_t)thermocouple_data_buff[0] << 24);
-    print_bits_of_byte(thermocouple_data_buff[0]);
-    print_bits_of_byte(thermocouple_data_buff[1]);
-    print_bits_of_byte(thermocouple_data_buff[2]);
-    print_bits_of_byte(thermocouple_data_buff[3]);
-    radio_print_debug("\r\n");
     return thermocouple_reg_32;
 }
 
-void print_thermo_state(void)
+static void print_thermo_state(void)
 {
     char pbuf[200];
     sprintf(pbuf, "Thermo temp %.1f CJC temp %.1f Flags %d\r\n", thermo_state.tc_temp_C, thermo_state.cjc_temp_C, thermo_state.oc_sc_flags);
@@ -93,7 +88,10 @@ void update_thermo_state(void)
     // Flags
     thermo_state.oc_sc_flags = thermocouple_reg_32 & 0x07;
 
-    print_thermo_state();
-    
+    //print_thermo_state();
 }
 
+thermocoupleState_t get_thermo_state(void)
+{
+    return thermo_state;
+}

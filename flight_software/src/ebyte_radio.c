@@ -5,6 +5,7 @@
 #include "ICM42670_imu.h"
 #include "SPL07_pressure.h"
 #include "battery.h"
+#include "MAX31855_therm.h"
 
 INTERRUPT_HANDLER(UART1_RXNE_IRQHandler, ITC_IRQ_UART1_RX)
 {
@@ -86,7 +87,8 @@ void send_telemetry(void)
     float pressure = get_baro_pressure();
 
     // Thermocouple
-    uint16_t tc_temp = 69.0; // TODO: Replace with get_tc_temp() function
+    thermocoupleState_t thermo_state;
+    thermo_state = get_thermo_state();
 
     // Battery
     float batt_voltage_V = get_batt_voltage();
@@ -94,7 +96,7 @@ void send_telemetry(void)
 
     char buf[1000];
     // TODO: add hdop, vdop and/or pdop???
-    sprintf(buf, "%"PRIu32",%f,%f,%f,%f,%f,%f,%c,%u,%u,%u,%.2f,%.2f,%.2f,%.2f,%.2f,%.1f,%.1f,%.1f,%.0f,%u,%.2f,%.1f\r\n", 
+    sprintf(buf, "%"PRIu32",%f,%f,%f,%f,%f,%f,%c,%u,%u,%u,%.2f,%.2f,%.2f,%.2f,%.2f,%.1f,%.1f,%.1f,%.0f,%.1f,%.1f,%"PRIu8",%.2f,%.1f\r\n", 
             timestamp,
             pdop,
             hdop,
@@ -115,7 +117,9 @@ void send_telemetry(void)
             imu_state.gyro_y_dps,
             imu_state.gyro_z_dps,
             pressure,
-            tc_temp,
+            thermo_state.tc_temp_C,
+            thermo_state.cjc_temp_C,
+            thermo_state.oc_sc_flags,
             batt_voltage_V,
             batt_current_mA);
 

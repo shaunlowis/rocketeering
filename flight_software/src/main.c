@@ -29,19 +29,12 @@ void main(void)
 
   radio_print_debug("Radio initialized\r\n");
 
-  // init_battery_measurements();
-  // i2c_init();
-  // imu_init(); // Needs i2c_init called first
-  // spl07_init(); // Needs i2c_init called first
-  // gps_init();
+  init_battery_measurements();
+  i2c_init();
+  imu_init(); // Needs i2c_init called first
+  spl07_init(); // Needs i2c_init called first
+  gps_init();
   thermo_init();
-
-  while(1)
-  {
-    GPIO_WriteReverse(GREEN_LED_PORT, GREEN_LED_PIN);
-    update_thermo_state();
-    delay_ms(250);
-  }
   
   uint32_t loop_start_time;
   uint32_t current_time;
@@ -55,8 +48,7 @@ void main(void)
     spl07_update_baro();
     read_batt_voltage();
     read_batt_current();
-    float batt_voltage_V = get_batt_voltage();
-    float batt_current_mA = get_batt_current();
+    update_thermo_state();
 
     // Log to SD
     send_telemetry();

@@ -9,7 +9,7 @@ around 1400C, which is below the expected motor temperature
 ```
 # on ubuntu:
 cd modeling/thermal
-python3.12 -m venv .venv
+python3.10 -m venv .venv
 source .venv/bin/activate 
 
 python -m pip install -r requirements.txt

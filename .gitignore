@@ -21,3 +21,5 @@
 
 # VS Code settings
 settings.json
+
+.venv

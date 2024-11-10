@@ -56,4 +56,4 @@ ax.set_title("Solid motor thermal properties.")
 
 ax.legend()
 
-plt.savefig("nozzle_exit_temp.png")
+plt.savefig("modeling/thermal/nozzle_exit_temp.png")

@@ -68,7 +68,7 @@ for step in range(steps):
     if __name__ == "__main__":
         viewer = Viewer(vars=phiT, title="Basic (wrong) heat conduction.")
         fig_out = viewer.fig
-        fig_out.savefig("test.png")
+        fig_out.savefig("modeling/thermal/babys_first_thermal.png")
         # viewer.plot()
 
 print(numerix.allclose(phiT(((L,), (0,))), valueBottomRight, atol=1e-2))

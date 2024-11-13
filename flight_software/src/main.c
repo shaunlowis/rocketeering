@@ -11,8 +11,9 @@
 
 void assert_failed(uint8_t* file, uint32_t line);
 static void clock_config(void);
+void init_watchdog(void);
 
-#define MAIN_LOOP_FREQ_HZ 5 // 20 mins logging 200 chars @ 50 Hz is around 12 mB.
+#define MAIN_LOOP_FREQ_HZ 10 // 20 mins logging 200 chars @ 50 Hz is around 12 mB.
 
 void main(void)
 {
@@ -35,7 +36,9 @@ void main(void)
   uint32_t loop_start_time;
   uint32_t current_time;
   
+  init_watchdog();
   while (1){
+    IWDG_ReloadCounter(); // Reload watchdog
     loop_start_time = millis();
     GPIO_WriteReverse(GREEN_LED_PORT, GREEN_LED_PIN);
 
@@ -57,6 +60,20 @@ void main(void)
       current_time = millis();
     }
   }
+}
+
+void init_watchdog(void)
+{
+  // Desire 0.5s watchdog timeout
+  // T = 2*T_LSI * P * R
+  // T_LSI = 128 kHz
+  // Choose P = 256, R = 125 gives T = 0.5s
+  IWDG_Enable();
+  IWDG_WriteAccessCmd(IWDG_WriteAccess_Enable);
+  IWDG_SetPrescaler(IWDG_Prescaler_256);
+  IWDG_SetReload(0xFE);
+  IWDG_ReloadCounter();
+  //IWDG_WriteAccessCmd(IWDG_WriteAccess_Disable);  
 }
 
 void clock_config(void)

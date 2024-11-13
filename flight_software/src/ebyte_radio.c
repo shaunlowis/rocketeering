@@ -95,7 +95,7 @@ void send_telemetry(void)
     float batt_current_mA = get_batt_current();
 
     char buf[1000];
-    sprintf(buf, "%"PRIu32",%f,%f,%f,%f,%f,%f,%c,%u,%u,%u,%.2f,%.2f,%.2f,%.2f,%.2f,%.1f,%.1f,%.1f,%.0f,%.1f,%.1f,%"PRIu8",%.2f,%.1f\r\n", 
+    sprintf(buf, "%"PRIu32",%f,%f,%f,%f,%f,%f,%c,%u,%u,%u,%.2f,%.2f,%.3f,%.3f,%.3f,%.1f,%.1f,%.1f,%.0f,%.1f,%.1f,%"PRIu8",%.2f,%.1f\r\n", 
             timestamp,
             pdop,
             hdop,

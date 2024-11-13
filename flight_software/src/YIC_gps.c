@@ -211,13 +211,13 @@ void read_gps_buffer(void)
 {
     while (nmea_circbuff.current_length > 0)
     {
+        delay_ms(1); // No idea why this helps, but it does reduce the freezuency of freezes. Still happen though
         // disableInterrupts();
         nmea_msg_t* nmea_read_msg_ptr = &nmea_circbuff.buffer[nmea_circbuff.ri];
         char* line = nmea_read_msg_ptr->msg_buff;
-        minmea_decode(line);
+        minmea_decode(line); // I think it freezes in here somewhere
         // enableInterrupts();
         nmea_circbuff_read_complete();
-        delay_ms(1); // No idea why this is so critical but it is, stops the code from freezing.
     }
 }
 

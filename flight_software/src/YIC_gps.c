@@ -37,13 +37,13 @@ typedef struct nmea_msg_circbuff {
     nmea_msg_t buffer[NMEA_CIRCBUFF_SIZE];
 } nmea_msg_circbuff_t;
 
-nmea_msg_circbuff_t nmea_circbuff = {.current_length=0,
+static nmea_msg_circbuff_t nmea_circbuff = {.current_length=0,
                                      .ri=0,
                                      .wi=0};
 
-struct minmea_sentence_gsa gsa_frame;
-struct minmea_sentence_rmc rmc_frame;
-struct minmea_sentence_gga gga_frame;
+static struct minmea_sentence_gsa gsa_frame;
+static struct minmea_sentence_rmc rmc_frame;
+static struct minmea_sentence_gga gga_frame;
 
 
 static void gps_uart_send_string(char buff[]);
@@ -184,23 +184,26 @@ void minmea_decode(char* line)
     enum minmea_sentence_id id = minmea_sentence_id(line, false);
     switch (id) 
         {
-        case MINMEA_SENTENCE_RMC: {
+        case MINMEA_SENTENCE_RMC: 
             // radio_print_debug("RMC\r\n");
             minmea_parse_rmc(&rmc_frame, line);
-        } break;
+            break;
 
-        case MINMEA_SENTENCE_GSA: {
+        case MINMEA_SENTENCE_GSA:
             // radio_print_debug("GSA\r\n");
             minmea_parse_gsa(&gsa_frame, line);
-        } break;
+            break;
 
-        case MINMEA_SENTENCE_GGA: {
+        case MINMEA_SENTENCE_GGA:
             // radio_print_debug("GGA\r\n");
             minmea_parse_gga(&gga_frame, line);
-        }
-        default: {
-            //radio_print_debug("$xxxxx sentence is not parsed\n");
-        } break;
+            break;
+
+        // case MINMEA_INVALID: {
+        //     radio_print_debug("booo\r\n");
+        // } break;
+        default:
+            // radio_print_debug("$xxxxx sentence is not parsed\n");
     }
 }
 
@@ -208,13 +211,13 @@ void read_gps_buffer(void)
 {
     while (nmea_circbuff.current_length > 0)
     {
-        disableInterrupts();
+        // disableInterrupts();
         nmea_msg_t* nmea_read_msg_ptr = &nmea_circbuff.buffer[nmea_circbuff.ri];
-        enableInterrupts();
         char* line = nmea_read_msg_ptr->msg_buff;
         minmea_decode(line);
+        // enableInterrupts();
         nmea_circbuff_read_complete();
-        
+        delay_ms(1); // No idea why this is so critical but it is, stops the code from freezing.
     }
 }
 

@@ -47,13 +47,10 @@ typedef struct {
     float                       temperature;    // DegC
 } baroState_t;
 
-static baroState_t  baroState;
+static baroState_t baroState;
 
-void i2c_write_byte(uint8_t device_address, uint8_t register_address, uint8_t byte);
-void i2c_read(uint8_t device_address, uint8_t register_address, uint8_t bytes[], uint8_t num_bytes);
-uint8_t i2c_write_and_verify_byte(uint8_t device_address, uint8_t register_address, uint8_t byte, uint8_t write_mask);
-void spl07_read_cal_coefs(void);
-void spl07_print_cal_coefs(void);
+static void spl07_read_cal_coefs(void);
+static void spl07_print_cal_coefs(void);
 
 void spl07_init(void)
 {
@@ -79,7 +76,7 @@ void spl07_init(void)
 
 }
 
-void spl07_print_cal_coefs(void)
+static void spl07_print_cal_coefs(void)
 {
     #ifdef DEBUG_ENABLE
     char buff[256];
@@ -108,7 +105,7 @@ void spl07_print_cal_coefs(void)
     #endif
 }
 
-void spl07_read_cal_coefs(void)
+static void spl07_read_cal_coefs(void)
 {
     // First extract all the registers
     #define SPL07_C0_REG_ADDR 0x10
@@ -156,7 +153,7 @@ void spl07_read_cal_coefs(void)
 
 void spl07_update_baro(void)
 {
-    char pbuf[256]; // Debugging
+    // char pbuf[256]; // Debugging
     // Choose compensation scale factors kT (for temperature) and kP (for pressure) based on the chosen precision rate.
     // The scaling factors are listed in Table 9 of the datasheet, and the compensation factors are in table 4.
     float kP = 1040384.0f; // 64 times

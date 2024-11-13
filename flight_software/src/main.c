@@ -5,24 +5,20 @@
 #include "YIC_gps.h"
 #include "i2c_driver_STM8S007.h"
 #include "ICM42670_imu.h"
-#include "microsd.h"
 #include "inttypes.h"
-#include "logging.h"
 #include "MAX31855_therm.h"
 #include "battery.h"
 
 void assert_failed(uint8_t* file, uint32_t line);
-void clock_config(void);
-uint8_t spi_read_byte(void);
+static void clock_config(void);
 
-#define MAIN_LOOP_FREQ_HZ 20 // 20 mins logging 200 chars @ 50 Hz is around 12 mB.
+#define MAIN_LOOP_FREQ_HZ 5 // 20 mins logging 200 chars @ 50 Hz is around 12 mB.
 
 void main(void)
 {
   clock_config();
   GPIO_Init(GREEN_LED_PORT, GREEN_LED_PIN, GPIO_MODE_OUT_PP_LOW_FAST);
   GPIO_Init(RED_LED_PORT, RED_LED_PIN, GPIO_MODE_OUT_PP_LOW_FAST);
-  GPIO_Init(MSD_CS_PORT, MSD_CS_PIN, GPIO_MODE_OUT_PP_HIGH_FAST);
   GPIO_Init(M0_RADIO_PORT, M0_RADIO_PIN, GPIO_MODE_OUT_PP_LOW_FAST);
   GPIO_Init(M1_RADIO_PORT, M1_RADIO_PIN, GPIO_MODE_OUT_PP_LOW_FAST);
   radio_uart_init();
@@ -40,6 +36,7 @@ void main(void)
   uint32_t current_time;
   
   while (1){
+    loop_start_time = millis();
     GPIO_WriteReverse(GREEN_LED_PORT, GREEN_LED_PIN);
 
     // Read all sensors

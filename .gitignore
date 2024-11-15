@@ -1,2 +1,26 @@
-# any files needed from here are on the avionics branch.
-flight_computer
+
+# PCB backups
+**/flight_computer/flight_computer-backups/**
+
+*.kicad_sch.lck
+
+# everything in the build folder can be ignored.
+/flight_software/build/*
+
+# linking, building and other files
+*.asm
+*.ihx
+*.lk
+*.lst
+*.map
+*.rel
+*.rst
+*.sym
+
+# kicad BS:
+*.kicad_pcb.lck
+
+# VS Code settings
+settings.json
+
+.venv

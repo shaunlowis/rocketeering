@@ -1,0 +1,18 @@
+{
+    "files.associations": {
+        "stm8s_clk.h": "c",
+        "common.h": "c",
+        "spl07_pressure.h": "c",
+        "ebyte_radio.h": "c",
+        "stdint.h": "c",
+        "icm42670_imu.h": "c",
+        "inttypes.h": "c",
+        "yic_gps.h": "c",
+        "minmea.h": "c",
+        "stm8s_spi_sd.h": "c",
+        "pff.h": "c",
+        "delay.h": "c",
+        "battery.h": "c",
+        "max31855_therm.h": "c"
+    }
+}

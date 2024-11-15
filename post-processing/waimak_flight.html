@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    <title>pydeck</title>
+        <script src="https://api.tiles.mapbox.com/mapbox-gl-js/v1.13.0/mapbox-gl.js"></script>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" />
+    <script src='https://cdn.jsdelivr.net/npm/@deck.gl/jupyter-widget@~9.0.*/dist/index.js'></script>
+    <style>
+    body {
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+}
+
+#deck-container {
+  width: 100vw;
+  height: 100vh;
+}
+
+#deck-container canvas {
+  z-index: 1;
+  background: none;
+}
+    </style>
+  </head>
+  <body>
+    <div id="deck-container">
+    </div>
+  </body>
+  <script>
+    const container = document.getElementById('deck-container');
+    const jsonInput = {
+  "initialViewState": {
+    "bearing": 45,
+    "latitude": -43.4633061237156,
+    "longitude": 172.49099147719105,
+    "pitch": 50,
+    "zoom": 8
+  },
+  "layers": [
+    {
+      "@@type": "ArcLayer",
+      "autoHighlight": true,
+      "data": [
+        {
+          "end_coords_lat": -43.41614487464603,
+          "end_coords_lon": 172.47836707684,
+          "start_coords_lat": -43.4633061237156,
+          "start_coords_lon": 172.49099147719105
+        }
+      ],
+      "getSourceColor": [
+        240,
+        100,
+        0,
+        40
+      ],
+      "getSourcePosition": "@@=[start_coords_lon, start_coords_lat]",
+      "getTargetColor": [
+        0,
+        255,
+        0,
+        40
+      ],
+      "getTargetPosition": "@@=[end_coords_lon, end_coords_lat]",
+      "getTilt": 15,
+      "getWidth": 5,
+      "id": "8876688c-87e7-4e53-942d-d591d2b99bfc",
+      "pickable": true
+    }
+  ],
+  "mapProvider": "carto",
+  "mapStyle": "https://basemaps.cartocdn.com/gl/dark-matter-gl-style/style.json",
+  "views": [
+    {
+      "@@type": "MapView",
+      "controller": true
+    }
+  ]
+};
+    const tooltip = {'html': '{S000} Example <br /> flight path over the Waimak.'};
+    const customLibraries = null;
+    const configuration = null;
+
+    const deckInstance = createDeck({
+                  container,
+      jsonInput,
+      tooltip,
+      customLibraries,
+      configuration
+    });
+
+  </script>
+</html>

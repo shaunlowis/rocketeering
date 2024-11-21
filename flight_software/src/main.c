@@ -13,7 +13,7 @@ void assert_failed(uint8_t* file, uint32_t line);
 static void clock_config(void);
 void init_watchdog(void);
 
-#define MAIN_LOOP_FREQ_HZ 10 // 20 mins logging 200 chars @ 50 Hz is around 12 mB.
+#define MAIN_LOOP_FREQ_HZ 20 // 20 mins logging 200 chars @ 50 Hz is around 12 mB.
 
 void main(void)
 {
@@ -36,7 +36,7 @@ void main(void)
   uint32_t loop_start_time;
   uint32_t current_time;
   
-  init_watchdog();
+  //init_watchdog();
   while (1){
     IWDG_ReloadCounter(); // Reload watchdog
     loop_start_time = millis();

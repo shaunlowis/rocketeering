@@ -9,6 +9,7 @@
 
 # Packing list
 - Laptops
+- 5X filled 20L water containters (from work)
 - 12V SLA car battery
 - Rocket lower airframe
 - Rocket upper airframe

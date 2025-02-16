@@ -182,6 +182,7 @@ void gps_init(void)
 void minmea_decode(char* line)
 {
     enum minmea_sentence_id id = minmea_sentence_id(line, false);
+    //GPIO_WriteLow(GREEN_LED_PORT, GREEN_LED_PIN); // Freezes after here
     switch (id) 
         {
         case MINMEA_SENTENCE_RMC: 
@@ -205,16 +206,18 @@ void minmea_decode(char* line)
         default:
             // radio_print_debug("$xxxxx sentence is not parsed\n");
     }
+    //GPIO_WriteLow(GREEN_LED_PORT, GREEN_LED_PIN); // Freezes after here
 }
 
 void read_gps_buffer(void)
 {
     while (nmea_circbuff.current_length > 0)
     {
-        delay_ms(1); // No idea why this helps, but it does reduce the freezuency of freezes. Still happen though
+        //delay_ms(1); // No idea why this helps, but it does reduce the freezuency of freezes. Still happen though
         // disableInterrupts();
         nmea_msg_t* nmea_read_msg_ptr = &nmea_circbuff.buffer[nmea_circbuff.ri];
         char* line = nmea_read_msg_ptr->msg_buff;
+        //GPIO_WriteHigh(GREEN_LED_PORT, GREEN_LED_PIN);
         minmea_decode(line); // I think it freezes in here somewhere
         // enableInterrupts();
         nmea_circbuff_read_complete();

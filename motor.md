@@ -1,8 +1,10 @@
-# Custom Motor 
-## Overview
-Take a [HP-I280DM DMS Rocket Motor](https://www.aerospaceeducation.co.nz/product/Motors_2C_High_Power_DMS-38mm/hpi280dm-dms-rocket-motor/471106). Specs:
+# Custom Motor
 
-```
+## COTS motor
+
+[HP-I280DM DMS Rocket Motor](https://www.aerospaceeducation.co.nz/product/Motors_2C_High_Power_DMS-38mm/hpi280dm-dms-rocket-motor/471106). Specs:
+
+```ascii
 Motor Type: SU
 Delays: 6,8,10,12,14
 Diameter: 38 mm
@@ -17,12 +19,7 @@ Burn Time: 1.9 s
 Propellant: Dark Matter
 ```
 
-Make a custom nozzle. In theory, a nozzle made of carbon or some similar material that doesn't get burnt
-during firing, will increase the impulse of the motor. This is because the motor made by the supplier
-is designed to burn away alongside the solid fuel. In return for increased performance though, the motor
-wall casing will become much hotter. Here I'll split things up into the classic design, build and test.
-
-## Design
+## Custom motor
 
 First an understanding of the solid fuel combustion process is needed. The nozzle:
 
@@ -43,19 +40,13 @@ A typical nozzle design:
 
 The motor's length, inner and outer diameters are summarised here.
 
-- The solid fuel motor has a hollow core, the 
-interior area of which is th eburn area. The
-$K_n$ burning-area to throat-area ratio 
-determines the combusiton chamber pressure. 
+- The solid fuel motor has a hollow core, the interior area of which is th eburn area. The $K_n$ burning-area to throat-area ratio determines the combusiton chamber pressure.
 
-- The longer the motor, the greater the 
-erosive effect, due to more combustion
-gases flowing.
-
+- The longer the motor, the greater the erosive effect, due to more combustiongases flowing.
 
 ### Using the SRM excel sheet
 
-#### [HP-I280DM](https://www.thrustcurve.org/simfiles/5f9244e11bca580004171750/)
+[HP-I280DM](https://www.thrustcurve.org/simfiles/5f9244e11bca580004171750/)
 Variables used:
 
 - Inner diameter, `Dc` = 38mm
@@ -66,7 +57,6 @@ Variables used:
 - Segment length, `Lo` = `Lc` = 356mm (assumed 1 segment.)
 - Number of segments, `N` = 1
 - Target MEOP = 1000psi
-
 
 $^{note}$
 Details on the propellant type was quite difficult to find, as we are using a COTS motor. Perhaps a custom sugar motor might be an option for future launches. Regardless, a datasheet from RCS on the Metalstorm propellant for 38mm diameter solid motors is included in this repository, see:
@@ -86,11 +76,8 @@ do an okay job of generating ballpark nozzle dimensions:
 
 ![Screenshot](img/nozzle_dims.png)
 
+## References
 
-## Making the CAD model
-TBD
-
-#### References
 [Practical APCP motor design](https://www.tripolimn.org/wp-content/uploads/2016/12/Practical-APCP-motor-design.pdf)
 
 [Experimental Composite Propellant by Terry McCreary, PROPEL20.xls](https://aeroconsystems.com/product/experimental-composite-propellant)

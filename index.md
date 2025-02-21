@@ -21,5 +21,3 @@ Links:
 ![Screenshot](img/RktLaunch_45.jpg)
 
 ![Screenshot](img/RktLaunch_51.jpg)
-
-![Screenshot](img/IMG_5310.jpg)

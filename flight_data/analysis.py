@@ -183,10 +183,11 @@ def main():
 
     data["calculated_altitude_m"] = pressure_to_altitude(data["pressure_pa"])
 
-    # plot_altitude(data)
+    
+    plot_altitude(data)
     # plot_thermocouple(data)
-    # plot_IMU(data)
-    plot_battery_stats(data)
+    plot_IMU(data)
+    # plot_battery_stats(data)
 
     # for col in data.columns:
     #     print(col)

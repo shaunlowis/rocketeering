@@ -21,6 +21,7 @@ import pandas as pd
 import matplotlib.pyplot as plt
 from math import sin, cos, atan2, asin, sqrt, degrees
 from plotting import *
+from scipy.spatial.transform import Rotation as sciR
 
 # -------------------------
 # User settings
@@ -40,46 +41,25 @@ axis_map = {'x': 'y', 'y': 'z', 'z': 'x'}
 axis_sign = {'x': 1, 'y': 1, 'z': 1}
 
 # -------------------------
-# Quaternion helpers
+# Quaternion helpers using scipy (x, y, z, w order)
 # -------------------------
+
 def quat_mult(q, r):
-    w0, x0, y0, z0 = q
-    w1, x1, y1, z1 = r
-    return np.array([
-        w0*w1 - x0*x1 - y0*y1 - z0*z1,
-        w0*x1 + x0*w1 + y0*z1 - z0*y1,
-        w0*y1 - x0*z1 + y0*w1 + z0*x1,
-        w0*z1 + x0*y1 - y0*x1 + z0*w1
-    ])
+    # q, r: [x, y, z, w]
+    return (sciR.from_quat(q) * sciR.from_quat(r)).as_quat()
 
 def quat_normalize(q):
-    return q / np.linalg.norm(q)
+    return sciR.from_quat(q).as_quat() / np.linalg.norm(q)
 
 def quat_propagate(q, omega_body, dt):
     """Propagate quaternion with body angular rate omega (rad/s)."""
-    omega_q = np.concatenate(([0.0], omega_body))
-    q_dot = 0.5 * quat_mult(q, omega_q)
-    return quat_normalize(q + q_dot * dt)
+    # omega_body: [x, y, z], q: [x, y, z, w]
+    rot = sciR.from_quat(q)
+    # Small-angle approximation for delta rotation
+    delta_rot = sciR.from_rotvec(omega_body * dt)
+    q_new = (rot * delta_rot).as_quat()
+    return q_new / np.linalg.norm(q_new)
 
-def euler_to_quat(roll, pitch, yaw):
-    """Convert roll, pitch, yaw (rad) to quaternion [w,x,y,z]."""
-    cr, sr = cos(roll/2), sin(roll/2)
-    cp, sp = cos(pitch/2), sin(pitch/2)
-    cy, sy = cos(yaw/2), sin(yaw/2)
-    return quat_normalize(np.array([
-        cy*cp*cr + sy*sp*sr,
-        cy*cp*sr - sy*sp*cr,
-        cy*sp*cr + sy*cp*sr,
-        sy*cp*cr - cy*sp*sr
-    ]))
-
-def quat_to_rotmat(q):
-    w, x, y, z = q
-    return np.array([
-        [1 - 2*(y*y + z*z),     2*(x*y - z*w),       2*(x*z + y*w)],
-        [2*(x*y + z*w),         1 - 2*(x*x + z*z),   2*(y*z - x*w)],
-        [2*(x*z - y*w),         2*(y*z + x*w),       1 - 2*(x*x + y*y)]
-    ])
 
 # -------------------------
 # Load data
@@ -129,7 +109,7 @@ ax, ay, az = accel_mean / g_val
 roll0  = atan2(ay, az)
 pitch0 = atan2(-ax, np.sqrt(ay*ay + az*az))
 yaw0   = 0.0
-q = euler_to_quat(roll0, pitch0, yaw0)
+q = sciR.from_euler('xyz', [roll0, pitch0, yaw0]).as_quat()  # scipy uses [x, y, z, w] order
 
 # "Launch rail angle": angle between body X axis and vertical
 up_body = accel_mean / np.linalg.norm(accel_mean)
@@ -139,7 +119,7 @@ print(f"Initial roll={degrees(roll0):.2f}°, pitch={degrees(pitch0):.2f}°, yaw=
 print(f"Launch rail angle from vertical: {launch_angle:.2f}°")
 
 # Estimate constant biases
-R0 = quat_to_rotmat(q) # This is the initial rotation matrix from body to world frame when rocket is on the rail
+R0 = sciR.from_quat(q).as_matrix()  # scipy uses [x, y, z, w] order
 expected_f = -R0.T @ gravity_vector_in_world_frame # expected accel in world frame when stationary. Z down/up?
 accel_bias = accel_mean - expected_f
 gyro_bias  = gyro_mean
@@ -170,12 +150,12 @@ for k in range(flight_start_index, N-1):
     omega = gyro_body[k] - gyro_bias
     q = quat_propagate(q, omega, dt)
     quat[k+1] = q
-    R = quat_to_rotmat(q)
+    rot = sciR.from_quat(q)  # scipy uses [x, y, z, w] order
+    R = rot.as_matrix()
 
-    # euler angles (ZYX)
-    pitch = asin(np.clip(-R[0,2], -1, 1))
-    roll  = atan2(R[1,2], R[2,2])
-    yaw   = atan2(R[0,1], R[0,0])
+    # euler angles (ZYX)   
+    roll, pitch, yaw = rot.as_euler('xyz', degrees=True)
+    #pitch = -pitch  # adjust sign if needed
     euler[k+1] = [roll, pitch, yaw]
 
     # accel → world with g removed
@@ -200,9 +180,9 @@ df['pos_z'] = pos[:,2]
 df['vel_x'] = vel[:,0]
 df['vel_y'] = vel[:,1]
 df['vel_z'] = vel[:,2]
-df['roll_deg'] = euler[:,0]*rad2deg
-df['pitch_deg'] = euler[:,1]*rad2deg
-df['yaw_deg'] = euler[:,2]*rad2deg
+df['roll_deg'] = euler[:,0]
+df['pitch_deg'] = euler[:,1]
+df['yaw_deg'] = euler[:,2]
 
 # Keep only rows where timestamp >= stationary_seconds
 df = df[df['timestamp'] >= stationary_seconds].copy()

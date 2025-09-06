@@ -164,6 +164,11 @@ for k in range(flight_start_index, N-1):
     # integrate v,p with trapezoidal
     v_new = vel[k] + 0.5*(a_world_prev + a_world)*dt
     p_new = pos[k] + 0.5*(vel[k] + v_new)*dt
+    # Since we have baro data, perform a simple complementary filter on z position. Ignore velocity as it seemed to oscillate too much
+    alpha = 0.98 # This is how much we trust the baro vs the accel integration
+    baro_z = df['baro_calculated_altitude_m'].iloc[k+1]
+    p_new[2] = alpha * p_new[2] + (1-alpha) * baro_z
+    
     vel[k+1] = v_new
     pos[k+1] = p_new
 

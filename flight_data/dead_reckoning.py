@@ -32,7 +32,7 @@ g_val = 9.80665                # m/s^2
 deg2rad = np.pi / 180.0
 rad2deg = 180.0 / np.pi
 gravity_vector_in_world_frame = np.array([0, 0, -g_val])
-flight_start_index = 3190
+flight_start_index = 3085
 
 
 # Axis mapping: IMU Y axis pointed along rocket nose (tail->nose = body X).

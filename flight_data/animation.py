@@ -39,7 +39,7 @@ def apply_initial_rotation(px, py, pz, R0):
 def rocket_model():
     rocket_scale = 100
     L, Rb, Hn = 4.0*rocket_scale, 0.2*rocket_scale, 1.0*rocket_scale   # body length, radius, nose height
-    fin_w, fin_h = 0.1*rocket_scale, 0.5*rocket_scale     # fin width, height
+    fin_w, fin_h = 0.2*rocket_scale, 0.7*rocket_scale     # fin width, height
 
     # Cylinder body along z-axis
     theta = np.linspace(0, 2*np.pi, 16)
@@ -130,7 +130,7 @@ def update(frame):
 
     return []
 
-ani = FuncAnimation(fig, update, frames=len(t), interval=50, blit=False)
+ani = FuncAnimation(fig, update, frames=len(t), interval=42, blit=False) # 50 for interval is too slow, maybe the drawing time is significant since it is a 3d model??
 # Save as GIF
-ani.save('rocket_flight.gif', writer='pillow', fps=20, dpi=150)
+# ani.save('rocket_flight.gif', writer='pillow', fps=20, dpi=150)
 plt.show()

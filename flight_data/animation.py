@@ -89,6 +89,11 @@ ax.set_xlim(np.min(pos[:,0]), np.max(pos[:,0]))
 ax.set_ylim(np.min(pos[:,1]), np.max(pos[:,1]))
 ax.set_zlim(np.min(pos[:,2]), np.max(pos[:,2]))
 
+# Add axis labels
+ax.set_xlabel("x [m]")
+ax.set_ylabel("y [m]")
+ax.set_zlabel("z [m]")
+
 body = ax.plot_surface(x, y, z, color="red", alpha=0.7)
 cone = ax.plot_surface(cone_x, cone_y, cone_z, color="darkred", alpha=0.8)
 fin_polys = [ax.add_collection3d(Poly3DCollection([f], color="black")) for f in fins]
@@ -126,4 +131,6 @@ def update(frame):
     return []
 
 ani = FuncAnimation(fig, update, frames=len(t), interval=50, blit=False)
+# Save as GIF
+ani.save('rocket_flight.gif', writer='pillow', fps=20, dpi=150)
 plt.show()

@@ -28,12 +28,12 @@ from scipy.spatial.transform import Rotation as sciR
 # -------------------------
 FNAME = "flight_data_trimmed.csv"      # replace with your filename
 OUT_CSV = "reconstruction_out.csv"
-stationary_seconds = 150       # first 150 s used for bias + initial attitude
 g_val = 9.80665                # m/s^2
 deg2rad = np.pi / 180.0
 rad2deg = 180.0 / np.pi
 gravity_vector_in_world_frame = np.array([0, 0, -g_val])
-flight_start_index = 3000
+flight_start_index = 3190
+
 
 # Axis mapping: IMU Y axis pointed along rocket nose (tail->nose = body X).
 # So: body_x <= imu_y, body_y <= imu_z, body_z <= imu_x (right-handed).
@@ -100,7 +100,7 @@ gyro_body  *= deg2rad        # dps -> rad/s
 # -------------------------
 # Initial attitude from static launch rail
 # -------------------------
-stationary_mask = time < (time[0] + stationary_seconds)
+stationary_mask = np.arange(len(time)) < flight_start_index
 accel_mean = accel_body[stationary_mask].mean(axis=0)
 gyro_mean  = gyro_body[stationary_mask].mean(axis=0)
 
@@ -155,7 +155,6 @@ for k in range(flight_start_index, N-1):
 
     # euler angles (ZYX)   
     roll, pitch, yaw = rot.as_euler('xyz', degrees=True)
-    #pitch = -pitch  # adjust sign if needed
     euler[k+1] = [roll, pitch, yaw]
 
     # accel → world with g removed
@@ -184,8 +183,8 @@ df['roll_deg'] = euler[:,0]
 df['pitch_deg'] = euler[:,1]
 df['yaw_deg'] = euler[:,2]
 
-# Keep only rows where timestamp >= stationary_seconds
-df = df[df['timestamp'] >= stationary_seconds].copy()
+# Keep only rows where the index > flight_start_index
+df = df[df.index > flight_start_index].copy()
 
 # Reset index
 df.reset_index(drop=True, inplace=True)

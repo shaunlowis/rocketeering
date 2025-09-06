@@ -43,6 +43,20 @@ def main():
 
     # Calculate altitude from baro data
     flight_data["baro_calculated_altitude_m"] = pressure_to_altitude(flight_data["pressure_pa"])
+    # Print the average timestamp delta
+    timestamp_deltas = flight_data["timestamp"].diff().dropna()
+    average_delta = timestamp_deltas.mean()
+    print(f"Average timestamp delta (s): {average_delta:.6f}")
+
+    #calculate magnitude of g forces currently, less gravity
+    flight_data["accel_magnitude_less_gravity_g"] = np.sqrt(flight_data["accel_x_g"]**2 + flight_data["accel_y_g"]**2 + flight_data["accel_z_g"]**2) - 1.0
+    plt.figure()
+    plt.plot(flight_data["timestamp"], flight_data["accel_magnitude_less_gravity_g"])
+    plt.xlabel("Time (s)")
+    plt.ylabel("Accel Magnitude Less Gravity (g)")
+    plt.title("Acceleration Magnitude (Minus Gravity) vs Time")
+    plt.grid(True)
+
 
     flight_data.to_csv("flight_data_trimmed.csv", index=False)
     plot_imu_data(flight_data)

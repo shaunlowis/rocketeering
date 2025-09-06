@@ -130,7 +130,7 @@ def update(frame):
 
     return []
 
-ani = FuncAnimation(fig, update, frames=len(t), interval=42, blit=False) # 50 for interval is too slow, maybe the drawing time is significant since it is a 3d model??
+ani = FuncAnimation(fig, update, frames=len(t), interval=50, blit=False) # 50 for interval is too slow, the drawing/processing time must be significant
 # Save as GIF
-# ani.save('rocket_flight.gif', writer='pillow', fps=20, dpi=150)
+ani.save('rocket_flight.gif', writer='pillow', fps=20, dpi=150)
 plt.show()
